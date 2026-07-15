@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "ruflo": {
+      "source": {
+        "source": "github",
+        "repo": "ruvnet/claude-flow"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "ruflo-core@ruflo": true
+  }
+}
