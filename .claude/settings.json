@@ -10,4 +10,8 @@
   "enabledPlugins": {
     "ruflo-core@ruflo": true
   }
+}{
+  "env": {
+    "USE_BUILTIN_RIPGREP": "0"
+  }
 }
