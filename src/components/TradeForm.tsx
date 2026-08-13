@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react'
-import { DEFAULT_CONFLUENCES, DEFAULT_MISTAKES } from '../types'
 import type { Direction, Outcome, Screenshot, Trade } from '../types'
 import { createTradeId } from '../lib/db'
+import { CONFLUENCE_TAGS, MISTAKE_TAGS, generateAnalysis } from '../lib/tradingKnowledge'
 import { TagInput } from './TagInput'
 import { ScreenshotUploader, type PendingImage } from './ScreenshotUploader'
+import { AnalysisView } from './AnalysisView'
 
 function todayDate() {
   return new Date().toISOString().slice(0, 10)
@@ -26,9 +27,6 @@ function emptyTrade(): Trade {
     riskReward: null,
     confluences: [],
     mistakes: [],
-    whatWentRight: '',
-    whatWentWrong: '',
-    improvementNotes: '',
     screenshotIds: [],
     createdAt: now,
     updatedAt: now,
@@ -57,13 +55,14 @@ export function TradeForm({
   const [saving, setSaving] = useState(false)
 
   const confluenceSuggestions = useMemo(
-    () => Array.from(new Set([...DEFAULT_CONFLUENCES, ...allConfluences])),
+    () => Array.from(new Set([...CONFLUENCE_TAGS, ...allConfluences])),
     [allConfluences],
   )
   const mistakeSuggestions = useMemo(
-    () => Array.from(new Set([...DEFAULT_MISTAKES, ...allMistakes])),
+    () => Array.from(new Set([...MISTAKE_TAGS, ...allMistakes])),
     [allMistakes],
   )
+  const analysis = useMemo(() => generateAnalysis(trade), [trade.confluences, trade.mistakes, trade.outcome])
 
   const update = <K extends keyof Trade>(key: K, value: Trade[K]) =>
     setTrade((t) => ({ ...t, [key]: value }))
@@ -218,39 +217,11 @@ export function TradeForm({
         placeholder="e.g. FOMO entry…"
       />
 
-      <div>
-        <label className="mb-1.5 block text-sm font-medium text-slate-300">What went right</label>
-        <textarea
-          rows={2}
-          value={trade.whatWentRight}
-          onChange={(e) => update('whatWentRight', e.target.value)}
-          className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
-          placeholder="Followed my plan, waited for confirmation…"
-        />
-      </div>
-
-      <div>
-        <label className="mb-1.5 block text-sm font-medium text-slate-300">What went wrong</label>
-        <textarea
-          rows={2}
-          value={trade.whatWentWrong}
-          onChange={(e) => update('whatWentWrong', e.target.value)}
-          className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
-          placeholder="Entered before confirmation, sized too big…"
-        />
-      </div>
-
-      <div>
-        <label className="mb-1.5 block text-sm font-medium text-slate-300">
-          How to improve next time
-        </label>
-        <textarea
-          rows={2}
-          value={trade.improvementNotes}
-          onChange={(e) => update('improvementNotes', e.target.value)}
-          className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
-          placeholder="Wait for retest, cut size on countertrend setups…"
-        />
+      <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
+        <h3 className="mb-3 text-sm font-semibold text-slate-200">
+          Analysis <span className="font-normal text-slate-500">(generated from your tags above)</span>
+        </h3>
+        <AnalysisView analysis={analysis} />
       </div>
 
       <div className="flex justify-end gap-3 border-t border-slate-800 pt-4">

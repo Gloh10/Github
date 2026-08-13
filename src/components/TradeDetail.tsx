@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Screenshot, Trade } from '../types'
 import { getScreenshotsForTrade } from '../lib/db'
+import { generateAnalysis } from '../lib/tradingKnowledge'
 import { ScreenshotThumb } from './ScreenshotThumb'
 import { MistakeStreakBadge } from './MistakeStreakBadge'
+import { AnalysisView } from './AnalysisView'
 import type { MistakeStreak } from '../lib/insights'
 
 const outcomeStyles: Record<Trade['outcome'], string> = {
@@ -30,6 +32,7 @@ export function TradeDetail({
   }, [trade.id])
 
   const tradeStreaks = streaks.filter((s) => trade.mistakes.includes(s.mistake) && s.tradeIds[0] === trade.id)
+  const analysis = useMemo(() => generateAnalysis(trade), [trade])
 
   return (
     <div className="space-y-5">
@@ -100,26 +103,10 @@ export function TradeDetail({
         </div>
       )}
 
-      {trade.whatWentRight && (
-        <div>
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">What went right</h3>
-          <p className="whitespace-pre-wrap text-sm text-slate-300">{trade.whatWentRight}</p>
-        </div>
-      )}
-
-      {trade.whatWentWrong && (
-        <div>
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">What went wrong</h3>
-          <p className="whitespace-pre-wrap text-sm text-slate-300">{trade.whatWentWrong}</p>
-        </div>
-      )}
-
-      {trade.improvementNotes && (
-        <div>
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">How to improve</h3>
-          <p className="whitespace-pre-wrap text-sm text-slate-300">{trade.improvementNotes}</p>
-        </div>
-      )}
+      <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
+        <h3 className="mb-3 text-sm font-semibold text-slate-200">Analysis</h3>
+        <AnalysisView analysis={analysis} />
+      </div>
 
       <div className="flex justify-end gap-3 border-t border-slate-800 pt-4">
         <button

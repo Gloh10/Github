@@ -12,9 +12,6 @@ export interface Trade {
   riskReward: number | null
   confluences: string[]
   mistakes: string[]
-  whatWentRight: string
-  whatWentWrong: string
-  improvementNotes: string
   screenshotIds: string[]
   createdAt: number
   updatedAt: number
@@ -30,31 +27,3 @@ export interface Screenshot {
   type: string
   createdAt: number
 }
-
-export const DEFAULT_CONFLUENCES = [
-  'Support/Resistance',
-  'Trendline break',
-  'Trend continuation',
-  'Reversal pattern',
-  'Volume spike',
-  'Moving average bounce',
-  'Fibonacci level',
-  'Breakout',
-  'News catalyst',
-  'Higher timeframe alignment',
-]
-
-export const DEFAULT_MISTAKES = [
-  'FOMO entry',
-  'No stop loss',
-  'Moved stop loss',
-  'Oversized position',
-  'Entered too early',
-  'Entered too late',
-  'Ignored plan',
-  'Revenge trading',
-  'Overtraded',
-  'Exited too early',
-  'Held too long',
-  'Chased price',
-]
