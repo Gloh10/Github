@@ -1,5 +1,6 @@
 import type { Trade } from '../types'
 import { getActiveMistakeStreaks, getRecentMistakeFrequency, getStats } from '../lib/insights'
+import { getRecurringNoteThemes } from '../lib/notesInsights'
 import { MistakeAlerts } from './MistakeAlerts'
 
 function StatCard({ label, value, accent }: { label: string; value: string; accent?: string }) {
@@ -31,6 +32,7 @@ export function Dashboard({ trades }: { trades: Trade[] }) {
   const streaks = getActiveMistakeStreaks(trades)
   const allStreaks = getActiveMistakeStreaks(trades, 1)
   const frequency = getRecentMistakeFrequency(trades)
+  const noteThemes = getRecurringNoteThemes(trades)
   const maxMistake = Math.max(1, ...stats.topMistakes.map((m) => m.count))
   const maxConfluence = Math.max(1, ...stats.topConfluences.map((c) => c.count))
 
@@ -81,6 +83,23 @@ export function Dashboard({ trades }: { trades: Trade[] }) {
           </ol>
         )}
       </div>
+
+      {noteThemes.length > 0 && (
+        <div className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-4">
+          <h3 className="mb-3 text-sm font-semibold text-slate-200">Recurring themes in your notes</h3>
+          <ol className="space-y-2">
+            {noteThemes.map((t, i) => (
+              <li key={t.phrase} className="flex items-center justify-between gap-3 text-sm">
+                <span className="text-slate-300">
+                  <span className="mr-2 text-slate-600">{i + 1}.</span>
+                  &ldquo;{t.phrase}&rdquo;
+                </span>
+                <span className="shrink-0 font-semibold text-slate-500">{t.count} trades</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
 
       <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">

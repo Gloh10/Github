@@ -9,8 +9,10 @@ import { DayOfWeekInsights } from './components/DayOfWeekInsights'
 import { Dashboard } from './components/Dashboard'
 import { Modal } from './components/Modal'
 import { MistakeAlerts } from './components/MistakeAlerts'
+import { NoteThemeAlerts } from './components/NoteThemeAlerts'
 import { SettingsModal } from './components/SettingsModal'
 import { getActiveMistakeStreaks, getRecentMistakeFrequency } from './lib/insights'
+import { getRecurringNoteThemes } from './lib/notesInsights'
 import { getScreenshotsForTrade } from './lib/db'
 import type { Screenshot, Trade } from './types'
 
@@ -33,6 +35,7 @@ export default function App() {
   const allMistakes = useMemo(() => Array.from(new Set(trades.flatMap((t) => t.mistakes))), [trades])
   const streaks = useMemo(() => getActiveMistakeStreaks(trades), [trades])
   const frequency = useMemo(() => getRecentMistakeFrequency(trades), [trades])
+  const noteThemes = useMemo(() => getRecurringNoteThemes(trades), [trades])
 
   const openView = async (trade: Trade) => {
     setDetailScreenshots(await getScreenshotsForTrade(trade.id))
@@ -91,6 +94,7 @@ export default function App() {
         ) : tab === 'journal' ? (
           <>
             <MistakeAlerts streaks={streaks} frequency={frequency} />
+            <NoteThemeAlerts themes={noteThemes} />
             <TradeList trades={trades} onSelect={openView} />
           </>
         ) : tab === 'calendar' ? (
