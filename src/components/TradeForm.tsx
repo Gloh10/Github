@@ -27,6 +27,7 @@ function emptyTrade(): Trade {
     riskReward: null,
     confluences: [],
     mistakes: [],
+    personalNotes: '',
     screenshotIds: [],
     createdAt: now,
     updatedAt: now,
@@ -48,7 +49,9 @@ export function TradeForm({
   onSave: (trade: Trade, newFiles: File[], removedScreenshotIds: string[]) => Promise<void>
   onCancel: () => void
 }) {
-  const [trade, setTrade] = useState<Trade>(() => initial ?? emptyTrade())
+  const [trade, setTrade] = useState<Trade>(() =>
+    initial ? { ...initial, personalNotes: initial.personalNotes ?? '' } : emptyTrade(),
+  )
   const [pending, setPending] = useState<PendingImage[]>([])
   const [removedIds, setRemovedIds] = useState<string[]>([])
   const [kept, setKept] = useState<Screenshot[]>(existingScreenshots)
@@ -216,6 +219,17 @@ export function TradeForm({
         tagClassName="bg-rose-500/15 text-rose-300"
         placeholder="e.g. FOMO entry…"
       />
+
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-slate-300">Personal notes</label>
+        <textarea
+          rows={3}
+          value={trade.personalNotes}
+          onChange={(e) => update('personalNotes', e.target.value)}
+          className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+          placeholder="Anything else worth remembering about this trade…"
+        />
+      </div>
 
       <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
         <h3 className="mb-3 text-sm font-semibold text-slate-200">

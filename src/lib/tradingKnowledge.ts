@@ -72,6 +72,30 @@ const CONFLUENCE_CONCEPTS: ConceptEntry[] = [
     rightText:
       "This setup matches a pattern you've backtested. PB Trades: confidence doesn't come from taking more live trades, it comes from seeing your edge play out repeatedly in backtesting first — that's what removes hesitation.",
   },
+  {
+    tag: '.50 OTE',
+    source: 'general',
+    rightText:
+      'You entered at the .50 (50%) Fibonacci retracement — the shallow edge of the Optimal Trade Entry zone. Typically used when momentum is strong and price isn\'t giving a deep pullback before continuing.',
+  },
+  {
+    tag: '.62 OTE',
+    source: 'general',
+    rightText:
+      'You entered at the .62 (61.8%) Fibonacci retracement — the classic start of the Optimal Trade Entry zone, a common spot for price to react before continuing the move.',
+  },
+  {
+    tag: '.705 OTE',
+    source: 'general',
+    rightText:
+      'You entered at the .705 (70.5%) Fibonacci retracement — the midpoint of the OTE zone, often used as a deeper, higher-conviction entry within the retracement.',
+  },
+  {
+    tag: '.79 OTE',
+    source: 'general',
+    rightText:
+      'You entered at the .79 (79%) Fibonacci retracement — the deep edge of the OTE zone, just short of a full retracement. Higher risk if the level fails, but often better risk:reward if it holds.',
+  },
 ]
 
 const MISTAKE_CONCEPTS: ConceptEntry[] = [

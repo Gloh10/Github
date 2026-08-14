@@ -18,6 +18,7 @@ export interface Trade {
   riskReward: number | null
   confluences: string[]
   mistakes: string[]
+  personalNotes: string
   screenshotIds: string[]
   aiAnalysis?: AIAnalysisResult | null
   createdAt: number

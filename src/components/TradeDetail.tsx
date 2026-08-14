@@ -157,6 +157,13 @@ export function TradeDetail({
         </div>
       )}
 
+      {trade.personalNotes && (
+        <div>
+          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">Personal notes</h3>
+          <p className="whitespace-pre-wrap text-sm text-slate-300">{trade.personalNotes}</p>
+        </div>
+      )}
+
       <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
         <h3 className="mb-3 text-sm font-semibold text-slate-200">Analysis</h3>
         <AnalysisView analysis={analysis} />
