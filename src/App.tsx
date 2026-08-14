@@ -3,6 +3,9 @@ import { useTrades } from './hooks/useTrades'
 import { TradeList } from './components/TradeList'
 import { TradeForm } from './components/TradeForm'
 import { TradeDetail } from './components/TradeDetail'
+import { TradeCard } from './components/TradeCard'
+import { TradeCalendar } from './components/TradeCalendar'
+import { DayOfWeekInsights } from './components/DayOfWeekInsights'
 import { Dashboard } from './components/Dashboard'
 import { Modal } from './components/Modal'
 import { MistakeAlerts } from './components/MistakeAlerts'
@@ -11,8 +14,13 @@ import { getActiveMistakeStreaks, getRecentMistakeFrequency } from './lib/insigh
 import { getScreenshotsForTrade } from './lib/db'
 import type { Screenshot, Trade } from './types'
 
-type Tab = 'journal' | 'dashboard'
-type ModalState = { kind: 'new' } | { kind: 'edit'; trade: Trade } | { kind: 'view'; trade: Trade } | null
+type Tab = 'journal' | 'calendar' | 'dashboard'
+type ModalState =
+  | { kind: 'new' }
+  | { kind: 'edit'; trade: Trade }
+  | { kind: 'view'; trade: Trade }
+  | { kind: 'day'; date: string }
+  | null
 
 export default function App() {
   const { trades, loading, upsertTrade, removeTrade, saveTradeWithScreenshots } = useTrades()
@@ -62,7 +70,7 @@ export default function App() {
         </div>
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <nav className="flex gap-1 border-t border-slate-800/0">
-            {(['journal', 'dashboard'] as Tab[]).map((t) => (
+            {(['journal', 'calendar', 'dashboard'] as Tab[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
@@ -85,6 +93,11 @@ export default function App() {
             <MistakeAlerts streaks={streaks} frequency={frequency} />
             <TradeList trades={trades} onSelect={openView} />
           </>
+        ) : tab === 'calendar' ? (
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <TradeCalendar trades={trades} onSelectDay={(date) => setModal({ kind: 'day', date })} />
+            <DayOfWeekInsights trades={trades} />
+          </div>
         ) : (
           <Dashboard trades={trades} />
         )}
@@ -133,6 +146,18 @@ export default function App() {
             onDelete={() => handleDelete(modal.trade.id)}
             onUpdateTrade={upsertTrade}
           />
+        </Modal>
+      )}
+
+      {modal?.kind === 'day' && (
+        <Modal title={modal.date} onClose={() => setModal(null)} wide>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {trades
+              .filter((t) => t.date === modal.date)
+              .map((trade) => (
+                <TradeCard key={trade.id} trade={trade} onClick={() => openView(trade)} />
+              ))}
+          </div>
         </Modal>
       )}
 

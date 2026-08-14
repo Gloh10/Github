@@ -12,6 +12,7 @@ Everything is stored in your browser's IndexedDB. There's no backend and no acco
 - **AI screenshot analysis (optional)** — click "Analyze with AI" on a trade with a screenshot to have Claude actually look at the chart and explain why the trade likely won or lost. Requires your own Anthropic API key, entered in Settings and stored only in your browser — the screenshot and trade tags are sent to Anthropic's API when you use this, nothing else.
 - **Mistake streak detection** — if the same mistake tag (e.g. "FOMO entry") appears in 2+ consecutive trades, a banner flags it on both the Journal and Dashboard views. The Dashboard also lists every mistake tag ranked by its current streak, highest first.
 - **Recent-frequency insights** — mistakes that show up often within your last 5 trades (even if not strictly back-to-back) get a lighter heads-up.
+- **Calendar** — a month view showing trade count and win/loss for each day you traded, color-coded by outcome; click a day to see that day's trades. Comes with a day-of-week breakdown (win rate and volume per weekday) that calls out your best and worst performing days.
 - **Dashboard** — win rate, total P&L, most common mistakes, mistake streaks ranked highest-to-lowest, and win rate by confluence, so you can see which setups actually work for you.
 
 ## Getting started
