@@ -29,6 +29,7 @@ function BarRow({ label, count, max, color }: { label: string; count: number; ma
 export function Dashboard({ trades }: { trades: Trade[] }) {
   const stats = getStats(trades)
   const streaks = getActiveMistakeStreaks(trades)
+  const allStreaks = getActiveMistakeStreaks(trades, 1)
   const frequency = getRecentMistakeFrequency(trades)
   const maxMistake = Math.max(1, ...stats.topMistakes.map((m) => m.count))
   const maxConfluence = Math.max(1, ...stats.topConfluences.map((c) => c.count))
@@ -58,6 +59,27 @@ export function Dashboard({ trades }: { trades: Trade[] }) {
           accent={stats.totalPnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}
         />
         <StatCard label="W / L / B/E" value={`${stats.wins} / ${stats.losses} / ${stats.breakeven}`} />
+      </div>
+
+      <div className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-4">
+        <h3 className="mb-3 text-sm font-semibold text-slate-200">Mistake streaks (current, highest first)</h3>
+        {allStreaks.length === 0 ? (
+          <p className="text-sm text-slate-500">No mistakes tagged yet.</p>
+        ) : (
+          <ol className="space-y-2">
+            {allStreaks.map((s, i) => (
+              <li key={s.mistake} className="flex items-center justify-between gap-3 text-sm">
+                <span className="text-slate-300">
+                  <span className="mr-2 text-slate-600">{i + 1}.</span>
+                  {s.mistake}
+                </span>
+                <span className={`shrink-0 font-semibold ${s.streak >= 2 ? 'text-amber-400' : 'text-slate-500'}`}>
+                  {s.streak} in a row
+                </span>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">

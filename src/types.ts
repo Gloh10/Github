@@ -1,6 +1,12 @@
 export type Direction = 'long' | 'short'
 export type Outcome = 'win' | 'loss' | 'breakeven'
 
+export interface AIAnalysisResult {
+  text: string
+  model: string
+  generatedAt: number
+}
+
 export interface Trade {
   id: string
   date: string // YYYY-MM-DD
@@ -13,6 +19,7 @@ export interface Trade {
   confluences: string[]
   mistakes: string[]
   screenshotIds: string[]
+  aiAnalysis?: AIAnalysisResult | null
   createdAt: number
   updatedAt: number
 }

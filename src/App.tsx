@@ -6,6 +6,7 @@ import { TradeDetail } from './components/TradeDetail'
 import { Dashboard } from './components/Dashboard'
 import { Modal } from './components/Modal'
 import { MistakeAlerts } from './components/MistakeAlerts'
+import { SettingsModal } from './components/SettingsModal'
 import { getActiveMistakeStreaks, getRecentMistakeFrequency } from './lib/insights'
 import { getScreenshotsForTrade } from './lib/db'
 import type { Screenshot, Trade } from './types'
@@ -14,10 +15,11 @@ type Tab = 'journal' | 'dashboard'
 type ModalState = { kind: 'new' } | { kind: 'edit'; trade: Trade } | { kind: 'view'; trade: Trade } | null
 
 export default function App() {
-  const { trades, loading, removeTrade, saveTradeWithScreenshots } = useTrades()
+  const { trades, loading, upsertTrade, removeTrade, saveTradeWithScreenshots } = useTrades()
   const [tab, setTab] = useState<Tab>('journal')
   const [modal, setModal] = useState<ModalState>(null)
   const [detailScreenshots, setDetailScreenshots] = useState<Screenshot[]>([])
+  const [settingsOpen, setSettingsOpen] = useState(false)
 
   const allConfluences = useMemo(() => Array.from(new Set(trades.flatMap((t) => t.confluences))), [trades])
   const allMistakes = useMemo(() => Array.from(new Set(trades.flatMap((t) => t.mistakes))), [trades])
@@ -43,12 +45,20 @@ export default function App() {
             <h1 className="text-lg font-bold sm:text-xl">Trading Journal</h1>
             <p className="text-xs text-slate-500">Screenshots, confluences, and lessons learned &mdash; stored locally in your browser</p>
           </div>
-          <button
-            onClick={() => setModal({ kind: 'new' })}
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500"
-          >
-            + New Trade
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setSettingsOpen(true)}
+              className="rounded-lg border border-slate-700 px-3 py-2 text-sm font-medium text-slate-300 hover:border-slate-500 hover:text-slate-100"
+            >
+              Settings
+            </button>
+            <button
+              onClick={() => setModal({ kind: 'new' })}
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500"
+            >
+              + New Trade
+            </button>
+          </div>
         </div>
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <nav className="flex gap-1 border-t border-slate-800/0">
@@ -121,9 +131,12 @@ export default function App() {
               setModal({ kind: 'edit', trade: modal.trade })
             }}
             onDelete={() => handleDelete(modal.trade.id)}
+            onUpdateTrade={upsertTrade}
           />
         </Modal>
       )}
+
+      {settingsOpen && <SettingsModal onClose={() => setSettingsOpen(false)} />}
     </div>
   )
 }

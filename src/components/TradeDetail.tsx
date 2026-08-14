@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import type { Screenshot, Trade } from '../types'
 import { getScreenshotsForTrade } from '../lib/db'
 import { generateAnalysis } from '../lib/tradingKnowledge'
+import { analyzeTradeScreenshot } from '../lib/aiAnalysis'
+import { getApiKey } from '../lib/settings'
 import { ScreenshotThumb } from './ScreenshotThumb'
 import { MistakeStreakBadge } from './MistakeStreakBadge'
 import { AnalysisView } from './AnalysisView'
@@ -18,21 +20,46 @@ export function TradeDetail({
   streaks,
   onEdit,
   onDelete,
+  onUpdateTrade,
 }: {
   trade: Trade
   streaks: MistakeStreak[]
   onEdit: () => void
   onDelete: () => void
+  onUpdateTrade: (trade: Trade) => Promise<void>
 }) {
   const [screenshots, setScreenshots] = useState<Screenshot[]>([])
   const [lightbox, setLightbox] = useState<string | null>(null)
+  const [aiAnalysis, setAiAnalysis] = useState(trade.aiAnalysis ?? null)
+  const [aiLoading, setAiLoading] = useState(false)
+  const [aiError, setAiError] = useState<string | null>(null)
 
   useEffect(() => {
     getScreenshotsForTrade(trade.id).then(setScreenshots)
   }, [trade.id])
 
+  useEffect(() => {
+    setAiAnalysis(trade.aiAnalysis ?? null)
+    setAiError(null)
+  }, [trade.id, trade.aiAnalysis])
+
   const tradeStreaks = streaks.filter((s) => trade.mistakes.includes(s.mistake) && s.tradeIds[0] === trade.id)
   const analysis = useMemo(() => generateAnalysis(trade), [trade])
+
+  const handleAnalyze = async () => {
+    if (screenshots.length === 0) return
+    setAiLoading(true)
+    setAiError(null)
+    try {
+      const result = await analyzeTradeScreenshot(trade, screenshots[0].blob)
+      setAiAnalysis(result)
+      await onUpdateTrade({ ...trade, aiAnalysis: result })
+    } catch (err) {
+      setAiError(err instanceof Error ? err.message : 'Something went wrong analyzing this screenshot.')
+    } finally {
+      setAiLoading(false)
+    }
+  }
 
   return (
     <div className="space-y-5">
@@ -76,6 +103,33 @@ export function TradeDetail({
           ))}
         </div>
       )}
+
+      <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h3 className="text-sm font-semibold text-slate-200">AI screenshot analysis</h3>
+          <button
+            onClick={handleAnalyze}
+            disabled={aiLoading || screenshots.length === 0 || !getApiKey()}
+            className="shrink-0 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {aiLoading ? 'Analyzing…' : aiAnalysis ? 'Re-analyze' : 'Analyze with AI'}
+          </button>
+        </div>
+        {screenshots.length === 0 ? (
+          <p className="text-sm text-slate-500">Add a screenshot to this trade to enable AI analysis.</p>
+        ) : !getApiKey() ? (
+          <p className="text-sm text-slate-500">Add an Anthropic API key in Settings to enable AI analysis.</p>
+        ) : null}
+        {aiError && <p className="text-sm text-rose-400">{aiError}</p>}
+        {aiAnalysis && (
+          <div>
+            <p className="whitespace-pre-wrap text-sm text-slate-300">{aiAnalysis.text}</p>
+            <p className="mt-2 text-xs text-slate-600">
+              Generated {new Date(aiAnalysis.generatedAt).toLocaleString()} · {aiAnalysis.model}
+            </p>
+          </div>
+        )}
+      </div>
 
       {trade.confluences.length > 0 && (
         <div>
