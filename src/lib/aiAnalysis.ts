@@ -23,8 +23,13 @@ function normalizeMediaType(type: string): SupportedMediaType {
 
 type TradeContext = Pick<Trade, 'symbol' | 'direction' | 'outcome' | 'pnl' | 'riskReward' | 'confluences' | 'mistakes'>
 
-function buildPrompt(trade: TradeContext): string {
-  return `You are analyzing a trading chart screenshot for a personal trading journal.
+function buildPrompt(trade: TradeContext, imageCount: number): string {
+  const imageNote =
+    imageCount > 1
+      ? `You've been given ${imageCount} screenshots from this trade, likely different timeframes (e.g. a higher timeframe for context and a 1-minute chart for the exact entry). Look at all of them together and connect what you see across timeframes — don't analyze them in isolation.`
+      : ''
+
+  return `You are analyzing trading chart screenshot(s) for a personal trading journal.
 
 Trade details:
 - Symbol: ${trade.symbol}
@@ -35,34 +40,44 @@ Trade details:
 - Tagged confluences: ${trade.confluences.join(', ') || 'none'}
 - Tagged mistakes: ${trade.mistakes.join(', ') || 'none'}
 
-Look at the actual chart in the screenshot. Based on what's visible (price action, wicks, structure, levels, liquidity), explain in 3-5 concise sentences why this trade likely won or lost. Be specific to what you see on the chart, not generic advice. If it connects to the tagged confluences or mistakes, say so. Write directly to the trader, second person, no preamble.`
+${imageNote}
+
+Look at the actual chart(s). Based on what's visible (price action, wicks, structure, levels, liquidity, entry timing), explain in 4-6 concise sentences why this trade likely won or lost. Be specific to what you see on the chart, not generic advice. If the entry timing (visible on a lower timeframe) looks early, late, or well-timed relative to the higher-timeframe context, say so explicitly. If it connects to the tagged confluences or mistakes, say so. Write directly to the trader, second person, no preamble.`
 }
 
-export async function analyzeTradeScreenshot(
+export async function analyzeTradeScreenshots(
   trade: TradeContext,
-  screenshotBlob: Blob,
+  screenshotBlobs: Blob[],
 ): Promise<AIAnalysisResult> {
   const apiKey = getApiKey()
   if (!apiKey) {
     throw new Error('No Anthropic API key set. Add one in Settings first.')
   }
+  if (screenshotBlobs.length === 0) {
+    throw new Error('No screenshots to analyze.')
+  }
 
   const model = getAiModel()
-  const base64 = await blobToBase64(screenshotBlob)
-  const mediaType = normalizeMediaType(screenshotBlob.type)
-
   const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true })
+
+  const imageBlocks: Anthropic.ImageBlockParam[] = await Promise.all(
+    screenshotBlobs.map(async (blob) => ({
+      type: 'image' as const,
+      source: {
+        type: 'base64' as const,
+        media_type: normalizeMediaType(blob.type),
+        data: await blobToBase64(blob),
+      },
+    })),
+  )
 
   const response = await client.messages.create({
     model,
-    max_tokens: 600,
+    max_tokens: 700,
     messages: [
       {
         role: 'user',
-        content: [
-          { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
-          { type: 'text', text: buildPrompt(trade) },
-        ],
+        content: [...imageBlocks, { type: 'text', text: buildPrompt(trade, screenshotBlobs.length) }],
       },
     ],
   })

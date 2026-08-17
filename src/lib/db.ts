@@ -1,5 +1,6 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
 import type { Trade, Screenshot } from '../types'
+import { computeImageHash } from './imageHash'
 
 interface JournalDB extends DBSchema {
   trades: {
@@ -77,12 +78,14 @@ export async function deleteTrade(id: string): Promise<void> {
 
 export async function addScreenshot(tradeId: string, file: Blob, name: string): Promise<Screenshot> {
   const db = await getDB()
+  const hash = await computeImageHash(file).catch(() => undefined)
   const screenshot: Screenshot = {
     id: newId(),
     tradeId,
     blob: file,
     name,
     type: file.type || 'image/png',
+    hash,
     createdAt: Date.now(),
   }
   await db.put('screenshots', screenshot)
@@ -97,6 +100,19 @@ export async function getScreenshot(id: string): Promise<Screenshot | undefined>
 export async function getScreenshotsForTrade(tradeId: string): Promise<Screenshot[]> {
   const db = await getDB()
   return db.getAllFromIndex('screenshots', 'by-trade', tradeId)
+}
+
+export async function getAllScreenshots(): Promise<Screenshot[]> {
+  const db = await getDB()
+  return db.getAll('screenshots')
+}
+
+export async function setScreenshotHash(id: string, hash: string): Promise<void> {
+  const db = await getDB()
+  const shot = await db.get('screenshots', id)
+  if (shot) {
+    await db.put('screenshots', { ...shot, hash })
+  }
 }
 
 export async function deleteScreenshot(id: string): Promise<void> {

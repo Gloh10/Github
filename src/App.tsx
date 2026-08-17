@@ -1,11 +1,14 @@
 import { useMemo, useState } from 'react'
 import { useTrades } from './hooks/useTrades'
+import { useDismissedNoteThemes } from './hooks/useDismissedNoteThemes'
 import { TradeList } from './components/TradeList'
 import { TradeForm } from './components/TradeForm'
 import { TradeDetail } from './components/TradeDetail'
 import { TradeCard } from './components/TradeCard'
 import { TradeCalendar } from './components/TradeCalendar'
 import { DayOfWeekInsights } from './components/DayOfWeekInsights'
+import { SimilarChartDays } from './components/SimilarChartDays'
+import { NotesLog } from './components/NotesLog'
 import { Dashboard } from './components/Dashboard'
 import { Modal } from './components/Modal'
 import { MistakeAlerts } from './components/MistakeAlerts'
@@ -16,7 +19,7 @@ import { getRecurringNoteThemes } from './lib/notesInsights'
 import { getScreenshotsForTrade } from './lib/db'
 import type { Screenshot, Trade } from './types'
 
-type Tab = 'journal' | 'calendar' | 'dashboard'
+type Tab = 'journal' | 'calendar' | 'notes' | 'dashboard'
 type ModalState =
   | { kind: 'new' }
   | { kind: 'edit'; trade: Trade }
@@ -35,7 +38,11 @@ export default function App() {
   const allMistakes = useMemo(() => Array.from(new Set(trades.flatMap((t) => t.mistakes))), [trades])
   const streaks = useMemo(() => getActiveMistakeStreaks(trades), [trades])
   const frequency = useMemo(() => getRecentMistakeFrequency(trades), [trades])
-  const noteThemes = useMemo(() => getRecurringNoteThemes(trades), [trades])
+  const { dismissed: dismissedNoteThemes, dismiss: dismissNoteTheme } = useDismissedNoteThemes()
+  const noteThemes = useMemo(
+    () => getRecurringNoteThemes(trades).filter((t) => !dismissedNoteThemes.includes(t.phrase)),
+    [trades, dismissedNoteThemes],
+  )
 
   const openView = async (trade: Trade) => {
     setDetailScreenshots(await getScreenshotsForTrade(trade.id))
@@ -73,7 +80,7 @@ export default function App() {
         </div>
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <nav className="flex gap-1 border-t border-slate-800/0">
-            {(['journal', 'calendar', 'dashboard'] as Tab[]).map((t) => (
+            {(['journal', 'calendar', 'notes', 'dashboard'] as Tab[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
@@ -94,14 +101,17 @@ export default function App() {
         ) : tab === 'journal' ? (
           <>
             <MistakeAlerts streaks={streaks} frequency={frequency} />
-            <NoteThemeAlerts themes={noteThemes} />
+            <NoteThemeAlerts themes={noteThemes} onDismiss={dismissNoteTheme} />
             <TradeList trades={trades} onSelect={openView} />
           </>
         ) : tab === 'calendar' ? (
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <TradeCalendar trades={trades} onSelectDay={(date) => setModal({ kind: 'day', date })} />
             <DayOfWeekInsights trades={trades} />
+            <SimilarChartDays trades={trades} onSelectDay={(date) => setModal({ kind: 'day', date })} />
           </div>
+        ) : tab === 'notes' ? (
+          <NotesLog trades={trades} onSelect={openView} />
         ) : (
           <Dashboard trades={trades} />
         )}

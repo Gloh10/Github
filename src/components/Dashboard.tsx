@@ -1,6 +1,7 @@
 import type { Trade } from '../types'
 import { getActiveMistakeStreaks, getRecentMistakeFrequency, getStats } from '../lib/insights'
 import { getRecurringNoteThemes } from '../lib/notesInsights'
+import { useDismissedNoteThemes } from '../hooks/useDismissedNoteThemes'
 import { MistakeAlerts } from './MistakeAlerts'
 
 function StatCard({ label, value, accent }: { label: string; value: string; accent?: string }) {
@@ -32,7 +33,8 @@ export function Dashboard({ trades }: { trades: Trade[] }) {
   const streaks = getActiveMistakeStreaks(trades)
   const allStreaks = getActiveMistakeStreaks(trades, 1)
   const frequency = getRecentMistakeFrequency(trades)
-  const noteThemes = getRecurringNoteThemes(trades)
+  const { dismissed: dismissedNoteThemes, dismiss: dismissNoteTheme } = useDismissedNoteThemes()
+  const noteThemes = getRecurringNoteThemes(trades).filter((t) => !dismissedNoteThemes.includes(t.phrase))
   const maxMistake = Math.max(1, ...stats.topMistakes.map((m) => m.count))
   const maxConfluence = Math.max(1, ...stats.topConfluences.map((c) => c.count))
 
@@ -94,7 +96,17 @@ export function Dashboard({ trades }: { trades: Trade[] }) {
                   <span className="mr-2 text-slate-600">{i + 1}.</span>
                   &ldquo;{t.phrase}&rdquo;
                 </span>
-                <span className="shrink-0 font-semibold text-slate-500">{t.count} trades</span>
+                <span className="flex shrink-0 items-center gap-2">
+                  <span className="font-semibold text-slate-500">{t.count} trades</span>
+                  <button
+                    onClick={() => dismissNoteTheme(t.phrase)}
+                    className="rounded p-0.5 leading-none text-slate-600 hover:text-slate-200"
+                    aria-label={`Dismiss "${t.phrase}"`}
+                    title="Not a real pattern — dismiss"
+                  >
+                    ✕
+                  </button>
+                </span>
               </li>
             ))}
           </ol>

@@ -33,5 +33,6 @@ export interface Screenshot {
   blob: Blob
   name: string
   type: string
+  hash?: string
   createdAt: number
 }

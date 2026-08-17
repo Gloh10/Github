@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import type { Screenshot, Trade } from '../types'
 import { getScreenshotsForTrade } from '../lib/db'
 import { generateAnalysis } from '../lib/tradingKnowledge'
-import { analyzeTradeScreenshot } from '../lib/aiAnalysis'
+import { analyzeTradeScreenshots } from '../lib/aiAnalysis'
 import { getApiKey } from '../lib/settings'
 import { ScreenshotThumb } from './ScreenshotThumb'
 import { MistakeStreakBadge } from './MistakeStreakBadge'
@@ -51,7 +51,10 @@ export function TradeDetail({
     setAiLoading(true)
     setAiError(null)
     try {
-      const result = await analyzeTradeScreenshot(trade, screenshots[0].blob)
+      const result = await analyzeTradeScreenshots(
+        trade,
+        screenshots.map((s) => s.blob),
+      )
       setAiAnalysis(result)
       await onUpdateTrade({ ...trade, aiAnalysis: result })
     } catch (err) {
@@ -119,6 +122,10 @@ export function TradeDetail({
           <p className="text-sm text-slate-500">Add a screenshot to this trade to enable AI analysis.</p>
         ) : !getApiKey() ? (
           <p className="text-sm text-slate-500">Add an Anthropic API key in Settings to enable AI analysis.</p>
+        ) : screenshots.length > 1 ? (
+          <p className="mb-2 text-xs text-slate-600">
+            Uses all {screenshots.length} screenshots on this trade together (e.g. higher timeframe + 1min entry).
+          </p>
         ) : null}
         {aiError && <p className="text-sm text-rose-400">{aiError}</p>}
         {aiAnalysis && (
