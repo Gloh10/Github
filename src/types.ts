@@ -19,6 +19,7 @@ export interface Trade {
   confluences: string[]
   mistakes: string[]
   personalNotes: string
+  questions: string
   screenshotIds: string[]
   aiAnalysis?: AIAnalysisResult | null
   createdAt: number

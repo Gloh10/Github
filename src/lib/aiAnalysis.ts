@@ -21,13 +21,20 @@ function normalizeMediaType(type: string): SupportedMediaType {
   return (SUPPORTED_MEDIA_TYPES as readonly string[]).includes(type) ? (type as SupportedMediaType) : 'image/png'
 }
 
-type TradeContext = Pick<Trade, 'symbol' | 'direction' | 'outcome' | 'pnl' | 'riskReward' | 'confluences' | 'mistakes'>
+type TradeContext = Pick<
+  Trade,
+  'symbol' | 'direction' | 'outcome' | 'pnl' | 'riskReward' | 'confluences' | 'mistakes' | 'questions'
+>
 
 function buildPrompt(trade: TradeContext, imageCount: number): string {
   const imageNote =
     imageCount > 1
       ? `You've been given ${imageCount} screenshots from this trade, likely different timeframes (e.g. a higher timeframe for context and a 1-minute chart for the exact entry). Look at all of them together and connect what you see across timeframes — don't analyze them in isolation.`
       : ''
+
+  const questionsBlock = trade.questions?.trim()
+    ? `\nThe trader has specific questions about this trade they want answered directly:\n"""\n${trade.questions.trim()}\n"""\nAnswer each of these explicitly, referencing what's actually visible in the screenshot(s) — don't give a generic answer. Put this before the general analysis, under a heading like "Your questions."\n`
+    : ''
 
   return `You are analyzing trading chart screenshot(s) for a personal trading journal.
 
@@ -41,7 +48,7 @@ Trade details:
 - Tagged mistakes: ${trade.mistakes.join(', ') || 'none'}
 
 ${imageNote}
-
+${questionsBlock}
 Look at the actual chart(s). Based on what's visible (price action, wicks, structure, levels, liquidity, entry timing), explain in 4-6 concise sentences why this trade likely won or lost. Be specific to what you see on the chart, not generic advice. If the entry timing (visible on a lower timeframe) looks early, late, or well-timed relative to the higher-timeframe context, say so explicitly. If it connects to the tagged confluences or mistakes, say so. Write directly to the trader, second person, no preamble.`
 }
 

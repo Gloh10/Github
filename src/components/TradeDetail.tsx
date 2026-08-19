@@ -118,6 +118,12 @@ export function TradeDetail({
             {aiLoading ? 'Analyzing…' : aiAnalysis ? 'Re-analyze' : 'Analyze with AI'}
           </button>
         </div>
+        {trade.questions && (
+          <div className="mb-3 rounded-lg border border-indigo-500/30 bg-indigo-500/10 px-3 py-2">
+            <h4 className="mb-0.5 text-xs font-semibold uppercase tracking-wide text-indigo-300">Your questions</h4>
+            <p className="whitespace-pre-wrap text-sm text-indigo-100">{trade.questions}</p>
+          </div>
+        )}
         {screenshots.length === 0 ? (
           <p className="text-sm text-slate-500">Add a screenshot to this trade to enable AI analysis.</p>
         ) : !getApiKey() ? (

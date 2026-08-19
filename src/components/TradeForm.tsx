@@ -28,6 +28,7 @@ function emptyTrade(): Trade {
     confluences: [],
     mistakes: [],
     personalNotes: '',
+    questions: '',
     screenshotIds: [],
     createdAt: now,
     updatedAt: now,
@@ -50,7 +51,9 @@ export function TradeForm({
   onCancel: () => void
 }) {
   const [trade, setTrade] = useState<Trade>(() =>
-    initial ? { ...initial, personalNotes: initial.personalNotes ?? '' } : emptyTrade(),
+    initial
+      ? { ...initial, personalNotes: initial.personalNotes ?? '', questions: initial.questions ?? '' }
+      : emptyTrade(),
   )
   const [pending, setPending] = useState<PendingImage[]>([])
   const [removedIds, setRemovedIds] = useState<string[]>([])
@@ -229,6 +232,23 @@ export function TradeForm({
           className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
           placeholder="Anything else worth remembering about this trade…"
         />
+      </div>
+
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-slate-300">
+          Questions for AI analysis <span className="font-normal text-slate-500">(optional)</span>
+        </label>
+        <textarea
+          rows={3}
+          value={trade.questions}
+          onChange={(e) => update('questions', e.target.value)}
+          className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+          placeholder="e.g. Was my entry too early? Should I have waited for the 1min FVG to fill before entering?"
+        />
+        <p className="mt-1.5 text-xs text-slate-500">
+          Answered directly when you click &ldquo;Analyze with AI&rdquo; on this trade &mdash; especially useful with
+          a 1-minute entry screenshot attached.
+        </p>
       </div>
 
       <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
