@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-09-21T21:26:36.415Z",
+  "accounts": [
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "25K",
+      "accountSize": 25000,
+      "profitTarget": 1500,
+      "trailingDrawdown": 1500,
+      "maxContracts": 4,
+      "consistencyPct": 0.5,
+      "minTradingDays": 7
+    },
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "50K",
+      "accountSize": 50000,
+      "profitTarget": 3000,
+      "trailingDrawdown": 2500,
+      "maxContracts": 10,
+      "consistencyPct": 0.5,
+      "minTradingDays": 7
+    },
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "100K",
+      "accountSize": 100000,
+      "profitTarget": 6000,
+      "trailingDrawdown": 3000,
+      "maxContracts": 14,
+      "consistencyPct": 0.5,
+      "minTradingDays": 7
+    },
+    {
+      "firm": "Topstep",
+      "tier": "50K",
+      "accountSize": 50000,
+      "profitTarget": 3000,
+      "trailingDrawdown": 2000,
+      "maxContracts": 5,
+      "consistencyPct": 0.55,
+      "minTradingDays": 5
+    },
+    {
+      "firm": "Topstep",
+      "tier": "100K",
+      "accountSize": 100000,
+      "profitTarget": 6000,
+      "trailingDrawdown": 3000,
+      "maxContracts": 10,
+      "consistencyPct": 0.55,
+      "minTradingDays": 5
+    },
+    {
+      "firm": "Topstep",
+      "tier": "150K",
+      "accountSize": 150000,
+      "profitTarget": 9000,
+      "trailingDrawdown": 4500,
+      "maxContracts": 15,
+      "consistencyPct": 0.55,
+      "minTradingDays": 5
+    }
+  ],
+  "results": [
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "25K",
+      "outcome": "PASSED",
+      "onDay": 7,
+      "onDate": "2026-09-03",
+      "contracts": 1,
+      "finalBalance": 39765,
+      "worstDrawdownHit": 940,
+      "bestSingleDayProfit": 4050,
+      "totalProfitAtEnd": 14765,
+      "tradingDaysUsed": 7
+    },
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "50K",
+      "outcome": "PASSED",
+      "onDay": 7,
+      "onDate": "2026-09-03",
+      "contracts": 1,
+      "finalBalance": 64765,
+      "worstDrawdownHit": 940,
+      "bestSingleDayProfit": 4050,
+      "totalProfitAtEnd": 14765,
+      "tradingDaysUsed": 7
+    },
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "100K",
+      "outcome": "PASSED",
+      "onDay": 7,
+      "onDate": "2026-09-03",
+      "contracts": 1,
+      "finalBalance": 114765,
+      "worstDrawdownHit": 940,
+      "bestSingleDayProfit": 4050,
+      "totalProfitAtEnd": 14765,
+      "tradingDaysUsed": 7
+    },
+    {
+      "firm": "Topstep",
+      "tier": "50K",
+      "outcome": "PASSED",
+      "onDay": 5,
+      "onDate": "2026-09-01",
+      "contracts": 1,
+      "finalBalance": 61975,
+      "worstDrawdownHit": 775,
+      "bestSingleDayProfit": 4050,
+      "totalProfitAtEnd": 11975,
+      "tradingDaysUsed": 5
+    },
+    {
+      "firm": "Topstep",
+      "tier": "100K",
+      "outcome": "PASSED",
+      "onDay": 5,
+      "onDate": "2026-09-01",
+      "contracts": 1,
+      "finalBalance": 111975,
+      "worstDrawdownHit": 775,
+      "bestSingleDayProfit": 4050,
+      "totalProfitAtEnd": 11975,
+      "tradingDaysUsed": 5
+    },
+    {
+      "firm": "Topstep",
+      "tier": "150K",
+      "outcome": "PASSED",
+      "onDay": 5,
+      "onDate": "2026-09-01",
+      "contracts": 1,
+      "finalBalance": 161975,
+      "worstDrawdownHit": 775,
+      "bestSingleDayProfit": 4050,
+      "totalProfitAtEnd": 11975,
+      "tradingDaysUsed": 5
+    }
+  ]
+}
