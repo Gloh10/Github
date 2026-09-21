@@ -1,5 +1,42 @@
 import type { Bar } from "./types.js";
 
+/**
+ * Choppiness Index: a standard, objective (not strategy-fit) measure of
+ * whether a market is trending or ranging over `lookback` bars.
+ * 100 * log10( sum(true range, lookback) / (highest high - lowest low) ) / log10(lookback).
+ * Higher = choppier/more sideways (true range is being "wasted" relative to
+ * net range covered); lower = more trending. Common reference thresholds:
+ * >61.8 considered choppy, <38.2 considered trending. NaN for the first
+ * lookback-1 bars (insufficient history).
+ */
+export function choppinessIndex(bars: Bar[], lookback: number): number[] {
+  const trueRange = bars.map((bar, i) => {
+    if (i === 0) return bar.h - bar.l;
+    const prevClose = bars[i - 1]!.c;
+    return Math.max(bar.h - bar.l, Math.abs(bar.h - prevClose), Math.abs(bar.l - prevClose));
+  });
+
+  const out: number[] = [];
+  for (let i = 0; i < bars.length; i++) {
+    if (i < lookback - 1) {
+      out.push(NaN);
+      continue;
+    }
+    const start = i - lookback + 1;
+    let sumTR = 0;
+    let hi = -Infinity;
+    let lo = Infinity;
+    for (let j = start; j <= i; j++) {
+      sumTR += trueRange[j]!;
+      hi = Math.max(hi, bars[j]!.h);
+      lo = Math.min(lo, bars[j]!.l);
+    }
+    const range = hi - lo;
+    out.push(range > 0 ? (100 * Math.log10(sumTR / range)) / Math.log10(lookback) : 0);
+  }
+  return out;
+}
+
 export interface VwapPoint {
   vwap: number;
   upperBand1: number;
