@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { buyAndHoldCurve, runStrategy } from "../src/backtest/engine.js";
 import { rollingVwap, sessionVwap } from "../src/backtest/indicators.js";
 import {
+  standardDeviationOte,
   subVwapTrap,
   subVwapTrapDaily,
   vwapMeanReversion,
@@ -28,6 +29,7 @@ function main() {
   const nq5m = loadBars("data/nq-5m.json");
   const nq1d = loadBars("data/nq-1d.json");
   const spx1d = loadBars("data/spx-1d.json");
+  const es5m = loadBars("data/es-5m.json");
 
   console.log(`NQ 5m: ${nq5m.length} bars, ${new Date(nq5m[0]!.t * 1000).toISOString()} → ${new Date(nq5m[nq5m.length - 1]!.t * 1000).toISOString()}`);
   console.log(`NQ 1D: ${nq1d.length} bars, ${new Date(nq1d[0]!.t * 1000).toISOString()} → ${new Date(nq1d[nq1d.length - 1]!.t * 1000).toISOString()}`);
@@ -106,6 +108,43 @@ function main() {
 
   console.log("=== Daily NQ, 5+ years (Jul 2021 – Sep 2026) ===");
   resultsDaily.forEach(summarize);
+  console.log("");
+
+  // ---- Setup 5: Standard Deviation + OTE (ICT-style), 5-minute NQ window only ----
+  const pivotConfirm = 3;
+  const tolerance = 0.0015; // 0.15%
+
+  const results5 = [
+    runStrategy(
+      "5a. SD+OTE (minConfluence=1, no SMT)",
+      nq5m,
+      standardDeviationOte(nq5m, { pivotConfirm, minConfluence: 1, toleranceFraction: tolerance }),
+    ),
+    runStrategy(
+      "5b. SD+OTE (minConfluence=2, no SMT)",
+      nq5m,
+      standardDeviationOte(nq5m, { pivotConfirm, minConfluence: 2, toleranceFraction: tolerance }),
+    ),
+    runStrategy(
+      "5c. SD+OTE (minConfluence=2, SMT-confirmed only)",
+      nq5m,
+      standardDeviationOte(nq5m, {
+        pivotConfirm,
+        minConfluence: 2,
+        toleranceFraction: tolerance,
+        esBars: es5m,
+        requireSmt: true,
+      }),
+    ),
+    runStrategy(
+      "5d. SD+OTE (minConfluence=3 — requires FVG or daily-open too, no SMT)",
+      nq5m,
+      standardDeviationOte(nq5m, { pivotConfirm, minConfluence: 3, toleranceFraction: tolerance }),
+    ),
+  ];
+
+  console.log("=== Setup 5: Standard Deviation + OTE (ICT), 5-min NQ, ~26 days ===");
+  results5.forEach(summarize);
 
   const nqBuyHoldDaily = buyAndHoldCurve(nq1d);
   const spxBuyHoldDaily = buyAndHoldCurve(spx1d);
