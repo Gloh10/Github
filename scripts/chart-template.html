@@ -1,0 +1,386 @@
+<title>VWAP Setups vs S&amp;P 500 — Backtest</title>
+<style>
+.viz-root {
+  color-scheme: light;
+  --surface-1: #fcfcfb;
+  --page: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --series-nq: #2a78d6;
+  --series-spx: #eb6834;
+  --series-meanrev: #1baf7a;
+  --series-trend: #eda100;
+  --series-trap: #e87ba4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --gridline: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --series-nq: #3987e5;
+    --series-spx: #d95926;
+    --series-meanrev: #199e70;
+    --series-trend: #c98500;
+    --series-trap: #d55181;
+  }
+}
+:root[data-theme="dark"] .viz-root {
+  color-scheme: dark;
+  --surface-1: #1a1a19;
+  --page: #0d0d0d;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #898781;
+  --gridline: #2c2c2a;
+  --baseline: #383835;
+  --border: rgba(255,255,255,0.10);
+  --series-nq: #3987e5;
+  --series-spx: #d95926;
+  --series-meanrev: #199e70;
+  --series-trend: #c98500;
+  --series-trap: #d55181;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+.viz-root{
+  background:var(--page); color:var(--text-primary);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  min-height:100vh;
+}
+main{max-width:1080px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+h1{font-size:1.5rem; margin:0 0 0.4rem;}
+.subtitle{color:var(--text-secondary); font-size:0.95rem; margin:0 0 2rem; max-width:70ch; line-height:1.5;}
+.card{
+  background:var(--surface-1); border:1px solid var(--border); border-radius:10px;
+  padding:1.5rem; margin-bottom:2rem;
+}
+.card h2{font-size:1.15rem; margin:0 0 0.25rem;}
+.card .caption{color:var(--text-secondary); font-size:0.85rem; margin:0 0 1.25rem; line-height:1.5;}
+.legend{display:flex; flex-wrap:wrap; gap:0.9rem 1.4rem; margin:0 0 1rem; font-size:0.82rem;}
+.legend-item{display:flex; align-items:center; gap:0.45rem; color:var(--text-secondary); cursor:pointer; user-select:none;}
+.legend-item[data-off="true"]{opacity:0.35;}
+.swatch{width:11px; height:11px; border-radius:2px; flex:none;}
+.chart-wrap{position:relative;}
+svg{display:block; width:100%; height:auto; overflow:visible;}
+.gridline{stroke:var(--gridline); stroke-width:1;}
+.baseline{stroke:var(--baseline); stroke-width:1; stroke-dasharray:3 3;}
+.axis-label{fill:var(--text-muted); font-size:11px; font-family:system-ui,sans-serif;}
+.series-path{fill:none; stroke-width:2; stroke-linejoin:round; stroke-linecap:round;}
+.crosshair{stroke:var(--text-muted); stroke-width:1; stroke-dasharray:2 2; pointer-events:none; opacity:0;}
+.hover-capture{fill:transparent; cursor:crosshair;}
+.tooltip{
+  position:absolute; pointer-events:none; background:var(--surface-1);
+  border:1px solid var(--border); border-radius:6px; padding:0.55rem 0.7rem;
+  font-size:0.78rem; line-height:1.5; box-shadow:0 4px 16px rgba(0,0,0,0.12);
+  opacity:0; transition:opacity 0.08s; white-space:nowrap; z-index:10;
+}
+.tooltip .t-date{color:var(--text-muted); font-size:0.72rem; margin-bottom:0.25rem;}
+.tooltip-row{display:flex; align-items:center; gap:0.4rem;}
+.tooltip-dot{width:8px; height:8px; border-radius:2px; flex:none;}
+.tooltip-val{margin-left:auto; font-variant-numeric:tabular-nums; padding-left:0.6rem;}
+table{width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:0.5rem;}
+th,td{text-align:left; padding:0.5rem 0.6rem; border-bottom:1px solid var(--gridline);}
+th{color:var(--text-muted); font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em;}
+td.num, th.num{text-align:right; font-variant-numeric:tabular-nums;}
+tr:last-child td{border-bottom:none;}
+.note{background:var(--page); border:1px solid var(--border); border-radius:8px; padding:1rem 1.2rem; font-size:0.85rem; color:var(--text-secondary); line-height:1.6;}
+.note strong{color:var(--text-primary);}
+.note ul{margin:0.5rem 0 0; padding-left:1.2rem;}
+.note li{margin-bottom:0.35rem;}
+@media (max-width:640px){
+  .card{padding:1.1rem;}
+  table{font-size:0.74rem;}
+  th,td{padding:0.4rem 0.4rem;}
+}
+</style>
+
+<div class="viz-root">
+<main>
+  <h1>VWAP Setups vs. S&amp;P 500 — Backtest Results</h1>
+  <p class="subtitle">Three VWAP-based setups (from two trading-education video transcripts), tested mechanically against historical NQ (Nasdaq-100 futures) bars and compared to buy-and-hold S&amp;P 500. Hypothetical performance — see methodology notes at the bottom before drawing conclusions.</p>
+
+  <div class="card">
+    <h2>5-Year Daily (Jul 2021 – Sep 2026)</h2>
+    <p class="caption">Rolling 20-day VWAP on daily NQ bars, vs. buy-and-hold NQ and buy-and-hold S&amp;P 500. All lines start at 100.</p>
+    <div class="legend" id="legend-daily"></div>
+    <div class="chart-wrap">
+      <svg id="chart-daily" viewBox="0 0 960 380" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="tooltip" id="tooltip-daily"></div>
+    </div>
+    <table id="table-daily"></table>
+  </div>
+
+  <div class="card">
+    <h2>Intraday, 5-Minute Bars (~26 days, Aug 26 – Sep 21 2026)</h2>
+    <p class="caption">Session-anchored VWAP on 5-min NQ bars, vs. buy-and-hold NQ. No S&amp;P 500 line here — this window is short enough (and NQ trades near-24h vs. SPX's ~6.5h session) that an intraday SPX comparison wouldn't be meaningful; see the daily chart above for the actual vs.-S&amp;P-500 comparison.</p>
+    <div class="legend" id="legend-5m"></div>
+    <div class="chart-wrap">
+      <svg id="chart-5m" viewBox="0 0 960 380" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="tooltip" id="tooltip-5m"></div>
+    </div>
+    <table id="table-5m"></table>
+  </div>
+
+  <div class="note">
+    <strong>Read this before drawing conclusions:</strong>
+    <ul>
+      <li><strong>Setup 1 (Sub-VWAP Trap) is a mechanical approximation.</strong> The original strategy's entry trigger is read from live level-2 order flow and time-and-sales — data historical OHLCV bars don't contain. This substitutes "close above VWAP after 1-2 failed reclaim attempts." At the literal 10% squeeze threshold from the source video (small-cap context), it found <strong>zero qualifying setups</strong> on NQ in both windows — a real finding: that precondition essentially never occurs on a large liquid index future. Even relaxed thresholds found at most 1 trade. Treat Setup 1's results as "not enough data to evaluate on this instrument," not as a real edge or non-edge.</li>
+      <li><strong>Setups 2 and 3 are the genuinely mechanical ones</strong> (VWAP + standard-deviation bands + candlestick-pattern confirmation) and are fairly tested here.</li>
+      <li><strong>No slippage, commissions, or spread modeled.</strong> Real execution costs would reduce every strategy's results, likely more for the intraday ones (more trades) than the daily ones.</li>
+      <li><strong>Same-bar stop/target conflicts resolve to the stop</strong> (conservative assumption) — if a single bar's range touches both levels, the trade is scored a loss.</li>
+      <li><strong>Fixed 1% account risk per trade</strong> assumed for every strategy's equity curve, purely to make the curves comparable — not a recommendation.</li>
+      <li>This is a hypothetical backtest for research purposes, not investment advice, and past performance (real or simulated) doesn't predict future results.</li>
+    </ul>
+  </div>
+</main>
+</div>
+
+<script>
+const DATA = __CHART_DATA_JSON__;
+
+const SERIES_COLOR_VARS = {
+  nq: '--series-nq',
+  spx: '--series-spx',
+  meanrev: '--series-meanrev',
+  trend: '--series-trend',
+  trap: '--series-trap',
+};
+
+function cssVar(root, name) {
+  return getComputedStyle(root).getPropertyValue(name).trim();
+}
+
+function fmtDate(t) {
+  const d = new Date(t * 1000);
+  return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+function fmtDateTime(t) {
+  const d = new Date(t * 1000);
+  return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+function classifyStrategy(name) {
+  if (name.includes('Trap')) return 'trap';
+  if (name.includes('Mean Reversion')) return 'meanrev';
+  if (name.includes('Trend Continuation')) return 'trend';
+  return 'trap';
+}
+
+/** Forward-fill a sparse equity curve (only updates at trade exits) onto a dense timeline. */
+function densify(curve, timeline) {
+  if (curve.length === 0) return timeline.map((t) => ({ t, equity: 100 }));
+  let ci = 0;
+  const out = [];
+  for (const t of timeline) {
+    while (ci + 1 < curve.length && curve[ci + 1].t <= t) ci++;
+    out.push({ t, equity: curve[ci].equity });
+  }
+  return out;
+}
+
+function buildChart(opts) {
+  const { svgEl, legendEl, tooltipEl, tableEl, series, timeFmt } = opts;
+  const root = svgEl.closest('.viz-root');
+  const W = 960, H = 380, padL = 50, padR = 16, padT = 16, padB = 30;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+
+  const allTimes = series[0].dense.map((p) => p.t);
+  const tMin = allTimes[0], tMax = allTimes[allTimes.length - 1];
+  let vMin = Infinity, vMax = -Infinity;
+  for (const s of series) for (const p of s.dense) { vMin = Math.min(vMin, p.equity); vMax = Math.max(vMax, p.equity); }
+  const vPad = (vMax - vMin) * 0.08 || 5;
+  vMin -= vPad; vMax += vPad;
+
+  const x = (t) => padL + ((t - tMin) / (tMax - tMin || 1)) * plotW;
+  const y = (v) => padT + plotH - ((v - vMin) / (vMax - vMin || 1)) * plotH;
+
+  const ns = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) {
+    const e = document.createElementNS(ns, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  svgEl.innerHTML = '';
+  svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  // gridlines (4 horizontal steps) + baseline at 100
+  const steps = 4;
+  for (let i = 0; i <= steps; i++) {
+    const v = vMin + ((vMax - vMin) * i) / steps;
+    const gy = y(v);
+    svgEl.appendChild(el('line', { x1: padL, x2: W - padR, y1: gy, y2: gy, class: 'gridline' }));
+    const label = el('text', { x: padL - 8, y: gy + 3, class: 'axis-label', 'text-anchor': 'end' });
+    label.textContent = v.toFixed(0);
+    svgEl.appendChild(label);
+  }
+  if (100 >= vMin && 100 <= vMax) {
+    svgEl.appendChild(el('line', { x1: padL, x2: W - padR, y1: y(100), y2: y(100), class: 'baseline' }));
+  }
+  // x-axis start/end labels
+  const startLabel = el('text', { x: padL, y: H - 8, class: 'axis-label', 'text-anchor': 'start' });
+  startLabel.textContent = timeFmt(tMin);
+  svgEl.appendChild(startLabel);
+  const endLabel = el('text', { x: W - padR, y: H - 8, class: 'axis-label', 'text-anchor': 'end' });
+  endLabel.textContent = timeFmt(tMax);
+  svgEl.appendChild(endLabel);
+
+  // series paths
+  for (const s of series) {
+    const d = s.dense.map((p, i) => `${i === 0 ? 'M' : 'L'} ${x(p.t).toFixed(2)} ${y(p.equity).toFixed(2)}`).join(' ');
+    const path = el('path', { d, class: 'series-path', 'data-key': s.key, stroke: cssVar(root, SERIES_COLOR_VARS[s.colorKey]) });
+    svgEl.appendChild(path);
+  }
+
+  const crosshair = el('line', { class: 'crosshair', y1: padT, y2: H - padB });
+  svgEl.appendChild(crosshair);
+  const capture = el('rect', { x: padL, y: padT, width: plotW, height: plotH, class: 'hover-capture' });
+  svgEl.appendChild(capture);
+
+  // legend
+  legendEl.innerHTML = '';
+  const hidden = new Set();
+  for (const s of series) {
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.dataset.key = s.key;
+    const sw = document.createElement('span');
+    sw.className = 'swatch';
+    sw.style.background = cssVar(root, SERIES_COLOR_VARS[s.colorKey]);
+    item.appendChild(sw);
+    const label = document.createElement('span');
+    label.textContent = s.label + ` (${s.dense[s.dense.length - 1].equity.toFixed(1)})`;
+    item.appendChild(label);
+    item.addEventListener('click', () => {
+      if (hidden.has(s.key)) { hidden.delete(s.key); item.removeAttribute('data-off'); }
+      else { hidden.add(s.key); item.setAttribute('data-off', 'true'); }
+      const p = svgEl.querySelector(`path[data-key="${s.key}"]`);
+      if (p) p.style.display = hidden.has(s.key) ? 'none' : '';
+    });
+    legendEl.appendChild(item);
+  }
+
+  // hover interaction
+  capture.addEventListener('mousemove', (ev) => {
+    const rect = svgEl.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    const mouseX = (ev.clientX - rect.left) * scaleX;
+    const frac = Math.max(0, Math.min(1, (mouseX - padL) / plotW));
+    const targetT = tMin + frac * (tMax - tMin);
+    const idx = Math.round(frac * (series[0].dense.length - 1));
+    const nearest = series[0].dense[idx];
+    if (!nearest) return;
+    crosshair.setAttribute('x1', x(nearest.t));
+    crosshair.setAttribute('x2', x(nearest.t));
+    crosshair.style.opacity = '1';
+
+    let html = `<div class="t-date">${timeFmt(nearest.t)}</div>`;
+    for (const s of series) {
+      if (hidden.has(s.key)) continue;
+      const pt = s.dense[idx];
+      html += `<div class="tooltip-row"><span class="tooltip-dot" style="background:${cssVar(root, SERIES_COLOR_VARS[s.colorKey])}"></span><span>${s.label}</span><span class="tooltip-val">${pt.equity.toFixed(1)}</span></div>`;
+    }
+    tooltipEl.innerHTML = html;
+    tooltipEl.style.opacity = '1';
+    const wrapRect = svgEl.parentElement.getBoundingClientRect();
+    let left = (ev.clientX - wrapRect.left) + 14;
+    if (left + 220 > wrapRect.width) left = (ev.clientX - wrapRect.left) - 234;
+    tooltipEl.style.left = left + 'px';
+    tooltipEl.style.top = Math.max(0, ev.clientY - wrapRect.top - 40) + 'px';
+  });
+  capture.addEventListener('mouseleave', () => {
+    crosshair.style.opacity = '0';
+    tooltipEl.style.opacity = '0';
+  });
+
+  // stats table
+  const rows = series
+    .filter((s) => s.stats)
+    .map(
+      (s) => `<tr>
+        <td>${s.label}</td>
+        <td class="num">${s.stats.totalTrades}</td>
+        <td class="num">${(s.stats.winRate * 100).toFixed(1)}%</td>
+        <td class="num">${s.stats.avgR.toFixed(2)}</td>
+        <td class="num">${s.stats.totalR.toFixed(1)}</td>
+        <td class="num">${s.stats.maxDrawdownPct.toFixed(1)}%</td>
+        <td class="num">${s.stats.finalEquity.toFixed(1)}</td>
+      </tr>`,
+    )
+    .join('');
+  tableEl.innerHTML = `<thead><tr><th>Strategy</th><th class="num">Trades</th><th class="num">Win rate</th><th class="num">Avg R</th><th class="num">Total R</th><th class="num">Max DD</th><th class="num">Final equity</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function pickBestSubVwap(strategies) {
+  // Use whichever Sub-VWAP Trap variant produced the most trades, for a cleaner legend.
+  const candidates = strategies.filter((s) => s.name.includes('Trap'));
+  candidates.sort((a, b) => b.stats.totalTrades - a.stats.totalTrades);
+  return candidates[0];
+}
+
+function init() {
+  // Daily chart
+  {
+    const d = DATA.daily;
+    const timeline = d.benchmarkNQ.map((p) => p.t);
+    const meanRev = d.strategies.find((s) => s.name.includes('Mean Reversion'));
+    const trend = d.strategies.find((s) => s.name.includes('Trend Continuation'));
+    const trap = pickBestSubVwap(d.strategies);
+
+    const series = [
+      { key: 'nq', colorKey: 'nq', label: 'Buy & Hold NQ', dense: densify(d.benchmarkNQ, timeline), stats: null },
+      { key: 'spx', colorKey: 'spx', label: 'Buy & Hold S&P 500', dense: densify(d.benchmarkSPX, timeline), stats: null },
+      { key: 'meanrev', colorKey: 'meanrev', label: '2. VWAP Mean Reversion', dense: densify(meanRev.equityCurve, timeline), stats: meanRev.stats },
+      { key: 'trend', colorKey: 'trend', label: '3. VWAP Trend Continuation', dense: densify(trend.equityCurve, timeline), stats: trend.stats },
+      { key: 'trap', colorKey: 'trap', label: '1. Sub-VWAP Trap', dense: densify(trap.equityCurve, timeline), stats: trap.stats },
+    ];
+
+    buildChart({
+      svgEl: document.getElementById('chart-daily'),
+      legendEl: document.getElementById('legend-daily'),
+      tooltipEl: document.getElementById('tooltip-daily'),
+      tableEl: document.getElementById('table-daily'),
+      series,
+      timeFmt: fmtDate,
+    });
+  }
+
+  // 5-minute chart
+  {
+    const d = DATA.fiveMinute;
+    const timeline = d.benchmarkNQ.map((p) => p.t);
+    const meanRev = d.strategies.find((s) => s.name === '2. VWAP Mean Reversion');
+    const trend = d.strategies.find((s) => s.name === '3. VWAP Trend Continuation');
+    const trap = pickBestSubVwap(d.strategies);
+
+    const series = [
+      { key: 'nq', colorKey: 'nq', label: 'Buy & Hold NQ', dense: densify(d.benchmarkNQ, timeline), stats: null },
+      { key: 'meanrev', colorKey: 'meanrev', label: '2. VWAP Mean Reversion', dense: densify(meanRev.equityCurve, timeline), stats: meanRev.stats },
+      { key: 'trend', colorKey: 'trend', label: '3. VWAP Trend Continuation', dense: densify(trend.equityCurve, timeline), stats: trend.stats },
+      { key: 'trap', colorKey: 'trap', label: '1. Sub-VWAP Trap', dense: densify(trap.equityCurve, timeline), stats: trap.stats },
+    ];
+
+    buildChart({
+      svgEl: document.getElementById('chart-5m'),
+      legendEl: document.getElementById('legend-5m'),
+      tooltipEl: document.getElementById('tooltip-5m'),
+      tableEl: document.getElementById('table-5m'),
+      series,
+      timeFmt: fmtDateTime,
+    });
+  }
+}
+
+init();
+</script>
