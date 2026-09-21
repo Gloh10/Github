@@ -850,6 +850,102 @@ export function dailyBiasKeyOpenFuel(
   return signals;
 }
 
+/**
+ * Setup 10 — "Rejection Block" (standalone, not integrated into any other
+ * setup per instruction). A single candle that (a) sweeps a prior fractal
+ * pivot high/low with its wick and (b) closes back in the rejection
+ * direction — a shooting star with a bearish close (fading a swept high),
+ * or a hammer with a bullish close (fading a swept low). This is the
+ * source's "basic" rejection block, valid alone but explicitly described
+ * as lower win-rate. Setting requireFvgConfluence stacks the source's
+ * "higher conviction" second ingredient — a PDA (approximated here as an
+ * FVG, since that's the one explicitly named that this project already
+ * has a builder for) sitting at/near the same swept level. Entry is the
+ * rejection candle's own close (the source's "aggressive entry trigger");
+ * stop is the candle's wick extreme; target is a fixed R multiple, standing
+ * in for the source's explicitly-endorsed-as-valid "static RR" option
+ * (the alternative, "internal structure," is discretionary and not
+ * modeled).
+ */
+export function rejectionBlock(
+  bars: Bar[],
+  opts: {
+    pivotConfirm: number;
+    targetR: number;
+    requireFvgConfluence: boolean;
+    fvgToleranceFraction: number;
+  },
+): Signal[] {
+  const signals: Signal[] = [];
+  const pivots = findPivots(bars, opts.pivotConfirm);
+  const highPivots = pivots.filter((p) => p.type === "high");
+  const lowPivots = pivots.filter((p) => p.type === "low");
+  const fvgs = opts.requireFvgConfluence ? findFvgs(bars) : [];
+
+  for (let i = opts.pivotConfirm; i < bars.length; i++) {
+    const bar = bars[i]!;
+
+    const priorHighs = highPivots.filter((p) => p.barIndex < i);
+    const priorLows = lowPivots.filter((p) => p.barIndex < i);
+    const nearestHigh = priorHighs.length > 0 ? priorHighs[priorHighs.length - 1] : undefined;
+    const nearestLow = priorLows.length > 0 ? priorLows[priorLows.length - 1] : undefined;
+
+    if (nearestHigh && bar.h > nearestHigh.price && isShootingStar(bar) && bar.c < bar.o) {
+      const confluenceOk =
+        !opts.requireFvgConfluence ||
+        fvgs.some(
+          (g) =>
+            g.barIndex <= i &&
+            g.direction === "bearish" &&
+            Math.abs(nearestHigh.price - (g.top + g.bottom) / 2) / nearestHigh.price <= opts.fvgToleranceFraction,
+        );
+      if (confluenceOk) {
+        const entry = bar.c;
+        const stop = bar.h;
+        const risk = stop - entry;
+        if (risk > 0) {
+          signals.push({
+            barIndex: i,
+            direction: "short",
+            entry,
+            stop,
+            target: entry - risk * opts.targetR,
+            reason: `rejection block: swept high ${nearestHigh.price.toFixed(2)} @pivot${nearestHigh.barIndex}${opts.requireFvgConfluence ? ", FVG confluence" : ""}`,
+          });
+        }
+      }
+    }
+
+    if (nearestLow && bar.l < nearestLow.price && isHammer(bar) && bar.c > bar.o) {
+      const confluenceOk =
+        !opts.requireFvgConfluence ||
+        fvgs.some(
+          (g) =>
+            g.barIndex <= i &&
+            g.direction === "bullish" &&
+            Math.abs(nearestLow.price - (g.top + g.bottom) / 2) / nearestLow.price <= opts.fvgToleranceFraction,
+        );
+      if (confluenceOk) {
+        const entry = bar.c;
+        const stop = bar.l;
+        const risk = entry - stop;
+        if (risk > 0) {
+          signals.push({
+            barIndex: i,
+            direction: "long",
+            entry,
+            stop,
+            target: entry + risk * opts.targetR,
+            reason: `rejection block: swept low ${nearestLow.price.toFixed(2)} @pivot${nearestLow.barIndex}${opts.requireFvgConfluence ? ", FVG confluence" : ""}`,
+          });
+        }
+      }
+    }
+  }
+
+  return signals;
+}
+
 export function valueAreaFade(
   bars: Bar[],
   valueAreas: (ValueArea | null)[],
