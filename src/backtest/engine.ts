@@ -56,6 +56,74 @@ export function simulateTrades(bars: Bar[], signals: Signal[]): Trade[] {
   return trades;
 }
 
+/**
+ * Same walk-forward stop/target resolution as simulateTrades, but supports
+ * moving the stop to breakeven (the entry price) once price has moved
+ * `breakevenTriggerR` multiples of the original risk in the trade's favor.
+ * The move only takes effect starting the bar AFTER the one that triggered
+ * it — a stop/target hit on a given bar is always resolved using the stop
+ * as of the start of that bar, to avoid an ambiguous same-bar ordering
+ * between "this bar triggers breakeven" and "this bar also hits the new
+ * breakeven stop." Pass breakevenTriggerR = null to disable (identical to
+ * simulateTrades).
+ */
+export function simulateTradesWithBreakeven(
+  bars: Bar[],
+  signals: Signal[],
+  breakevenTriggerR: number | null,
+): Trade[] {
+  const trades: Trade[] = [];
+  let openUntilIndex = -1;
+
+  for (const signal of signals) {
+    if (signal.barIndex <= openUntilIndex) continue;
+
+    const risk = Math.abs(signal.entry - signal.stop);
+    if (risk === 0) continue;
+
+    let currentStop = signal.stop;
+    let movedToBreakeven = false;
+    let exitBarIndex = bars.length - 1;
+    let exitPrice = bars[bars.length - 1]!.c;
+    let outcome: "win" | "loss" = "loss";
+
+    for (let i = signal.barIndex + 1; i < bars.length; i++) {
+      const bar = bars[i]!;
+      const hitStop = signal.direction === "long" ? bar.l <= currentStop : bar.h >= currentStop;
+      const hitTarget = signal.direction === "long" ? bar.h >= signal.target : bar.l <= signal.target;
+
+      if (hitStop) {
+        exitBarIndex = i;
+        exitPrice = currentStop;
+        outcome = "loss";
+        break;
+      }
+      if (hitTarget) {
+        exitBarIndex = i;
+        exitPrice = signal.target;
+        outcome = "win";
+        break;
+      }
+
+      if (breakevenTriggerR !== null && !movedToBreakeven) {
+        const favorable = signal.direction === "long" ? bar.h - signal.entry : signal.entry - bar.l;
+        if (favorable >= breakevenTriggerR * risk) {
+          currentStop = signal.entry;
+          movedToBreakeven = true;
+        }
+      }
+    }
+
+    const rMultiple =
+      signal.direction === "long" ? (exitPrice - signal.entry) / risk : (signal.entry - exitPrice) / risk;
+
+    trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple });
+    openUntilIndex = exitBarIndex;
+  }
+
+  return trades;
+}
+
 export function buildEquityCurve(bars: Bar[], trades: Trade[]): EquityPoint[] {
   const curve: EquityPoint[] = [{ t: bars[0]?.t ?? 0, equity: 100 }];
   let equity = 100;
