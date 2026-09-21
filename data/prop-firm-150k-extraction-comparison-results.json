@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-09-21T21:50:07.167Z",
+  "trials": 1000,
+  "models": [
+    {
+      "firm": "Topstep",
+      "accountSize": 150000,
+      "combineTarget": 9000,
+      "combineMLL": 4500,
+      "combineDLL": 3000,
+      "combineConsistencyPct": 0.55,
+      "combineMinDays": 5,
+      "winningDayThreshold": 150,
+      "winningDaysNeeded": 5,
+      "fundedConsistencyPct": null,
+      "fundedMinDaysForConsistency": 0,
+      "payoutFraction": 0.5,
+      "payoutCap": 10000,
+      "postPayoutBehavior": "resetToZero",
+      "confidenceNote": "Explicitly documented: MLL resets to $0 (must maintain balance) after every payout."
+    },
+    {
+      "firm": "Alpha Futures (Advanced)",
+      "accountSize": 150000,
+      "combineTarget": 12000,
+      "combineMLL": 5250,
+      "combineDLL": null,
+      "combineConsistencyPct": 0.5,
+      "combineMinDays": 1,
+      "winningDayThreshold": 200,
+      "winningDaysNeeded": 5,
+      "fundedConsistencyPct": null,
+      "fundedMinDaysForConsistency": 0,
+      "payoutFraction": 0.5,
+      "payoutCap": null,
+      "postPayoutBehavior": "continueTrailing",
+      "confidenceNote": "LOWER CONFIDENCE: sources describe EOD trailing DD 'advancing on closing balance,' with no stated reset-to-zero event, but this is inferred, not as explicitly documented as Topstep's rule."
+    },
+    {
+      "firm": "MyFundedFutures (Core)",
+      "accountSize": 150000,
+      "combineTarget": 9000,
+      "combineMLL": 4500,
+      "combineDLL": null,
+      "combineConsistencyPct": 0.5,
+      "combineMinDays": 2,
+      "winningDayThreshold": 0,
+      "winningDaysNeeded": 5,
+      "fundedConsistencyPct": null,
+      "fundedMinDaysForConsistency": 0,
+      "payoutFraction": 1,
+      "payoutCap": 5000,
+      "postPayoutBehavior": "continueTrailing",
+      "confidenceNote": "LOWER CONFIDENCE: 3% EOD trailing DD stated to continue through funded stage, no stated reset-to-zero event, but less explicitly documented than Topstep's rule. Winning-day $ threshold not found; assumed any positive day qualifies."
+    }
+  ],
+  "summary": [
+    {
+      "firm": "Topstep",
+      "avgProtected": 5269.9775,
+      "bustRate": 47,
+      "clearRate": 98.9,
+      "avgPayouts": 0.981
+    },
+    {
+      "firm": "Alpha Futures (Advanced)",
+      "avgProtected": 4532.6025,
+      "bustRate": 0.4,
+      "clearRate": 99.9,
+      "avgPayouts": 0.881
+    },
+    {
+      "firm": "MyFundedFutures (Core)",
+      "avgProtected": 5307.875,
+      "bustRate": 2.5,
+      "clearRate": 98.9,
+      "avgPayouts": 1.074
+    }
+  ]
+}
