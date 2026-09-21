@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-09-21T19:54:53.052Z",
+  "config": {
+    "WINDOW_BARS": 24,
+    "AWAY_THRESHOLD_POINTS": 15,
+    "RETURN_TOLERANCE_POINTS": 5
+  },
+  "results": [
+    {
+      "type": "daily",
+      "triggers": 18,
+      "movedAway": 18,
+      "returnedAfterMovingAway": 17,
+      "returnRate": 0.9444444444444444,
+      "avgNetMovePoints": 13.555555555555555,
+      "avgAbsMovePoints": 62.111111111111114,
+      "pctAboveAtWindowEnd": 0.6111111111111112
+    },
+    {
+      "type": "4h",
+      "triggers": 108,
+      "movedAway": 108,
+      "returnedAfterMovingAway": 91,
+      "returnRate": 0.8425925925925926,
+      "avgNetMovePoints": 4.983796296296297,
+      "avgAbsMovePoints": 64.13657407407408,
+      "pctAboveAtWindowEnd": 0.49074074074074076
+    },
+    {
+      "type": "ny",
+      "triggers": 19,
+      "movedAway": 19,
+      "returnedAfterMovingAway": 14,
+      "returnRate": 0.7368421052631579,
+      "avgNetMovePoints": 64.26315789473684,
+      "avgAbsMovePoints": 111.94736842105263,
+      "pctAboveAtWindowEnd": 0.5789473684210527
+    },
+    {
+      "type": "london",
+      "triggers": 18,
+      "movedAway": 18,
+      "returnedAfterMovingAway": 14,
+      "returnRate": 0.7777777777777778,
+      "avgNetMovePoints": -19.819444444444443,
+      "avgAbsMovePoints": 72.01388888888889,
+      "pctAboveAtWindowEnd": 0.3888888888888889
+    },
+    {
+      "type": "asia",
+      "triggers": 18,
+      "movedAway": 18,
+      "returnedAfterMovingAway": 9,
+      "returnRate": 0.5,
+      "avgNetMovePoints": 4.986111111111111,
+      "avgAbsMovePoints": 53.09722222222222,
+      "pctAboveAtWindowEnd": 0.5555555555555556
+    },
+    {
+      "type": "830",
+      "triggers": 19,
+      "movedAway": 19,
+      "returnedAfterMovingAway": 15,
+      "returnRate": 0.7894736842105263,
+      "avgNetMovePoints": 27.11842105263158,
+      "avgAbsMovePoints": 75.69736842105263,
+      "pctAboveAtWindowEnd": 0.5789473684210527
+    },
+    {
+      "type": "weekly",
+      "triggers": 4,
+      "movedAway": 4,
+      "returnedAfterMovingAway": 1,
+      "returnRate": 0.25,
+      "avgNetMovePoints": -19,
+      "avgAbsMovePoints": 105,
+      "pctAboveAtWindowEnd": 0.75
+    }
+  ]
+}
