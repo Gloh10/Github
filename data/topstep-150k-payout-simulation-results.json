@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-09-21T21:33:32.701Z",
+  "trials": 1000,
+  "bustedPre": 12,
+  "neverEligible": 0,
+  "bustedPost": 451,
+  "survived": 537,
+  "avgEligibleDay": 6.803643724696356,
+  "avgPayoutAmount": 4581.637145748988,
+  "standardPathCount": 725,
+  "consistencyPathCount": 263
+}
