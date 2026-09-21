@@ -76,7 +76,7 @@ interface TrialResult {
  * your balance between payouts") and restarts the winning-day / consistency
  * counters for the next cycle, per Topstep's published mechanics.
  */
-function runOneTrial(shuffled: Trade[][], path: "standard" | "consistency"): TrialResult {
+function runOneTrial(shuffled: Trade[][], path: "standard" | "consistency", maxPayouts: number): TrialResult {
   let balance = ACCOUNT_SIZE;
   let peak = ACCOUNT_SIZE;
   let floor = -Infinity; // -Infinity = still in the pre-first-payout trailing-MLL phase
@@ -121,7 +121,7 @@ function runOneTrial(shuffled: Trade[][], path: "standard" | "consistency"): Tri
     }
     const eligibleNow = path === "standard" ? standardEligible : consistencyEligible;
 
-    if (eligibleNow && cycleProfit > 0) {
+    if (eligibleNow && cycleProfit > 0 && payoutCount < maxPayouts) {
       const cap = path === "standard" ? STANDARD_PAYOUT_CAP : CONSISTENCY_PAYOUT_CAP;
       const payoutAmount = Math.min(cap, MAX_PAYOUT_FRACTION * cycleProfit);
       balance -= payoutAmount;
@@ -149,30 +149,36 @@ function main() {
   }
   const dayBuckets = [...dayBucketsMap.values()];
 
-  console.log(`Front-loaded withdrawals: take the max allowed payout (50% of cycle profit, capped) the instant each cycle re-qualifies, repeated as many times as the sample allows.`);
-  console.log(`Each payout resets the floor to the new balance and restarts the winning-day/consistency counters for the next cycle.`);
+  console.log(`Comparing: SINGLE payout (take the first one, then hold -- never withdraw again) vs FRONT-LOADED (max payout every cycle, repeated).`);
+  console.log(`Both variants run on the EXACT SAME shuffled trial sequences (paired comparison), so any difference is the real effect of withdrawal strategy, not RNG noise.`);
   console.log(`CAVEAT: still bounded by the same 18 historical trading days (proxy for future days) -- multi-cycle results are limited by how much data is available, not just the strategy.\n`);
 
   for (const path of ["standard", "consistency"] as const) {
-    const results: TrialResult[] = [];
-    for (let i = 0; i < TRIALS; i++) results.push(runOneTrial(shuffle(dayBuckets), path));
-
-    const busted = results.filter((r) => r.busted);
-    const survived = results.filter((r) => !r.busted);
-    const avgProtectedOverall = results.reduce((s, r) => s + r.totalProtected, 0) / results.length;
-    const avgProtectedBusted = busted.length > 0 ? busted.reduce((s, r) => s + r.totalProtected, 0) / busted.length : NaN;
-    const avgProtectedSurvived = survived.length > 0 ? survived.reduce((s, r) => s + r.totalProtected, 0) / survived.length : NaN;
-    const avgPayoutCountBusted = busted.length > 0 ? busted.reduce((s, r) => s + r.payoutCount, 0) / busted.length : NaN;
-    const avgPayoutCountSurvived = survived.length > 0 ? survived.reduce((s, r) => s + r.payoutCount, 0) / survived.length : NaN;
-    const zeroPayoutBusts = busted.filter((r) => r.payoutCount === 0).length;
+    const shuffledTrials: Trade[][][] = [];
+    for (let i = 0; i < TRIALS; i++) shuffledTrials.push(shuffle(dayBuckets));
 
     console.log("=".repeat(95));
     console.log(`PATH: ${path.toUpperCase()}`);
     console.log("=".repeat(95));
-    console.log(`Bust rate: ${((busted.length / TRIALS) * 100).toFixed(1)}%   Survived-to-end-of-data rate: ${((survived.length / TRIALS) * 100).toFixed(1)}%`);
-    console.log(`Average total protected (all trials, busted or not): $${avgProtectedOverall.toFixed(0)}`);
-    console.log(`  Among BUSTED trials:   avg protected=$${avgProtectedBusted.toFixed(0)}, avg payouts taken=${avgPayoutCountBusted.toFixed(2)}, busted with $0 EVER protected=${zeroPayoutBusts}/${busted.length} (${((zeroPayoutBusts / busted.length) * 100).toFixed(1)}%)`);
-    console.log(`  Among SURVIVING trials: avg protected=$${avgProtectedSurvived.toFixed(0)}, avg payouts taken=${avgPayoutCountSurvived.toFixed(2)}, avg remaining account profit=$${(survived.reduce((s, r) => s + r.finalBalance, 0) / survived.length).toFixed(0)}`);
+
+    for (const [label, maxPayouts] of [
+      ["SINGLE payout (no front-loading)", 1],
+      ["FRONT-LOADED (unlimited cycles)", Infinity],
+    ] as const) {
+      const results: TrialResult[] = shuffledTrials.map((s) => runOneTrial(s, path, maxPayouts));
+
+      const busted = results.filter((r) => r.busted);
+      const survived = results.filter((r) => !r.busted);
+      const avgProtectedOverall = results.reduce((s, r) => s + r.totalProtected, 0) / results.length;
+      const avgProtectedBusted = busted.length > 0 ? busted.reduce((s, r) => s + r.totalProtected, 0) / busted.length : NaN;
+      const avgPayoutCount = results.reduce((s, r) => s + r.payoutCount, 0) / results.length;
+      const zeroPayoutBusts = busted.filter((r) => r.payoutCount === 0).length;
+
+      console.log(`\n-- ${label} --`);
+      console.log(`  Bust rate: ${((busted.length / TRIALS) * 100).toFixed(1)}%   Survived: ${((survived.length / TRIALS) * 100).toFixed(1)}%   Avg payouts taken: ${avgPayoutCount.toFixed(2)}`);
+      console.log(`  Avg total protected (ALL trials): $${avgProtectedOverall.toFixed(0)}`);
+      console.log(`  Avg protected among BUSTED trials only: $${avgProtectedBusted.toFixed(0)}   (busted with $0 ever protected: ${zeroPayoutBusts}/${busted.length}, ${((zeroPayoutBusts / busted.length) * 100).toFixed(1)}%)`);
+    }
     console.log("");
   }
 
