@@ -134,15 +134,18 @@ function runMffProTrial(shuffled: Trade[][], t: (typeof MFF_PRO_TIERS)[number], 
 }
 
 // ---------------------------------------------------------------------------
-// LucidFlex. Verified via search: sizes $25K-$150K, eval targets
-// $1,250/$3,000/$6,000/$9,000, eval MLL $1,000/$2,000/$3,000/$4,500, EOD
-// trailing that LOCKS PERMANENTLY once closing balance exceeds
-// accountSize+MLL+$100 (floor then fixed at accountSize+$100 forever) --
-// zero daily loss limit at either stage. Funded: 5 winning days, payout cap
-// = 50% of balance up to $1,000/$2,000/$2,500/$3,000 by tier, $500 minimum,
-// no consistency rule. Funded-stage DD assumed to reuse the eval MLL dollar
-// figure with a fresh lock tracker anchored at combine-clear balance
-// (disclosed approximation -- no separate funded DD figure was published).
+// LucidFlex. 150K figures below are taken directly from the user's own
+// screenshots of Lucid's "150K Flex Eval" and "150K Flex Funded" panels
+// (higher confidence than the earlier web-search-derived figures, which are
+// kept as the assumption for the other three tiers only). Confirmed: eval
+// profit target $9,000, Max Loss Limit $4,500, EOD trailing, 50% CONSISTENCY
+// RULE in eval (missing from the first pass of this model -- corrected
+// here), DLL $2,700 but toggled OFF in the user's config (so not modeled as
+// binding). Funded: Max Loss Limit $4,500, no DLL, NO consistency rule,
+// "5 winning days of >= $250 net" for payout eligibility (corrected from an
+// assumed $0/any-positive-day threshold), 5 payouts before graduating to
+// LucidLive. Lock-at-close trailing-DD mechanic (verified via search, not
+// contradicted by the screenshots) kept as before.
 // ---------------------------------------------------------------------------
 const LUCIDFLEX_TIERS = [
   { tier: "25K", accountSize: 25_000, combineTarget: 1_250, ddAmount: 1_000, payoutCap: 1_000, maxContractsNQ: 4 },
@@ -150,6 +153,8 @@ const LUCIDFLEX_TIERS = [
   { tier: "100K", accountSize: 100_000, combineTarget: 6_000, ddAmount: 3_000, payoutCap: 2_500, maxContractsNQ: 14 },
   { tier: "150K", accountSize: 150_000, combineTarget: 9_000, ddAmount: 4_500, payoutCap: 3_000, maxContractsNQ: 15 },
 ];
+const LUCIDFLEX_EVAL_CONSISTENCY_PCT = 0.5; // confirmed via screenshot: "Consistency 50%" in eval
+const LUCIDFLEX_WINNING_DAY_THRESHOLD = 250; // confirmed via screenshot: "Min Days of Profit: 5 of $250"
 const LUCIDFLEX_WINNING_DAYS_NEEDED = 5;
 const LUCIDFLEX_MIN_PAYOUT = 500;
 
@@ -160,6 +165,7 @@ function runLucidFlexTrial(shuffled: Trade[][], t: (typeof LUCIDFLEX_TIERS)[numb
   let floor = t.accountSize - t.ddAmount;
   let locked = false;
   let combineDays = 0;
+  const combineDailyPnL: number[] = [];
   let cycleStartBalance = t.accountSize;
   let winningDaysThisCycle = 0;
   let payoutCount = 0;
@@ -187,8 +193,11 @@ function runLucidFlexTrial(shuffled: Trade[][], t: (typeof LUCIDFLEX_TIERS)[numb
 
     if (inCombine) {
       combineDays++;
+      combineDailyPnL.push(dayPnl);
       const totalProfit = balance - t.accountSize;
-      if (totalProfit >= t.combineTarget && combineDays >= 1) {
+      const bestDay = Math.max(...combineDailyPnL);
+      const consistencyOk = totalProfit <= 0 || bestDay <= LUCIDFLEX_EVAL_CONSISTENCY_PCT * totalProfit;
+      if (totalProfit >= t.combineTarget && combineDays >= 1 && consistencyOk) {
         inCombine = false;
         clearedCombine = true;
         cycleStartBalance = balance;
@@ -199,7 +208,7 @@ function runLucidFlexTrial(shuffled: Trade[][], t: (typeof LUCIDFLEX_TIERS)[numb
       continue;
     }
 
-    if (dayPnl > 0) winningDaysThisCycle++;
+    if (dayPnl >= LUCIDFLEX_WINNING_DAY_THRESHOLD) winningDaysThisCycle++;
     const cycleProfit = balance - cycleStartBalance;
     if (winningDaysThisCycle >= LUCIDFLEX_WINNING_DAYS_NEEDED && cycleProfit > 0) {
       const raw = Math.min(t.payoutCap, 0.5 * balance);

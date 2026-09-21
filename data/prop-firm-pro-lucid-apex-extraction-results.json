@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T22:03:23.417Z",
+  "generatedAt": "2026-09-21T22:09:19.266Z",
   "trials": 1000,
   "summary": [
     {
@@ -7,10 +7,10 @@
       "tier": "50K",
       "instrument": "MNQ",
       "contracts": 8,
-      "avgProtected": 5958.911999999997,
-      "bustRate": 47.5,
-      "clearRate": 89.5,
-      "avgPayouts": 0.639,
+      "avgProtected": 5513.792000000001,
+      "bustRate": 49.9,
+      "clearRate": 90,
+      "avgPayouts": 0.595,
       "confidenceNote": "LOWER CONFIDENCE: 14-calendar-day payout cycle approximated as 10 trading days; DD dollar figures verified but lock-mechanic (if any) not confirmed, modeled as continuously trailing."
     },
     {
@@ -18,10 +18,10 @@
       "tier": "100K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 7874.6,
-      "bustRate": 31.3,
-      "clearRate": 91.5,
-      "avgPayouts": 0.696,
+      "avgProtected": 7576.576,
+      "bustRate": 32.1,
+      "clearRate": 90,
+      "avgPayouts": 0.688,
       "confidenceNote": "LOWER CONFIDENCE: 14-calendar-day payout cycle approximated as 10 trading days; DD dollar figures verified but lock-mechanic (if any) not confirmed, modeled as continuously trailing."
     },
     {
@@ -29,10 +29,10 @@
       "tier": "150K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 6946.544,
-      "bustRate": 2.4,
-      "clearRate": 99,
-      "avgPayouts": 0.698,
+      "avgProtected": 7063.144,
+      "bustRate": 1.6,
+      "clearRate": 99.4,
+      "avgPayouts": 0.717,
       "confidenceNote": "LOWER CONFIDENCE: 14-calendar-day payout cycle approximated as 10 trading days; DD dollar figures verified but lock-mechanic (if any) not confirmed, modeled as continuously trailing."
     },
     {
@@ -40,10 +40,10 @@
       "tier": "25K",
       "instrument": "MNQ",
       "contracts": 3,
-      "avgProtected": 1698.9745,
+      "avgProtected": 960,
       "bustRate": 3.5999999999999996,
-      "clearRate": 98.5,
-      "avgPayouts": 1.702,
+      "clearRate": 98.1,
+      "avgPayouts": 0.96,
       "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
     },
     {
@@ -51,10 +51,10 @@
       "tier": "50K",
       "instrument": "MNQ",
       "contracts": 7,
-      "avgProtected": 3285.4995,
-      "bustRate": 6.9,
+      "avgProtected": 1862,
+      "bustRate": 7.000000000000001,
       "clearRate": 96.1,
-      "avgPayouts": 1.646,
+      "avgPayouts": 0.931,
       "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
     },
     {
@@ -62,10 +62,10 @@
       "tier": "100K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 3438.715,
-      "bustRate": 6.800000000000001,
-      "clearRate": 96.7,
-      "avgPayouts": 1.377,
+      "avgProtected": 2347.5,
+      "bustRate": 6.2,
+      "clearRate": 96.6,
+      "avgPayouts": 0.939,
       "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
     },
     {
@@ -73,10 +73,10 @@
       "tier": "150K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 3276.515,
-      "bustRate": 0.7000000000000001,
-      "clearRate": 99.8,
-      "avgPayouts": 1.094,
+      "avgProtected": 2979,
+      "bustRate": 0.1,
+      "clearRate": 100,
+      "avgPayouts": 0.993,
       "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
     },
     {
@@ -84,10 +84,10 @@
       "tier": "150K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 2825.5,
-      "bustRate": 0.2,
-      "clearRate": 99.8,
-      "avgPayouts": 1.108,
+      "avgProtected": 2814,
+      "bustRate": 0.1,
+      "clearRate": 99.9,
+      "avgPayouts": 1.104,
       "confidenceNote": "MEDIUM CONFIDENCE: $5,000 safety-net DD and 6-step payout ladder directly verified. Assumed combine and PA share one continuous lock-anchored DD tracker; funded-stage DD amount not separately published."
     }
   ],
