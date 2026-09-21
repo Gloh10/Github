@@ -1,0 +1,209 @@
+{
+  "generatedAt": "2026-09-21T21:21:17.834Z",
+  "config": {
+    "breakevenTriggerPoints": 0,
+    "trailStartPoints": 5,
+    "trailDistancePoints": 2
+  },
+  "nqTimeframes": [
+    {
+      "label": "NQ 5-min",
+      "stats": {
+        "totalTrades": 31,
+        "wins": 18,
+        "losses": 13,
+        "winRate": 0.5806451612903226,
+        "avgR": 0.21257008598567587,
+        "totalR": 6.589672665555952,
+        "maxDrawdownPct": 2.611383399999989,
+        "finalEquity": 106.74581567536714
+      }
+    },
+    {
+      "label": "NQ 15-min",
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.251949706257359,
+        "totalR": 8.566290012750207,
+        "maxDrawdownPct": 3.3154329212048346,
+        "finalEquity": 108.7803943941531
+      }
+    },
+    {
+      "label": "NQ 1-hour",
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.3279446211972137,
+        "totalR": 10.822172499508051,
+        "maxDrawdownPct": 1.134088127354383,
+        "finalEquity": 111.32892642769438
+      }
+    },
+    {
+      "label": "NQ 1-day",
+      "stats": {
+        "totalTrades": 6,
+        "wins": 4,
+        "losses": 2,
+        "winRate": 0.6666666666666666,
+        "avgR": 0.41216779418285593,
+        "totalR": 2.4730067650971357,
+        "maxDrawdownPct": 1,
+        "finalEquity": 102.47984766019617
+      }
+    }
+  ],
+  "esTimeframes": [
+    {
+      "label": "ES 5-min",
+      "stats": {
+        "totalTrades": 34,
+        "wins": 5,
+        "losses": 29,
+        "winRate": 0.14705882352941177,
+        "avgR": -0.08381123732397323,
+        "totalR": -2.84958206901509,
+        "maxDrawdownPct": 2.861681863622408,
+        "finalEquity": 97.13831813637759
+      }
+    },
+    {
+      "label": "ES 1-hour",
+      "stats": {
+        "totalTrades": 35,
+        "wins": 15,
+        "losses": 20,
+        "winRate": 0.42857142857142855,
+        "avgR": 0.17051845374237493,
+        "totalR": 5.968145880983123,
+        "maxDrawdownPct": 1.9899999999999969,
+        "finalEquity": 106.06410181598984
+      }
+    },
+    {
+      "label": "ES 1-day",
+      "stats": {
+        "totalTrades": 6,
+        "wins": 5,
+        "losses": 1,
+        "winRate": 0.8333333333333334,
+        "avgR": 0.14304541776232074,
+        "totalR": 0.8582725065739244,
+        "maxDrawdownPct": 0.9999999999999993,
+        "finalEquity": 100.85237270001477
+      }
+    }
+  ],
+  "crossMarket": [
+    {
+      "label": "NQ (E-mini Nasdaq)",
+      "stats": {
+        "totalTrades": 31,
+        "wins": 18,
+        "losses": 13,
+        "winRate": 0.5806451612903226,
+        "avgR": 0.21257008598567587,
+        "totalR": 6.589672665555952,
+        "maxDrawdownPct": 2.611383399999989,
+        "finalEquity": 106.74581567536714
+      }
+    },
+    {
+      "label": "MNQ (Micro Nasdaq)",
+      "stats": {
+        "totalTrades": 33,
+        "wins": 22,
+        "losses": 11,
+        "winRate": 0.6666666666666666,
+        "avgR": 0.3108255964590915,
+        "totalR": 10.25724468315002,
+        "maxDrawdownPct": 2.16477140300296,
+        "finalEquity": 110.71490311592252
+      }
+    },
+    {
+      "label": "ES (E-mini S&P)",
+      "stats": {
+        "totalTrades": 34,
+        "wins": 5,
+        "losses": 29,
+        "winRate": 0.14705882352941177,
+        "avgR": -0.08381123732397323,
+        "totalR": -2.84958206901509,
+        "maxDrawdownPct": 2.861681863622408,
+        "finalEquity": 97.13831813637759
+      }
+    },
+    {
+      "label": "YM (E-mini Dow)",
+      "stats": {
+        "totalTrades": 48,
+        "wins": 35,
+        "losses": 13,
+        "winRate": 0.7291666666666666,
+        "avgR": 0.40774184181252277,
+        "totalR": 19.571608407001094,
+        "maxDrawdownPct": 1.000000000000007,
+        "finalEquity": 121.43189899969684
+      }
+    },
+    {
+      "label": "RTY (E-mini Russell)",
+      "stats": {
+        "totalTrades": 41,
+        "wins": 0,
+        "losses": 41,
+        "winRate": 0,
+        "avgR": -0.14634146341463414,
+        "totalR": -6,
+        "maxDrawdownPct": 5.851985059900002,
+        "finalEquity": 94.1480149401
+      }
+    },
+    {
+      "label": "CL (Crude Oil)",
+      "stats": {
+        "totalTrades": 33,
+        "wins": 1,
+        "losses": 32,
+        "winRate": 0.030303030303030304,
+        "avgR": 1.119617224880305,
+        "totalR": 36.947368421050065,
+        "maxDrawdownPct": 2.9700999999999995,
+        "finalEquity": 135.3934797252607
+      }
+    },
+    {
+      "label": "GC (Gold)",
+      "stats": {
+        "totalTrades": 42,
+        "wins": 11,
+        "losses": 31,
+        "winRate": 0.2619047619047619,
+        "avgR": 0.30773528750845014,
+        "totalR": 12.924882075354907,
+        "maxDrawdownPct": 3.940398999999991,
+        "finalEquity": 113.34625121897298
+      }
+    },
+    {
+      "label": "6E (Euro FX)",
+      "stats": {
+        "totalTrades": 29,
+        "wins": 0,
+        "losses": 29,
+        "winRate": 0,
+        "avgR": -0.1724137931034483,
+        "totalR": -5,
+        "maxDrawdownPct": 4.900995010000003,
+        "finalEquity": 95.09900499
+      }
+    }
+  ]
+}
