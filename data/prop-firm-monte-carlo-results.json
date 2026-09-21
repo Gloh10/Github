@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-09-21T21:30:10.656Z",
+  "trialsPerAccount": 1000,
+  "accounts": [
+    {
+      "firm": "Apex",
+      "tier": "25K",
+      "accountSize": 25000,
+      "profitTarget": 1500,
+      "trailingDrawdown": 1500,
+      "maxContracts": 4,
+      "consistencyPct": 0.5,
+      "minTradingDays": 7
+    },
+    {
+      "firm": "Apex",
+      "tier": "50K",
+      "accountSize": 50000,
+      "profitTarget": 3000,
+      "trailingDrawdown": 2500,
+      "maxContracts": 10,
+      "consistencyPct": 0.5,
+      "minTradingDays": 7
+    },
+    {
+      "firm": "Apex",
+      "tier": "100K",
+      "accountSize": 100000,
+      "profitTarget": 6000,
+      "trailingDrawdown": 3000,
+      "maxContracts": 14,
+      "consistencyPct": 0.5,
+      "minTradingDays": 7
+    },
+    {
+      "firm": "Topstep",
+      "tier": "50K",
+      "accountSize": 50000,
+      "profitTarget": 3000,
+      "trailingDrawdown": 2000,
+      "maxContracts": 5,
+      "consistencyPct": 0.55,
+      "minTradingDays": 5
+    },
+    {
+      "firm": "Topstep",
+      "tier": "100K",
+      "accountSize": 100000,
+      "profitTarget": 6000,
+      "trailingDrawdown": 3000,
+      "maxContracts": 10,
+      "consistencyPct": 0.55,
+      "minTradingDays": 5
+    },
+    {
+      "firm": "Topstep",
+      "tier": "150K",
+      "accountSize": 150000,
+      "profitTarget": 9000,
+      "trailingDrawdown": 4500,
+      "maxContracts": 15,
+      "consistencyPct": 0.55,
+      "minTradingDays": 5
+    },
+    {
+      "firm": "MyFundedFutures",
+      "tier": "25K",
+      "accountSize": 25000,
+      "profitTarget": 1500,
+      "trailingDrawdown": 1000,
+      "maxContracts": 4,
+      "consistencyPct": 0.5,
+      "minTradingDays": 2
+    },
+    {
+      "firm": "MyFundedFutures",
+      "tier": "50K",
+      "accountSize": 50000,
+      "profitTarget": 3000,
+      "trailingDrawdown": 2000,
+      "maxContracts": 10,
+      "consistencyPct": 0.5,
+      "minTradingDays": 2
+    },
+    {
+      "firm": "MyFundedFutures",
+      "tier": "100K",
+      "accountSize": 100000,
+      "profitTarget": 6000,
+      "trailingDrawdown": 3000,
+      "maxContracts": 14,
+      "consistencyPct": 0.5,
+      "minTradingDays": 2
+    },
+    {
+      "firm": "Alpha Futures",
+      "tier": "50K",
+      "accountSize": 50000,
+      "profitTarget": 4000,
+      "trailingDrawdown": 1750,
+      "maxContracts": 10,
+      "consistencyPct": 0.5,
+      "minTradingDays": 1
+    },
+    {
+      "firm": "Alpha Futures",
+      "tier": "100K",
+      "accountSize": 100000,
+      "profitTarget": 8000,
+      "trailingDrawdown": 3500,
+      "maxContracts": 14,
+      "consistencyPct": 0.5,
+      "minTradingDays": 1
+    },
+    {
+      "firm": "Alpha Futures",
+      "tier": "150K",
+      "accountSize": 150000,
+      "profitTarget": 12000,
+      "trailingDrawdown": 5250,
+      "maxContracts": 17,
+      "consistencyPct": 0.5,
+      "minTradingDays": 1
+    }
+  ],
+  "summary": [
+    {
+      "firm": "Apex",
+      "tier": "25K",
+      "contracts": 1,
+      "passRate": 25.2,
+      "failConsistencyRate": 1.5,
+      "bustRate": 73.3,
+      "ranOutRate": 0,
+      "avgDayToPass": 7,
+      "avgWorstDdPct": 108.73666666666688
+    },
+    {
+      "firm": "Apex",
+      "tier": "50K",
+      "contracts": 1,
+      "passRate": 62,
+      "failConsistencyRate": 17.8,
+      "bustRate": 20.200000000000003,
+      "ranOutRate": 0,
+      "avgDayToPass": 7.015037593984962,
+      "avgWorstDdPct": 75.34460000000043
+    },
+    {
+      "firm": "Apex",
+      "tier": "100K",
+      "contracts": 1,
+      "passRate": 69.69999999999999,
+      "failConsistencyRate": 17.1,
+      "bustRate": 13.200000000000001,
+      "ranOutRate": 0,
+      "avgDayToPass": 7.199308755760368,
+      "avgWorstDdPct": 66.47899999999998
+    },
+    {
+      "firm": "Topstep",
+      "tier": "50K",
+      "contracts": 1,
+      "passRate": 46.300000000000004,
+      "failConsistencyRate": 26.8,
+      "bustRate": 26.900000000000002,
+      "ranOutRate": 0,
+      "avgDayToPass": 5.046511627906977,
+      "avgWorstDdPct": 82.483
+    },
+    {
+      "firm": "Topstep",
+      "tier": "100K",
+      "contracts": 1,
+      "passRate": 66,
+      "failConsistencyRate": 24,
+      "bustRate": 10,
+      "ranOutRate": 0,
+      "avgDayToPass": 5.77,
+      "avgWorstDdPct": 60.39350000000013
+    },
+    {
+      "firm": "Topstep",
+      "tier": "150K",
+      "contracts": 1,
+      "passRate": 98.7,
+      "failConsistencyRate": 0,
+      "bustRate": 1.3,
+      "ranOutRate": 0,
+      "avgDayToPass": 7.24113475177305,
+      "avgWorstDdPct": 42.61899999999996
+    },
+    {
+      "firm": "MyFundedFutures",
+      "tier": "25K",
+      "contracts": 1,
+      "passRate": 0,
+      "failConsistencyRate": 54.300000000000004,
+      "bustRate": 45.7,
+      "ranOutRate": 0,
+      "avgDayToPass": 2.095764272559853,
+      "avgWorstDdPct": 85.922
+    },
+    {
+      "firm": "MyFundedFutures",
+      "tier": "50K",
+      "contracts": 1,
+      "passRate": 1.4000000000000001,
+      "failConsistencyRate": 81.89999999999999,
+      "bustRate": 16.7,
+      "ranOutRate": 0,
+      "avgDayToPass": 2.7599039615846337,
+      "avgWorstDdPct": 59.26675
+    },
+    {
+      "firm": "MyFundedFutures",
+      "tier": "100K",
+      "contracts": 1,
+      "passRate": 32.2,
+      "failConsistencyRate": 59.5,
+      "bustRate": 8.3,
+      "ranOutRate": 0,
+      "avgDayToPass": 4.668484187568157,
+      "avgWorstDdPct": 51.36700000000009
+    },
+    {
+      "firm": "Alpha Futures",
+      "tier": "50K",
+      "contracts": 1,
+      "passRate": 4.8,
+      "failConsistencyRate": 67.30000000000001,
+      "bustRate": 27.900000000000002,
+      "ranOutRate": 0,
+      "avgDayToPass": 2.649098474341193,
+      "avgWorstDdPct": 65.68085714285692
+    },
+    {
+      "firm": "Alpha Futures",
+      "tier": "100K",
+      "contracts": 1,
+      "passRate": 78.4,
+      "failConsistencyRate": 15.9,
+      "bustRate": 5.7,
+      "ranOutRate": 0,
+      "avgDayToPass": 6.100742311770944,
+      "avgWorstDdPct": 51.59600000000018
+    },
+    {
+      "firm": "Alpha Futures",
+      "tier": "150K",
+      "contracts": 2,
+      "passRate": 32.6,
+      "failConsistencyRate": 56.49999999999999,
+      "bustRate": 10.9,
+      "ranOutRate": 0,
+      "avgDayToPass": 4.346801346801347,
+      "avgWorstDdPct": 55.48647619047638
+    }
+  ]
+}
