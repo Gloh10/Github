@@ -78,6 +78,23 @@ function maxDrawdownPct(curve: EquityPoint[]): number {
   return maxDd;
 }
 
+export function computeStats(trades: Trade[], equityCurve: EquityPoint[]): StrategyResult["stats"] {
+  const wins = trades.filter((t) => t.outcome === "win").length;
+  const losses = trades.length - wins;
+  const totalR = trades.reduce((sum, t) => sum + t.rMultiple, 0);
+
+  return {
+    totalTrades: trades.length,
+    wins,
+    losses,
+    winRate: trades.length > 0 ? wins / trades.length : 0,
+    avgR: trades.length > 0 ? totalR / trades.length : 0,
+    totalR,
+    maxDrawdownPct: maxDrawdownPct(equityCurve),
+    finalEquity: equityCurve[equityCurve.length - 1]?.equity ?? 100,
+  };
+}
+
 export function runStrategy(
   strategyName: string,
   bars: Bar[],
@@ -85,25 +102,8 @@ export function runStrategy(
 ): StrategyResult {
   const trades = simulateTrades(bars, signals);
   const equityCurve = buildEquityCurve(bars, trades);
-  const wins = trades.filter((t) => t.outcome === "win").length;
-  const losses = trades.length - wins;
-  const totalR = trades.reduce((sum, t) => sum + t.rMultiple, 0);
 
-  return {
-    strategyName,
-    trades,
-    equityCurve,
-    stats: {
-      totalTrades: trades.length,
-      wins,
-      losses,
-      winRate: trades.length > 0 ? wins / trades.length : 0,
-      avgR: trades.length > 0 ? totalR / trades.length : 0,
-      totalR,
-      maxDrawdownPct: maxDrawdownPct(equityCurve),
-      finalEquity: equityCurve[equityCurve.length - 1]?.equity ?? 100,
-    },
-  };
+  return { strategyName, trades, equityCurve, stats: computeStats(trades, equityCurve) };
 }
 
 /** Buy-and-hold benchmark equity curve over the same bars, normalized to start at 100. */
