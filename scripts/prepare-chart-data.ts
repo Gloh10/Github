@@ -1,15 +1,13 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import type { EquityPoint, StrategyResult } from "../src/backtest/types.js";
 
-interface RawResults {
-  fiveMinute: { windowStart: number; windowEnd: number; strategies: StrategyResult[]; benchmarkNQ: EquityPoint[] };
-  daily: {
-    windowStart: number;
-    windowEnd: number;
-    strategies: StrategyResult[];
-    benchmarkNQ: EquityPoint[];
-    benchmarkSPX: EquityPoint[];
-  };
+interface BacktestResults {
+  fiveMinute: { benchmarkNQ: EquityPoint[]; strategies: StrategyResult[] };
+  daily: { benchmarkNQ: EquityPoint[]; benchmarkSPX: EquityPoint[]; strategies: StrategyResult[] };
+}
+interface CombinationResults {
+  baselines: StrategyResult[];
+  combos: StrategyResult[];
 }
 
 function downsample(points: EquityPoint[], maxPoints: number): EquityPoint[] {
@@ -21,37 +19,50 @@ function downsample(points: EquityPoint[], maxPoints: number): EquityPoint[] {
   return out;
 }
 
+function find(all: StrategyResult[], name: string): StrategyResult {
+  const found = all.find((s) => s.strategyName === name);
+  if (!found) throw new Error(`Strategy not found: ${name}`);
+  return found;
+}
+
+function slim(s: StrategyResult) {
+  return { name: s.strategyName, equityCurve: s.equityCurve, stats: s.stats };
+}
+
 function main() {
-  const raw = JSON.parse(readFileSync("data/backtest-results.json", "utf-8")) as RawResults;
+  const bt = JSON.parse(readFileSync("data/backtest-results.json", "utf-8")) as BacktestResults;
+  const combo = JSON.parse(readFileSync("data/combination-results.json", "utf-8")) as CombinationResults;
+  const allCombo = [...combo.baselines, ...combo.combos];
 
   const chartData = {
-    fiveMinute: {
-      windowStart: raw.fiveMinute.windowStart,
-      windowEnd: raw.fiveMinute.windowEnd,
-      benchmarkNQ: downsample(raw.fiveMinute.benchmarkNQ, 300),
-      strategies: raw.fiveMinute.strategies.map((s) => ({
-        name: s.strategyName,
-        equityCurve: s.equityCurve,
-        stats: s.stats,
-      })),
-    },
     daily: {
-      windowStart: raw.daily.windowStart,
-      windowEnd: raw.daily.windowEnd,
-      benchmarkNQ: raw.daily.benchmarkNQ,
-      benchmarkSPX: raw.daily.benchmarkSPX,
-      strategies: raw.daily.strategies.map((s) => ({
-        name: s.strategyName,
-        equityCurve: s.equityCurve,
-        stats: s.stats,
-      })),
+      benchmarkNQ: bt.daily.benchmarkNQ,
+      benchmarkSPX: bt.daily.benchmarkSPX,
+      highlighted: [
+        slim(find(allCombo, "Daily: Mean Reversion (Setup 2)")),
+        slim(find(allCombo, "Daily: Trend Continuation (Setup 3)")),
+        slim(find(allCombo, "C1. Daily: Mean-Rev + Trend-Continuation merged (regime-adaptive)")),
+      ],
     },
+    fiveMinute: {
+      benchmarkNQ: downsample(bt.fiveMinute.benchmarkNQ, 300),
+      highlighted: [
+        slim(find(allCombo, "5m: SD+OTE, confluence>=3 (Setup 5d)")),
+        slim(find(allCombo, "5m: SFP + FVG, unfiltered (Setup 6a)")),
+        slim(find(allCombo, "C6. 5m: everything merged (MeanRev + Trend + SD-OTE + SFP), first signal wins")),
+      ],
+    },
+    // Every variant tested, for the full table — not just what's charted.
+    allResults: [
+      ...bt.daily.strategies.map((s) => ({ ...slim(s), group: "daily-original" })),
+      ...bt.fiveMinute.strategies.map((s) => ({ ...slim(s), group: "5min-original" })),
+      ...combo.baselines.map((s) => ({ ...slim(s), group: "baseline" })),
+      ...combo.combos.map((s) => ({ ...slim(s), group: "combination" })),
+    ],
   };
 
   writeFileSync("data/chart-data.json", JSON.stringify(chartData));
-  console.log(
-    `Wrote data/chart-data.json — 5m benchmark ${chartData.fiveMinute.benchmarkNQ.length}pts, daily benchmark ${chartData.daily.benchmarkNQ.length}pts`,
-  );
+  console.log(`Wrote data/chart-data.json — ${chartData.allResults.length} total variants in the full table`);
 }
 
 main();

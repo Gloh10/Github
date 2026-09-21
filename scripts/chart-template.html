@@ -14,7 +14,10 @@
   --series-spx: #eb6834;
   --series-meanrev: #1baf7a;
   --series-trend: #eda100;
-  --series-trap: #e87ba4;
+  --series-sdote: #e87ba4;
+  --series-combo: #008300;
+  --series-sfp: #4a3aa7;
+  --series-kitchensink: #e34948;
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) .viz-root {
@@ -31,7 +34,10 @@
     --series-spx: #d95926;
     --series-meanrev: #199e70;
     --series-trend: #c98500;
-    --series-trap: #d55181;
+    --series-sdote: #d55181;
+    --series-combo: #008300;
+    --series-sfp: #9085e9;
+    --series-kitchensink: #e66767;
   }
 }
 :root[data-theme="dark"] .viz-root {
@@ -48,7 +54,10 @@
   --series-spx: #d95926;
   --series-meanrev: #199e70;
   --series-trend: #c98500;
-  --series-trap: #d55181;
+  --series-sdote: #d55181;
+  --series-combo: #008300;
+  --series-sfp: #9085e9;
+  --series-kitchensink: #e66767;
 }
 
 *{box-sizing:border-box;}
@@ -107,12 +116,12 @@ tr:last-child td{border-bottom:none;}
 
 <div class="viz-root">
 <main>
-  <h1>VWAP Setups vs. S&amp;P 500 — Backtest Results</h1>
-  <p class="subtitle">Three VWAP-based setups (from two trading-education video transcripts), tested mechanically against historical NQ (Nasdaq-100 futures) bars and compared to buy-and-hold S&amp;P 500. Hypothetical performance — see methodology notes at the bottom before drawing conclusions.</p>
+  <h1>Six Trading Setups + Combinations vs. S&amp;P 500 — Backtest Results</h1>
+  <p class="subtitle">Six setups extracted from trading-education video transcripts (VWAP mean reversion &amp; trend continuation, a sub-VWAP trap, an ICT-style Standard Deviation + OTE model, and a swing-failure-pattern + fair-value-gap model), tested mechanically against historical NQ (Nasdaq-100 futures) bars, plus 12 hand-built combinations of those setups. Compared to buy-and-hold S&amp;P 500 on the statistically meaningful daily window. <strong>Read the multiple-comparisons warning below before treating any single result as a real edge.</strong></p>
 
   <div class="card">
     <h2>5-Year Daily (Jul 2021 – Sep 2026)</h2>
-    <p class="caption">Rolling 20-day VWAP on daily NQ bars, vs. buy-and-hold NQ and buy-and-hold S&amp;P 500. All lines start at 100.</p>
+    <p class="caption">Rolling 20-day VWAP on daily NQ bars, vs. buy-and-hold NQ and buy-and-hold S&amp;P 500. "Combined" is the best-performing combination found (see note below) — the two components run together, each firing only in its own regime. All lines start at 100.</p>
     <div class="legend" id="legend-daily"></div>
     <div class="chart-wrap">
       <svg id="chart-daily" viewBox="0 0 960 380" preserveAspectRatio="xMidYMid meet"></svg>
@@ -123,7 +132,7 @@ tr:last-child td{border-bottom:none;}
 
   <div class="card">
     <h2>Intraday, 5-Minute Bars (~26 days, Aug 26 – Sep 21 2026)</h2>
-    <p class="caption">Session-anchored VWAP on 5-min NQ bars, vs. buy-and-hold NQ. No S&amp;P 500 line here — this window is short enough (and NQ trades near-24h vs. SPX's ~6.5h session) that an intraday SPX comparison wouldn't be meaningful; see the daily chart above for the actual vs.-S&amp;P-500 comparison.</p>
+    <p class="caption">The best two individual intraday setups (SD+OTE, SFP+FVG) vs. buy-and-hold NQ, plus one cautionary combination — merging every intraday setup into one "take whatever fires first" ensemble, which diluted both toward flat. No S&amp;P 500 line here — this window is short enough (and NQ trades near-24h vs. SPX's ~6.5h session) that an intraday SPX comparison wouldn't be meaningful; see the daily chart above for the actual vs.-S&amp;P-500 comparison.</p>
     <div class="legend" id="legend-5m"></div>
     <div class="chart-wrap">
       <svg id="chart-5m" viewBox="0 0 960 380" preserveAspectRatio="xMidYMid meet"></svg>
@@ -132,15 +141,22 @@ tr:last-child td{border-bottom:none;}
     <table id="table-5m"></table>
   </div>
 
+  <div class="card">
+    <h2>Every variant tested, ranked</h2>
+    <p class="caption">21 rows: 6 individually-tested setups, 6 baselines re-run for the combination pass, and 12 hand-built combinations — every one that was tried, not just the winner. Ranked by total R.</p>
+    <table id="table-full"></table>
+  </div>
+
   <div class="note">
-    <strong>Read this before drawing conclusions:</strong>
+    <strong>Read this before drawing conclusions — especially about the combinations:</strong>
     <ul>
-      <li><strong>Setup 1 (Sub-VWAP Trap) is a mechanical approximation.</strong> The original strategy's entry trigger is read from live level-2 order flow and time-and-sales — data historical OHLCV bars don't contain. This substitutes "close above VWAP after 1-2 failed reclaim attempts." At the literal 10% squeeze threshold from the source video (small-cap context), it found <strong>zero qualifying setups</strong> on NQ in both windows — a real finding: that precondition essentially never occurs on a large liquid index future. Even relaxed thresholds found at most 1 trade. Treat Setup 1's results as "not enough data to evaluate on this instrument," not as a real edge or non-edge.</li>
-      <li><strong>Setups 2 and 3 are the genuinely mechanical ones</strong> (VWAP + standard-deviation bands + candlestick-pattern confirmation) and are fairly tested here.</li>
-      <li><strong>No slippage, commissions, or spread modeled.</strong> Real execution costs would reduce every strategy's results, likely more for the intraday ones (more trades) than the daily ones.</li>
-      <li><strong>Same-bar stop/target conflicts resolve to the stop</strong> (conservative assumption) — if a single bar's range touches both levels, the trade is scored a loss.</li>
-      <li><strong>Fixed 1% account risk per trade</strong> assumed for every strategy's equity curve, purely to make the curves comparable — not a recommendation.</li>
-      <li>This is a hypothetical backtest for research purposes, not investment advice, and past performance (real or simulated) doesn't predict future results.</li>
+      <li><strong>The combinations were built by testing multiple ideas against the same historical sample and reporting the best one — that's a textbook overfitting setup.</strong> The more variants tried, the more likely one looks good by chance alone, with no real edge. The full ranked table above exists specifically so the "winner" isn't shown in isolation. The top result (daily regime-adaptive: mean-reversion + trend-continuation merged, +16.5R/32 trades) is the most defensible of the 12 combos, since it's just the union of two components already tested independently rather than a newly-tuned confluence filter — but "most defensible of 12" is not the same as "validated." The only real test would be running it forward on data it hasn't seen yet.</li>
+      <li><strong>Setup 1 (Sub-VWAP Trap) is a mechanical approximation</strong> whose entry trigger is normally read from live level-2 order flow, which historical bars don't contain. It found ~0 qualifying setups on NQ — a real finding (that precondition essentially never occurs on a large liquid index future), not a bug.</li>
+      <li><strong>Setup 5 (Standard Deviation + OTE) and Setup 6 (SFP + FVG)</strong> both required real interpretive choices to make codeable at all — fractal pivots standing in for by-eye swing selection, order blocks not modeled, "key opens" reduced to the daily open. See their individual write-ups for the specific approximations.</li>
+      <li><strong>No slippage, commissions, or spread modeled.</strong> Real execution costs would reduce every result, more for the intraday/higher-trade-count ones than the daily ones.</li>
+      <li><strong>Same-bar stop/target conflicts resolve to the stop</strong> (conservative assumption).</li>
+      <li><strong>Fixed 1% account risk per trade</strong> assumed for every equity curve, purely to make curves comparable — not a recommendation.</li>
+      <li>Hypothetical backtest for research purposes, not investment advice. Past performance (real or simulated) doesn't predict future results.</li>
     </ul>
   </div>
 </main>
@@ -154,7 +170,10 @@ const SERIES_COLOR_VARS = {
   spx: '--series-spx',
   meanrev: '--series-meanrev',
   trend: '--series-trend',
-  trap: '--series-trap',
+  sdote: '--series-sdote',
+  combo: '--series-combo',
+  sfp: '--series-sfp',
+  kitchensink: '--series-kitchensink',
 };
 
 function cssVar(root, name) {
@@ -168,13 +187,6 @@ function fmtDate(t) {
 function fmtDateTime(t) {
   const d = new Date(t * 1000);
   return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-}
-
-function classifyStrategy(name) {
-  if (name.includes('Trap')) return 'trap';
-  if (name.includes('Mean Reversion')) return 'meanrev';
-  if (name.includes('Trend Continuation')) return 'trend';
-  return 'trap';
 }
 
 /** Forward-fill a sparse equity curve (only updates at trade exits) onto a dense timeline. */
@@ -322,11 +334,24 @@ function buildChart(opts) {
   tableEl.innerHTML = `<thead><tr><th>Strategy</th><th class="num">Trades</th><th class="num">Win rate</th><th class="num">Avg R</th><th class="num">Total R</th><th class="num">Max DD</th><th class="num">Final equity</th></tr></thead><tbody>${rows}</tbody>`;
 }
 
-function pickBestSubVwap(strategies) {
-  // Use whichever Sub-VWAP Trap variant produced the most trades, for a cleaner legend.
-  const candidates = strategies.filter((s) => s.name.includes('Trap'));
-  candidates.sort((a, b) => b.stats.totalTrades - a.stats.totalTrades);
-  return candidates[0];
+function buildFullResultsTable(tableEl, allResults) {
+  const ranked = [...allResults].sort((a, b) => b.stats.totalR - a.stats.totalR);
+  const groupLabel = { 'daily-original': 'Daily', '5min-original': '5-min', baseline: '5-min (combo baseline)', combination: 'Combination' };
+  const rows = ranked
+    .map(
+      (s, i) => `<tr${i === 0 ? ' style="font-weight:600;"' : ''}>
+        <td>${i + 1}</td>
+        <td>${s.name}</td>
+        <td>${groupLabel[s.group] || s.group}</td>
+        <td class="num">${s.stats.totalTrades}</td>
+        <td class="num">${(s.stats.winRate * 100).toFixed(1)}%</td>
+        <td class="num">${s.stats.avgR.toFixed(2)}</td>
+        <td class="num">${s.stats.totalR.toFixed(1)}</td>
+        <td class="num">${s.stats.maxDrawdownPct.toFixed(1)}%</td>
+      </tr>`,
+    )
+    .join('');
+  tableEl.innerHTML = `<thead><tr><th>#</th><th>Strategy</th><th>Dataset</th><th class="num">Trades</th><th class="num">Win rate</th><th class="num">Avg R</th><th class="num">Total R</th><th class="num">Max DD</th></tr></thead><tbody>${rows}</tbody>`;
 }
 
 function init() {
@@ -334,16 +359,16 @@ function init() {
   {
     const d = DATA.daily;
     const timeline = d.benchmarkNQ.map((p) => p.t);
-    const meanRev = d.strategies.find((s) => s.name.includes('Mean Reversion'));
-    const trend = d.strategies.find((s) => s.name.includes('Trend Continuation'));
-    const trap = pickBestSubVwap(d.strategies);
+    const meanRev = d.highlighted.find((s) => s.name.includes('Mean Reversion'));
+    const trend = d.highlighted.find((s) => s.name.includes('Trend Continuation'));
+    const combo = d.highlighted.find((s) => s.name.startsWith('C1.'));
 
     const series = [
       { key: 'nq', colorKey: 'nq', label: 'Buy & Hold NQ', dense: densify(d.benchmarkNQ, timeline), stats: null },
       { key: 'spx', colorKey: 'spx', label: 'Buy & Hold S&P 500', dense: densify(d.benchmarkSPX, timeline), stats: null },
-      { key: 'meanrev', colorKey: 'meanrev', label: '2. VWAP Mean Reversion', dense: densify(meanRev.equityCurve, timeline), stats: meanRev.stats },
-      { key: 'trend', colorKey: 'trend', label: '3. VWAP Trend Continuation', dense: densify(trend.equityCurve, timeline), stats: trend.stats },
-      { key: 'trap', colorKey: 'trap', label: '1. Sub-VWAP Trap', dense: densify(trap.equityCurve, timeline), stats: trap.stats },
+      { key: 'meanrev', colorKey: 'meanrev', label: 'Mean Reversion (Setup 2)', dense: densify(meanRev.equityCurve, timeline), stats: meanRev.stats },
+      { key: 'trend', colorKey: 'trend', label: 'Trend Continuation (Setup 3)', dense: densify(trend.equityCurve, timeline), stats: trend.stats },
+      { key: 'combo', colorKey: 'combo', label: 'Combined (regime-adaptive)', dense: densify(combo.equityCurve, timeline), stats: combo.stats },
     ];
 
     buildChart({
@@ -360,15 +385,15 @@ function init() {
   {
     const d = DATA.fiveMinute;
     const timeline = d.benchmarkNQ.map((p) => p.t);
-    const meanRev = d.strategies.find((s) => s.name === '2. VWAP Mean Reversion');
-    const trend = d.strategies.find((s) => s.name === '3. VWAP Trend Continuation');
-    const trap = pickBestSubVwap(d.strategies);
+    const sdote = d.highlighted.find((s) => s.name.includes('SD+OTE'));
+    const sfp = d.highlighted.find((s) => s.name.includes('SFP'));
+    const kitchensink = d.highlighted.find((s) => s.name.startsWith('C6.'));
 
     const series = [
       { key: 'nq', colorKey: 'nq', label: 'Buy & Hold NQ', dense: densify(d.benchmarkNQ, timeline), stats: null },
-      { key: 'meanrev', colorKey: 'meanrev', label: '2. VWAP Mean Reversion', dense: densify(meanRev.equityCurve, timeline), stats: meanRev.stats },
-      { key: 'trend', colorKey: 'trend', label: '3. VWAP Trend Continuation', dense: densify(trend.equityCurve, timeline), stats: trend.stats },
-      { key: 'trap', colorKey: 'trap', label: '1. Sub-VWAP Trap', dense: densify(trap.equityCurve, timeline), stats: trap.stats },
+      { key: 'sdote', colorKey: 'sdote', label: 'SD+OTE (Setup 5d)', dense: densify(sdote.equityCurve, timeline), stats: sdote.stats },
+      { key: 'sfp', colorKey: 'sfp', label: 'SFP + FVG (Setup 6a)', dense: densify(sfp.equityCurve, timeline), stats: sfp.stats },
+      { key: 'kitchensink', colorKey: 'kitchensink', label: 'Everything merged (C6, cautionary)', dense: densify(kitchensink.equityCurve, timeline), stats: kitchensink.stats },
     ];
 
     buildChart({
@@ -380,6 +405,8 @@ function init() {
       timeFmt: fmtDateTime,
     });
   }
+
+  buildFullResultsTable(document.getElementById('table-full'), DATA.allResults);
 }
 
 init();
