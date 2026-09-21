@@ -66,8 +66,7 @@ type Result =
   | { outcome: "BUSTED_POST_PAYOUT"; day: number; eligibleDay: number; eligiblePath: string; payoutAmount: number }
   | { outcome: "SURVIVED_TO_END_OF_DATA"; day: number; eligibleDay: number; eligiblePath: string; payoutAmount: number; finalBalance: number };
 
-function runOneTrial(dayBuckets: Trade[][], path: "standard" | "consistency"): Result {
-  const shuffled = shuffle(dayBuckets);
+function runOneTrial(shuffled: Trade[][], path: "standard" | "consistency", payoutFraction: number): Result {
   let balance = ACCOUNT_SIZE;
   let peak = ACCOUNT_SIZE;
   let winningDaysStandard = 0;
@@ -113,7 +112,7 @@ function runOneTrial(dayBuckets: Trade[][], path: "standard" | "consistency"): R
       const eligibleNow = path === "standard" ? standardEligible : consistencyEligible;
       if (eligibleNow && totalProfit > 0) {
         const cap = path === "standard" ? STANDARD_PAYOUT_CAP : CONSISTENCY_PAYOUT_CAP;
-        payoutAmount = Math.min(cap, 0.5 * totalProfit);
+        payoutAmount = Math.min(cap, payoutFraction * totalProfit);
         balance -= payoutAmount;
         postPayoutFloor = balance; // MLL resets to $0 buffer -- balance can never dip below this again
         payoutTaken = true;
@@ -146,29 +145,35 @@ function main() {
   console.log(`Path is chosen once at funded-account activation, not switched opportunistically -- simulating both separately.`);
   console.log(`CAVEAT: reuses the same 18 historical trading days as a proxy for "future" funded-account days (the full extent of available 5-min data). Real funded trading would happen on genuinely new days.\n`);
 
+  console.log(
+    `Testing whether taking a SMALLER payout (well under the 50%-of-profit max) reduces the post-payout bust rate.\n` +
+      `Note on the mechanics: the $0 buffer is anchored to your balance at the MOMENT of payout, whatever that balance is.\n` +
+      `Bust = does subsequent P&L ever go negative relative to that moment -- a question about the trade sequence only,\n` +
+      `not about how many dollars you withdrew. So mathematically, payout size should NOT change the post-payout bust\n` +
+      `rate under this specific rule; testing empirically to confirm rather than just asserting it.\n`,
+  );
+
+  // Pre-generate the shuffled day-orders ONCE, reused across every path/payoutFraction combo below --
+  // an apples-to-apples paired comparison, isolating the effect of payout size from Monte Carlo noise.
+  const shuffledTrials: Trade[][][] = [];
+  for (let i = 0; i < TRIALS; i++) shuffledTrials.push(shuffle(dayBuckets));
+
   for (const path of ["standard", "consistency"] as const) {
-    const outcomes: Result[] = [];
-    for (let i = 0; i < TRIALS; i++) outcomes.push(runOneTrial(dayBuckets, path));
+    for (const payoutFraction of [0.5, 0.25, 0.1, 0.05]) {
+      const outcomes: Result[] = [];
+      for (let i = 0; i < TRIALS; i++) outcomes.push(runOneTrial(shuffledTrials[i]!, path, payoutFraction));
 
-    const bustedPre = outcomes.filter((r) => r.outcome === "BUSTED_PRE_PAYOUT").length;
-    const neverEligible = outcomes.filter((r) => r.outcome === "NEVER_REACHED_PAYOUT_ELIGIBILITY").length;
-    const bustedPost = outcomes.filter((r) => r.outcome === "BUSTED_POST_PAYOUT").length;
-    const survived = outcomes.filter((r) => r.outcome === "SURVIVED_TO_END_OF_DATA").length;
+      const bustedPre = outcomes.filter((r) => r.outcome === "BUSTED_PRE_PAYOUT").length;
+      const bustedPost = outcomes.filter((r) => r.outcome === "BUSTED_POST_PAYOUT").length;
+      const survived = outcomes.filter((r) => r.outcome === "SURVIVED_TO_END_OF_DATA").length;
+      const reachedPayout = outcomes.filter((r): r is Extract<Result, { outcome: "BUSTED_POST_PAYOUT" | "SURVIVED_TO_END_OF_DATA" }> => r.outcome === "BUSTED_POST_PAYOUT" || r.outcome === "SURVIVED_TO_END_OF_DATA");
+      const avgPayoutAmount = reachedPayout.length > 0 ? reachedPayout.reduce((s, r) => s + r.payoutAmount, 0) / reachedPayout.length : NaN;
+      const postPayoutBustRate = reachedPayout.length > 0 ? (bustedPost / reachedPayout.length) * 100 : NaN;
 
-    console.log("=".repeat(90));
-    console.log(`PATH: ${path.toUpperCase()} (cap $${(path === "standard" ? STANDARD_PAYOUT_CAP : CONSISTENCY_PAYOUT_CAP).toLocaleString()})`);
-    console.log("=".repeat(90));
-    console.log(`  Busted before ever reaching payout eligibility:                ${bustedPre} (${((bustedPre / TRIALS) * 100).toFixed(1)}%)`);
-    console.log(`  Ran through all 18 days without ever qualifying for a payout:  ${neverEligible} (${((neverEligible / TRIALS) * 100).toFixed(1)}%)`);
-    console.log(`  Reached payout, took it, THEN busted the $0 buffer:           ${bustedPost} (${((bustedPost / TRIALS) * 100).toFixed(1)}%)`);
-    console.log(`  Reached payout AND survived the rest of the sample:            ${survived} (${((survived / TRIALS) * 100).toFixed(1)}%)`);
-
-    const reachedPayout = outcomes.filter((r): r is Extract<Result, { outcome: "BUSTED_POST_PAYOUT" | "SURVIVED_TO_END_OF_DATA" }> => r.outcome === "BUSTED_POST_PAYOUT" || r.outcome === "SURVIVED_TO_END_OF_DATA");
-    const avgEligibleDay = reachedPayout.length > 0 ? reachedPayout.reduce((s, r) => s + r.eligibleDay, 0) / reachedPayout.length : NaN;
-    const avgPayoutAmount = reachedPayout.length > 0 ? reachedPayout.reduce((s, r) => s + r.payoutAmount, 0) / reachedPayout.length : NaN;
-
-    if (reachedPayout.length > 0) {
-      console.log(`  Of ${reachedPayout.length} trials reaching eligibility: avg day=${avgEligibleDay.toFixed(1)}, avg payout=$${avgPayoutAmount.toFixed(0)}, post-payout bust rate=${((bustedPost / reachedPayout.length) * 100).toFixed(1)}%`);
+      console.log(
+        `${path.padEnd(12)} payoutFraction=${payoutFraction.toString().padStart(4)}  avgPayout=$${avgPayoutAmount.toFixed(0).padStart(6)}  ` +
+          `bustedPre=${((bustedPre / TRIALS) * 100).toFixed(1)}%  postPayoutBust=${postPayoutBustRate.toFixed(1).padStart(5)}%  survived=${((survived / TRIALS) * 100).toFixed(1)}%`,
+      );
     }
     console.log("");
   }
