@@ -585,6 +585,163 @@ export function orbBreakout(
  * fade trade targets reversion back toward the middle (point of control) or
  * the opposite edge of the range.
  */
+/**
+ * Setup 8 — "STDV" reversal entry model (ICT/SMC "Dutchy" bootcamp series),
+ * combining Setup 5's swing/SMT infrastructure with the source's explicit
+ * mechanical entry model: "SMT, consolidation, breakout, 50% retrace" (its
+ * own words). At a fractal swing extreme confirmed by NQ/ES SMT divergence
+ * (required 100% of the time per the source), look for a subsequent tight
+ * consolidation, a breakout from it in the reversal direction, and an entry
+ * on a 50% retracement of that breakout leg — either a raw limit at the 50%
+ * level, or (entryMode "rejectionBlock") a tighter, confirmed entry waiting
+ * for a candle to close back in the trade direction at/after the 50% tap.
+ *
+ * Approximations disclosed: only the first consolidation window found after
+ * each pivot is tested (the source's actual selection is by eye); the
+ * target is a fixed R-multiple standing in for the source's discretionary
+ * "draw liquidity" level (the source states "always at least 4R"); the
+ * source's SMT check is one-directional (NQ diverging from ES), inherited
+ * from Setup 5's smt.ts, not the fully symmetric definition described in
+ * the source ("either asset can be the one that fails to confirm").
+ */
+export function stdvReversal(
+  bars: Bar[],
+  esBars: Bar[],
+  opts: {
+    pivotConfirm: number;
+    smtTolerance: number;
+    consolidationBars: number;
+    consolidationRangeMultiple: number;
+    searchWindowBars: number;
+    maxStopPoints: number; // Infinity to disable the cap (only stated as a rule on low-timeframe charts)
+    targetR: number;
+    entryMode: "raw50" | "rejectionBlock";
+  },
+): Signal[] {
+  const signals: Signal[] = [];
+  const pivots = findPivots(bars, opts.pivotConfirm);
+  const highPivots = pivots.filter((p) => p.type === "high");
+  const lowPivots = pivots.filter((p) => p.type === "low");
+
+  function prevSameType(pivot: Pivot): Pivot | undefined {
+    const list = pivot.type === "high" ? highPivots : lowPivots;
+    const idx = list.findIndex((p) => p.barIndex === pivot.barIndex);
+    return idx > 0 ? list[idx - 1] : undefined;
+  }
+
+  function avgRange(uptoIndex: number, lookback: number): number {
+    const start = Math.max(0, uptoIndex - lookback);
+    let sum = 0;
+    let n = 0;
+    for (let j = start; j < uptoIndex; j++) {
+      sum += bars[j]!.h - bars[j]!.l;
+      n++;
+    }
+    return n > 0 ? sum / n : bars[uptoIndex]!.h - bars[uptoIndex]!.l;
+  }
+
+  for (const pivot of pivots) {
+    if (!hasSmtDivergence(pivot, prevSameType(pivot), bars, esBars, opts.smtTolerance)) continue;
+    const direction: "long" | "short" = pivot.type === "low" ? "long" : "short";
+    const refRange = avgRange(pivot.barIndex, 20);
+
+    // Find the first qualifying consolidation window after the pivot.
+    let consolStart = -1;
+    let consolHigh = -Infinity;
+    let consolLow = Infinity;
+    for (let start = pivot.barIndex + 1; start <= pivot.barIndex + opts.searchWindowBars; start++) {
+      const end = start + opts.consolidationBars - 1;
+      if (end >= bars.length) break;
+      let hi = -Infinity;
+      let lo = Infinity;
+      for (let j = start; j <= end; j++) {
+        hi = Math.max(hi, bars[j]!.h);
+        lo = Math.min(lo, bars[j]!.l);
+      }
+      if (hi - lo <= opts.consolidationRangeMultiple * refRange) {
+        consolStart = start;
+        consolHigh = hi;
+        consolLow = lo;
+        break;
+      }
+    }
+    if (consolStart < 0) continue;
+    const consolEnd = consolStart + opts.consolidationBars - 1;
+
+    // Breakout: first close beyond the consolidation range in the trade direction.
+    let breakoutIndex = -1;
+    for (let i = consolEnd + 1; i <= consolEnd + opts.searchWindowBars && i < bars.length; i++) {
+      const bar = bars[i]!;
+      if (direction === "long" && bar.c > consolHigh) {
+        breakoutIndex = i;
+        break;
+      }
+      if (direction === "short" && bar.c < consolLow) {
+        breakoutIndex = i;
+        break;
+      }
+    }
+    if (breakoutIndex < 0) continue;
+
+    // Track the breakout leg's extreme incrementally (bar by bar, no lookahead) and
+    // check the 50% retrace against the extreme as known AT THAT BAR — a bar that
+    // extends the extreme necessarily pushes the 50% level away from itself, so it
+    // cannot also register as the retrace tap; only once the extreme stops advancing
+    // can a later bar's pullback trigger the tap.
+    const legStart = direction === "long" ? consolHigh : consolLow;
+    let legExtreme = direction === "long" ? bars[breakoutIndex]!.h : bars[breakoutIndex]!.l;
+
+    for (let i = breakoutIndex + 1; i <= breakoutIndex + opts.searchWindowBars * 3 && i < bars.length; i++) {
+      const bar = bars[i]!;
+      legExtreme = direction === "long" ? Math.max(legExtreme, bar.h) : Math.min(legExtreme, bar.l);
+      const mid50 = (legStart + legExtreme) / 2;
+      const tapped = direction === "long" ? bar.l <= mid50 : bar.h >= mid50;
+      if (!tapped) continue;
+
+      let entryBarIndex = i;
+      let entry = mid50;
+      let stopRaw: number;
+
+      if (opts.entryMode === "raw50") {
+        stopRaw = consolStart >= 0 ? (direction === "long" ? consolLow : consolHigh) : entry;
+      } else {
+        // rejectionBlock: require a confirming candle close at/after the tap.
+        let confirmIndex = -1;
+        for (let j = i; j <= i + opts.consolidationBars && j < bars.length; j++) {
+          const cb = bars[j]!;
+          const confirms = direction === "long" ? cb.c > cb.o : cb.c < cb.o;
+          if (confirms) {
+            confirmIndex = j;
+            break;
+          }
+        }
+        if (confirmIndex < 0) break;
+        entryBarIndex = confirmIndex;
+        entry = bars[confirmIndex]!.c;
+        stopRaw = direction === "long" ? bars[confirmIndex]!.l : bars[confirmIndex]!.h;
+      }
+
+      const naturalStopDistance = Math.abs(entry - stopRaw);
+      const stopDistance = Math.min(naturalStopDistance, opts.maxStopPoints);
+      if (stopDistance <= 0) break;
+      const stop = direction === "long" ? entry - stopDistance : entry + stopDistance;
+      const target = direction === "long" ? entry + stopDistance * opts.targetR : entry - stopDistance * opts.targetR;
+
+      signals.push({
+        barIndex: entryBarIndex,
+        direction,
+        entry,
+        stop,
+        target,
+        reason: `STDV ${pivot.type} pivot @${pivot.barIndex} + SMT, consolidation[${consolStart}-${consolEnd}], breakout@${breakoutIndex}, ${opts.entryMode} entry`,
+      });
+      break;
+    }
+  }
+
+  return signals;
+}
+
 export function valueAreaFade(
   bars: Bar[],
   valueAreas: (ValueArea | null)[],

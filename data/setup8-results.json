@@ -1,0 +1,4883 @@
+{
+  "generatedAt": "2026-09-21T19:20:48.101Z",
+  "results": [
+    {
+      "strategyName": "5m, raw 50% retrace entry, 25pt max stop",
+      "trades": [
+        {
+          "barIndex": 69,
+          "direction": "short",
+          "entry": 29179.5,
+          "stop": 29204.5,
+          "target": 29079.5,
+          "reason": "STDV high pivot @59 + SMT, consolidation[61-64], breakout@68, raw50 entry",
+          "exitBarIndex": 72,
+          "exitPrice": 29204.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 74,
+          "direction": "long",
+          "entry": 29231.125,
+          "stop": 29206.125,
+          "target": 29331.125,
+          "reason": "STDV low pivot @61 + SMT, consolidation[62-65], breakout@73, raw50 entry",
+          "exitBarIndex": 97,
+          "exitPrice": 29331.125,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 199,
+          "direction": "short",
+          "entry": 29524.25,
+          "stop": 29549.25,
+          "target": 29424.25,
+          "reason": "STDV high pivot @175 + SMT, consolidation[176-179], breakout@198, raw50 entry",
+          "exitBarIndex": 217,
+          "exitPrice": 29424.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 269,
+          "direction": "short",
+          "entry": 29586.75,
+          "stop": 29611.75,
+          "target": 29486.75,
+          "reason": "STDV high pivot @251 + SMT, consolidation[258-261], breakout@268, raw50 entry",
+          "exitBarIndex": 278,
+          "exitPrice": 29611.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 331,
+          "direction": "short",
+          "entry": 29576.375,
+          "stop": 29601.375,
+          "target": 29476.375,
+          "reason": "STDV high pivot @310 + SMT, consolidation[325-328], breakout@330, raw50 entry",
+          "exitBarIndex": 335,
+          "exitPrice": 29601.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 345,
+          "direction": "long",
+          "entry": 29643,
+          "stop": 29618,
+          "target": 29743,
+          "reason": "STDV low pivot @312 + SMT, consolidation[325-328], breakout@344, raw50 entry",
+          "exitBarIndex": 358,
+          "exitPrice": 29618,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 395,
+          "direction": "short",
+          "entry": 29627.375,
+          "stop": 29652.375,
+          "target": 29527.375,
+          "reason": "STDV high pivot @385 + SMT, consolidation[387-390], breakout@394, raw50 entry",
+          "exitBarIndex": 423,
+          "exitPrice": 29652.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 439,
+          "direction": "short",
+          "entry": 29647.375,
+          "stop": 29672.375,
+          "target": 29547.375,
+          "reason": "STDV high pivot @431 + SMT, consolidation[434-437], breakout@438, raw50 entry",
+          "exitBarIndex": 443,
+          "exitPrice": 29672.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 452,
+          "direction": "short",
+          "entry": 29672.375,
+          "stop": 29697.375,
+          "target": 29572.375,
+          "reason": "STDV high pivot @436 + SMT, consolidation[445-448], breakout@451, raw50 entry",
+          "exitBarIndex": 459,
+          "exitPrice": 29697.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 482,
+          "direction": "short",
+          "entry": 29632.125,
+          "stop": 29652,
+          "target": 29552.625,
+          "reason": "STDV high pivot @462 + SMT, consolidation[476-479], breakout@481, raw50 entry",
+          "exitBarIndex": 505,
+          "exitPrice": 29652,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 525,
+          "direction": "long",
+          "entry": 29619.75,
+          "stop": 29594.75,
+          "target": 29719.75,
+          "reason": "STDV low pivot @513 + SMT, consolidation[519-522], breakout@523, raw50 entry",
+          "exitBarIndex": 542,
+          "exitPrice": 29594.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 553,
+          "direction": "long",
+          "entry": 29627.625,
+          "stop": 29602.625,
+          "target": 29727.625,
+          "reason": "STDV low pivot @533 + SMT, consolidation[534-537], breakout@552, raw50 entry",
+          "exitBarIndex": 554,
+          "exitPrice": 29602.625,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 567,
+          "direction": "long",
+          "entry": 29628.125,
+          "stop": 29604,
+          "target": 29724.625,
+          "reason": "STDV low pivot @542 + SMT, consolidation[560-563], breakout@566, raw50 entry",
+          "exitBarIndex": 583,
+          "exitPrice": 29604,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 674,
+          "direction": "short",
+          "entry": 29463.125,
+          "stop": 29488.125,
+          "target": 29363.125,
+          "reason": "STDV high pivot @659 + SMT, consolidation[660-663], breakout@673, raw50 entry",
+          "exitBarIndex": 676,
+          "exitPrice": 29488.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 689,
+          "direction": "short",
+          "entry": 29400,
+          "stop": 29425,
+          "target": 29300,
+          "reason": "STDV high pivot @673 + SMT, consolidation[683-686], breakout@687, raw50 entry",
+          "exitBarIndex": 696,
+          "exitPrice": 29300,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 753,
+          "direction": "long",
+          "entry": 29376,
+          "stop": 29351,
+          "target": 29476,
+          "reason": "STDV low pivot @729 + SMT, consolidation[733-736], breakout@752, raw50 entry",
+          "exitBarIndex": 760,
+          "exitPrice": 29476,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 794,
+          "direction": "short",
+          "entry": 29492.875,
+          "stop": 29517.875,
+          "target": 29392.875,
+          "reason": "STDV high pivot @778 + SMT, consolidation[779-782], breakout@793, raw50 entry",
+          "exitBarIndex": 795,
+          "exitPrice": 29517.875,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 809,
+          "direction": "long",
+          "entry": 29507.5,
+          "stop": 29485.5,
+          "target": 29595.5,
+          "reason": "STDV low pivot @794 + SMT, consolidation[797-800], breakout@808, raw50 entry",
+          "exitBarIndex": 811,
+          "exitPrice": 29485.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 867,
+          "direction": "short",
+          "entry": 29375.5,
+          "stop": 29400.5,
+          "target": 29275.5,
+          "reason": "STDV high pivot @845 + SMT, consolidation[849-852], breakout@866, raw50 entry",
+          "exitBarIndex": 868,
+          "exitPrice": 29400.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 890,
+          "direction": "short",
+          "entry": 29372.75,
+          "stop": 29397.75,
+          "target": 29272.75,
+          "reason": "STDV high pivot @882 + SMT, consolidation[883-886], breakout@889, raw50 entry",
+          "exitBarIndex": 891,
+          "exitPrice": 29397.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 907,
+          "direction": "short",
+          "entry": 29399.75,
+          "stop": 29424.75,
+          "target": 29299.75,
+          "reason": "STDV high pivot @900 + SMT, consolidation[901-904], breakout@906, raw50 entry",
+          "exitBarIndex": 909,
+          "exitPrice": 29424.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 934,
+          "direction": "long",
+          "entry": 29475,
+          "stop": 29450,
+          "target": 29575,
+          "reason": "STDV low pivot @908 + SMT, consolidation[914-917], breakout@933, raw50 entry",
+          "exitBarIndex": 1004,
+          "exitPrice": 29450,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1037,
+          "direction": "short",
+          "entry": 29453.625,
+          "stop": 29477.75,
+          "target": 29357.125,
+          "reason": "STDV high pivot @1027 + SMT, consolidation[1032-1035], breakout@1036, raw50 entry",
+          "exitBarIndex": 1038,
+          "exitPrice": 29477.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1113,
+          "direction": "long",
+          "entry": 29227.375,
+          "stop": 29202.375,
+          "target": 29327.375,
+          "reason": "STDV low pivot @1106 + SMT, consolidation[1107-1110], breakout@1112, raw50 entry",
+          "exitBarIndex": 1115,
+          "exitPrice": 29202.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1187,
+          "direction": "short",
+          "entry": 29125.375,
+          "stop": 29150.375,
+          "target": 29025.375,
+          "reason": "STDV high pivot @1162 + SMT, consolidation[1172-1175], breakout@1186, raw50 entry",
+          "exitBarIndex": 1189,
+          "exitPrice": 29150.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1226,
+          "direction": "short",
+          "entry": 29120.5,
+          "stop": 29145.5,
+          "target": 29020.5,
+          "reason": "STDV high pivot @1217 + SMT, consolidation[1218-1221], breakout@1225, raw50 entry",
+          "exitBarIndex": 1246,
+          "exitPrice": 29145.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1251,
+          "direction": "short",
+          "entry": 29116.125,
+          "stop": 29138,
+          "target": 29028.625,
+          "reason": "STDV high pivot @1235 + SMT, consolidation[1236-1239], breakout@1250, raw50 entry",
+          "exitBarIndex": 1252,
+          "exitPrice": 29138,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1312,
+          "direction": "long",
+          "entry": 29076.625,
+          "stop": 29051.625,
+          "target": 29176.625,
+          "reason": "STDV low pivot @1291 + SMT, consolidation[1294-1297], breakout@1311, raw50 entry",
+          "exitBarIndex": 1321,
+          "exitPrice": 29051.625,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1372,
+          "direction": "long",
+          "entry": 28978.75,
+          "stop": 28953.75,
+          "target": 29078.75,
+          "reason": "STDV low pivot @1364 + SMT, consolidation[1365-1368], breakout@1371, raw50 entry",
+          "exitBarIndex": 1381,
+          "exitPrice": 28953.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1481,
+          "direction": "long",
+          "entry": 29168.5,
+          "stop": 29143.5,
+          "target": 29268.5,
+          "reason": "STDV low pivot @1474 + SMT, consolidation[1475-1478], breakout@1480, raw50 entry",
+          "exitBarIndex": 1492,
+          "exitPrice": 29143.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1501,
+          "direction": "short",
+          "entry": 29142.75,
+          "stop": 29166.75,
+          "target": 29046.75,
+          "reason": "STDV high pivot @1490 + SMT, consolidation[1493-1496], breakout@1500, raw50 entry",
+          "exitBarIndex": 1503,
+          "exitPrice": 29166.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1549,
+          "direction": "short",
+          "entry": 29139.375,
+          "stop": 29162,
+          "target": 29048.875,
+          "reason": "STDV high pivot @1522 + SMT, consolidation[1531-1534], breakout@1548, raw50 entry",
+          "exitBarIndex": 1550,
+          "exitPrice": 29162,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1564,
+          "direction": "long",
+          "entry": 29216.5,
+          "stop": 29191.5,
+          "target": 29316.5,
+          "reason": "STDV low pivot @1549 + SMT, consolidation[1552-1555], breakout@1563, raw50 entry",
+          "exitBarIndex": 1585,
+          "exitPrice": 29191.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1616,
+          "direction": "long",
+          "entry": 29220.25,
+          "stop": 29195.25,
+          "target": 29320.25,
+          "reason": "STDV low pivot @1608 + SMT, consolidation[1611-1614], breakout@1615, raw50 entry",
+          "exitBarIndex": 1618,
+          "exitPrice": 29195.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1637,
+          "direction": "short",
+          "entry": 29204.625,
+          "stop": 29229.625,
+          "target": 29104.625,
+          "reason": "STDV high pivot @1617 + SMT, consolidation[1629-1632], breakout@1636, raw50 entry",
+          "exitBarIndex": 1666,
+          "exitPrice": 29104.625,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1788,
+          "direction": "long",
+          "entry": 29504.75,
+          "stop": 29484.75,
+          "target": 29584.75,
+          "reason": "STDV low pivot @1779 + SMT, consolidation[1780-1783], breakout@1787, raw50 entry",
+          "exitBarIndex": 1853,
+          "exitPrice": 29584.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1911,
+          "direction": "short",
+          "entry": 29634.5,
+          "stop": 29659.5,
+          "target": 29534.5,
+          "reason": "STDV high pivot @1898 + SMT, consolidation[1904-1907], breakout@1910, raw50 entry",
+          "exitBarIndex": 1919,
+          "exitPrice": 29659.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1922,
+          "direction": "long",
+          "entry": 29665.25,
+          "stop": 29640.25,
+          "target": 29765.25,
+          "reason": "STDV low pivot @1913 + SMT, consolidation[1917-1920], breakout@1921, raw50 entry",
+          "exitBarIndex": 1946,
+          "exitPrice": 29640.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1948,
+          "direction": "short",
+          "entry": 29641.375,
+          "stop": 29666.375,
+          "target": 29541.375,
+          "reason": "STDV high pivot @1930 + SMT, consolidation[1934-1937], breakout@1947, raw50 entry",
+          "exitBarIndex": 1949,
+          "exitPrice": 29666.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2021,
+          "direction": "long",
+          "entry": 29506.375,
+          "stop": 29481.375,
+          "target": 29606.375,
+          "reason": "STDV low pivot @2014 + SMT, consolidation[2015-2018], breakout@2020, raw50 entry",
+          "exitBarIndex": 2108,
+          "exitPrice": 29606.375,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2189,
+          "direction": "short",
+          "entry": 29626.125,
+          "stop": 29651.125,
+          "target": 29526.125,
+          "reason": "STDV high pivot @2162 + SMT, consolidation[2175-2178], breakout@2188, raw50 entry",
+          "exitBarIndex": 2296,
+          "exitPrice": 29526.125,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2558,
+          "direction": "long",
+          "entry": 29533.75,
+          "stop": 29508.75,
+          "target": 29633.75,
+          "reason": "STDV low pivot @2543 + SMT, consolidation[2546-2549], breakout@2557, raw50 entry",
+          "exitBarIndex": 2561,
+          "exitPrice": 29508.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2569,
+          "direction": "long",
+          "entry": 29541.375,
+          "stop": 29516.375,
+          "target": 29641.375,
+          "reason": "STDV low pivot @2557 + SMT, consolidation[2558-2561], breakout@2568, raw50 entry",
+          "exitBarIndex": 2574,
+          "exitPrice": 29516.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2627,
+          "direction": "short",
+          "entry": 29571.875,
+          "stop": 29596.875,
+          "target": 29471.875,
+          "reason": "STDV high pivot @2605 + SMT, consolidation[2608-2611], breakout@2626, raw50 entry",
+          "exitBarIndex": 2635,
+          "exitPrice": 29596.875,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2641,
+          "direction": "long",
+          "entry": 29617,
+          "stop": 29595.5,
+          "target": 29703,
+          "reason": "STDV low pivot @2627 + SMT, consolidation[2636-2639], breakout@2640, raw50 entry",
+          "exitBarIndex": 2644,
+          "exitPrice": 29595.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2675,
+          "direction": "short",
+          "entry": 29577.625,
+          "stop": 29602.625,
+          "target": 29477.625,
+          "reason": "STDV high pivot @2656 + SMT, consolidation[2670-2673], breakout@2674, raw50 entry",
+          "exitBarIndex": 2677,
+          "exitPrice": 29602.625,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2723,
+          "direction": "long",
+          "entry": 29442.125,
+          "stop": 29417.125,
+          "target": 29542.125,
+          "reason": "STDV low pivot @2686 + SMT, consolidation[2705-2708], breakout@2722, raw50 entry",
+          "exitBarIndex": 2724,
+          "exitPrice": 29417.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2732,
+          "direction": "long",
+          "entry": 29375.5,
+          "stop": 29350.5,
+          "target": 29475.5,
+          "reason": "STDV low pivot @2721 + SMT, consolidation[2727-2730], breakout@2731, raw50 entry",
+          "exitBarIndex": 2743,
+          "exitPrice": 29475.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2762,
+          "direction": "short",
+          "entry": 29467,
+          "stop": 29492,
+          "target": 29367,
+          "reason": "STDV high pivot @2750 + SMT, consolidation[2757-2760], breakout@2761, raw50 entry",
+          "exitBarIndex": 2765,
+          "exitPrice": 29367,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2856,
+          "direction": "long",
+          "entry": 29454.125,
+          "stop": 29429.125,
+          "target": 29554.125,
+          "reason": "STDV low pivot @2836 + SMT, consolidation[2837-2840], breakout@2855, raw50 entry",
+          "exitBarIndex": 2867,
+          "exitPrice": 29429.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2933,
+          "direction": "short",
+          "entry": 29441.875,
+          "stop": 29465.5,
+          "target": 29347.375,
+          "reason": "STDV high pivot @2917 + SMT, consolidation[2918-2921], breakout@2932, raw50 entry",
+          "exitBarIndex": 2934,
+          "exitPrice": 29465.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2996,
+          "direction": "long",
+          "entry": 29356.625,
+          "stop": 29331.625,
+          "target": 29456.625,
+          "reason": "STDV low pivot @2983 + SMT, consolidation[2991-2994], breakout@2995, raw50 entry",
+          "exitBarIndex": 2998,
+          "exitPrice": 29331.625,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2999,
+          "direction": "short",
+          "entry": 29308.875,
+          "stop": 29333.875,
+          "target": 29208.875,
+          "reason": "STDV high pivot @2988 + SMT, consolidation[2990-2993], breakout@2998, raw50 entry",
+          "exitBarIndex": 3007,
+          "exitPrice": 29208.875,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3098,
+          "direction": "short",
+          "entry": 29129.5,
+          "stop": 29154.5,
+          "target": 29029.5,
+          "reason": "STDV high pivot @3083 + SMT, consolidation[3088-3091], breakout@3097, raw50 entry",
+          "exitBarIndex": 3099,
+          "exitPrice": 29154.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3138,
+          "direction": "long",
+          "entry": 29130.125,
+          "stop": 29105.125,
+          "target": 29230.125,
+          "reason": "STDV low pivot @3118 + SMT, consolidation[3119-3122], breakout@3137, raw50 entry",
+          "exitBarIndex": 3154,
+          "exitPrice": 29105.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3196,
+          "direction": "long",
+          "entry": 29154,
+          "stop": 29129,
+          "target": 29254,
+          "reason": "STDV low pivot @3181 + SMT, consolidation[3187-3190], breakout@3195, raw50 entry",
+          "exitBarIndex": 3214,
+          "exitPrice": 29254,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3267,
+          "direction": "short",
+          "entry": 29293.875,
+          "stop": 29315.25,
+          "target": 29208.375,
+          "reason": "STDV high pivot @3229 + SMT, consolidation[3245-3248], breakout@3266, raw50 entry",
+          "exitBarIndex": 3270,
+          "exitPrice": 29315.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3275,
+          "direction": "long",
+          "entry": 29336.375,
+          "stop": 29314,
+          "target": 29425.875,
+          "reason": "STDV low pivot @3253 + SMT, consolidation[3254-3257], breakout@3274, raw50 entry",
+          "exitBarIndex": 3277,
+          "exitPrice": 29314,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3329,
+          "direction": "short",
+          "entry": 29431.875,
+          "stop": 29456.875,
+          "target": 29331.875,
+          "reason": "STDV high pivot @3319 + SMT, consolidation[3320-3323], breakout@3328, raw50 entry",
+          "exitBarIndex": 3338,
+          "exitPrice": 29456.875,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3381,
+          "direction": "long",
+          "entry": 29395.25,
+          "stop": 29376.5,
+          "target": 29470.25,
+          "reason": "STDV low pivot @3375 + SMT, consolidation[3376-3379], breakout@3380, raw50 entry",
+          "exitBarIndex": 3385,
+          "exitPrice": 29376.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3420,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 29016.75,
+          "target": 29141.75,
+          "reason": "STDV low pivot @3407 + SMT, consolidation[3414-3417], breakout@3419, raw50 entry",
+          "exitBarIndex": 3421,
+          "exitPrice": 29016.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3429,
+          "direction": "long",
+          "entry": 29029.375,
+          "stop": 29004.375,
+          "target": 29129.375,
+          "reason": "STDV low pivot @3414 + SMT, consolidation[3424-3427], breakout@3428, raw50 entry",
+          "exitBarIndex": 3460,
+          "exitPrice": 29004.375,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3482,
+          "direction": "long",
+          "entry": 29028,
+          "stop": 29008.5,
+          "target": 29106,
+          "reason": "STDV low pivot @3463 + SMT, consolidation[3468-3471], breakout@3481, raw50 entry",
+          "exitBarIndex": 3487,
+          "exitPrice": 29008.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3532,
+          "direction": "long",
+          "entry": 28876.5,
+          "stop": 28851.5,
+          "target": 28976.5,
+          "reason": "STDV low pivot @3503 + SMT, consolidation[3523-3526], breakout@3531, raw50 entry",
+          "exitBarIndex": 3546,
+          "exitPrice": 28976.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3630,
+          "direction": "short",
+          "entry": 29261.375,
+          "stop": 29286.375,
+          "target": 29161.375,
+          "reason": "STDV high pivot @3624 + SMT, consolidation[3625-3628], breakout@3629, raw50 entry",
+          "exitBarIndex": 3648,
+          "exitPrice": 29161.375,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3723,
+          "direction": "short",
+          "entry": 29449.125,
+          "stop": 29474.125,
+          "target": 29349.125,
+          "reason": "STDV high pivot @3693 + SMT, consolidation[3708-3711], breakout@3722, raw50 entry",
+          "exitBarIndex": 3745,
+          "exitPrice": 29349.125,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3764,
+          "direction": "short",
+          "entry": 29356.875,
+          "stop": 29381.875,
+          "target": 29256.875,
+          "reason": "STDV high pivot @3755 + SMT, consolidation[3757-3760], breakout@3763, raw50 entry",
+          "exitBarIndex": 3774,
+          "exitPrice": 29381.875,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3794,
+          "direction": "short",
+          "entry": 29260.125,
+          "stop": 29285.125,
+          "target": 29160.125,
+          "reason": "STDV high pivot @3774 + SMT, consolidation[3786-3789], breakout@3793, raw50 entry",
+          "exitBarIndex": 3800,
+          "exitPrice": 29285.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3911,
+          "direction": "short",
+          "entry": 29235.5,
+          "stop": 29260.5,
+          "target": 29135.5,
+          "reason": "STDV high pivot @3888 + SMT, consolidation[3890-3893], breakout@3910, raw50 entry",
+          "exitBarIndex": 3925,
+          "exitPrice": 29260.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3929,
+          "direction": "long",
+          "entry": 29274.875,
+          "stop": 29249.875,
+          "target": 29374.875,
+          "reason": "STDV low pivot @3910 + SMT, consolidation[3912-3915], breakout@3925, raw50 entry",
+          "exitBarIndex": 3974,
+          "exitPrice": 29249.875,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4025,
+          "direction": "long",
+          "entry": 29322.875,
+          "stop": 29302.5,
+          "target": 29404.375,
+          "reason": "STDV low pivot @4016 + SMT, consolidation[4017-4020], breakout@4024, raw50 entry",
+          "exitBarIndex": 4093,
+          "exitPrice": 29404.375,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4127,
+          "direction": "long",
+          "entry": 29458.25,
+          "stop": 29433.25,
+          "target": 29558.25,
+          "reason": "STDV low pivot @4096 + SMT, consolidation[4106-4109], breakout@4126, raw50 entry",
+          "exitBarIndex": 4129,
+          "exitPrice": 29433.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4178,
+          "direction": "long",
+          "entry": 29515.625,
+          "stop": 29490.625,
+          "target": 29615.625,
+          "reason": "STDV low pivot @4159 + SMT, consolidation[4160-4163], breakout@4177, raw50 entry",
+          "exitBarIndex": 4179,
+          "exitPrice": 29490.625,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4281,
+          "direction": "long",
+          "entry": 29454.625,
+          "stop": 29429.625,
+          "target": 29554.625,
+          "reason": "STDV low pivot @4272 + SMT, consolidation[4274-4277], breakout@4280, raw50 entry",
+          "exitBarIndex": 4300,
+          "exitPrice": 29429.625,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4355,
+          "direction": "short",
+          "entry": 29549.5,
+          "stop": 29574.5,
+          "target": 29449.5,
+          "reason": "STDV high pivot @4347 + SMT, consolidation[4348-4351], breakout@4354, raw50 entry",
+          "exitBarIndex": 4356,
+          "exitPrice": 29574.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4378,
+          "direction": "short",
+          "entry": 29560,
+          "stop": 29583.75,
+          "target": 29465,
+          "reason": "STDV high pivot @4363 + SMT, consolidation[4364-4367], breakout@4377, raw50 entry",
+          "exitBarIndex": 4380,
+          "exitPrice": 29583.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4460,
+          "direction": "short",
+          "entry": 29715.25,
+          "stop": 29740.25,
+          "target": 29615.25,
+          "reason": "STDV high pivot @4433 + SMT, consolidation[4436-4439], breakout@4459, raw50 entry",
+          "exitBarIndex": 4466,
+          "exitPrice": 29740.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4480,
+          "direction": "short",
+          "entry": 29722.125,
+          "stop": 29746.5,
+          "target": 29624.625,
+          "reason": "STDV high pivot @4466 + SMT, consolidation[4467-4470], breakout@4479, raw50 entry",
+          "exitBarIndex": 4556,
+          "exitPrice": 29746.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4675,
+          "direction": "long",
+          "entry": 29819.125,
+          "stop": 29794.125,
+          "target": 29919.125,
+          "reason": "STDV low pivot @4669 + SMT, consolidation[4670-4673], breakout@4674, raw50 entry",
+          "exitBarIndex": 4678,
+          "exitPrice": 29794.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4801,
+          "direction": "long",
+          "entry": 30099.125,
+          "stop": 30074.125,
+          "target": 30199.125,
+          "reason": "STDV low pivot @4792 + SMT, consolidation[4796-4799], breakout@4800, raw50 entry",
+          "exitBarIndex": 4812,
+          "exitPrice": 30074.125,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4837,
+          "direction": "short",
+          "entry": 30086.25,
+          "stop": 30104.75,
+          "target": 30012.25,
+          "reason": "STDV high pivot @4822 + SMT, consolidation[4826-4829], breakout@4836, raw50 entry",
+          "exitBarIndex": 4857,
+          "exitPrice": 30104.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4862,
+          "direction": "long",
+          "entry": 30107.875,
+          "stop": 30082.875,
+          "target": 30207.875,
+          "reason": "STDV low pivot @4838 + SMT, consolidation[4840-4843], breakout@4861, raw50 entry",
+          "exitBarIndex": 4885,
+          "exitPrice": 30207.875,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4909,
+          "direction": "short",
+          "entry": 30236.25,
+          "stop": 30261.25,
+          "target": 30136.25,
+          "reason": "STDV high pivot @4898 + SMT, consolidation[4902-4905], breakout@4908, raw50 entry",
+          "exitBarIndex": 4916,
+          "exitPrice": 30261.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4923,
+          "direction": "short",
+          "entry": 30227.75,
+          "stop": 30252.75,
+          "target": 30127.75,
+          "reason": "STDV high pivot @4906 + SMT, consolidation[4908-4911], breakout@4922, raw50 entry",
+          "exitBarIndex": 4931,
+          "exitPrice": 30252.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4952,
+          "direction": "long",
+          "entry": 30270.75,
+          "stop": 30245.75,
+          "target": 30370.75,
+          "reason": "STDV low pivot @4926 + SMT, consolidation[4944-4947], breakout@4951, raw50 entry",
+          "exitBarIndex": 4954,
+          "exitPrice": 30370.75,
+          "outcome": "win",
+          "rMultiple": 4
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787763300,
+          "equity": 99
+        },
+        {
+          "t": 1787770800,
+          "equity": 102.96000000000001
+        },
+        {
+          "t": 1787810400,
+          "equity": 107.07840000000002
+        },
+        {
+          "t": 1787828700,
+          "equity": 106.00761600000001
+        },
+        {
+          "t": 1787845800,
+          "equity": 104.94753984000002
+        },
+        {
+          "t": 1787852700,
+          "equity": 103.89806444160001
+        },
+        {
+          "t": 1787875800,
+          "equity": 102.85908379718401
+        },
+        {
+          "t": 1787881800,
+          "equity": 101.83049295921217
+        },
+        {
+          "t": 1787886600,
+          "equity": 100.81218802962005
+        },
+        {
+          "t": 1787900400,
+          "equity": 99.80406614932384
+        },
+        {
+          "t": 1787911500,
+          "equity": 98.80602548783061
+        },
+        {
+          "t": 1787915100,
+          "equity": 97.8179652329523
+        },
+        {
+          "t": 1787923800,
+          "equity": 96.83978558062277
+        },
+        {
+          "t": 1788128100,
+          "equity": 95.87138772481654
+        },
+        {
+          "t": 1788134100,
+          "equity": 99.7062432338092
+        },
+        {
+          "t": 1788153300,
+          "equity": 103.69449296316158
+        },
+        {
+          "t": 1788163800,
+          "equity": 102.65754803352996
+        },
+        {
+          "t": 1788168600,
+          "equity": 101.63097255319467
+        },
+        {
+          "t": 1788185700,
+          "equity": 100.61466282766271
+        },
+        {
+          "t": 1788192600,
+          "equity": 99.60851619938609
+        },
+        {
+          "t": 1788198000,
+          "equity": 98.61243103739223
+        },
+        {
+          "t": 1788230100,
+          "equity": 97.6263067270183
+        },
+        {
+          "t": 1788240300,
+          "equity": 96.65004365974812
+        },
+        {
+          "t": 1788263400,
+          "equity": 95.68354322315064
+        },
+        {
+          "t": 1788285600,
+          "equity": 94.72670779091914
+        },
+        {
+          "t": 1788306300,
+          "equity": 93.77944071300995
+        },
+        {
+          "t": 1788308100,
+          "equity": 92.84164630587985
+        },
+        {
+          "t": 1788328800,
+          "equity": 91.91322984282105
+        },
+        {
+          "t": 1788346800,
+          "equity": 90.99409754439284
+        },
+        {
+          "t": 1788380100,
+          "equity": 90.08415656894891
+        },
+        {
+          "t": 1788387000,
+          "equity": 89.18331500325942
+        },
+        {
+          "t": 1788401100,
+          "equity": 88.29148185322683
+        },
+        {
+          "t": 1788411600,
+          "equity": 87.40856703469456
+        },
+        {
+          "t": 1788421500,
+          "equity": 86.53448136434761
+        },
+        {
+          "t": 1788435900,
+          "equity": 89.99586061892153
+        },
+        {
+          "t": 1788495600,
+          "equity": 93.59569504367839
+        },
+        {
+          "t": 1788515400,
+          "equity": 92.6597380932416
+        },
+        {
+          "t": 1788523500,
+          "equity": 91.73314071230918
+        },
+        {
+          "t": 1788524400,
+          "equity": 90.8158093051861
+        },
+        {
+          "t": 1788748500,
+          "equity": 94.44844167739355
+        },
+        {
+          "t": 1788822900,
+          "equity": 98.22637934448929
+        },
+        {
+          "t": 1788906000,
+          "equity": 97.24411555104439
+        },
+        {
+          "t": 1788909900,
+          "equity": 96.27167439553395
+        },
+        {
+          "t": 1788928200,
+          "equity": 95.30895765157861
+        },
+        {
+          "t": 1788930900,
+          "equity": 94.35586807506282
+        },
+        {
+          "t": 1788940800,
+          "equity": 93.41230939431219
+        },
+        {
+          "t": 1788954900,
+          "equity": 92.47818630036906
+        },
+        {
+          "t": 1788960600,
+          "equity": 96.17731375238382
+        },
+        {
+          "t": 1788967200,
+          "equity": 100.02440630247918
+        },
+        {
+          "t": 1789001400,
+          "equity": 99.02416223945438
+        },
+        {
+          "t": 1789021500,
+          "equity": 98.03392061705983
+        },
+        {
+          "t": 1789040700,
+          "equity": 97.05358141088924
+        },
+        {
+          "t": 1789043400,
+          "equity": 100.9357246673248
+        },
+        {
+          "t": 1789071000,
+          "equity": 99.92636742065156
+        },
+        {
+          "t": 1789091100,
+          "equity": 98.92710374644504
+        },
+        {
+          "t": 1789109100,
+          "equity": 102.88418789630285
+        },
+        {
+          "t": 1789125900,
+          "equity": 101.85534601733981
+        },
+        {
+          "t": 1789128000,
+          "equity": 100.83679255716642
+        },
+        {
+          "t": 1789146300,
+          "equity": 99.82842463159476
+        },
+        {
+          "t": 1789336800,
+          "equity": 98.83014038527881
+        },
+        {
+          "t": 1789347600,
+          "equity": 97.84183898142602
+        },
+        {
+          "t": 1789359300,
+          "equity": 96.86342059161176
+        },
+        {
+          "t": 1789367400,
+          "equity": 95.89478638569564
+        },
+        {
+          "t": 1789385100,
+          "equity": 99.73057784112346
+        },
+        {
+          "t": 1789415700,
+          "equity": 103.7198009547684
+        },
+        {
+          "t": 1789448400,
+          "equity": 107.86859299295914
+        },
+        {
+          "t": 1789457100,
+          "equity": 106.78990706302955
+        },
+        {
+          "t": 1789464900,
+          "equity": 105.72200799239926
+        },
+        {
+          "t": 1789502400,
+          "equity": 104.66478791247526
+        },
+        {
+          "t": 1789520700,
+          "equity": 103.61814003335051
+        },
+        {
+          "t": 1789556400,
+          "equity": 107.76286563468454
+        },
+        {
+          "t": 1789567200,
+          "equity": 106.6852369783377
+        },
+        {
+          "t": 1789582200,
+          "equity": 105.61838460855432
+        },
+        {
+          "t": 1789622100,
+          "equity": 104.56220076246878
+        },
+        {
+          "t": 1789638900,
+          "equity": 103.51657875484409
+        },
+        {
+          "t": 1789646100,
+          "equity": 102.48141296729565
+        },
+        {
+          "t": 1789671900,
+          "equity": 101.45659883762269
+        },
+        {
+          "t": 1789702500,
+          "equity": 100.44203284924646
+        },
+        {
+          "t": 1789739100,
+          "equity": 99.43761252075399
+        },
+        {
+          "t": 1789955700,
+          "equity": 98.44323639554645
+        },
+        {
+          "t": 1789969200,
+          "equity": 97.45880403159099
+        },
+        {
+          "t": 1789977600,
+          "equity": 101.35715619285463
+        },
+        {
+          "t": 1789986900,
+          "equity": 100.34358463092609
+        },
+        {
+          "t": 1789991400,
+          "equity": 99.34014878461683
+        },
+        {
+          "t": 1789998300,
+          "equity": 103.3137547360015
+        }
+      ],
+      "stats": {
+        "totalTrades": 85,
+        "wins": 18,
+        "losses": 67,
+        "winRate": 0.21176470588235294,
+        "avgR": 0.058823529411764705,
+        "totalR": 5,
+        "maxDrawdownPct": 19.18586627709454,
+        "finalEquity": 103.3137547360015
+      }
+    },
+    {
+      "strategyName": "5m, rejection-block entry, 25pt max stop",
+      "trades": [
+        {
+          "barIndex": 69,
+          "direction": "short",
+          "entry": 29174.5,
+          "stop": 29194,
+          "target": 29096.5,
+          "reason": "STDV high pivot @59 + SMT, consolidation[61-64], breakout@68, rejectionBlock entry",
+          "exitBarIndex": 70,
+          "exitPrice": 29194,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 74,
+          "direction": "long",
+          "entry": 29234.25,
+          "stop": 29217.75,
+          "target": 29300.25,
+          "reason": "STDV low pivot @61 + SMT, consolidation[62-65], breakout@73, rejectionBlock entry",
+          "exitBarIndex": 91,
+          "exitPrice": 29300.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 199,
+          "direction": "short",
+          "entry": 29521.75,
+          "stop": 29530.25,
+          "target": 29487.75,
+          "reason": "STDV high pivot @175 + SMT, consolidation[176-179], breakout@198, rejectionBlock entry",
+          "exitBarIndex": 205,
+          "exitPrice": 29487.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 270,
+          "direction": "short",
+          "entry": 29579.75,
+          "stop": 29588,
+          "target": 29546.75,
+          "reason": "STDV high pivot @251 + SMT, consolidation[258-261], breakout@268, rejectionBlock entry",
+          "exitBarIndex": 273,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 331,
+          "direction": "short",
+          "entry": 29578,
+          "stop": 29597.25,
+          "target": 29501,
+          "reason": "STDV high pivot @310 + SMT, consolidation[325-328], breakout@330, rejectionBlock entry",
+          "exitBarIndex": 335,
+          "exitPrice": 29597.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 345,
+          "direction": "long",
+          "entry": 29645.75,
+          "stop": 29636.75,
+          "target": 29681.75,
+          "reason": "STDV low pivot @312 + SMT, consolidation[325-328], breakout@344, rejectionBlock entry",
+          "exitBarIndex": 355,
+          "exitPrice": 29636.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 395,
+          "direction": "short",
+          "entry": 29624.75,
+          "stop": 29633.5,
+          "target": 29589.75,
+          "reason": "STDV high pivot @385 + SMT, consolidation[387-390], breakout@394, rejectionBlock entry",
+          "exitBarIndex": 396,
+          "exitPrice": 29633.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 440,
+          "direction": "short",
+          "entry": 29647,
+          "stop": 29672,
+          "target": 29547,
+          "reason": "STDV high pivot @431 + SMT, consolidation[434-437], breakout@438, rejectionBlock entry",
+          "exitBarIndex": 443,
+          "exitPrice": 29672,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 452,
+          "direction": "short",
+          "entry": 29669,
+          "stop": 29675,
+          "target": 29645,
+          "reason": "STDV high pivot @436 + SMT, consolidation[445-448], breakout@451, rejectionBlock entry",
+          "exitBarIndex": 453,
+          "exitPrice": 29645,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 482,
+          "direction": "short",
+          "entry": 29627.25,
+          "stop": 29637,
+          "target": 29588.25,
+          "reason": "STDV high pivot @462 + SMT, consolidation[476-479], breakout@481, rejectionBlock entry",
+          "exitBarIndex": 504,
+          "exitPrice": 29637,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 528,
+          "direction": "long",
+          "entry": 29619.75,
+          "stop": 29607,
+          "target": 29670.75,
+          "reason": "STDV low pivot @513 + SMT, consolidation[519-522], breakout@523, rejectionBlock entry",
+          "exitBarIndex": 529,
+          "exitPrice": 29607,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 542,
+          "direction": "short",
+          "entry": 29599,
+          "stop": 29609,
+          "target": 29559,
+          "reason": "STDV high pivot @524 + SMT, consolidation[525-528], breakout@541, rejectionBlock entry",
+          "exitBarIndex": 543,
+          "exitPrice": 29609,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 553,
+          "direction": "long",
+          "entry": 29627.25,
+          "stop": 29603.75,
+          "target": 29721.25,
+          "reason": "STDV low pivot @533 + SMT, consolidation[534-537], breakout@552, rejectionBlock entry",
+          "exitBarIndex": 554,
+          "exitPrice": 29603.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 567,
+          "direction": "long",
+          "entry": 29630.25,
+          "stop": 29614.75,
+          "target": 29692.25,
+          "reason": "STDV low pivot @542 + SMT, consolidation[560-563], breakout@566, rejectionBlock entry",
+          "exitBarIndex": 583,
+          "exitPrice": 29614.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 674,
+          "direction": "short",
+          "entry": 29457.25,
+          "stop": 29472.75,
+          "target": 29395.25,
+          "reason": "STDV high pivot @659 + SMT, consolidation[660-663], breakout@673, rejectionBlock entry",
+          "exitBarIndex": 676,
+          "exitPrice": 29472.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 689,
+          "direction": "short",
+          "entry": 29380.25,
+          "stop": 29405.25,
+          "target": 29280.25,
+          "reason": "STDV high pivot @673 + SMT, consolidation[683-686], breakout@687, rejectionBlock entry",
+          "exitBarIndex": 697,
+          "exitPrice": 29280.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 753,
+          "direction": "long",
+          "entry": 29383,
+          "stop": 29369.75,
+          "target": 29436,
+          "reason": "STDV low pivot @729 + SMT, consolidation[733-736], breakout@752, rejectionBlock entry",
+          "exitBarIndex": 754,
+          "exitPrice": 29369.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 795,
+          "direction": "short",
+          "entry": 29505,
+          "stop": 29530,
+          "target": 29405,
+          "reason": "STDV high pivot @778 + SMT, consolidation[779-782], breakout@793, rejectionBlock entry",
+          "exitBarIndex": 842,
+          "exitPrice": 29405,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 869,
+          "direction": "short",
+          "entry": 29366.5,
+          "stop": 29391.5,
+          "target": 29266.5,
+          "reason": "STDV high pivot @845 + SMT, consolidation[849-852], breakout@866, rejectionBlock entry",
+          "exitBarIndex": 872,
+          "exitPrice": 29391.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 892,
+          "direction": "short",
+          "entry": 29399,
+          "stop": 29410.75,
+          "target": 29352,
+          "reason": "STDV high pivot @882 + SMT, consolidation[883-886], breakout@889, rejectionBlock entry",
+          "exitBarIndex": 894,
+          "exitPrice": 29410.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 907,
+          "direction": "short",
+          "entry": 29388.25,
+          "stop": 29405,
+          "target": 29321.25,
+          "reason": "STDV high pivot @900 + SMT, consolidation[901-904], breakout@906, rejectionBlock entry",
+          "exitBarIndex": 908,
+          "exitPrice": 29405,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 935,
+          "direction": "long",
+          "entry": 29524.5,
+          "stop": 29499.5,
+          "target": 29624.5,
+          "reason": "STDV low pivot @908 + SMT, consolidation[914-917], breakout@933, rejectionBlock entry",
+          "exitBarIndex": 936,
+          "exitPrice": 29499.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 974,
+          "direction": "long",
+          "entry": 29517.75,
+          "stop": 29497.75,
+          "target": 29597.75,
+          "reason": "STDV low pivot @952 + SMT, consolidation[953-956], breakout@969, rejectionBlock entry",
+          "exitBarIndex": 975,
+          "exitPrice": 29497.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1117,
+          "direction": "long",
+          "entry": 29174.25,
+          "stop": 29157.5,
+          "target": 29241.25,
+          "reason": "STDV low pivot @1106 + SMT, consolidation[1107-1110], breakout@1112, rejectionBlock entry",
+          "exitBarIndex": 1118,
+          "exitPrice": 29157.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1189,
+          "direction": "short",
+          "entry": 29124.75,
+          "stop": 29149.75,
+          "target": 29024.75,
+          "reason": "STDV high pivot @1162 + SMT, consolidation[1172-1175], breakout@1186, rejectionBlock entry",
+          "exitBarIndex": 1197,
+          "exitPrice": 29024.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1226,
+          "direction": "short",
+          "entry": 29113.25,
+          "stop": 29121.5,
+          "target": 29080.25,
+          "reason": "STDV high pivot @1217 + SMT, consolidation[1218-1221], breakout@1225, rejectionBlock entry",
+          "exitBarIndex": 1230,
+          "exitPrice": 29121.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1237,
+          "direction": "long",
+          "entry": 29130.5,
+          "stop": 29128.5,
+          "target": 29138.5,
+          "reason": "STDV low pivot @1229 + SMT, consolidation[1230-1233], breakout@1234, rejectionBlock entry",
+          "exitBarIndex": 1239,
+          "exitPrice": 29128.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1254,
+          "direction": "short",
+          "entry": 29126,
+          "stop": 29149,
+          "target": 29034,
+          "reason": "STDV high pivot @1235 + SMT, consolidation[1236-1239], breakout@1250, rejectionBlock entry",
+          "exitBarIndex": 1324,
+          "exitPrice": 29034,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1374,
+          "direction": "long",
+          "entry": 28985.75,
+          "stop": 28976.25,
+          "target": 29023.75,
+          "reason": "STDV low pivot @1364 + SMT, consolidation[1365-1368], breakout@1371, rejectionBlock entry",
+          "exitBarIndex": 1375,
+          "exitPrice": 28976.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1482,
+          "direction": "long",
+          "entry": 29167.25,
+          "stop": 29150,
+          "target": 29236.25,
+          "reason": "STDV low pivot @1474 + SMT, consolidation[1475-1478], breakout@1480, rejectionBlock entry",
+          "exitBarIndex": 1492,
+          "exitPrice": 29150,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1501,
+          "direction": "short",
+          "entry": 29162.75,
+          "stop": 29183.75,
+          "target": 29078.75,
+          "reason": "STDV high pivot @1490 + SMT, consolidation[1493-1496], breakout@1500, rejectionBlock entry",
+          "exitBarIndex": 1503,
+          "exitPrice": 29183.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1553,
+          "direction": "short",
+          "entry": 29180.75,
+          "stop": 29193.75,
+          "target": 29128.75,
+          "reason": "STDV high pivot @1522 + SMT, consolidation[1531-1534], breakout@1548, rejectionBlock entry",
+          "exitBarIndex": 1555,
+          "exitPrice": 29193.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1564,
+          "direction": "long",
+          "entry": 29228.5,
+          "stop": 29203.5,
+          "target": 29328.5,
+          "reason": "STDV low pivot @1549 + SMT, consolidation[1552-1555], breakout@1563, rejectionBlock entry",
+          "exitBarIndex": 1585,
+          "exitPrice": 29203.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1616,
+          "direction": "long",
+          "entry": 29227,
+          "stop": 29202,
+          "target": 29327,
+          "reason": "STDV low pivot @1608 + SMT, consolidation[1611-1614], breakout@1615, rejectionBlock entry",
+          "exitBarIndex": 1618,
+          "exitPrice": 29202,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1637,
+          "direction": "short",
+          "entry": 29197.25,
+          "stop": 29215.5,
+          "target": 29124.25,
+          "reason": "STDV high pivot @1617 + SMT, consolidation[1629-1632], breakout@1636, rejectionBlock entry",
+          "exitBarIndex": 1647,
+          "exitPrice": 29124.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1788,
+          "direction": "long",
+          "entry": 29508.75,
+          "stop": 29499,
+          "target": 29547.75,
+          "reason": "STDV low pivot @1779 + SMT, consolidation[1780-1783], breakout@1787, rejectionBlock entry",
+          "exitBarIndex": 1792,
+          "exitPrice": 29499,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1852,
+          "direction": "short",
+          "entry": 29568.25,
+          "stop": 29576.5,
+          "target": 29535.25,
+          "reason": "STDV high pivot @1844 + SMT, consolidation[1845-1848], breakout@1849, rejectionBlock entry",
+          "exitBarIndex": 1853,
+          "exitPrice": 29576.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1911,
+          "direction": "short",
+          "entry": 29628.5,
+          "stop": 29644,
+          "target": 29566.5,
+          "reason": "STDV high pivot @1898 + SMT, consolidation[1904-1907], breakout@1910, rejectionBlock entry",
+          "exitBarIndex": 1917,
+          "exitPrice": 29644,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1923,
+          "direction": "long",
+          "entry": 29661.5,
+          "stop": 29654.75,
+          "target": 29688.5,
+          "reason": "STDV low pivot @1913 + SMT, consolidation[1917-1920], breakout@1921, rejectionBlock entry",
+          "exitBarIndex": 1930,
+          "exitPrice": 29688.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1936,
+          "direction": "short",
+          "entry": 29657.75,
+          "stop": 29666,
+          "target": 29624.75,
+          "reason": "STDV high pivot @1921 + SMT, consolidation[1922-1925], breakout@1934, rejectionBlock entry",
+          "exitBarIndex": 1937,
+          "exitPrice": 29666,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1951,
+          "direction": "short",
+          "entry": 29552.5,
+          "stop": 29577.5,
+          "target": 29452.5,
+          "reason": "STDV high pivot @1930 + SMT, consolidation[1934-1937], breakout@1947, rejectionBlock entry",
+          "exitBarIndex": 1953,
+          "exitPrice": 29577.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2021,
+          "direction": "long",
+          "entry": 29506.5,
+          "stop": 29500.75,
+          "target": 29529.5,
+          "reason": "STDV low pivot @2014 + SMT, consolidation[2015-2018], breakout@2020, rejectionBlock entry",
+          "exitBarIndex": 2027,
+          "exitPrice": 29529.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2050,
+          "direction": "short",
+          "entry": 29526,
+          "stop": 29532.5,
+          "target": 29500,
+          "reason": "STDV high pivot @2040 + SMT, consolidation[2042-2045], breakout@2047, rejectionBlock entry",
+          "exitBarIndex": 2053,
+          "exitPrice": 29532.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2068,
+          "direction": "long",
+          "entry": 29572.25,
+          "stop": 29561,
+          "target": 29617.25,
+          "reason": "STDV low pivot @2047 + SMT, consolidation[2048-2051], breakout@2053, rejectionBlock entry",
+          "exitBarIndex": 2069,
+          "exitPrice": 29561,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2108,
+          "direction": "long",
+          "entry": 29613.25,
+          "stop": 29604.5,
+          "target": 29648.25,
+          "reason": "STDV low pivot @2089 + SMT, consolidation[2095-2098], breakout@2107, rejectionBlock entry",
+          "exitBarIndex": 2110,
+          "exitPrice": 29604.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2189,
+          "direction": "short",
+          "entry": 29616.5,
+          "stop": 29626.75,
+          "target": 29575.5,
+          "reason": "STDV high pivot @2162 + SMT, consolidation[2175-2178], breakout@2188, rejectionBlock entry",
+          "exitBarIndex": 2208,
+          "exitPrice": 29575.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2271,
+          "direction": "long",
+          "entry": 29605,
+          "stop": 29593,
+          "target": 29653,
+          "reason": "STDV low pivot @2262 + SMT, consolidation[2263-2266], breakout@2269, rejectionBlock entry",
+          "exitBarIndex": 2274,
+          "exitPrice": 29593,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2282,
+          "direction": "short",
+          "entry": 29589.5,
+          "stop": 29596,
+          "target": 29563.5,
+          "reason": "STDV high pivot @2276 + SMT, consolidation[2277-2280], breakout@2281, rejectionBlock entry",
+          "exitBarIndex": 2286,
+          "exitPrice": 29563.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2560,
+          "direction": "long",
+          "entry": 29523.75,
+          "stop": 29518.25,
+          "target": 29545.75,
+          "reason": "STDV low pivot @2543 + SMT, consolidation[2546-2549], breakout@2557, rejectionBlock entry",
+          "exitBarIndex": 2561,
+          "exitPrice": 29518.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2573,
+          "direction": "long",
+          "entry": 29526.25,
+          "stop": 29519.5,
+          "target": 29553.25,
+          "reason": "STDV low pivot @2557 + SMT, consolidation[2558-2561], breakout@2568, rejectionBlock entry",
+          "exitBarIndex": 2574,
+          "exitPrice": 29519.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2627,
+          "direction": "short",
+          "entry": 29565.5,
+          "stop": 29581.5,
+          "target": 29501.5,
+          "reason": "STDV high pivot @2605 + SMT, consolidation[2608-2611], breakout@2626, rejectionBlock entry",
+          "exitBarIndex": 2629,
+          "exitPrice": 29581.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2642,
+          "direction": "long",
+          "entry": 29605.5,
+          "stop": 29597,
+          "target": 29639.5,
+          "reason": "STDV low pivot @2627 + SMT, consolidation[2636-2639], breakout@2640, rejectionBlock entry",
+          "exitBarIndex": 2644,
+          "exitPrice": 29597,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2678,
+          "direction": "short",
+          "entry": 29591.75,
+          "stop": 29609,
+          "target": 29522.75,
+          "reason": "STDV high pivot @2656 + SMT, consolidation[2670-2673], breakout@2674, rejectionBlock entry",
+          "exitBarIndex": 2693,
+          "exitPrice": 29522.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2732,
+          "direction": "long",
+          "entry": 29380.25,
+          "stop": 29370.5,
+          "target": 29419.25,
+          "reason": "STDV low pivot @2721 + SMT, consolidation[2727-2730], breakout@2731, rejectionBlock entry",
+          "exitBarIndex": 2741,
+          "exitPrice": 29419.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2762,
+          "direction": "short",
+          "entry": 29441.75,
+          "stop": 29466.75,
+          "target": 29341.75,
+          "reason": "STDV high pivot @2750 + SMT, consolidation[2757-2760], breakout@2761, rejectionBlock entry",
+          "exitBarIndex": 2768,
+          "exitPrice": 29466.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2857,
+          "direction": "long",
+          "entry": 29471.75,
+          "stop": 29453.25,
+          "target": 29545.75,
+          "reason": "STDV low pivot @2836 + SMT, consolidation[2837-2840], breakout@2855, rejectionBlock entry",
+          "exitBarIndex": 2859,
+          "exitPrice": 29453.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2935,
+          "direction": "short",
+          "entry": 29470.75,
+          "stop": 29484.25,
+          "target": 29416.75,
+          "reason": "STDV high pivot @2917 + SMT, consolidation[2918-2921], breakout@2932, rejectionBlock entry",
+          "exitBarIndex": 2936,
+          "exitPrice": 29484.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2996,
+          "direction": "long",
+          "entry": 29358.25,
+          "stop": 29351.25,
+          "target": 29386.25,
+          "reason": "STDV low pivot @2983 + SMT, consolidation[2991-2994], breakout@2995, rejectionBlock entry",
+          "exitBarIndex": 2997,
+          "exitPrice": 29351.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2999,
+          "direction": "short",
+          "entry": 29300,
+          "stop": 29318.25,
+          "target": 29227,
+          "reason": "STDV high pivot @2988 + SMT, consolidation[2990-2993], breakout@2998, rejectionBlock entry",
+          "exitBarIndex": 3005,
+          "exitPrice": 29227,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3100,
+          "direction": "short",
+          "entry": 29150.5,
+          "stop": 29156,
+          "target": 29128.5,
+          "reason": "STDV high pivot @3083 + SMT, consolidation[3088-3091], breakout@3097, rejectionBlock entry",
+          "exitBarIndex": 3108,
+          "exitPrice": 29128.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3138,
+          "direction": "long",
+          "entry": 29138.5,
+          "stop": 29115.25,
+          "target": 29231.5,
+          "reason": "STDV low pivot @3118 + SMT, consolidation[3119-3122], breakout@3137, rejectionBlock entry",
+          "exitBarIndex": 3153,
+          "exitPrice": 29115.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3199,
+          "direction": "long",
+          "entry": 29156,
+          "stop": 29133.75,
+          "target": 29245,
+          "reason": "STDV low pivot @3181 + SMT, consolidation[3187-3190], breakout@3195, rejectionBlock entry",
+          "exitBarIndex": 3206,
+          "exitPrice": 29245,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3213,
+          "direction": "short",
+          "entry": 29228.5,
+          "stop": 29234.5,
+          "target": 29204.5,
+          "reason": "STDV high pivot @3196 + SMT, consolidation[3207-3210], breakout@3211, rejectionBlock entry",
+          "exitBarIndex": 3214,
+          "exitPrice": 29234.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3267,
+          "direction": "short",
+          "entry": 29293.5,
+          "stop": 29300.75,
+          "target": 29264.5,
+          "reason": "STDV high pivot @3229 + SMT, consolidation[3245-3248], breakout@3266, rejectionBlock entry",
+          "exitBarIndex": 3268,
+          "exitPrice": 29300.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3278,
+          "direction": "long",
+          "entry": 29315.25,
+          "stop": 29304,
+          "target": 29360.25,
+          "reason": "STDV low pivot @3253 + SMT, consolidation[3254-3257], breakout@3274, rejectionBlock entry",
+          "exitBarIndex": 3282,
+          "exitPrice": 29360.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3329,
+          "direction": "short",
+          "entry": 29426,
+          "stop": 29442.75,
+          "target": 29359,
+          "reason": "STDV high pivot @3319 + SMT, consolidation[3320-3323], breakout@3328, rejectionBlock entry",
+          "exitBarIndex": 3337,
+          "exitPrice": 29442.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3383,
+          "direction": "long",
+          "entry": 29393.75,
+          "stop": 29387,
+          "target": 29420.75,
+          "reason": "STDV low pivot @3375 + SMT, consolidation[3376-3379], breakout@3380, rejectionBlock entry",
+          "exitBarIndex": 3385,
+          "exitPrice": 29387,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3421,
+          "direction": "long",
+          "entry": 29019.5,
+          "stop": 29000.25,
+          "target": 29096.5,
+          "reason": "STDV low pivot @3407 + SMT, consolidation[3414-3417], breakout@3419, rejectionBlock entry",
+          "exitBarIndex": 3425,
+          "exitPrice": 29000.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3430,
+          "direction": "long",
+          "entry": 29041,
+          "stop": 29027,
+          "target": 29097,
+          "reason": "STDV low pivot @3414 + SMT, consolidation[3424-3427], breakout@3428, rejectionBlock entry",
+          "exitBarIndex": 3448,
+          "exitPrice": 29027,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3483,
+          "direction": "long",
+          "entry": 29028.75,
+          "stop": 29022.5,
+          "target": 29053.75,
+          "reason": "STDV low pivot @3463 + SMT, consolidation[3468-3471], breakout@3481, rejectionBlock entry",
+          "exitBarIndex": 3484,
+          "exitPrice": 29022.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3533,
+          "direction": "long",
+          "entry": 28891.5,
+          "stop": 28867.75,
+          "target": 28986.5,
+          "reason": "STDV low pivot @3503 + SMT, consolidation[3523-3526], breakout@3531, rejectionBlock entry",
+          "exitBarIndex": 3560,
+          "exitPrice": 28867.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3633,
+          "direction": "short",
+          "entry": 29270.25,
+          "stop": 29281.75,
+          "target": 29224.25,
+          "reason": "STDV high pivot @3624 + SMT, consolidation[3625-3628], breakout@3629, rejectionBlock entry",
+          "exitBarIndex": 3640,
+          "exitPrice": 29224.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3724,
+          "direction": "short",
+          "entry": 29446.5,
+          "stop": 29454.75,
+          "target": 29413.5,
+          "reason": "STDV high pivot @3693 + SMT, consolidation[3708-3711], breakout@3722, rejectionBlock entry",
+          "exitBarIndex": 3730,
+          "exitPrice": 29454.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3764,
+          "direction": "short",
+          "entry": 29357,
+          "stop": 29371.25,
+          "target": 29300,
+          "reason": "STDV high pivot @3755 + SMT, consolidation[3757-3760], breakout@3763, rejectionBlock entry",
+          "exitBarIndex": 3769,
+          "exitPrice": 29371.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3794,
+          "direction": "short",
+          "entry": 29263,
+          "stop": 29285,
+          "target": 29175,
+          "reason": "STDV high pivot @3774 + SMT, consolidation[3786-3789], breakout@3793, rejectionBlock entry",
+          "exitBarIndex": 3800,
+          "exitPrice": 29285,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3913,
+          "direction": "short",
+          "entry": 29251,
+          "stop": 29258.75,
+          "target": 29220,
+          "reason": "STDV high pivot @3888 + SMT, consolidation[3890-3893], breakout@3910, rejectionBlock entry",
+          "exitBarIndex": 3920,
+          "exitPrice": 29220,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3931,
+          "direction": "long",
+          "entry": 29271.75,
+          "stop": 29267.25,
+          "target": 29289.75,
+          "reason": "STDV low pivot @3910 + SMT, consolidation[3912-3915], breakout@3925, rejectionBlock entry",
+          "exitBarIndex": 3937,
+          "exitPrice": 29267.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3944,
+          "direction": "long",
+          "entry": 29286.25,
+          "stop": 29277.5,
+          "target": 29321.25,
+          "reason": "STDV low pivot @3937 + SMT, consolidation[3938-3941], breakout@3943, rejectionBlock entry",
+          "exitBarIndex": 3951,
+          "exitPrice": 29277.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3953,
+          "direction": "short",
+          "entry": 29275,
+          "stop": 29277,
+          "target": 29267,
+          "reason": "STDV high pivot @3947 + SMT, consolidation[3948-3951], breakout@3952, rejectionBlock entry",
+          "exitBarIndex": 3954,
+          "exitPrice": 29267,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4026,
+          "direction": "long",
+          "entry": 29322.5,
+          "stop": 29309.25,
+          "target": 29375.5,
+          "reason": "STDV low pivot @4016 + SMT, consolidation[4017-4020], breakout@4024, rejectionBlock entry",
+          "exitBarIndex": 4045,
+          "exitPrice": 29375.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4057,
+          "direction": "short",
+          "entry": 29346.5,
+          "stop": 29371.5,
+          "target": 29246.5,
+          "reason": "STDV high pivot @4046 + SMT, consolidation[4047-4050], breakout@4055, rejectionBlock entry",
+          "exitBarIndex": 4060,
+          "exitPrice": 29371.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4079,
+          "direction": "long",
+          "entry": 29386.25,
+          "stop": 29374.75,
+          "target": 29432.25,
+          "reason": "STDV low pivot @4065 + SMT, consolidation[4068-4071], breakout@4077, rejectionBlock entry",
+          "exitBarIndex": 4081,
+          "exitPrice": 29374.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4127,
+          "direction": "long",
+          "entry": 29463,
+          "stop": 29453.5,
+          "target": 29501,
+          "reason": "STDV low pivot @4096 + SMT, consolidation[4106-4109], breakout@4126, rejectionBlock entry",
+          "exitBarIndex": 4129,
+          "exitPrice": 29453.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4281,
+          "direction": "long",
+          "entry": 29461,
+          "stop": 29450.5,
+          "target": 29503,
+          "reason": "STDV low pivot @4272 + SMT, consolidation[4274-4277], breakout@4280, rejectionBlock entry",
+          "exitBarIndex": 4282,
+          "exitPrice": 29450.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4300,
+          "direction": "short",
+          "entry": 29429.25,
+          "stop": 29435,
+          "target": 29406.25,
+          "reason": "STDV high pivot @4285 + SMT, consolidation[4295-4298], breakout@4299, rejectionBlock entry",
+          "exitBarIndex": 4302,
+          "exitPrice": 29435,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4356,
+          "direction": "short",
+          "entry": 29558.5,
+          "stop": 29580,
+          "target": 29472.5,
+          "reason": "STDV high pivot @4347 + SMT, consolidation[4348-4351], breakout@4354, rejectionBlock entry",
+          "exitBarIndex": 4359,
+          "exitPrice": 29580,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4381,
+          "direction": "short",
+          "entry": 29619.25,
+          "stop": 29627,
+          "target": 29588.25,
+          "reason": "STDV high pivot @4363 + SMT, consolidation[4364-4367], breakout@4377, rejectionBlock entry",
+          "exitBarIndex": 4382,
+          "exitPrice": 29627,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4460,
+          "direction": "short",
+          "entry": 29709.75,
+          "stop": 29723,
+          "target": 29656.75,
+          "reason": "STDV high pivot @4433 + SMT, consolidation[4436-4439], breakout@4459, rejectionBlock entry",
+          "exitBarIndex": 4462,
+          "exitPrice": 29723,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4463,
+          "direction": "short",
+          "entry": 29720.5,
+          "stop": 29726,
+          "target": 29698.5,
+          "reason": "STDV high pivot @4442 + SMT, consolidation[4444-4447], breakout@4460, rejectionBlock entry",
+          "exitBarIndex": 4465,
+          "exitPrice": 29726,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4480,
+          "direction": "short",
+          "entry": 29716.75,
+          "stop": 29728.25,
+          "target": 29670.75,
+          "reason": "STDV high pivot @4466 + SMT, consolidation[4467-4470], breakout@4479, rejectionBlock entry",
+          "exitBarIndex": 4489,
+          "exitPrice": 29728.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4490,
+          "direction": "short",
+          "entry": 29699.25,
+          "stop": 29711.5,
+          "target": 29650.25,
+          "reason": "STDV high pivot @4475 + SMT, consolidation[4480-4483], breakout@4489, rejectionBlock entry",
+          "exitBarIndex": 4503,
+          "exitPrice": 29711.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4539,
+          "direction": "long",
+          "entry": 29673.75,
+          "stop": 29663,
+          "target": 29716.75,
+          "reason": "STDV low pivot @4515 + SMT, consolidation[4528-4531], breakout@4534, rejectionBlock entry",
+          "exitBarIndex": 4550,
+          "exitPrice": 29716.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4676,
+          "direction": "long",
+          "entry": 29836.25,
+          "stop": 29811.25,
+          "target": 29936.25,
+          "reason": "STDV low pivot @4669 + SMT, consolidation[4670-4673], breakout@4674, rejectionBlock entry",
+          "exitBarIndex": 4677,
+          "exitPrice": 29811.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4801,
+          "direction": "long",
+          "entry": 30104.75,
+          "stop": 30088.5,
+          "target": 30169.75,
+          "reason": "STDV low pivot @4792 + SMT, consolidation[4796-4799], breakout@4800, rejectionBlock entry",
+          "exitBarIndex": 4810,
+          "exitPrice": 30088.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4812,
+          "direction": "short",
+          "entry": 30071,
+          "stop": 30094.25,
+          "target": 29978,
+          "reason": "STDV high pivot @4803 + SMT, consolidation[4804-4807], breakout@4810, rejectionBlock entry",
+          "exitBarIndex": 4822,
+          "exitPrice": 30094.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4837,
+          "direction": "short",
+          "entry": 30084.75,
+          "stop": 30095.75,
+          "target": 30040.75,
+          "reason": "STDV high pivot @4822 + SMT, consolidation[4826-4829], breakout@4836, rejectionBlock entry",
+          "exitBarIndex": 4840,
+          "exitPrice": 30095.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4854,
+          "direction": "short",
+          "entry": 30081.75,
+          "stop": 30088.25,
+          "target": 30055.75,
+          "reason": "STDV high pivot @4834 + SMT, consolidation[4842-4845], breakout@4852, rejectionBlock entry",
+          "exitBarIndex": 4855,
+          "exitPrice": 30088.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4862,
+          "direction": "long",
+          "entry": 30114,
+          "stop": 30103.75,
+          "target": 30155,
+          "reason": "STDV low pivot @4838 + SMT, consolidation[4840-4843], breakout@4861, rejectionBlock entry",
+          "exitBarIndex": 4866,
+          "exitPrice": 30103.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4911,
+          "direction": "short",
+          "entry": 30246.5,
+          "stop": 30246.75,
+          "target": 30245.5,
+          "reason": "STDV high pivot @4898 + SMT, consolidation[4902-4905], breakout@4908, rejectionBlock entry",
+          "exitBarIndex": 4912,
+          "exitPrice": 30246.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4925,
+          "direction": "short",
+          "entry": 30223.5,
+          "stop": 30238.75,
+          "target": 30162.5,
+          "reason": "STDV high pivot @4906 + SMT, consolidation[4908-4911], breakout@4922, rejectionBlock entry",
+          "exitBarIndex": 4927,
+          "exitPrice": 30238.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4952,
+          "direction": "long",
+          "entry": 30296.5,
+          "stop": 30271.5,
+          "target": 30396.5,
+          "reason": "STDV low pivot @4926 + SMT, consolidation[4944-4947], breakout@4951, rejectionBlock entry",
+          "exitBarIndex": 4955,
+          "exitPrice": 30396.5,
+          "outcome": "win",
+          "rMultiple": 4
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787762700,
+          "equity": 99
+        },
+        {
+          "t": 1787769000,
+          "equity": 102.96000000000001
+        },
+        {
+          "t": 1787806800,
+          "equity": 107.07840000000002
+        },
+        {
+          "t": 1787827200,
+          "equity": 106.00761600000001
+        },
+        {
+          "t": 1787845800,
+          "equity": 104.94753984000002
+        },
+        {
+          "t": 1787851800,
+          "equity": 103.89806444160001
+        },
+        {
+          "t": 1787864100,
+          "equity": 102.85908379718401
+        },
+        {
+          "t": 1787881800,
+          "equity": 101.83049295921217
+        },
+        {
+          "t": 1787884800,
+          "equity": 105.90371267758066
+        },
+        {
+          "t": 1787900100,
+          "equity": 104.84467555080485
+        },
+        {
+          "t": 1787907600,
+          "equity": 103.7962287952968
+        },
+        {
+          "t": 1787911800,
+          "equity": 102.75826650734383
+        },
+        {
+          "t": 1787915100,
+          "equity": 101.7306838422704
+        },
+        {
+          "t": 1787923800,
+          "equity": 100.7133770038477
+        },
+        {
+          "t": 1788128100,
+          "equity": 99.70624323380922
+        },
+        {
+          "t": 1788134400,
+          "equity": 103.6944929631616
+        },
+        {
+          "t": 1788151500,
+          "equity": 102.65754803352998
+        },
+        {
+          "t": 1788177900,
+          "equity": 106.76384995487118
+        },
+        {
+          "t": 1788186900,
+          "equity": 105.69621145532247
+        },
+        {
+          "t": 1788193500,
+          "equity": 104.63924934076924
+        },
+        {
+          "t": 1788197700,
+          "equity": 103.59285684736155
+        },
+        {
+          "t": 1788206100,
+          "equity": 102.55692827888792
+        },
+        {
+          "t": 1788221400,
+          "equity": 101.53135899609904
+        },
+        {
+          "t": 1788264300,
+          "equity": 100.51604540613805
+        },
+        {
+          "t": 1788288000,
+          "equity": 104.53668722238358
+        },
+        {
+          "t": 1788301500,
+          "equity": 103.49132035015974
+        },
+        {
+          "t": 1788304200,
+          "equity": 102.45640714665814
+        },
+        {
+          "t": 1788329700,
+          "equity": 106.55466343252446
+        },
+        {
+          "t": 1788345000,
+          "equity": 105.48911679819922
+        },
+        {
+          "t": 1788380100,
+          "equity": 104.43422563021723
+        },
+        {
+          "t": 1788387000,
+          "equity": 103.38988337391505
+        },
+        {
+          "t": 1788402600,
+          "equity": 102.3559845401759
+        },
+        {
+          "t": 1788411600,
+          "equity": 101.33242469477413
+        },
+        {
+          "t": 1788421500,
+          "equity": 100.31910044782639
+        },
+        {
+          "t": 1788430200,
+          "equity": 104.33186446573944
+        },
+        {
+          "t": 1788477300,
+          "equity": 103.28854582108205
+        },
+        {
+          "t": 1788495600,
+          "equity": 102.25566036287123
+        },
+        {
+          "t": 1788514800,
+          "equity": 101.23310375924251
+        },
+        {
+          "t": 1788518700,
+          "equity": 105.28242790961221
+        },
+        {
+          "t": 1788520800,
+          "equity": 104.22960363051608
+        },
+        {
+          "t": 1788525600,
+          "equity": 103.18730759421092
+        },
+        {
+          "t": 1788547800,
+          "equity": 107.31479989797936
+        },
+        {
+          "t": 1788732000,
+          "equity": 106.24165189899956
+        },
+        {
+          "t": 1788736800,
+          "equity": 105.17923538000957
+        },
+        {
+          "t": 1788749100,
+          "equity": 104.12744302620948
+        },
+        {
+          "t": 1788778500,
+          "equity": 108.29254074725786
+        },
+        {
+          "t": 1788798300,
+          "equity": 107.20961533978529
+        },
+        {
+          "t": 1788819900,
+          "equity": 111.4979999533767
+        },
+        {
+          "t": 1788906000,
+          "equity": 110.38301995384293
+        },
+        {
+          "t": 1788909900,
+          "equity": 109.2791897543045
+        },
+        {
+          "t": 1788926400,
+          "equity": 108.18639785676145
+        },
+        {
+          "t": 1788930900,
+          "equity": 107.10453387819383
+        },
+        {
+          "t": 1788945600,
+          "equity": 111.38871523332159
+        },
+        {
+          "t": 1788960000,
+          "equity": 115.84426384265446
+        },
+        {
+          "t": 1788968100,
+          "equity": 114.6858212042279
+        },
+        {
+          "t": 1788999000,
+          "equity": 113.53896299218563
+        },
+        {
+          "t": 1789022100,
+          "equity": 112.40357336226377
+        },
+        {
+          "t": 1789040400,
+          "equity": 111.27953762864114
+        },
+        {
+          "t": 1789042800,
+          "equity": 115.73071913378679
+        },
+        {
+          "t": 1789073700,
+          "equity": 120.35994789913826
+        },
+        {
+          "t": 1789090800,
+          "equity": 119.15634842014688
+        },
+        {
+          "t": 1789106700,
+          "equity": 123.92260235695277
+        },
+        {
+          "t": 1789109100,
+          "equity": 122.68337633338324
+        },
+        {
+          "t": 1789125300,
+          "equity": 121.45654257004941
+        },
+        {
+          "t": 1789129500,
+          "equity": 126.31480427285139
+        },
+        {
+          "t": 1789146000,
+          "equity": 125.05165623012287
+        },
+        {
+          "t": 1789336800,
+          "equity": 123.80113966782164
+        },
+        {
+          "t": 1789348800,
+          "equity": 122.56312827114343
+        },
+        {
+          "t": 1789355700,
+          "equity": 121.337496988432
+        },
+        {
+          "t": 1789366500,
+          "equity": 120.12412201854767
+        },
+        {
+          "t": 1789389300,
+          "equity": 118.92288079836219
+        },
+        {
+          "t": 1789413300,
+          "equity": 123.67979603029667
+        },
+        {
+          "t": 1789443900,
+          "equity": 122.4429980699937
+        },
+        {
+          "t": 1789455600,
+          "equity": 121.21856808929377
+        },
+        {
+          "t": 1789464900,
+          "equity": 120.00638240840082
+        },
+        {
+          "t": 1789500900,
+          "equity": 124.80663770473686
+        },
+        {
+          "t": 1789509600,
+          "equity": 123.55857132768949
+        },
+        {
+          "t": 1789513800,
+          "equity": 122.3229856144126
+        },
+        {
+          "t": 1789514700,
+          "equity": 127.2159050389891
+        },
+        {
+          "t": 1789542000,
+          "equity": 132.30454124054867
+        },
+        {
+          "t": 1789546500,
+          "equity": 130.98149582814318
+        },
+        {
+          "t": 1789552800,
+          "equity": 129.67168086986175
+        },
+        {
+          "t": 1789567200,
+          "equity": 128.37496406116313
+        },
+        {
+          "t": 1789616700,
+          "equity": 127.0912144205515
+        },
+        {
+          "t": 1789622700,
+          "equity": 125.82030227634598
+        },
+        {
+          "t": 1789639800,
+          "equity": 124.56209925358252
+        },
+        {
+          "t": 1789646700,
+          "equity": 123.3164782610467
+        },
+        {
+          "t": 1789670700,
+          "equity": 122.08331347843622
+        },
+        {
+          "t": 1789671600,
+          "equity": 120.86248034365187
+        },
+        {
+          "t": 1789682400,
+          "equity": 119.65385554021535
+        },
+        {
+          "t": 1789686600,
+          "equity": 118.45731698481319
+        },
+        {
+          "t": 1789700700,
+          "equity": 123.19560966420572
+        },
+        {
+          "t": 1789738800,
+          "equity": 121.96365356756365
+        },
+        {
+          "t": 1789955100,
+          "equity": 120.74401703188802
+        },
+        {
+          "t": 1789958700,
+          "equity": 119.53657686156915
+        },
+        {
+          "t": 1789964100,
+          "equity": 118.34121109295346
+        },
+        {
+          "t": 1789968600,
+          "equity": 117.15779898202392
+        },
+        {
+          "t": 1789971900,
+          "equity": 115.98622099220368
+        },
+        {
+          "t": 1789985700,
+          "equity": 114.82635878228164
+        },
+        {
+          "t": 1789990200,
+          "equity": 113.67809519445883
+        },
+        {
+          "t": 1789998600,
+          "equity": 118.2252190022372
+        }
+      ],
+      "stats": {
+        "totalTrades": 101,
+        "wins": 24,
+        "losses": 77,
+        "winRate": 0.2376237623762376,
+        "avgR": 0.18811881188118812,
+        "totalR": 19,
+        "maxDrawdownPct": 14.078463121098983,
+        "finalEquity": 118.2252190022372
+      }
+    },
+    {
+      "strategyName": "1h, raw 50% retrace entry, no stop cap",
+      "trades": [
+        {
+          "barIndex": 327,
+          "direction": "long",
+          "entry": 25704.875,
+          "stop": 25611.5,
+          "target": 26078.375,
+          "reason": "STDV low pivot @308 + SMT, consolidation[309-312], breakout@326, raw50 entry",
+          "exitBarIndex": 336,
+          "exitPrice": 25611.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 375,
+          "direction": "short",
+          "entry": 25661,
+          "stop": 25729.5,
+          "target": 25387,
+          "reason": "STDV high pivot @360 + SMT, consolidation[368-371], breakout@374, raw50 entry",
+          "exitBarIndex": 386,
+          "exitPrice": 25729.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 393,
+          "direction": "short",
+          "entry": 25654.375,
+          "stop": 25724.25,
+          "target": 25374.875,
+          "reason": "STDV high pivot @387 + SMT, consolidation[388-391], breakout@392, raw50 entry",
+          "exitBarIndex": 399,
+          "exitPrice": 25724.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 425,
+          "direction": "long",
+          "entry": 25583,
+          "stop": 25470.75,
+          "target": 26032,
+          "reason": "STDV low pivot @408 + SMT, consolidation[419-422], breakout@424, raw50 entry",
+          "exitBarIndex": 429,
+          "exitPrice": 25470.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 539,
+          "direction": "short",
+          "entry": 25076.125,
+          "stop": 25376,
+          "target": 23876.625,
+          "reason": "STDV high pivot @499 + SMT, consolidation[505-508], breakout@522, raw50 entry",
+          "exitBarIndex": 545,
+          "exitPrice": 25376,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 602,
+          "direction": "long",
+          "entry": 25730.5,
+          "stop": 25673,
+          "target": 25960.5,
+          "reason": "STDV low pivot @591 + SMT, consolidation[594-597], breakout@601, raw50 entry",
+          "exitBarIndex": 605,
+          "exitPrice": 25673,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 725,
+          "direction": "long",
+          "entry": 25676.25,
+          "stop": 25588,
+          "target": 26029.25,
+          "reason": "STDV low pivot @702 + SMT, consolidation[712-715], breakout@724, raw50 entry",
+          "exitBarIndex": 726,
+          "exitPrice": 25588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 860,
+          "direction": "long",
+          "entry": 25731.125,
+          "stop": 25627.5,
+          "target": 26145.625,
+          "reason": "STDV low pivot @841 + SMT, consolidation[849-852], breakout@858, raw50 entry",
+          "exitBarIndex": 864,
+          "exitPrice": 25627.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 895,
+          "direction": "long",
+          "entry": 25886.875,
+          "stop": 25676.25,
+          "target": 26729.375,
+          "reason": "STDV low pivot @864 + SMT, consolidation[875-878], breakout@886, raw50 entry",
+          "exitBarIndex": 932,
+          "exitPrice": 25676.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1084,
+          "direction": "short",
+          "entry": 25572,
+          "stop": 25723.5,
+          "target": 24966,
+          "reason": "STDV high pivot @1065 + SMT, consolidation[1068-1071], breakout@1083, raw50 entry",
+          "exitBarIndex": 1090,
+          "exitPrice": 25723.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1227,
+          "direction": "long",
+          "entry": 25645.375,
+          "stop": 25340.5,
+          "target": 26864.875,
+          "reason": "STDV low pivot @1208 + SMT, consolidation[1221-1224], breakout@1226, raw50 entry",
+          "exitBarIndex": 1254,
+          "exitPrice": 25340.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1378,
+          "direction": "long",
+          "entry": 25337.75,
+          "stop": 25252.75,
+          "target": 25677.75,
+          "reason": "STDV low pivot @1365 + SMT, consolidation[1373-1376], breakout@1377, raw50 entry",
+          "exitBarIndex": 1382,
+          "exitPrice": 25252.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1562,
+          "direction": "long",
+          "entry": 24908.625,
+          "stop": 24808,
+          "target": 25311.125,
+          "reason": "STDV low pivot @1545 + SMT, consolidation[1555-1558], breakout@1561, raw50 entry",
+          "exitBarIndex": 1569,
+          "exitPrice": 24808,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1771,
+          "direction": "short",
+          "entry": 24941.25,
+          "stop": 25098,
+          "target": 24314.25,
+          "reason": "STDV high pivot @1753 + SMT, consolidation[1759-1762], breakout@1770, raw50 entry",
+          "exitBarIndex": 1783,
+          "exitPrice": 24314.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1868,
+          "direction": "short",
+          "entry": 24634,
+          "stop": 24796,
+          "target": 23986,
+          "reason": "STDV high pivot @1845 + SMT, consolidation[1856-1859], breakout@1867, raw50 entry",
+          "exitBarIndex": 1890,
+          "exitPrice": 24796,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2087,
+          "direction": "short",
+          "entry": 24277.875,
+          "stop": 24453,
+          "target": 23577.375,
+          "reason": "STDV high pivot @2073 + SMT, consolidation[2079-2082], breakout@2086, raw50 entry",
+          "exitBarIndex": 2120,
+          "exitPrice": 23577.375,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2271,
+          "direction": "long",
+          "entry": 24403,
+          "stop": 24298.25,
+          "target": 24822,
+          "reason": "STDV low pivot @2255 + SMT, consolidation[2257-2260], breakout@2270, raw50 entry",
+          "exitBarIndex": 2272,
+          "exitPrice": 24298.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2339,
+          "direction": "short",
+          "entry": 25210.75,
+          "stop": 25293.25,
+          "target": 24880.75,
+          "reason": "STDV high pivot @2333 + SMT, consolidation[2334-2337], breakout@2338, raw50 entry",
+          "exitBarIndex": 2341,
+          "exitPrice": 25293.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2498,
+          "direction": "long",
+          "entry": 26847.875,
+          "stop": 26756.5,
+          "target": 27213.375,
+          "reason": "STDV low pivot @2483 + SMT, consolidation[2489-2492], breakout@2497, raw50 entry",
+          "exitBarIndex": 2504,
+          "exitPrice": 26756.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2506,
+          "direction": "short",
+          "entry": 26726.25,
+          "stop": 26837.25,
+          "target": 26282.25,
+          "reason": "STDV high pivot @2491 + SMT, consolidation[2492-2495], breakout@2505, raw50 entry",
+          "exitBarIndex": 2516,
+          "exitPrice": 26837.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2605,
+          "direction": "long",
+          "entry": 27479.625,
+          "stop": 27380.25,
+          "target": 27877.125,
+          "reason": "STDV low pivot @2596 + SMT, consolidation[2600-2603], breakout@2604, raw50 entry",
+          "exitBarIndex": 2611,
+          "exitPrice": 27380.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2650,
+          "direction": "short",
+          "entry": 27146,
+          "stop": 27288.5,
+          "target": 26576,
+          "reason": "STDV high pivot @2635 + SMT, consolidation[2636-2639], breakout@2649, raw50 entry",
+          "exitBarIndex": 2651,
+          "exitPrice": 27288.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2677,
+          "direction": "long",
+          "entry": 27652.375,
+          "stop": 27542,
+          "target": 28093.875,
+          "reason": "STDV low pivot @2666 + SMT, consolidation[2670-2673], breakout@2676, raw50 entry",
+          "exitBarIndex": 2685,
+          "exitPrice": 27542,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2709,
+          "direction": "short",
+          "entry": 27760.375,
+          "stop": 27953.25,
+          "target": 26988.875,
+          "reason": "STDV high pivot @2696 + SMT, consolidation[2699-2702], breakout@2708, raw50 entry",
+          "exitBarIndex": 2730,
+          "exitPrice": 27953.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3008,
+          "direction": "short",
+          "entry": 29245.125,
+          "stop": 29439.75,
+          "target": 28466.625,
+          "reason": "STDV high pivot @2994 + SMT, consolidation[2999-3002], breakout@3007, raw50 entry",
+          "exitBarIndex": 3014,
+          "exitPrice": 29439.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3031,
+          "direction": "short",
+          "entry": 29463.5,
+          "stop": 29598,
+          "target": 28925.5,
+          "reason": "STDV high pivot @3020 + SMT, consolidation[3021-3024], breakout@3030, raw50 entry",
+          "exitBarIndex": 3033,
+          "exitPrice": 29598,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3099,
+          "direction": "short",
+          "entry": 29974.25,
+          "stop": 30159.25,
+          "target": 29234.25,
+          "reason": "STDV high pivot @3076 + SMT, consolidation[3085-3088], breakout@3098, raw50 entry",
+          "exitBarIndex": 3122,
+          "exitPrice": 30159.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3233,
+          "direction": "short",
+          "entry": 30327.125,
+          "stop": 30544.5,
+          "target": 29457.625,
+          "reason": "STDV high pivot @3213 + SMT, consolidation[3227-3230], breakout@3231, raw50 entry",
+          "exitBarIndex": 3240,
+          "exitPrice": 30544.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3241,
+          "direction": "long",
+          "entry": 30566.75,
+          "stop": 30409.25,
+          "target": 31196.75,
+          "reason": "STDV low pivot @3225 + SMT, consolidation[3226-3229], breakout@3240, raw50 entry",
+          "exitBarIndex": 3243,
+          "exitPrice": 30409.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3542,
+          "direction": "long",
+          "entry": 29847.625,
+          "stop": 29585.5,
+          "target": 30896.125,
+          "reason": "STDV low pivot @3536 + SMT, consolidation[3537-3540], breakout@3541, raw50 entry",
+          "exitBarIndex": 3554,
+          "exitPrice": 29585.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3578,
+          "direction": "short",
+          "entry": 29610.125,
+          "stop": 30135.25,
+          "target": 27509.625,
+          "reason": "STDV high pivot @3562 + SMT, consolidation[3563-3566], breakout@3577, raw50 entry",
+          "exitBarIndex": 3637,
+          "exitPrice": 30135.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3704,
+          "direction": "long",
+          "entry": 29697.25,
+          "stop": 29514,
+          "target": 30430.25,
+          "reason": "STDV low pivot @3679 + SMT, consolidation[3699-3702], breakout@3703, raw50 entry",
+          "exitBarIndex": 3757,
+          "exitPrice": 29514,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3896,
+          "direction": "short",
+          "entry": 29704.375,
+          "stop": 29998.75,
+          "target": 28526.875,
+          "reason": "STDV high pivot @3889 + SMT, consolidation[3890-3893], breakout@3895, raw50 entry",
+          "exitBarIndex": 3941,
+          "exitPrice": 28526.875,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4000,
+          "direction": "short",
+          "entry": 29221.625,
+          "stop": 29361.75,
+          "target": 28661.125,
+          "reason": "STDV high pivot @3991 + SMT, consolidation[3992-3995], breakout@3999, raw50 entry",
+          "exitBarIndex": 4033,
+          "exitPrice": 28661.125,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4053,
+          "direction": "long",
+          "entry": 28684.625,
+          "stop": 28481,
+          "target": 29499.125,
+          "reason": "STDV low pivot @4047 + SMT, consolidation[4048-4051], breakout@4052, raw50 entry",
+          "exitBarIndex": 4056,
+          "exitPrice": 28481,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4072,
+          "direction": "long",
+          "entry": 28695.75,
+          "stop": 28525,
+          "target": 29378.75,
+          "reason": "STDV low pivot @4062 + SMT, consolidation[4067-4070], breakout@4071, raw50 entry",
+          "exitBarIndex": 4079,
+          "exitPrice": 28525,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4106,
+          "direction": "long",
+          "entry": 28066,
+          "stop": 27880,
+          "target": 28810,
+          "reason": "STDV low pivot @4095 + SMT, consolidation[4096-4099], breakout@4105, raw50 entry",
+          "exitBarIndex": 4110,
+          "exitPrice": 27880,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4112,
+          "direction": "long",
+          "entry": 28129.125,
+          "stop": 27911,
+          "target": 29001.625,
+          "reason": "STDV low pivot @4103 + SMT, consolidation[4105-4108], breakout@4111, raw50 entry",
+          "exitBarIndex": 4113,
+          "exitPrice": 27911,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4142,
+          "direction": "short",
+          "entry": 27398.75,
+          "stop": 27696.75,
+          "target": 26206.75,
+          "reason": "STDV high pivot @4131 + SMT, consolidation[4134-4137], breakout@4141, raw50 entry",
+          "exitBarIndex": 4146,
+          "exitPrice": 27696.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4193,
+          "direction": "short",
+          "entry": 28460.5,
+          "stop": 28650,
+          "target": 27702.5,
+          "reason": "STDV high pivot @4171 + SMT, consolidation[4179-4182], breakout@4192, raw50 entry",
+          "exitBarIndex": 4195,
+          "exitPrice": 28650,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4265,
+          "direction": "long",
+          "entry": 29653.625,
+          "stop": 29490.75,
+          "target": 30305.125,
+          "reason": "STDV low pivot @4251 + SMT, consolidation[4252-4255], breakout@4264, raw50 entry",
+          "exitBarIndex": 4266,
+          "exitPrice": 29490.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4309,
+          "direction": "short",
+          "entry": 29754.875,
+          "stop": 29904,
+          "target": 29158.375,
+          "reason": "STDV high pivot @4296 + SMT, consolidation[4297-4300], breakout@4308, raw50 entry",
+          "exitBarIndex": 4354,
+          "exitPrice": 29904,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4403,
+          "direction": "short",
+          "entry": 30086.5,
+          "stop": 30232,
+          "target": 29504.5,
+          "reason": "STDV high pivot @4384 + SMT, consolidation[4385-4388], breakout@4402, raw50 entry",
+          "exitBarIndex": 4412,
+          "exitPrice": 30232,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4428,
+          "direction": "short",
+          "entry": 30135.875,
+          "stop": 30239,
+          "target": 29723.375,
+          "reason": "STDV high pivot @4401 + SMT, consolidation[4410-4413], breakout@4427, raw50 entry",
+          "exitBarIndex": 4443,
+          "exitPrice": 29723.375,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4479,
+          "direction": "long",
+          "entry": 29641.125,
+          "stop": 29485.25,
+          "target": 30264.625,
+          "reason": "STDV low pivot @4463 + SMT, consolidation[4474-4477], breakout@4478, raw50 entry",
+          "exitBarIndex": 4488,
+          "exitPrice": 29485.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4586,
+          "direction": "long",
+          "entry": 29308,
+          "stop": 29203.5,
+          "target": 29726,
+          "reason": "STDV low pivot @4573 + SMT, consolidation[4575-4578], breakout@4585, raw50 entry",
+          "exitBarIndex": 4588,
+          "exitPrice": 29203.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4609,
+          "direction": "short",
+          "entry": 29469.25,
+          "stop": 29634.5,
+          "target": 28808.25,
+          "reason": "STDV high pivot @4603 + SMT, consolidation[4604-4607], breakout@4608, raw50 entry",
+          "exitBarIndex": 4610,
+          "exitPrice": 29634.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4691,
+          "direction": "short",
+          "entry": 29053,
+          "stop": 29159,
+          "target": 28629,
+          "reason": "STDV high pivot @4669 + SMT, consolidation[4683-4686], breakout@4690, raw50 entry",
+          "exitBarIndex": 4701,
+          "exitPrice": 29159,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4714,
+          "direction": "long",
+          "entry": 29231.75,
+          "stop": 29106.25,
+          "target": 29733.75,
+          "reason": "STDV low pivot @4698 + SMT, consolidation[4702-4705], breakout@4713, raw50 entry",
+          "exitBarIndex": 4715,
+          "exitPrice": 29106.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4857,
+          "direction": "long",
+          "entry": 29417.125,
+          "stop": 29215.5,
+          "target": 30223.625,
+          "reason": "STDV low pivot @4848 + SMT, consolidation[4850-4853], breakout@4856, raw50 entry",
+          "exitBarIndex": 4865,
+          "exitPrice": 29215.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4917,
+          "direction": "long",
+          "entry": 29335,
+          "stop": 29229.75,
+          "target": 29756,
+          "reason": "STDV low pivot @4904 + SMT, consolidation[4905-4908], breakout@4916, raw50 entry",
+          "exitBarIndex": 4931,
+          "exitPrice": 29229.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1763096400,
+          "equity": 100
+        },
+        {
+          "t": 1764939600,
+          "equity": 99
+        },
+        {
+          "t": 1765299600,
+          "equity": 98.01
+        },
+        {
+          "t": 1765350000,
+          "equity": 97.0299
+        },
+        {
+          "t": 1765461600,
+          "equity": 96.059601
+        },
+        {
+          "t": 1766070000,
+          "equity": 95.09900499
+        },
+        {
+          "t": 1766469600,
+          "equity": 94.1480149401
+        },
+        {
+          "t": 1767193200,
+          "equity": 93.206534790699
+        },
+        {
+          "t": 1767970800,
+          "equity": 92.27446944279201
+        },
+        {
+          "t": 1768399200,
+          "equity": 91.35172474836409
+        },
+        {
+          "t": 1769180400,
+          "equity": 90.43820750088045
+        },
+        {
+          "t": 1770141600,
+          "equity": 89.53382542587164
+        },
+        {
+          "t": 1770796800,
+          "equity": 88.63848717161292
+        },
+        {
+          "t": 1771858800,
+          "equity": 87.75210229989679
+        },
+        {
+          "t": 1773007200,
+          "equity": 91.26218639189267
+        },
+        {
+          "t": 1773406800,
+          "equity": 90.34956452797374
+        },
+        {
+          "t": 1774616400,
+          "equity": 93.96354710909269
+        },
+        {
+          "t": 1775559600,
+          "equity": 93.02391163800176
+        },
+        {
+          "t": 1775818800,
+          "equity": 92.09367252162174
+        },
+        {
+          "t": 1776776400,
+          "equity": 91.17273579640552
+        },
+        {
+          "t": 1776823200,
+          "equity": 90.26100843844146
+        },
+        {
+          "t": 1777352400,
+          "equity": 89.35839835405704
+        },
+        {
+          "t": 1777503600,
+          "equity": 88.46481437051648
+        },
+        {
+          "t": 1777629600,
+          "equity": 87.58016622681131
+        },
+        {
+          "t": 1777971600,
+          "equity": 86.7043645645432
+        },
+        {
+          "t": 1779382800,
+          "equity": 85.83732091889776
+        },
+        {
+          "t": 1779454800,
+          "equity": 84.97894770970878
+        },
+        {
+          "t": 1779976800,
+          "equity": 84.12915823261169
+        },
+        {
+          "t": 1780592400,
+          "equity": 83.28786665028557
+        },
+        {
+          "t": 1780603200,
+          "equity": 82.45498798378271
+        },
+        {
+          "t": 1782306000,
+          "equity": 81.63043810394488
+        },
+        {
+          "t": 1782792000,
+          "equity": 80.81413372290544
+        },
+        {
+          "t": 1783429200,
+          "equity": 80.00599238567638
+        },
+        {
+          "t": 1784293200,
+          "equity": 83.20623208110344
+        },
+        {
+          "t": 1784811600,
+          "equity": 86.53448136434757
+        },
+        {
+          "t": 1784898000,
+          "equity": 85.6691365507041
+        },
+        {
+          "t": 1785157200,
+          "equity": 84.81244518519705
+        },
+        {
+          "t": 1785276000,
+          "equity": 83.96432073334508
+        },
+        {
+          "t": 1785286800,
+          "equity": 83.12467752601162
+        },
+        {
+          "t": 1785409200,
+          "equity": 82.29343075075151
+        },
+        {
+          "t": 1785765600,
+          "equity": 81.470496443244
+        },
+        {
+          "t": 1786032000,
+          "equity": 80.65579147881157
+        },
+        {
+          "t": 1786536000,
+          "equity": 79.84923356402345
+        },
+        {
+          "t": 1786928400,
+          "equity": 79.05074122838322
+        },
+        {
+          "t": 1787043600,
+          "equity": 82.21277087751855
+        },
+        {
+          "t": 1787212800,
+          "equity": 81.39064316874337
+        },
+        {
+          "t": 1787760000,
+          "equity": 80.57673673705594
+        },
+        {
+          "t": 1787842800,
+          "equity": 79.77096936968537
+        },
+        {
+          "t": 1788357600,
+          "equity": 78.97325967598852
+        },
+        {
+          "t": 1788411600,
+          "equity": 78.18352707922863
+        },
+        {
+          "t": 1789336800,
+          "equity": 77.40169180843634
+        },
+        {
+          "t": 1789581600,
+          "equity": 76.62767489035197
+        }
+      ],
+      "stats": {
+        "totalTrades": 51,
+        "wins": 5,
+        "losses": 46,
+        "winRate": 0.09803921568627451,
+        "avgR": -0.5098039215686274,
+        "totalR": -26,
+        "maxDrawdownPct": 23.37232510964803,
+        "finalEquity": 76.62767489035197
+      }
+    },
+    {
+      "strategyName": "1h, rejection-block entry, no stop cap",
+      "trades": [
+        {
+          "barIndex": 327,
+          "direction": "long",
+          "entry": 25712.5,
+          "stop": 25696.75,
+          "target": 25775.5,
+          "reason": "STDV low pivot @308 + SMT, consolidation[309-312], breakout@326, rejectionBlock entry",
+          "exitBarIndex": 335,
+          "exitPrice": 25696.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 378,
+          "direction": "short",
+          "entry": 25656.25,
+          "stop": 25696,
+          "target": 25497.25,
+          "reason": "STDV high pivot @360 + SMT, consolidation[368-371], breakout@374, rejectionBlock entry",
+          "exitBarIndex": 385,
+          "exitPrice": 25696,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 397,
+          "direction": "short",
+          "entry": 25681.5,
+          "stop": 25694.25,
+          "target": 25630.5,
+          "reason": "STDV high pivot @387 + SMT, consolidation[388-391], breakout@392, rejectionBlock entry",
+          "exitBarIndex": 398,
+          "exitPrice": 25694.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 426,
+          "direction": "long",
+          "entry": 25623.5,
+          "stop": 25591.25,
+          "target": 25752.5,
+          "reason": "STDV low pivot @408 + SMT, consolidation[419-422], breakout@424, rejectionBlock entry",
+          "exitBarIndex": 429,
+          "exitPrice": 25591.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 540,
+          "direction": "short",
+          "entry": 25079.25,
+          "stop": 25099.5,
+          "target": 24998.25,
+          "reason": "STDV high pivot @499 + SMT, consolidation[505-508], breakout@522, rejectionBlock entry",
+          "exitBarIndex": 541,
+          "exitPrice": 25099.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 606,
+          "direction": "long",
+          "entry": 25670.75,
+          "stop": 25658,
+          "target": 25721.75,
+          "reason": "STDV low pivot @591 + SMT, consolidation[594-597], breakout@601, rejectionBlock entry",
+          "exitBarIndex": 608,
+          "exitPrice": 25721.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 727,
+          "direction": "long",
+          "entry": 25605,
+          "stop": 25552.75,
+          "target": 25814,
+          "reason": "STDV low pivot @702 + SMT, consolidation[712-715], breakout@724, rejectionBlock entry",
+          "exitBarIndex": 730,
+          "exitPrice": 25552.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 860,
+          "direction": "long",
+          "entry": 25740.5,
+          "stop": 25721.25,
+          "target": 25817.5,
+          "reason": "STDV low pivot @841 + SMT, consolidation[849-852], breakout@858, rejectionBlock entry",
+          "exitBarIndex": 861,
+          "exitPrice": 25721.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 896,
+          "direction": "long",
+          "entry": 25878.75,
+          "stop": 25845.75,
+          "target": 26010.75,
+          "reason": "STDV low pivot @864 + SMT, consolidation[875-878], breakout@886, rejectionBlock entry",
+          "exitBarIndex": 908,
+          "exitPrice": 26010.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1084,
+          "direction": "short",
+          "entry": 25558.25,
+          "stop": 25629.5,
+          "target": 25273.25,
+          "reason": "STDV high pivot @1065 + SMT, consolidation[1068-1071], breakout@1083, rejectionBlock entry",
+          "exitBarIndex": 1086,
+          "exitPrice": 25629.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1227,
+          "direction": "long",
+          "entry": 25749.25,
+          "stop": 25520.25,
+          "target": 26665.25,
+          "reason": "STDV low pivot @1208 + SMT, consolidation[1221-1224], breakout@1226, rejectionBlock entry",
+          "exitBarIndex": 1251,
+          "exitPrice": 25520.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1381,
+          "direction": "long",
+          "entry": 25271,
+          "stop": 25253,
+          "target": 25343,
+          "reason": "STDV low pivot @1365 + SMT, consolidation[1373-1376], breakout@1377, rejectionBlock entry",
+          "exitBarIndex": 1382,
+          "exitPrice": 25253,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1562,
+          "direction": "long",
+          "entry": 24929.75,
+          "stop": 24877.5,
+          "target": 25138.75,
+          "reason": "STDV low pivot @1545 + SMT, consolidation[1555-1558], breakout@1561, rejectionBlock entry",
+          "exitBarIndex": 1568,
+          "exitPrice": 24877.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1772,
+          "direction": "short",
+          "entry": 24856.25,
+          "stop": 24962.75,
+          "target": 24430.25,
+          "reason": "STDV high pivot @1753 + SMT, consolidation[1759-1762], breakout@1770, rejectionBlock entry",
+          "exitBarIndex": 1783,
+          "exitPrice": 24430.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1868,
+          "direction": "short",
+          "entry": 24619.75,
+          "stop": 24747.5,
+          "target": 24108.75,
+          "reason": "STDV high pivot @1845 + SMT, consolidation[1856-1859], breakout@1867, rejectionBlock entry",
+          "exitBarIndex": 1890,
+          "exitPrice": 24747.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2088,
+          "direction": "short",
+          "entry": 24324.75,
+          "stop": 24385,
+          "target": 24083.75,
+          "reason": "STDV high pivot @2073 + SMT, consolidation[2079-2082], breakout@2086, rejectionBlock entry",
+          "exitBarIndex": 2096,
+          "exitPrice": 24083.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2272,
+          "direction": "long",
+          "entry": 24210.75,
+          "stop": 24178.25,
+          "target": 24340.75,
+          "reason": "STDV low pivot @2255 + SMT, consolidation[2257-2260], breakout@2270, rejectionBlock entry",
+          "exitBarIndex": 2273,
+          "exitPrice": 24178.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2341,
+          "direction": "short",
+          "entry": 25268.75,
+          "stop": 25302.25,
+          "target": 25134.75,
+          "reason": "STDV high pivot @2333 + SMT, consolidation[2334-2337], breakout@2338, rejectionBlock entry",
+          "exitBarIndex": 2342,
+          "exitPrice": 25302.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2499,
+          "direction": "long",
+          "entry": 26837,
+          "stop": 26797.25,
+          "target": 26996,
+          "reason": "STDV low pivot @2483 + SMT, consolidation[2489-2492], breakout@2497, rejectionBlock entry",
+          "exitBarIndex": 2504,
+          "exitPrice": 26797.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2506,
+          "direction": "short",
+          "entry": 26731.5,
+          "stop": 26786.25,
+          "target": 26512.5,
+          "reason": "STDV high pivot @2491 + SMT, consolidation[2492-2495], breakout@2505, rejectionBlock entry",
+          "exitBarIndex": 2510,
+          "exitPrice": 26786.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2605,
+          "direction": "long",
+          "entry": 27490,
+          "stop": 27474.75,
+          "target": 27551,
+          "reason": "STDV low pivot @2596 + SMT, consolidation[2600-2603], breakout@2604, rejectionBlock entry",
+          "exitBarIndex": 2606,
+          "exitPrice": 27474.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2653,
+          "direction": "short",
+          "entry": 27581.25,
+          "stop": 27601.25,
+          "target": 27501.25,
+          "reason": "STDV high pivot @2635 + SMT, consolidation[2636-2639], breakout@2649, rejectionBlock entry",
+          "exitBarIndex": 2654,
+          "exitPrice": 27501.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 2678,
+          "direction": "long",
+          "entry": 27643,
+          "stop": 27634.25,
+          "target": 27678,
+          "reason": "STDV low pivot @2666 + SMT, consolidation[2670-2673], breakout@2676, rejectionBlock entry",
+          "exitBarIndex": 2679,
+          "exitPrice": 27634.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2712,
+          "direction": "short",
+          "entry": 27882,
+          "stop": 27941,
+          "target": 27646,
+          "reason": "STDV high pivot @2696 + SMT, consolidation[2699-2702], breakout@2708, rejectionBlock entry",
+          "exitBarIndex": 2714,
+          "exitPrice": 27646,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3009,
+          "direction": "short",
+          "entry": 29194,
+          "stop": 29292.75,
+          "target": 28799,
+          "reason": "STDV high pivot @2994 + SMT, consolidation[2999-3002], breakout@3007, rejectionBlock entry",
+          "exitBarIndex": 3010,
+          "exitPrice": 29292.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3099,
+          "direction": "short",
+          "entry": 29940.75,
+          "stop": 30099.25,
+          "target": 29306.75,
+          "reason": "STDV high pivot @3076 + SMT, consolidation[3085-3088], breakout@3098, rejectionBlock entry",
+          "exitBarIndex": 3105,
+          "exitPrice": 30099.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3233,
+          "direction": "short",
+          "entry": 30245.25,
+          "stop": 30337,
+          "target": 29878.25,
+          "reason": "STDV high pivot @3213 + SMT, consolidation[3227-3230], breakout@3231, rejectionBlock entry",
+          "exitBarIndex": 3236,
+          "exitPrice": 30337,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3544,
+          "direction": "long",
+          "entry": 29745.25,
+          "stop": 29616.5,
+          "target": 30260.25,
+          "reason": "STDV low pivot @3536 + SMT, consolidation[3537-3540], breakout@3541, rejectionBlock entry",
+          "exitBarIndex": 3554,
+          "exitPrice": 29616.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3582,
+          "direction": "short",
+          "entry": 29773.5,
+          "stop": 29891.25,
+          "target": 29302.5,
+          "reason": "STDV high pivot @3562 + SMT, consolidation[3563-3566], breakout@3577, rejectionBlock entry",
+          "exitBarIndex": 3584,
+          "exitPrice": 29891.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3704,
+          "direction": "long",
+          "entry": 29750.75,
+          "stop": 29680.5,
+          "target": 30031.75,
+          "reason": "STDV low pivot @3679 + SMT, consolidation[3699-3702], breakout@3703, rejectionBlock entry",
+          "exitBarIndex": 3735,
+          "exitPrice": 30031.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3896,
+          "direction": "short",
+          "entry": 29630.75,
+          "stop": 29892.5,
+          "target": 28583.75,
+          "reason": "STDV high pivot @3889 + SMT, consolidation[3890-3893], breakout@3895, rejectionBlock entry",
+          "exitBarIndex": 3936,
+          "exitPrice": 28583.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4000,
+          "direction": "short",
+          "entry": 29200,
+          "stop": 29267.25,
+          "target": 28931,
+          "reason": "STDV high pivot @3991 + SMT, consolidation[3992-3995], breakout@3999, rejectionBlock entry",
+          "exitBarIndex": 4010,
+          "exitPrice": 29267.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4054,
+          "direction": "long",
+          "entry": 28680.5,
+          "stop": 28601.5,
+          "target": 28996.5,
+          "reason": "STDV low pivot @4047 + SMT, consolidation[4048-4051], breakout@4052, rejectionBlock entry",
+          "exitBarIndex": 4055,
+          "exitPrice": 28601.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4072,
+          "direction": "long",
+          "entry": 28695,
+          "stop": 28680,
+          "target": 28755,
+          "reason": "STDV low pivot @4062 + SMT, consolidation[4067-4070], breakout@4071, rejectionBlock entry",
+          "exitBarIndex": 4073,
+          "exitPrice": 28680,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4109,
+          "direction": "long",
+          "entry": 27960.5,
+          "stop": 27884.25,
+          "target": 28265.5,
+          "reason": "STDV low pivot @4095 + SMT, consolidation[4096-4099], breakout@4105, rejectionBlock entry",
+          "exitBarIndex": 4110,
+          "exitPrice": 27884.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4114,
+          "direction": "long",
+          "entry": 27839.5,
+          "stop": 27770.25,
+          "target": 28116.5,
+          "reason": "STDV low pivot @4103 + SMT, consolidation[4105-4108], breakout@4111, rejectionBlock entry",
+          "exitBarIndex": 4115,
+          "exitPrice": 27770.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4142,
+          "direction": "short",
+          "entry": 27395.25,
+          "stop": 27521.75,
+          "target": 26889.25,
+          "reason": "STDV high pivot @4131 + SMT, consolidation[4134-4137], breakout@4141, rejectionBlock entry",
+          "exitBarIndex": 4143,
+          "exitPrice": 27521.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4196,
+          "direction": "short",
+          "entry": 28792.5,
+          "stop": 28814.5,
+          "target": 28704.5,
+          "reason": "STDV high pivot @4171 + SMT, consolidation[4179-4182], breakout@4192, rejectionBlock entry",
+          "exitBarIndex": 4197,
+          "exitPrice": 28814.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4266,
+          "direction": "long",
+          "entry": 29556.5,
+          "stop": 29448.5,
+          "target": 29988.5,
+          "reason": "STDV low pivot @4251 + SMT, consolidation[4252-4255], breakout@4264, rejectionBlock entry",
+          "exitBarIndex": 4355,
+          "exitPrice": 29988.5,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4403,
+          "direction": "short",
+          "entry": 30065.75,
+          "stop": 30143,
+          "target": 29756.75,
+          "reason": "STDV high pivot @4384 + SMT, consolidation[4385-4388], breakout@4402, rejectionBlock entry",
+          "exitBarIndex": 4407,
+          "exitPrice": 30143,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4428,
+          "direction": "short",
+          "entry": 30102.25,
+          "stop": 30187.25,
+          "target": 29762.25,
+          "reason": "STDV high pivot @4401 + SMT, consolidation[4410-4413], breakout@4427, rejectionBlock entry",
+          "exitBarIndex": 4442,
+          "exitPrice": 29762.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4480,
+          "direction": "long",
+          "entry": 29669.75,
+          "stop": 29581.5,
+          "target": 30022.75,
+          "reason": "STDV low pivot @4463 + SMT, consolidation[4474-4477], breakout@4478, rejectionBlock entry",
+          "exitBarIndex": 4488,
+          "exitPrice": 29581.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4589,
+          "direction": "long",
+          "entry": 29284.25,
+          "stop": 29210.5,
+          "target": 29579.25,
+          "reason": "STDV low pivot @4573 + SMT, consolidation[4575-4578], breakout@4585, rejectionBlock entry",
+          "exitBarIndex": 4593,
+          "exitPrice": 29579.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4610,
+          "direction": "short",
+          "entry": 29598,
+          "stop": 29635,
+          "target": 29450,
+          "reason": "STDV high pivot @4603 + SMT, consolidation[4604-4607], breakout@4608, rejectionBlock entry",
+          "exitBarIndex": 4611,
+          "exitPrice": 29635,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4694,
+          "direction": "short",
+          "entry": 29061.75,
+          "stop": 29120.75,
+          "target": 28825.75,
+          "reason": "STDV high pivot @4669 + SMT, consolidation[4683-4686], breakout@4690, rejectionBlock entry",
+          "exitBarIndex": 4699,
+          "exitPrice": 29120.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4717,
+          "direction": "long",
+          "entry": 29220.25,
+          "stop": 29160,
+          "target": 29461.25,
+          "reason": "STDV low pivot @4698 + SMT, consolidation[4702-4705], breakout@4713, rejectionBlock entry",
+          "exitBarIndex": 4719,
+          "exitPrice": 29160,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4857,
+          "direction": "long",
+          "entry": 29472.75,
+          "stop": 29347.25,
+          "target": 29974.75,
+          "reason": "STDV low pivot @4848 + SMT, consolidation[4850-4853], breakout@4856, rejectionBlock entry",
+          "exitBarIndex": 4858,
+          "exitPrice": 29347.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4918,
+          "direction": "long",
+          "entry": 29334.25,
+          "stop": 29285.5,
+          "target": 29529.25,
+          "reason": "STDV low pivot @4904 + SMT, consolidation[4905-4908], breakout@4916, rejectionBlock entry",
+          "exitBarIndex": 4928,
+          "exitPrice": 29529.25,
+          "outcome": "win",
+          "rMultiple": 4
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1763096400,
+          "equity": 100
+        },
+        {
+          "t": 1764936000,
+          "equity": 99
+        },
+        {
+          "t": 1765296000,
+          "equity": 98.01
+        },
+        {
+          "t": 1765346400,
+          "equity": 97.0299
+        },
+        {
+          "t": 1765461600,
+          "equity": 96.059601
+        },
+        {
+          "t": 1766055600,
+          "equity": 95.09900499
+        },
+        {
+          "t": 1766480400,
+          "equity": 98.9029651896
+        },
+        {
+          "t": 1767207600,
+          "equity": 97.91393553770399
+        },
+        {
+          "t": 1767960000,
+          "equity": 96.93479618232695
+        },
+        {
+          "t": 1768309200,
+          "equity": 100.81218802962003
+        },
+        {
+          "t": 1769166000,
+          "equity": 99.80406614932383
+        },
+        {
+          "t": 1770130800,
+          "equity": 98.8060254878306
+        },
+        {
+          "t": 1770796800,
+          "equity": 97.81796523295229
+        },
+        {
+          "t": 1771855200,
+          "equity": 96.83978558062276
+        },
+        {
+          "t": 1773007200,
+          "equity": 100.71337700384767
+        },
+        {
+          "t": 1773406800,
+          "equity": 99.70624323380919
+        },
+        {
+          "t": 1774526400,
+          "equity": 103.69449296316157
+        },
+        {
+          "t": 1775563200,
+          "equity": 102.65754803352995
+        },
+        {
+          "t": 1775822400,
+          "equity": 101.63097255319465
+        },
+        {
+          "t": 1776776400,
+          "equity": 100.6146628276627
+        },
+        {
+          "t": 1776798000,
+          "equity": 99.60851619938607
+        },
+        {
+          "t": 1777334400,
+          "equity": 98.61243103739221
+        },
+        {
+          "t": 1777514400,
+          "equity": 102.55692827888791
+        },
+        {
+          "t": 1777608000,
+          "equity": 101.53135899609903
+        },
+        {
+          "t": 1777910400,
+          "equity": 105.592613355943
+        },
+        {
+          "t": 1779368400,
+          "equity": 104.53668722238358
+        },
+        {
+          "t": 1779912000,
+          "equity": 103.49132035015974
+        },
+        {
+          "t": 1780578000,
+          "equity": 102.45640714665814
+        },
+        {
+          "t": 1782306000,
+          "equity": 101.43184307519155
+        },
+        {
+          "t": 1782417600,
+          "equity": 100.41752464443964
+        },
+        {
+          "t": 1783346400,
+          "equity": 104.43422563021723
+        },
+        {
+          "t": 1784275200,
+          "equity": 108.61159465542592
+        },
+        {
+          "t": 1784725200,
+          "equity": 107.52547870887166
+        },
+        {
+          "t": 1784894400,
+          "equity": 106.45022392178294
+        },
+        {
+          "t": 1785135600,
+          "equity": 105.3857216825651
+        },
+        {
+          "t": 1785276000,
+          "equity": 104.33186446573946
+        },
+        {
+          "t": 1785294000,
+          "equity": 103.28854582108207
+        },
+        {
+          "t": 1785398400,
+          "equity": 102.25566036287124
+        },
+        {
+          "t": 1785772800,
+          "equity": 101.23310375924252
+        },
+        {
+          "t": 1786539600,
+          "equity": 105.28242790961222
+        },
+        {
+          "t": 1786734000,
+          "equity": 104.2296036305161
+        },
+        {
+          "t": 1787040000,
+          "equity": 108.39878777573675
+        },
+        {
+          "t": 1787212800,
+          "equity": 107.31479989797938
+        },
+        {
+          "t": 1787781600,
+          "equity": 111.60739189389857
+        },
+        {
+          "t": 1787846400,
+          "equity": 110.49131797495959
+        },
+        {
+          "t": 1788350400,
+          "equity": 109.38640479520998
+        },
+        {
+          "t": 1788426000,
+          "equity": 108.29254074725789
+        },
+        {
+          "t": 1789135200,
+          "equity": 107.2096153397853
+        },
+        {
+          "t": 1789570800,
+          "equity": 111.49799995337672
+        }
+      ],
+      "stats": {
+        "totalTrades": 48,
+        "wins": 12,
+        "losses": 36,
+        "winRate": 0.25,
+        "avgR": 0.25,
+        "totalR": 12,
+        "maxDrawdownPct": 6.793465209301008,
+        "finalEquity": 111.49799995337672
+      }
+    },
+    {
+      "strategyName": "1d, raw 50% retrace entry, no stop cap",
+      "trades": [
+        {
+          "barIndex": 447,
+          "direction": "long",
+          "entry": 13334.5,
+          "stop": 13058,
+          "target": 14440.5,
+          "reason": "STDV low pivot @435 + SMT, consolidation[436-439], breakout@446, raw50 entry",
+          "exitBarIndex": 450,
+          "exitPrice": 13058,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 658,
+          "direction": "long",
+          "entry": 18261.25,
+          "stop": 17846.25,
+          "target": 19921.25,
+          "reason": "STDV low pivot @650 + SMT, consolidation[652-655], breakout@657, raw50 entry",
+          "exitBarIndex": 659,
+          "exitPrice": 17846.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 837,
+          "direction": "short",
+          "entry": 20730,
+          "stop": 21340.75,
+          "target": 18287,
+          "reason": "STDV high pivot @825 + SMT, consolidation[832-835], breakout@836, raw50 entry",
+          "exitBarIndex": 849,
+          "exitPrice": 21340.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 903,
+          "direction": "short",
+          "entry": 21580.25,
+          "stop": 22319.75,
+          "target": 18622.25,
+          "reason": "STDV high pivot @893 + SMT, consolidation[897-900], breakout@902, raw50 entry",
+          "exitBarIndex": 931,
+          "exitPrice": 18622.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1043,
+          "direction": "long",
+          "entry": 24180.75,
+          "stop": 23650.25,
+          "target": 26302.75,
+          "reason": "STDV low pivot @1034 + SMT, consolidation[1038-1041], breakout@1042, raw50 entry",
+          "exitBarIndex": 1075,
+          "exitPrice": 26302.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1267,
+          "direction": "long",
+          "entry": 29719.375,
+          "stop": 28432.5,
+          "target": 34866.875,
+          "reason": "STDV low pivot @1254 + SMT, consolidation[1255-1258], breakout@1266, raw50 entry",
+          "exitBarIndex": 1299,
+          "exitPrice": 30688.5,
+          "outcome": "loss",
+          "rMultiple": 0.7530840213695968
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1626904800,
+          "equity": 100
+        },
+        {
+          "t": 1683151200,
+          "equity": 99
+        },
+        {
+          "t": 1709593200,
+          "equity": 98.01
+        },
+        {
+          "t": 1733266800,
+          "equity": 97.0299
+        },
+        {
+          "t": 1743631200,
+          "equity": 100.911096
+        },
+        {
+          "t": 1761688800,
+          "equity": 104.94753984
+        },
+        {
+          "t": 1789941600,
+          "equity": 105.73788299335554
+        }
+      ],
+      "stats": {
+        "totalTrades": 6,
+        "wins": 2,
+        "losses": 4,
+        "winRate": 0.3333333333333333,
+        "avgR": 0.9588473368949328,
+        "totalR": 5.753084021369597,
+        "maxDrawdownPct": 2.970100000000002,
+        "finalEquity": 105.73788299335554
+      }
+    },
+    {
+      "strategyName": "1d, rejection-block entry, no stop cap",
+      "trades": [
+        {
+          "barIndex": 451,
+          "direction": "long",
+          "entry": 13317.75,
+          "stop": 13055.75,
+          "target": 14365.75,
+          "reason": "STDV low pivot @435 + SMT, consolidation[436-439], breakout@446, rejectionBlock entry",
+          "exitBarIndex": 466,
+          "exitPrice": 14365.75,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 660,
+          "direction": "long",
+          "entry": 18044.25,
+          "stop": 17942.5,
+          "target": 18451.25,
+          "reason": "STDV low pivot @650 + SMT, consolidation[652-655], breakout@657, rejectionBlock entry",
+          "exitBarIndex": 661,
+          "exitPrice": 17942.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 837,
+          "direction": "short",
+          "entry": 20493.75,
+          "stop": 20981.5,
+          "target": 18542.75,
+          "reason": "STDV high pivot @825 + SMT, consolidation[832-835], breakout@836, rejectionBlock entry",
+          "exitBarIndex": 843,
+          "exitPrice": 20981.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 903,
+          "direction": "short",
+          "entry": 21420.25,
+          "stop": 21813,
+          "target": 19849.25,
+          "reason": "STDV high pivot @893 + SMT, consolidation[897-900], breakout@902, rejectionBlock entry",
+          "exitBarIndex": 912,
+          "exitPrice": 19849.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1043,
+          "direction": "long",
+          "entry": 24309.25,
+          "stop": 24076,
+          "target": 25242.25,
+          "reason": "STDV low pivot @1034 + SMT, consolidation[1038-1041], breakout@1042, rejectionBlock entry",
+          "exitBarIndex": 1058,
+          "exitPrice": 25242.25,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 1269,
+          "direction": "long",
+          "entry": 29834.75,
+          "stop": 29453.5,
+          "target": 31359.75,
+          "reason": "STDV low pivot @1254 + SMT, consolidation[1255-1258], breakout@1266, rejectionBlock entry",
+          "exitBarIndex": 1277,
+          "exitPrice": 29453.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1626904800,
+          "equity": 100
+        },
+        {
+          "t": 1685052000,
+          "equity": 104
+        },
+        {
+          "t": 1709766000,
+          "equity": 102.96
+        },
+        {
+          "t": 1732489200,
+          "equity": 101.93039999999999
+        },
+        {
+          "t": 1741302000,
+          "equity": 106.007616
+        },
+        {
+          "t": 1759701600,
+          "equity": 110.24792064
+        },
+        {
+          "t": 1787090400,
+          "equity": 109.1454414336
+        }
+      ],
+      "stats": {
+        "totalTrades": 6,
+        "wins": 3,
+        "losses": 3,
+        "winRate": 0.5,
+        "avgR": 1.5,
+        "totalR": 9,
+        "maxDrawdownPct": 1.990000000000008,
+        "finalEquity": 109.1454414336
+      }
+    }
+  ]
+}
