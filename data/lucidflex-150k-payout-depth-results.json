@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-09-21T22:12:27.201Z",
+  "trials": 5000,
+  "distinctHistoricalDays": 18,
+  "byStatus": {
+    "busted": 10,
+    "ranOutOfData": 4990,
+    "graduated": 0
+  },
+  "avgTotalProtected": 2966.392,
+  "avgPayoutCount": 0.9888,
+  "pAtLeast1": 98.88,
+  "avgFirstPayout": 2999.991909385113,
+  "pAtLeast2": 0,
+  "avgSecondPayout": null
+}
