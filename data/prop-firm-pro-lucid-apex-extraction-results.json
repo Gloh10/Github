@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-09-21T22:03:23.417Z",
+  "trials": 1000,
+  "summary": [
+    {
+      "firm": "MyFundedFutures Pro",
+      "tier": "50K",
+      "instrument": "MNQ",
+      "contracts": 8,
+      "avgProtected": 5958.911999999997,
+      "bustRate": 47.5,
+      "clearRate": 89.5,
+      "avgPayouts": 0.639,
+      "confidenceNote": "LOWER CONFIDENCE: 14-calendar-day payout cycle approximated as 10 trading days; DD dollar figures verified but lock-mechanic (if any) not confirmed, modeled as continuously trailing."
+    },
+    {
+      "firm": "MyFundedFutures Pro",
+      "tier": "100K",
+      "instrument": "NQ",
+      "contracts": 1,
+      "avgProtected": 7874.6,
+      "bustRate": 31.3,
+      "clearRate": 91.5,
+      "avgPayouts": 0.696,
+      "confidenceNote": "LOWER CONFIDENCE: 14-calendar-day payout cycle approximated as 10 trading days; DD dollar figures verified but lock-mechanic (if any) not confirmed, modeled as continuously trailing."
+    },
+    {
+      "firm": "MyFundedFutures Pro",
+      "tier": "150K",
+      "instrument": "NQ",
+      "contracts": 1,
+      "avgProtected": 6946.544,
+      "bustRate": 2.4,
+      "clearRate": 99,
+      "avgPayouts": 0.698,
+      "confidenceNote": "LOWER CONFIDENCE: 14-calendar-day payout cycle approximated as 10 trading days; DD dollar figures verified but lock-mechanic (if any) not confirmed, modeled as continuously trailing."
+    },
+    {
+      "firm": "LucidFlex",
+      "tier": "25K",
+      "instrument": "MNQ",
+      "contracts": 3,
+      "avgProtected": 1698.9745,
+      "bustRate": 3.5999999999999996,
+      "clearRate": 98.5,
+      "avgPayouts": 1.702,
+      "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
+    },
+    {
+      "firm": "LucidFlex",
+      "tier": "50K",
+      "instrument": "MNQ",
+      "contracts": 7,
+      "avgProtected": 3285.4995,
+      "bustRate": 6.9,
+      "clearRate": 96.1,
+      "avgPayouts": 1.646,
+      "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
+    },
+    {
+      "firm": "LucidFlex",
+      "tier": "100K",
+      "instrument": "NQ",
+      "contracts": 1,
+      "avgProtected": 3438.715,
+      "bustRate": 6.800000000000001,
+      "clearRate": 96.7,
+      "avgPayouts": 1.377,
+      "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
+    },
+    {
+      "firm": "LucidFlex",
+      "tier": "150K",
+      "instrument": "NQ",
+      "contracts": 1,
+      "avgProtected": 3276.515,
+      "bustRate": 0.7000000000000001,
+      "clearRate": 99.8,
+      "avgPayouts": 1.094,
+      "confidenceNote": "MEDIUM-HIGH CONFIDENCE: EOD lock-at-close mechanic and payout caps directly verified. Funded-stage DD amount assumed to reuse the eval MLL figure (not separately published)."
+    },
+    {
+      "firm": "Apex Trader Funding",
+      "tier": "150K",
+      "instrument": "NQ",
+      "contracts": 1,
+      "avgProtected": 2825.5,
+      "bustRate": 0.2,
+      "clearRate": 99.8,
+      "avgPayouts": 1.108,
+      "confidenceNote": "MEDIUM CONFIDENCE: $5,000 safety-net DD and 6-step payout ladder directly verified. Assumed combine and PA share one continuous lock-anchored DD tracker; funded-stage DD amount not separately published."
+    }
+  ],
+  "priorReferenceNote": "see data/prop-firm-150k-extraction-comparison-results.json"
+}
