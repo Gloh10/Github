@@ -1,45 +1,45 @@
 {
-  "generatedAt": "2026-09-21T21:52:45.014Z",
+  "generatedAt": "2026-09-21T21:54:42.504Z",
   "trials": 1000,
   "summary": [
     {
       "tier": "25K",
       "instrument": "MNQ",
       "contracts": 3,
-      "avgProtected": 2950.3555,
-      "bustRate": 24,
-      "clearRate": 92.2,
-      "avgPayouts": 1.006,
+      "avgProtected": 1059.5995,
+      "bustRate": 17.5,
+      "clearRate": 94.1,
+      "avgPayouts": 1.064,
       "worstDdPctOfBudget": 12.834146341463414
     },
     {
       "tier": "50K",
       "instrument": "MNQ",
       "contracts": 7,
-      "avgProtected": 4131.8375,
-      "bustRate": 40.5,
-      "clearRate": 86.7,
-      "avgPayouts": 0.855,
+      "avgProtected": 904.2835,
+      "bustRate": 36.7,
+      "clearRate": 89.1,
+      "avgPayouts": 0.905,
       "worstDdPctOfBudget": 14.97317073170732
     },
     {
       "tier": "100K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 4410.475,
-      "bustRate": 35.6,
-      "clearRate": 88.8,
-      "avgPayouts": 0.889,
+      "avgProtected": 923.405,
+      "bustRate": 33.300000000000004,
+      "clearRate": 89.60000000000001,
+      "avgPayouts": 0.924,
       "worstDdPctOfBudget": 14.260162601626018
     },
     {
       "tier": "150K",
       "instrument": "NQ",
       "contracts": 1,
-      "avgProtected": 5221.405,
-      "bustRate": 3.5000000000000004,
-      "clearRate": 98.3,
-      "avgPayouts": 1.059,
+      "avgProtected": 1082.405,
+      "bustRate": 2.5,
+      "clearRate": 99,
+      "avgPayouts": 1.083,
       "worstDdPctOfBudget": 9.506775067750677
     }
   ]

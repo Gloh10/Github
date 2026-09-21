@@ -65,7 +65,9 @@ const TIERS = [
 const COMBINE_MIN_DAYS = 2;
 const COMBINE_CONSISTENCY_PCT = 0.5;
 const WINNING_DAYS_NEEDED = 5;
-const PAYOUT_CAP = 5_000;
+// CORRECTED after verifying with the firm's own published rules: Core plan payouts are capped
+// at $1,000 per request, not $5,000 (that figure describes a different plan, not Core).
+const PAYOUT_CAP = 1_000;
 
 interface TrialResult {
   busted: boolean;
