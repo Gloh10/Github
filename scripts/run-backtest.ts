@@ -2,9 +2,11 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { buyAndHoldCurve, runStrategy } from "../src/backtest/engine.js";
 import { rollingVwap, sessionVwap } from "../src/backtest/indicators.js";
 import {
+  detectSfps,
   standardDeviationOte,
   subVwapTrap,
   subVwapTrapDaily,
+  swingFailurePatternEntries,
   vwapMeanReversion,
   vwapTrendContinuation,
 } from "../src/backtest/strategies.js";
@@ -30,6 +32,7 @@ function main() {
   const nq1d = loadBars("data/nq-1d.json");
   const spx1d = loadBars("data/spx-1d.json");
   const es5m = loadBars("data/es-5m.json");
+  const nq1h = loadBars("data/nq-1h.json");
 
   console.log(`NQ 5m: ${nq5m.length} bars, ${new Date(nq5m[0]!.t * 1000).toISOString()} → ${new Date(nq5m[nq5m.length - 1]!.t * 1000).toISOString()}`);
   console.log(`NQ 1D: ${nq1d.length} bars, ${new Date(nq1d[0]!.t * 1000).toISOString()} → ${new Date(nq1d[nq1d.length - 1]!.t * 1000).toISOString()}`);
@@ -145,6 +148,46 @@ function main() {
 
   console.log("=== Setup 5: Standard Deviation + OTE (ICT), 5-min NQ, ~26 days ===");
   results5.forEach(summarize);
+  console.log("");
+
+  // ---- Setup 6: Swing Failure Pattern + 5-min FVG entry ----
+  console.log(
+    `NQ 1H: ${nq1h.length} bars, ${new Date(nq1h[0]!.t * 1000).toISOString()} → ${new Date(nq1h[nq1h.length - 1]!.t * 1000).toISOString()}`,
+  );
+
+  const sfpsNoBias = detectSfps(nq1h, { pivotConfirm: 2, biasFilter: "none" });
+  const sfpsBiased = detectSfps(nq1h, { pivotConfirm: 2, biasFilter: "priorDayClose" });
+  const longCountNoBias = sfpsNoBias.filter((s) => s.direction === "long").length;
+  const shortCountNoBias = sfpsNoBias.length - longCountNoBias;
+
+  console.log(
+    `\n=== Setup 6: Swing Failure Pattern, hourly NQ (${nq1h.length} bars, ~10 months) ===`,
+  );
+  console.log(
+    `SFPs detected (no bias filter): ${sfpsNoBias.length} (${longCountNoBias} long, ${shortCountNoBias} short)`,
+  );
+  console.log(`SFPs detected (prior-day-close bias filter): ${sfpsBiased.length}`);
+
+  const sfpsInFiveMinWindow = sfpsNoBias.filter(
+    (s) => nq1h[s.hourlyBarIndex]!.t >= nq5m[0]!.t && nq1h[s.hourlyBarIndex]!.t <= nq5m[nq5m.length - 1]!.t,
+  );
+  console.log(
+    `Of those, ${sfpsInFiveMinWindow.length} fall inside the 5-min data window (Aug 26 – Sep 21) where entries can actually be tested.`,
+  );
+
+  const results6 = [
+    runStrategy(
+      "6a. SFP + 5m FVG entry (no bias filter)",
+      nq5m,
+      swingFailurePatternEntries(nq5m, sfpsNoBias, nq1h, { fvgWindowBars: 24, targetR: 2 }),
+    ),
+    runStrategy(
+      "6b. SFP + 5m FVG entry (prior-day-close bias filter)",
+      nq5m,
+      swingFailurePatternEntries(nq5m, sfpsBiased, nq1h, { fvgWindowBars: 24, targetR: 2 }),
+    ),
+  ];
+  results6.forEach(summarize);
 
   const nqBuyHoldDaily = buyAndHoldCurve(nq1d);
   const spxBuyHoldDaily = buyAndHoldCurve(spx1d);

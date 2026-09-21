@@ -3,6 +3,7 @@ import { findFvgs } from "./fvg.js";
 import type { VwapPoint } from "./indicators.js";
 import { hasSmtDivergence } from "./smt.js";
 import { buildLegs, findPivots, oteZone, sdLevels, type Pivot } from "./swings.js";
+import { nyDateKey, nyHour } from "./nyTime.js";
 import type { Bar, Signal } from "./types.js";
 
 const TARGET_R_MULTIPLE = 2;
@@ -350,6 +351,143 @@ export function standardDeviationOte(
     }
     // allow a new position search a few bars later regardless of open trade status (engine enforces one-at-a-time)
     if (i > positionUntilBar + 5) inPosition = false;
+  }
+
+  return signals;
+}
+
+export interface DetectedSfp {
+  hourlyBarIndex: number;
+  direction: "long" | "short";
+  swingLevel: number;
+  stopLevel: number; // the raiding bar's extreme, used for the hourly-level stop reference
+}
+
+/**
+ * Setup 6, part A — Swing Failure Pattern detection on hourly bars: an
+ * hourly bar that trades through a prior confirmed swing low/high and
+ * closes back on the other side of it ("raided and closed back above/below").
+ * Restricted to NY hours 10-15 (the video explicitly excludes pre-9:30
+ * setups; hourly bars starting at 10:00 are the first unambiguously
+ * post-open candle, since a 9:00 bar straddles the 9:30 open with no
+ * minute-level resolution to split it).
+ */
+export function detectSfps(
+  hourlyBars: Bar[],
+  opts: { pivotConfirm: number; biasFilter: "none" | "priorDayClose" },
+): DetectedSfp[] {
+  const pivots = findPivots(hourlyBars, opts.pivotConfirm);
+  const out: DetectedSfp[] = [];
+
+  // prior NY-day's closing price, for the optional bias filter
+  const priorDayClose: (number | undefined)[] = [];
+  {
+    let lastClose: number | undefined;
+    let curDay = "";
+    for (let i = 0; i < hourlyBars.length; i++) {
+      const day = nyDateKey(hourlyBars[i]!.t);
+      if (day !== curDay) {
+        if (curDay !== "") lastClose = hourlyBars[i - 1]!.c;
+        curDay = day;
+      }
+      priorDayClose.push(lastClose);
+    }
+  }
+
+  for (let i = opts.pivotConfirm; i < hourlyBars.length; i++) {
+    const hour = nyHour(hourlyBars[i]!.t);
+    if (hour < 10 || hour > 15) continue;
+    const bar = hourlyBars[i]!;
+
+    const priorLows = pivots.filter((p) => p.type === "low" && p.barIndex < i);
+    const priorHighs = pivots.filter((p) => p.type === "high" && p.barIndex < i);
+    const nearestLow = priorLows.length > 0 ? priorLows[priorLows.length - 1] : undefined;
+    const nearestHigh = priorHighs.length > 0 ? priorHighs[priorHighs.length - 1] : undefined;
+
+    const bullishOk = opts.biasFilter === "none" || (priorDayClose[i] !== undefined && bar.c > priorDayClose[i]!);
+    const bearishOk = opts.biasFilter === "none" || (priorDayClose[i] !== undefined && bar.c < priorDayClose[i]!);
+
+    if (bullishOk && nearestLow && bar.l < nearestLow.price && bar.c > nearestLow.price) {
+      out.push({ hourlyBarIndex: i, direction: "long", swingLevel: nearestLow.price, stopLevel: bar.l });
+    } else if (bearishOk && nearestHigh && bar.h > nearestHigh.price && bar.c < nearestHigh.price) {
+      out.push({ hourlyBarIndex: i, direction: "short", swingLevel: nearestHigh.price, stopLevel: bar.h });
+    }
+  }
+
+  return out;
+}
+
+/**
+ * Setup 6, part B — drops to 5-minute bars after each hourly SFP and looks
+ * for the first fair value gap in the trade direction within the next
+ * `fvgWindowBars` five-minute bars, entering when price trades into that
+ * gap. Stop beyond the FVG's middle candle; fixed target at targetR.
+ * Only SFPs whose hourly bar falls within the 5-minute bars' own time
+ * range can produce a signal here — the two datasets cover different
+ * windows (see report notes).
+ */
+export function swingFailurePatternEntries(
+  fiveMinBars: Bar[],
+  sfps: DetectedSfp[],
+  hourlyBars: Bar[],
+  opts: { fvgWindowBars: number; targetR: number },
+): Signal[] {
+  const signals: Signal[] = [];
+  const fvgs = findFvgs(fiveMinBars);
+  const fiveMinTimes = fiveMinBars.map((b) => b.t);
+
+  function firstIndexAtOrAfter(t: number): number {
+    let lo = 0;
+    let hi = fiveMinTimes.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (fiveMinTimes[mid]! < t) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo;
+  }
+
+  for (const sfp of sfps) {
+    const hourlyCloseTime = hourlyBars[sfp.hourlyBarIndex]!.t + 3600;
+    const startIdx = firstIndexAtOrAfter(hourlyCloseTime);
+    if (startIdx >= fiveMinBars.length) continue; // outside the 5-min data window
+
+    const endIdx = Math.min(fiveMinBars.length - 1, startIdx + opts.fvgWindowBars);
+    const candidateFvg = fvgs.find(
+      (g) =>
+        g.barIndex >= startIdx &&
+        g.barIndex <= endIdx &&
+        ((sfp.direction === "long" && g.direction === "bullish") ||
+          (sfp.direction === "short" && g.direction === "bearish")),
+    );
+    if (!candidateFvg) continue;
+
+    // candle 2 of the FVG is the displacement candle at candidateFvg.barIndex
+    const candle2 = fiveMinBars[candidateFvg.barIndex]!;
+    const zoneTop = candidateFvg.top;
+    const zoneBottom = candidateFvg.bottom;
+
+    for (let i = candidateFvg.barIndex + 1; i <= endIdx; i++) {
+      const bar = fiveMinBars[i]!;
+      const touchedZone = bar.l <= zoneTop && bar.h >= zoneBottom;
+      if (!touchedZone) continue;
+
+      const entry = bar.c;
+      const stop = sfp.direction === "long" ? candle2.l : candle2.h;
+      const risk = Math.abs(entry - stop);
+      if (risk === 0) break;
+      const target = sfp.direction === "long" ? entry + risk * opts.targetR : entry - risk * opts.targetR;
+
+      signals.push({
+        barIndex: i,
+        direction: sfp.direction,
+        entry,
+        stop,
+        target,
+        reason: `SFP @hourly[${sfp.hourlyBarIndex}] (swing ${sfp.swingLevel.toFixed(2)}) + 5m FVG entry`,
+      });
+      break;
+    }
   }
 
   return signals;
