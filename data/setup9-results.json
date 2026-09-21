@@ -1,0 +1,2738 @@
+{
+  "generatedAt": "2026-09-21T20:01:59.107Z",
+  "results": [
+    {
+      "strategyName": "Strong-magnet fuel, 6-bar (30min) reclaim window",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 609,
+          "direction": "short",
+          "entry": 29671,
+          "stop": 29772,
+          "target": 29668,
+          "reason": "daily bias: swept prior-day high @bar603, reclaimed, target=nearest key-open fuel level (0.03R)",
+          "exitBarIndex": 610,
+          "exitPrice": 29668,
+          "outcome": "win",
+          "rMultiple": 0.0297029702970297
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29496.5,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=nearest key-open fuel level (14.06R)",
+          "exitBarIndex": 685,
+          "exitPrice": 29432.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29516.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.95R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29047.75,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=nearest key-open fuel level (0.70R)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29236.5,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=nearest key-open fuel level (0.50R)",
+          "exitBarIndex": 1578,
+          "exitPrice": 29236.5,
+          "outcome": "win",
+          "rMultiple": 0.5
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29588.25,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=nearest key-open fuel level (0.83R)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29663.75,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=nearest key-open fuel level (8.05R)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29387.25,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2720, reclaimed, target=nearest key-open fuel level (2.69R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29387.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29351.75,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=nearest key-open fuel level (1.17R)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29351.75,
+          "outcome": "win",
+          "rMultiple": 1.173913043478261
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29089.5,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=nearest key-open fuel level (0.38R)",
+          "exitBarIndex": 3183,
+          "exitPrice": 29089.5,
+          "outcome": "win",
+          "rMultiple": 0.38028169014084506
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29058.75,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=nearest key-open fuel level (0.33R)",
+          "exitBarIndex": 3390,
+          "exitPrice": 29058.75,
+          "outcome": "win",
+          "rMultiple": 0.3285024154589372
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28896.5,
+          "target": 29574,
+          "reason": "daily bias: swept prior-day low @bar3569, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 4345,
+          "exitPrice": 29574,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29916.25,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (4.35R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787931900,
+          "equity": 99.02940594059406
+        },
+        {
+          "t": 1788130800,
+          "equity": 98.03911188118812
+        },
+        {
+          "t": 1788243600,
+          "equity": 97.05872076237624
+        },
+        {
+          "t": 1788340800,
+          "equity": 96.08813355475247
+        },
+        {
+          "t": 1788409500,
+          "equity": 96.56857422252622
+        },
+        {
+          "t": 1788497400,
+          "equity": 95.60288848030096
+        },
+        {
+          "t": 1788761400,
+          "equity": 94.64685959549796
+        },
+        {
+          "t": 1788841200,
+          "equity": 93.70039099954298
+        },
+        {
+          "t": 1788955200,
+          "equity": 92.76338708954755
+        },
+        {
+          "t": 1789039800,
+          "equity": 93.85234859016398
+        },
+        {
+          "t": 1789099800,
+          "equity": 94.20925188761953
+        },
+        {
+          "t": 1789338300,
+          "equity": 94.51873155565616
+        },
+        {
+          "t": 1789635600,
+          "equity": 98.29948081788241
+        },
+        {
+          "t": 1789707000,
+          "equity": 97.31648600970358
+        },
+        {
+          "t": 1789943700,
+          "equity": 96.34332114960654
+        },
+        {
+          "t": 1789973700,
+          "equity": 95.37988793811047
+        }
+      ],
+      "stats": {
+        "totalTrades": 17,
+        "wins": 6,
+        "losses": 11,
+        "winRate": 0.35294117647058826,
+        "avgR": -0.26985881650734866,
+        "totalR": -4.587599880624928,
+        "maxDrawdownPct": 7.23661291045245,
+        "finalEquity": 95.37988793811047
+      }
+    },
+    {
+      "strategyName": "Strong-magnet fuel, 12-bar (1h) reclaim window",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29628.5,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=nearest key-open fuel level (0.06R)",
+          "exitBarIndex": 611,
+          "exitPrice": 29628.5,
+          "outcome": "win",
+          "rMultiple": 0.062146892655367235
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29496.5,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=nearest key-open fuel level (14.06R)",
+          "exitBarIndex": 685,
+          "exitPrice": 29432.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29516.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.95R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29047.75,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=nearest key-open fuel level (0.70R)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29236.5,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=nearest key-open fuel level (0.50R)",
+          "exitBarIndex": 1578,
+          "exitPrice": 29236.5,
+          "outcome": "win",
+          "rMultiple": 0.5
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29588.25,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=nearest key-open fuel level (0.83R)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29663.75,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=nearest key-open fuel level (8.05R)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (2.52R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29351.75,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=nearest key-open fuel level (1.17R)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29351.75,
+          "outcome": "win",
+          "rMultiple": 1.173913043478261
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29089.5,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=nearest key-open fuel level (0.38R)",
+          "exitBarIndex": 3183,
+          "exitPrice": 29089.5,
+          "outcome": "win",
+          "rMultiple": 0.38028169014084506
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29058.75,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=nearest key-open fuel level (0.33R)",
+          "exitBarIndex": 3390,
+          "exitPrice": 29058.75,
+          "outcome": "win",
+          "rMultiple": 0.3285024154589372
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29577,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 4345,
+          "exitPrice": 29577,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29916.25,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (4.35R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787932200,
+          "equity": 99.06152542372881
+        },
+        {
+          "t": 1788130800,
+          "equity": 98.07091016949153
+        },
+        {
+          "t": 1788243600,
+          "equity": 97.09020106779661
+        },
+        {
+          "t": 1788340800,
+          "equity": 96.11929905711865
+        },
+        {
+          "t": 1788409500,
+          "equity": 96.59989555240423
+        },
+        {
+          "t": 1788497400,
+          "equity": 95.63389659688019
+        },
+        {
+          "t": 1788761400,
+          "equity": 94.6775576309114
+        },
+        {
+          "t": 1788841200,
+          "equity": 93.73078205460229
+        },
+        {
+          "t": 1788955200,
+          "equity": 92.79347423405626
+        },
+        {
+          "t": 1789039800,
+          "equity": 93.88278893158649
+        },
+        {
+          "t": 1789099800,
+          "equity": 94.23980798808688
+        },
+        {
+          "t": 1789338300,
+          "equity": 94.54938803365161
+        },
+        {
+          "t": 1789635600,
+          "equity": 98.33136355499768
+        },
+        {
+          "t": 1789707000,
+          "equity": 97.3480499194477
+        },
+        {
+          "t": 1789943700,
+          "equity": 96.37456942025322
+        },
+        {
+          "t": 1789973700,
+          "equity": 95.4108237260507
+        }
+      ],
+      "stats": {
+        "totalTrades": 17,
+        "wins": 6,
+        "losses": 11,
+        "winRate": 0.35294117647058826,
+        "avgR": -0.26795035048627003,
+        "totalR": -4.555155958266591,
+        "maxDrawdownPct": 7.206525765943737,
+        "finalEquity": 95.4108237260507
+      }
+    },
+    {
+      "strategyName": "Strong-magnet fuel, 24-bar (2h) reclaim window",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 609,
+          "direction": "short",
+          "entry": 29671,
+          "stop": 29713,
+          "target": 29668,
+          "reason": "daily bias: swept prior-day high @bar596, reclaimed, target=nearest key-open fuel level (0.07R)",
+          "exitBarIndex": 610,
+          "exitPrice": 29668,
+          "outcome": "win",
+          "rMultiple": 0.07142857142857142
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29496.5,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=nearest key-open fuel level (14.06R)",
+          "exitBarIndex": 685,
+          "exitPrice": 29432.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29516.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.95R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29047.75,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=nearest key-open fuel level (0.70R)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29236.5,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=nearest key-open fuel level (0.50R)",
+          "exitBarIndex": 1578,
+          "exitPrice": 29236.5,
+          "outcome": "win",
+          "rMultiple": 0.5
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29588.25,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=nearest key-open fuel level (0.83R)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29663.75,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=nearest key-open fuel level (8.05R)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29414,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2699, reclaimed, target=nearest key-open fuel level (6.17R)",
+          "exitBarIndex": 2723,
+          "exitPrice": 29414,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29351.75,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=nearest key-open fuel level (1.17R)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29351.75,
+          "outcome": "win",
+          "rMultiple": 1.173913043478261
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29089.5,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=nearest key-open fuel level (0.38R)",
+          "exitBarIndex": 3183,
+          "exitPrice": 29089.5,
+          "outcome": "win",
+          "rMultiple": 0.38028169014084506
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29058.75,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=nearest key-open fuel level (0.33R)",
+          "exitBarIndex": 3390,
+          "exitPrice": 29058.75,
+          "outcome": "win",
+          "rMultiple": 0.3285024154589372
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28835,
+          "target": 29820,
+          "reason": "daily bias: swept prior-day low @bar3567, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 4577,
+          "exitPrice": 29820,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29916.25,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (4.35R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787931900,
+          "equity": 99.07071428571427
+        },
+        {
+          "t": 1788130800,
+          "equity": 98.08000714285713
+        },
+        {
+          "t": 1788243600,
+          "equity": 97.09920707142855
+        },
+        {
+          "t": 1788340800,
+          "equity": 96.12821500071426
+        },
+        {
+          "t": 1788409500,
+          "equity": 96.60885607571782
+        },
+        {
+          "t": 1788497400,
+          "equity": 95.64276751496064
+        },
+        {
+          "t": 1788761400,
+          "equity": 94.68633983981103
+        },
+        {
+          "t": 1788841200,
+          "equity": 93.73947644141292
+        },
+        {
+          "t": 1788954600,
+          "equity": 92.80208167699878
+        },
+        {
+          "t": 1789039800,
+          "equity": 93.89149741842442
+        },
+        {
+          "t": 1789099800,
+          "equity": 94.24854959170575
+        },
+        {
+          "t": 1789338300,
+          "equity": 94.55815835364953
+        },
+        {
+          "t": 1789708800,
+          "equity": 98.34048468779551
+        },
+        {
+          "t": 1789943700,
+          "equity": 97.35707984091755
+        },
+        {
+          "t": 1789973700,
+          "equity": 96.38350904250838
+        }
+      ],
+      "stats": {
+        "totalTrades": 16,
+        "wins": 6,
+        "losses": 10,
+        "winRate": 0.375,
+        "avgR": -0.22161714246833664,
+        "totalR": -3.545874279493386,
+        "maxDrawdownPct": 7.197918323001218,
+        "finalEquity": 96.38350904250838
+      }
+    },
+    {
+      "strategyName": "All 7 key-open types as fuel, 12-bar reclaim window",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29628.5,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=nearest key-open fuel level (0.06R)",
+          "exitBarIndex": 611,
+          "exitPrice": 29628.5,
+          "outcome": "win",
+          "rMultiple": 0.062146892655367235
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29496.5,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=nearest key-open fuel level (14.06R)",
+          "exitBarIndex": 685,
+          "exitPrice": 29432.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29518.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.59R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29047.75,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=nearest key-open fuel level (0.70R)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29236.5,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=nearest key-open fuel level (0.50R)",
+          "exitBarIndex": 1578,
+          "exitPrice": 29236.5,
+          "outcome": "win",
+          "rMultiple": 0.5
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29588.25,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=nearest key-open fuel level (0.83R)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29663.75,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=nearest key-open fuel level (8.05R)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29526.5,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (1.81R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29351.75,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=nearest key-open fuel level (1.17R)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29351.75,
+          "outcome": "win",
+          "rMultiple": 1.173913043478261
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29089.5,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=nearest key-open fuel level (0.38R)",
+          "exitBarIndex": 3183,
+          "exitPrice": 29089.5,
+          "outcome": "win",
+          "rMultiple": 0.38028169014084506
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29058.75,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=nearest key-open fuel level (0.33R)",
+          "exitBarIndex": 3390,
+          "exitPrice": 29058.75,
+          "outcome": "win",
+          "rMultiple": 0.3285024154589372
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29577,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 4345,
+          "exitPrice": 29577,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29938,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (3.03R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787932200,
+          "equity": 99.06152542372881
+        },
+        {
+          "t": 1788130800,
+          "equity": 98.07091016949153
+        },
+        {
+          "t": 1788243600,
+          "equity": 97.09020106779661
+        },
+        {
+          "t": 1788340800,
+          "equity": 96.11929905711865
+        },
+        {
+          "t": 1788409500,
+          "equity": 96.59989555240423
+        },
+        {
+          "t": 1788497400,
+          "equity": 95.63389659688019
+        },
+        {
+          "t": 1788761400,
+          "equity": 94.6775576309114
+        },
+        {
+          "t": 1788841200,
+          "equity": 93.73078205460229
+        },
+        {
+          "t": 1788955200,
+          "equity": 92.79347423405626
+        },
+        {
+          "t": 1789039800,
+          "equity": 93.88278893158649
+        },
+        {
+          "t": 1789099800,
+          "equity": 94.23980798808688
+        },
+        {
+          "t": 1789338300,
+          "equity": 94.54938803365161
+        },
+        {
+          "t": 1789635600,
+          "equity": 98.33136355499768
+        },
+        {
+          "t": 1789707000,
+          "equity": 97.3480499194477
+        },
+        {
+          "t": 1789943700,
+          "equity": 96.37456942025322
+        },
+        {
+          "t": 1789973700,
+          "equity": 95.4108237260507
+        }
+      ],
+      "stats": {
+        "totalTrades": 17,
+        "wins": 6,
+        "losses": 11,
+        "winRate": 0.35294117647058826,
+        "avgR": -0.26795035048627003,
+        "totalR": -4.555155958266591,
+        "maxDrawdownPct": 7.206525765943737,
+        "finalEquity": 95.4108237260507
+      }
+    },
+    {
+      "strategyName": "Daily + 4h fuel only, 12-bar reclaim window",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29601.5,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=nearest key-open fuel level (0.37R)",
+          "exitBarIndex": 611,
+          "exitPrice": 29601.5,
+          "outcome": "win",
+          "rMultiple": 0.3672316384180791
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29496.5,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=nearest key-open fuel level (14.06R)",
+          "exitBarIndex": 685,
+          "exitPrice": 29432.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29487.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (9.23R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29047.75,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=nearest key-open fuel level (0.70R)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29236.5,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=nearest key-open fuel level (0.50R)",
+          "exitBarIndex": 1578,
+          "exitPrice": 29236.5,
+          "outcome": "win",
+          "rMultiple": 0.5
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29587,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=nearest key-open fuel level (0.88R)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29702.25,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (2.52R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29428,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=nearest key-open fuel level (7.80R)",
+          "exitBarIndex": 2998,
+          "exitPrice": 29326.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29218,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 3203,
+          "exitPrice": 29218,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29058.75,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=nearest key-open fuel level (0.33R)",
+          "exitBarIndex": 3390,
+          "exitPrice": 29058.75,
+          "outcome": "win",
+          "rMultiple": 0.3285024154589372
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29577,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 4R (fuel absent)",
+          "exitBarIndex": 4345,
+          "exitPrice": 29577,
+          "outcome": "win",
+          "rMultiple": 4
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29916.25,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (4.35R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787932200,
+          "equity": 99.3635593220339
+        },
+        {
+          "t": 1788130800,
+          "equity": 98.36992372881355
+        },
+        {
+          "t": 1788243600,
+          "equity": 97.38622449152541
+        },
+        {
+          "t": 1788340800,
+          "equity": 96.41236224661016
+        },
+        {
+          "t": 1788409500,
+          "equity": 96.8944240578432
+        },
+        {
+          "t": 1788497400,
+          "equity": 95.92547981726476
+        },
+        {
+          "t": 1788761400,
+          "equity": 94.96622501909211
+        },
+        {
+          "t": 1788841200,
+          "equity": 94.01656276890118
+        },
+        {
+          "t": 1788955200,
+          "equity": 93.07639714121217
+        },
+        {
+          "t": 1789040700,
+          "equity": 92.14563316980005
+        },
+        {
+          "t": 1789105800,
+          "equity": 95.83145849659205
+        },
+        {
+          "t": 1789338300,
+          "equity": 96.14626715252288
+        },
+        {
+          "t": 1789635600,
+          "equity": 99.9921178386238
+        },
+        {
+          "t": 1789707000,
+          "equity": 98.99219666023755
+        },
+        {
+          "t": 1789943700,
+          "equity": 98.00227469363517
+        },
+        {
+          "t": 1789973700,
+          "equity": 97.02225194669882
+        }
+      ],
+      "stats": {
+        "totalTrades": 17,
+        "wins": 5,
+        "losses": 12,
+        "winRate": 0.29411764705882354,
+        "avgR": -0.16495682036017548,
+        "totalR": -2.804265946122983,
+        "maxDrawdownPct": 7.85436683019995,
+        "finalEquity": 97.02225194669882
+      }
+    },
+    {
+      "strategyName": "R-bounded (1.5R-4R): strong-magnet fuel, 12-bar reclaim",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29457,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=fallback 2R (fuel 0.06R out of band)",
+          "exitBarIndex": 625,
+          "exitPrice": 29457,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29445.25,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=fallback 2R (fuel 14.06R out of band)",
+          "exitBarIndex": 682,
+          "exitPrice": 29445.25,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29516.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.95R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29118.5,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=fallback 2R (fuel 0.70R out of band)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29220,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=fallback 2R (fuel 0.50R out of band)",
+          "exitBarIndex": 1580,
+          "exitPrice": 29220,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29557,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=fallback 2R (fuel 0.83R out of band)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29721.25,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=fallback 2R (fuel 8.05R out of band)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (2.52R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29361.25,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=fallback 2R (fuel 1.17R out of band)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29361.25,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29147,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=fallback 2R (fuel 0.38R out of band)",
+          "exitBarIndex": 3191,
+          "exitPrice": 29147,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29145.25,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=fallback 2R (fuel 0.33R out of band)",
+          "exitBarIndex": 3477,
+          "exitPrice": 28990,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29304.5,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 2R (fuel absent)",
+          "exitBarIndex": 3661,
+          "exitPrice": 29304.5,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 4157,
+          "direction": "short",
+          "entry": 29469.5,
+          "stop": 29502.5,
+          "target": 29403.5,
+          "reason": "daily bias: swept prior-day high @bar4153, reclaimed, target=fallback 2R (fuel 1.12R out of band)",
+          "exitBarIndex": 4177,
+          "exitPrice": 29502.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4328,
+          "direction": "short",
+          "entry": 29545.25,
+          "stop": 29550,
+          "target": 29535.75,
+          "reason": "daily bias: swept prior-day high @bar4326, reclaimed, target=fallback 2R (fuel 15.95R out of band)",
+          "exitBarIndex": 4329,
+          "exitPrice": 29550,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29955,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=fallback 2R (fuel 4.35R out of band)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787936400,
+          "equity": 100.98
+        },
+        {
+          "t": 1788129900,
+          "equity": 102.9996
+        },
+        {
+          "t": 1788243600,
+          "equity": 101.969604
+        },
+        {
+          "t": 1788340800,
+          "equity": 100.94990796
+        },
+        {
+          "t": 1788410100,
+          "equity": 102.9689061192
+        },
+        {
+          "t": 1788497400,
+          "equity": 101.939217058008
+        },
+        {
+          "t": 1788761400,
+          "equity": 100.91982488742792
+        },
+        {
+          "t": 1788841200,
+          "equity": 99.91062663855364
+        },
+        {
+          "t": 1788955200,
+          "equity": 98.9115203721681
+        },
+        {
+          "t": 1789039800,
+          "equity": 100.88975077961146
+        },
+        {
+          "t": 1789102200,
+          "equity": 102.90754579520369
+        },
+        {
+          "t": 1789364400,
+          "equity": 101.87847033725166
+        },
+        {
+          "t": 1789423200,
+          "equity": 103.91603974399669
+        },
+        {
+          "t": 1789581600,
+          "equity": 102.87687934655672
+        },
+        {
+          "t": 1789630800,
+          "equity": 101.84811055309115
+        },
+        {
+          "t": 1789707000,
+          "equity": 100.82962944756024
+        },
+        {
+          "t": 1789943700,
+          "equity": 99.82133315308464
+        },
+        {
+          "t": 1789973700,
+          "equity": 98.82311982155379
+        }
+      ],
+      "stats": {
+        "totalTrades": 19,
+        "wins": 6,
+        "losses": 13,
+        "winRate": 0.3157894736842105,
+        "avgR": -0.05263157894736842,
+        "totalR": -1,
+        "maxDrawdownPct": 4.900995010000008,
+        "finalEquity": 98.82311982155379
+      }
+    },
+    {
+      "strategyName": "R-bounded (1.5R-4R): all 7 types as fuel, 12-bar reclaim",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29457,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=fallback 2R (fuel 0.06R out of band)",
+          "exitBarIndex": 625,
+          "exitPrice": 29457,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29445.25,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=fallback 2R (fuel 14.06R out of band)",
+          "exitBarIndex": 682,
+          "exitPrice": 29445.25,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29518.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.59R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29118.5,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=fallback 2R (fuel 0.70R out of band)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29220,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=fallback 2R (fuel 0.50R out of band)",
+          "exitBarIndex": 1580,
+          "exitPrice": 29220,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29557,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=fallback 2R (fuel 0.83R out of band)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29721.25,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=fallback 2R (fuel 8.05R out of band)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29526.5,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (1.81R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29361.25,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=fallback 2R (fuel 1.17R out of band)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29361.25,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29147,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=fallback 2R (fuel 0.38R out of band)",
+          "exitBarIndex": 3191,
+          "exitPrice": 29147,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29145.25,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=fallback 2R (fuel 0.33R out of band)",
+          "exitBarIndex": 3477,
+          "exitPrice": 28990,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29304.5,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 2R (fuel absent)",
+          "exitBarIndex": 3661,
+          "exitPrice": 29304.5,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 4157,
+          "direction": "short",
+          "entry": 29469.5,
+          "stop": 29502.5,
+          "target": 29403.5,
+          "reason": "daily bias: swept prior-day high @bar4153, reclaimed, target=fallback 2R (fuel 1.12R out of band)",
+          "exitBarIndex": 4177,
+          "exitPrice": 29502.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4328,
+          "direction": "short",
+          "entry": 29545.25,
+          "stop": 29550,
+          "target": 29535.75,
+          "reason": "daily bias: swept prior-day high @bar4326, reclaimed, target=fallback 2R (fuel 15.95R out of band)",
+          "exitBarIndex": 4329,
+          "exitPrice": 29550,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29938,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (3.03R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787936400,
+          "equity": 100.98
+        },
+        {
+          "t": 1788129900,
+          "equity": 102.9996
+        },
+        {
+          "t": 1788243600,
+          "equity": 101.969604
+        },
+        {
+          "t": 1788340800,
+          "equity": 100.94990796
+        },
+        {
+          "t": 1788410100,
+          "equity": 102.9689061192
+        },
+        {
+          "t": 1788497400,
+          "equity": 101.939217058008
+        },
+        {
+          "t": 1788761400,
+          "equity": 100.91982488742792
+        },
+        {
+          "t": 1788841200,
+          "equity": 99.91062663855364
+        },
+        {
+          "t": 1788955200,
+          "equity": 98.9115203721681
+        },
+        {
+          "t": 1789039800,
+          "equity": 100.88975077961146
+        },
+        {
+          "t": 1789102200,
+          "equity": 102.90754579520369
+        },
+        {
+          "t": 1789364400,
+          "equity": 101.87847033725166
+        },
+        {
+          "t": 1789423200,
+          "equity": 103.91603974399669
+        },
+        {
+          "t": 1789581600,
+          "equity": 102.87687934655672
+        },
+        {
+          "t": 1789630800,
+          "equity": 101.84811055309115
+        },
+        {
+          "t": 1789707000,
+          "equity": 100.82962944756024
+        },
+        {
+          "t": 1789943700,
+          "equity": 99.82133315308464
+        },
+        {
+          "t": 1789973700,
+          "equity": 98.82311982155379
+        }
+      ],
+      "stats": {
+        "totalTrades": 19,
+        "wins": 6,
+        "losses": 13,
+        "winRate": 0.3157894736842105,
+        "avgR": -0.05263157894736842,
+        "totalR": -1,
+        "maxDrawdownPct": 4.900995010000008,
+        "finalEquity": 98.82311982155379
+      }
+    },
+    {
+      "strategyName": "R-bounded (2R-5R): strong-magnet fuel, 12-bar reclaim",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29368.5,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=fallback 3R (fuel 0.06R out of band)",
+          "exitBarIndex": 691,
+          "exitPrice": 29368.5,
+          "outcome": "win",
+          "rMultiple": 3
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29516.25,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=nearest key-open fuel level (3.95R)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29172.75,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=fallback 3R (fuel 0.70R out of band)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29209,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=fallback 3R (fuel 0.50R out of band)",
+          "exitBarIndex": 1584,
+          "exitPrice": 29209,
+          "outcome": "win",
+          "rMultiple": 3
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29570.75,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=nearest key-open fuel level (3.06R)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29530.25,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=fallback 3R (fuel 0.83R out of band)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29711.75,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=fallback 3R (fuel 8.05R out of band)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (2.52R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29372.75,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=fallback 3R (fuel 1.17R out of band)",
+          "exitBarIndex": 2998,
+          "exitPrice": 29326.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29182.5,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=fallback 3R (fuel 0.38R out of band)",
+          "exitBarIndex": 3201,
+          "exitPrice": 29182.5,
+          "outcome": "win",
+          "rMultiple": 3
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29197,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=fallback 3R (fuel 0.33R out of band)",
+          "exitBarIndex": 3477,
+          "exitPrice": 28990,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29440.75,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 3R (fuel absent)",
+          "exitBarIndex": 3661,
+          "exitPrice": 29440.75,
+          "outcome": "win",
+          "rMultiple": 3
+        },
+        {
+          "barIndex": 4157,
+          "direction": "short",
+          "entry": 29469.5,
+          "stop": 29502.5,
+          "target": 29370.5,
+          "reason": "daily bias: swept prior-day high @bar4153, reclaimed, target=fallback 3R (fuel 1.12R out of band)",
+          "exitBarIndex": 4177,
+          "exitPrice": 29502.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4328,
+          "direction": "short",
+          "entry": 29545.25,
+          "stop": 29550,
+          "target": 29531,
+          "reason": "daily bias: swept prior-day high @bar4326, reclaimed, target=fallback 3R (fuel 15.95R out of band)",
+          "exitBarIndex": 4329,
+          "exitPrice": 29550,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29754.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=nearest key-open fuel level (3.74R)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29916.25,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=nearest key-open fuel level (4.35R)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30087.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=nearest key-open fuel level (3.19R)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1788132600,
+          "equity": 101.97
+        },
+        {
+          "t": 1788243600,
+          "equity": 100.9503
+        },
+        {
+          "t": 1788340800,
+          "equity": 99.940797
+        },
+        {
+          "t": 1788411300,
+          "equity": 102.93902091000001
+        },
+        {
+          "t": 1788497400,
+          "equity": 101.90963070090001
+        },
+        {
+          "t": 1788761400,
+          "equity": 100.890534393891
+        },
+        {
+          "t": 1788841200,
+          "equity": 99.8816290499521
+        },
+        {
+          "t": 1788955200,
+          "equity": 98.88281275945258
+        },
+        {
+          "t": 1789040700,
+          "equity": 97.89398463185805
+        },
+        {
+          "t": 1789105200,
+          "equity": 100.83080417081379
+        },
+        {
+          "t": 1789364400,
+          "equity": 99.82249612910566
+        },
+        {
+          "t": 1789423200,
+          "equity": 102.81717101297883
+        },
+        {
+          "t": 1789581600,
+          "equity": 101.78899930284905
+        },
+        {
+          "t": 1789630800,
+          "equity": 100.77110930982056
+        },
+        {
+          "t": 1789707000,
+          "equity": 99.76339821672235
+        },
+        {
+          "t": 1789943700,
+          "equity": 98.76576423455512
+        },
+        {
+          "t": 1789973700,
+          "equity": 97.77810659220957
+        }
+      ],
+      "stats": {
+        "totalTrades": 18,
+        "wins": 4,
+        "losses": 14,
+        "winRate": 0.2222222222222222,
+        "avgR": -0.1111111111111111,
+        "totalR": -2,
+        "maxDrawdownPct": 5.013564605692773,
+        "finalEquity": 97.77810659220957
+      }
+    },
+    {
+      "strategyName": "R-bounded (1R-3R): strong-magnet fuel, 12-bar reclaim",
+      "trades": [
+        {
+          "barIndex": 247,
+          "direction": "short",
+          "entry": 29627.5,
+          "stop": 29659.75,
+          "target": 29538.75,
+          "reason": "daily bias: swept prior-day high @bar246, reclaimed, target=nearest key-open fuel level (2.75R)",
+          "exitBarIndex": 250,
+          "exitPrice": 29659.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 610,
+          "direction": "short",
+          "entry": 29634,
+          "stop": 29722.5,
+          "target": 29457,
+          "reason": "daily bias: swept prior-day high @bar609, reclaimed, target=fallback 2R (fuel 0.06R out of band)",
+          "exitBarIndex": 625,
+          "exitPrice": 29457,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 681,
+          "direction": "long",
+          "entry": 29436.75,
+          "stop": 29432.5,
+          "target": 29445.25,
+          "reason": "daily bias: swept prior-day low @bar680, reclaimed, target=fallback 2R (fuel 14.06R out of band)",
+          "exitBarIndex": 682,
+          "exitPrice": 29445.25,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 1048,
+          "direction": "short",
+          "entry": 29538,
+          "stop": 29543.5,
+          "target": 29527,
+          "reason": "daily bias: swept prior-day high @bar1043, reclaimed, target=fallback 2R (fuel 3.95R out of band)",
+          "exitBarIndex": 1049,
+          "exitPrice": 29543.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1357,
+          "direction": "long",
+          "entry": 29010,
+          "stop": 28955.75,
+          "target": 29118.5,
+          "reason": "daily bias: swept prior-day low @bar1355, reclaimed, target=fallback 2R (fuel 0.70R out of band)",
+          "exitBarIndex": 1361,
+          "exitPrice": 28955.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 1577,
+          "direction": "short",
+          "entry": 29242,
+          "stop": 29253,
+          "target": 29220,
+          "reason": "daily bias: swept prior-day high @bar1574, reclaimed, target=fallback 2R (fuel 0.50R out of band)",
+          "exitBarIndex": 1580,
+          "exitPrice": 29220,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 1858,
+          "direction": "short",
+          "entry": 29583.75,
+          "stop": 29588,
+          "target": 29575.25,
+          "reason": "daily bias: swept prior-day high @bar1853, reclaimed, target=fallback 2R (fuel 3.06R out of band)",
+          "exitBarIndex": 1859,
+          "exitPrice": 29588,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2148,
+          "direction": "short",
+          "entry": 29610.5,
+          "stop": 29637.25,
+          "target": 29557,
+          "reason": "daily bias: swept prior-day high @bar2145, reclaimed, target=fallback 2R (fuel 0.83R out of band)",
+          "exitBarIndex": 2151,
+          "exitPrice": 29637.25,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2355,
+          "direction": "short",
+          "entry": 29740.25,
+          "stop": 29749.75,
+          "target": 29721.25,
+          "reason": "daily bias: swept prior-day high @bar2354, reclaimed, target=fallback 2R (fuel 8.05R out of band)",
+          "exitBarIndex": 2357,
+          "exitPrice": 29749.75,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2722,
+          "direction": "long",
+          "entry": 29434.75,
+          "stop": 29384,
+          "target": 29562.75,
+          "reason": "daily bias: swept prior-day low @bar2712, reclaimed, target=nearest key-open fuel level (2.52R)",
+          "exitBarIndex": 2725,
+          "exitPrice": 29384,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 2990,
+          "direction": "long",
+          "entry": 29338.25,
+          "stop": 29326.75,
+          "target": 29351.75,
+          "reason": "daily bias: swept prior-day low @bar2989, reclaimed, target=nearest key-open fuel level (1.17R)",
+          "exitBarIndex": 2995,
+          "exitPrice": 29351.75,
+          "outcome": "win",
+          "rMultiple": 1.173913043478261
+        },
+        {
+          "barIndex": 3182,
+          "direction": "long",
+          "entry": 29076,
+          "stop": 29040.5,
+          "target": 29147,
+          "reason": "daily bias: swept prior-day low @bar3181, reclaimed, target=fallback 2R (fuel 0.38R out of band)",
+          "exitBarIndex": 3191,
+          "exitPrice": 29147,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 3388,
+          "direction": "long",
+          "entry": 29041.75,
+          "stop": 28990,
+          "target": 29145.25,
+          "reason": "daily bias: swept prior-day low @bar3385, reclaimed, target=fallback 2R (fuel 0.33R out of band)",
+          "exitBarIndex": 3477,
+          "exitPrice": 28990,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 3574,
+          "direction": "long",
+          "entry": 29032,
+          "stop": 28895.75,
+          "target": 29304.5,
+          "reason": "daily bias: swept prior-day low @bar3570, reclaimed, target=fallback 2R (fuel absent)",
+          "exitBarIndex": 3661,
+          "exitPrice": 29304.5,
+          "outcome": "win",
+          "rMultiple": 2
+        },
+        {
+          "barIndex": 4157,
+          "direction": "short",
+          "entry": 29469.5,
+          "stop": 29502.5,
+          "target": 29432.5,
+          "reason": "daily bias: swept prior-day high @bar4153, reclaimed, target=nearest key-open fuel level (1.12R)",
+          "exitBarIndex": 4173,
+          "exitPrice": 29432.5,
+          "outcome": "win",
+          "rMultiple": 1.121212121212121
+        },
+        {
+          "barIndex": 4328,
+          "direction": "short",
+          "entry": 29545.25,
+          "stop": 29550,
+          "target": 29535.75,
+          "reason": "daily bias: swept prior-day high @bar4326, reclaimed, target=fallback 2R (fuel 15.95R out of band)",
+          "exitBarIndex": 4329,
+          "exitPrice": 29550,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4570,
+          "direction": "short",
+          "entry": 29791.25,
+          "stop": 29801,
+          "target": 29771.75,
+          "reason": "daily bias: swept prior-day high @bar4569, reclaimed, target=fallback 2R (fuel 3.74R out of band)",
+          "exitBarIndex": 4571,
+          "exitPrice": 29801,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4768,
+          "direction": "short",
+          "entry": 29988,
+          "stop": 30004.5,
+          "target": 29955,
+          "reason": "daily bias: swept prior-day high @bar4767, reclaimed, target=fallback 2R (fuel 4.35R out of band)",
+          "exitBarIndex": 4772,
+          "exitPrice": 30004.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        },
+        {
+          "barIndex": 4871,
+          "direction": "short",
+          "entry": 30124.75,
+          "stop": 30136.5,
+          "target": 30101.25,
+          "reason": "daily bias: swept prior-day high @bar4870, reclaimed, target=fallback 2R (fuel 3.19R out of band)",
+          "exitBarIndex": 4872,
+          "exitPrice": 30136.5,
+          "outcome": "loss",
+          "rMultiple": -1
+        }
+      ],
+      "equityCurve": [
+        {
+          "t": 1787741700,
+          "equity": 100
+        },
+        {
+          "t": 1787820300,
+          "equity": 99
+        },
+        {
+          "t": 1787936400,
+          "equity": 100.98
+        },
+        {
+          "t": 1788129900,
+          "equity": 102.9996
+        },
+        {
+          "t": 1788243600,
+          "equity": 101.969604
+        },
+        {
+          "t": 1788340800,
+          "equity": 100.94990796
+        },
+        {
+          "t": 1788410100,
+          "equity": 102.9689061192
+        },
+        {
+          "t": 1788497400,
+          "equity": 101.939217058008
+        },
+        {
+          "t": 1788761400,
+          "equity": 100.91982488742792
+        },
+        {
+          "t": 1788841200,
+          "equity": 99.91062663855364
+        },
+        {
+          "t": 1788955200,
+          "equity": 98.9115203721681
+        },
+        {
+          "t": 1789039800,
+          "equity": 100.07265561131965
+        },
+        {
+          "t": 1789102200,
+          "equity": 102.07410872354605
+        },
+        {
+          "t": 1789364400,
+          "equity": 101.05336763631058
+        },
+        {
+          "t": 1789423200,
+          "equity": 103.0744349890368
+        },
+        {
+          "t": 1789580400,
+          "equity": 104.2301180480048
+        },
+        {
+          "t": 1789630800,
+          "equity": 103.18781686752475
+        },
+        {
+          "t": 1789707000,
+          "equity": 102.1559386988495
+        },
+        {
+          "t": 1789943700,
+          "equity": 101.134379311861
+        },
+        {
+          "t": 1789973700,
+          "equity": 100.12303551874238
+        }
+      ],
+      "stats": {
+        "totalTrades": 19,
+        "wins": 7,
+        "losses": 12,
+        "winRate": 0.3684210526315789,
+        "avgR": 0.01553290340475694,
+        "totalR": 0.29512516469038186,
+        "maxDrawdownPct": 3.9690247610980065,
+        "finalEquity": 100.12303551874238
+      }
+    }
+  ]
+}

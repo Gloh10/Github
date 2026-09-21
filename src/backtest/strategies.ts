@@ -6,6 +6,7 @@ import { buildLegs, findPivots, oteZone, sdLevels, type Pivot } from "./swings.j
 import { nyDateKey, nyHour } from "./nyTime.js";
 import type { Bar, Signal } from "./types.js";
 import type { ValueArea } from "./volumeProfile.js";
+import type { KeyOpenType } from "./keyOpens.js";
 
 const TARGET_R_MULTIPLE = 2;
 
@@ -736,6 +737,113 @@ export function stdvReversal(
         reason: `STDV ${pivot.type} pivot @${pivot.barIndex} + SMT, consolidation[${consolStart}-${consolEnd}], breakout@${breakoutIndex}, ${opts.entryMode} entry`,
       });
       break;
+    }
+  }
+
+  return signals;
+}
+
+/**
+ * Setup 9 — "Daily Bias + Key-Open Fuel." A basic-ICT liquidity-sweep daily
+ * bias: the first sweep of the previous NY day's high or low that reclaims
+ * back through that level (within sweepReclaimWindowBars) sets the day's
+ * bias, and the reclaim close is the entry — stop beyond the sweep's
+ * extreme. The target is the NEAREST of the given key-open levels ahead of
+ * entry in the bias direction: the "fuel" the opens' magnet effect (see
+ * the reaction study) is expected to pull price toward, rather than a
+ * fixed R-multiple. Falls back to a fixed R multiple only if no key-open
+ * level currently sits ahead of price in the bias direction. One trade per
+ * NY day (the first bias confirmation) — deliberately low frequency,
+ * consistent with the "trade less" theme across the ICT source material.
+ */
+export function dailyBiasKeyOpenFuel(
+  bars: Bar[],
+  levelsByType: Map<KeyOpenType, number[]>,
+  fuelTypes: KeyOpenType[],
+  opts: { sweepReclaimWindowBars: number; fallbackTargetR: number; minFuelR?: number; maxFuelR?: number },
+): Signal[] {
+  const signals: Signal[] = [];
+
+  const dailyHighLow = new Map<string, { high: number; low: number }>();
+  for (const bar of bars) {
+    const key = nyDateKey(bar.t);
+    const cur = dailyHighLow.get(key);
+    if (!cur) dailyHighLow.set(key, { high: bar.h, low: bar.l });
+    else {
+      cur.high = Math.max(cur.high, bar.h);
+      cur.low = Math.min(cur.low, bar.l);
+    }
+  }
+  const sortedDayKeys = [...dailyHighLow.keys()].sort();
+
+  let currentDay = "";
+  let prevDayHigh = Infinity;
+  let prevDayLow = -Infinity;
+  let bias: "long" | "short" | null = null;
+  let tradedToday = false;
+  let pendingSweep: { direction: "long" | "short"; sweepBarIndex: number; sweepExtreme: number } | null = null;
+
+  for (let i = 0; i < bars.length; i++) {
+    const bar = bars[i]!;
+    const dayKey = nyDateKey(bar.t);
+    if (dayKey !== currentDay) {
+      currentDay = dayKey;
+      const idx = sortedDayKeys.indexOf(dayKey);
+      const prevKey = idx > 0 ? sortedDayKeys[idx - 1] : undefined;
+      const prevHL = prevKey ? dailyHighLow.get(prevKey) : undefined;
+      prevDayHigh = prevHL ? prevHL.high : Infinity;
+      prevDayLow = prevHL ? prevHL.low : -Infinity;
+      bias = null;
+      tradedToday = false;
+      pendingSweep = null;
+    }
+
+    if (bias !== null || tradedToday) continue;
+
+    if (pendingSweep) {
+      if (i - pendingSweep.sweepBarIndex > opts.sweepReclaimWindowBars) {
+        pendingSweep = null;
+      } else {
+        const reclaimed = pendingSweep.direction === "long" ? bar.c > prevDayLow : bar.c < prevDayHigh;
+        if (reclaimed) {
+          bias = pendingSweep.direction;
+          const entry = bar.c;
+          const stop = pendingSweep.sweepExtreme;
+          const risk = Math.abs(entry - stop);
+
+          if (risk > 0) {
+            const fuelLevels = fuelTypes
+              .map((t) => levelsByType.get(t)![i]!)
+              .filter((lvl) => (bias === "long" ? lvl > entry : lvl < entry));
+            const nearestFuel = fuelLevels.length > 0 ? (bias === "long" ? Math.min(...fuelLevels) : Math.max(...fuelLevels)) : null;
+            const nearestFuelR = nearestFuel !== null ? Math.abs(nearestFuel - entry) / risk : null;
+            const fuelWithinBand =
+              nearestFuelR !== null && nearestFuelR >= (opts.minFuelR ?? 0) && nearestFuelR <= (opts.maxFuelR ?? Infinity);
+
+            const target = fuelWithinBand
+              ? nearestFuel!
+              : bias === "long"
+                ? entry + risk * opts.fallbackTargetR
+                : entry - risk * opts.fallbackTargetR;
+
+            signals.push({
+              barIndex: i,
+              direction: bias,
+              entry,
+              stop,
+              target,
+              reason: `daily bias: swept prior-day ${pendingSweep.direction === "long" ? "low" : "high"} @bar${pendingSweep.sweepBarIndex}, reclaimed, ` +
+                `target=${fuelWithinBand ? `nearest key-open fuel level (${nearestFuelR!.toFixed(2)}R)` : `fallback ${opts.fallbackTargetR}R (fuel ${nearestFuelR === null ? "absent" : nearestFuelR.toFixed(2) + "R out of band"})`}`,
+            });
+            tradedToday = true;
+          }
+          pendingSweep = null;
+        }
+      }
+    }
+    if (!pendingSweep && bias === null) {
+      if (bar.l < prevDayLow) pendingSweep = { direction: "long", sweepBarIndex: i, sweepExtreme: bar.l };
+      else if (bar.h > prevDayHigh) pendingSweep = { direction: "short", sweepBarIndex: i, sweepExtreme: bar.h };
     }
   }
 
