@@ -1,0 +1,1201 @@
+{
+  "generatedAt": "2026-09-21T20:23:26.985Z",
+  "baseline": {
+    "strategyName": "No trim/breakeven (current best)",
+    "trades": [
+      {
+        "barIndex": 165,
+        "direction": "short",
+        "entry": 29492.75,
+        "stop": 29531.5,
+        "target": 29299,
+        "reason": "trend continuation short: pullback to VWAP, slope -0.16%",
+        "exitBarIndex": 166,
+        "exitPrice": 29531.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 385,
+        "direction": "short",
+        "entry": 29674.75,
+        "stop": 29708,
+        "target": 29508.5,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 591,
+        "exitPrice": 29508.5,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 602,
+        "direction": "short",
+        "entry": 29763.25,
+        "stop": 29803.75,
+        "target": 29560.75,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 612,
+        "exitPrice": 29560.75,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 708,
+        "direction": "short",
+        "entry": 29357,
+        "stop": 29386.5,
+        "target": 29209.5,
+        "reason": "trend continuation short: pullback to VWAP, slope -0.20%",
+        "exitBarIndex": 755,
+        "exitPrice": 29386.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 763,
+        "direction": "short",
+        "entry": 29451.75,
+        "stop": 29474.25,
+        "target": 29339.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 770,
+        "exitPrice": 29474.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 788,
+        "direction": "short",
+        "entry": 29506.5,
+        "stop": 29522.75,
+        "target": 29425.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 793,
+        "exitPrice": 29522.75,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 939,
+        "direction": "short",
+        "entry": 29511.5,
+        "stop": 29524.25,
+        "target": 29447.75,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 1004,
+        "exitPrice": 29447.75,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 1006,
+        "direction": "long",
+        "entry": 29450.75,
+        "stop": 29436.25,
+        "target": 29523.25,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 1041,
+        "exitPrice": 29523.25,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 1045,
+        "direction": "short",
+        "entry": 29541.5,
+        "stop": 29568,
+        "target": 29409,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 1070,
+        "exitPrice": 29409,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 1089,
+        "direction": "long",
+        "entry": 29213.25,
+        "stop": 29184.25,
+        "target": 29358.25,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 1106,
+        "exitPrice": 29184.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 1252,
+        "direction": "short",
+        "entry": 29135.25,
+        "stop": 29153.25,
+        "target": 29045.25,
+        "reason": "trend continuation short: pullback to VWAP, slope -0.21%",
+        "exitBarIndex": 1253,
+        "exitPrice": 29153.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 1254,
+        "direction": "short",
+        "entry": 29126,
+        "stop": 29149,
+        "target": 29011,
+        "reason": "trend continuation short: pullback to VWAP, slope -0.19%",
+        "exitBarIndex": 1355,
+        "exitPrice": 29011,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 1366,
+        "direction": "long",
+        "entry": 28957.25,
+        "stop": 28947.5,
+        "target": 29006,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 1370,
+        "exitPrice": 28947.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 1801,
+        "direction": "long",
+        "entry": 29511.25,
+        "stop": 29495,
+        "target": 29592.5,
+        "reason": "trend continuation long: pullback to VWAP, slope 0.46%",
+        "exitBarIndex": 1854,
+        "exitPrice": 29592.5,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 1930,
+        "direction": "short",
+        "entry": 29684.5,
+        "stop": 29704.5,
+        "target": 29584.5,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 1951,
+        "exitPrice": 29584.5,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 2082,
+        "direction": "short",
+        "entry": 29563.5,
+        "stop": 29578.5,
+        "target": 29488.5,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2094,
+        "exitPrice": 29578.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 2101,
+        "direction": "short",
+        "entry": 29581.75,
+        "stop": 29596,
+        "target": 29510.5,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2107,
+        "exitPrice": 29596,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 2144,
+        "direction": "short",
+        "entry": 29611,
+        "stop": 29621.75,
+        "target": 29557.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2145,
+        "exitPrice": 29621.75,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 2157,
+        "direction": "short",
+        "entry": 29664,
+        "stop": 29682.25,
+        "target": 29572.75,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2162,
+        "exitPrice": 29682.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 2163,
+        "direction": "short",
+        "entry": 29666.25,
+        "stop": 29677.75,
+        "target": 29608.75,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2191,
+        "exitPrice": 29608.75,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 2305,
+        "direction": "long",
+        "entry": 29591.5,
+        "stop": 29575,
+        "target": 29674,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2324,
+        "exitPrice": 29674,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 2582,
+        "direction": "short",
+        "entry": 29537.5,
+        "stop": 29561.75,
+        "target": 29416.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2591,
+        "exitPrice": 29561.75,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 2701,
+        "direction": "long",
+        "entry": 29412.25,
+        "stop": 29371.75,
+        "target": 29614.75,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2711,
+        "exitPrice": 29371.75,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 2858,
+        "direction": "short",
+        "entry": 29473,
+        "stop": 29480.25,
+        "target": 29436.75,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2866,
+        "exitPrice": 29436.75,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 2876,
+        "direction": "long",
+        "entry": 29382,
+        "stop": 29364,
+        "target": 29472,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2922,
+        "exitPrice": 29472,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 2926,
+        "direction": "short",
+        "entry": 29491,
+        "stop": 29508.25,
+        "target": 29404.75,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2970,
+        "exitPrice": 29404.75,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 2973,
+        "direction": "long",
+        "entry": 29391.75,
+        "stop": 29359.25,
+        "target": 29554.25,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 2989,
+        "exitPrice": 29359.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3141,
+        "direction": "short",
+        "entry": 29123.75,
+        "stop": 29152.5,
+        "target": 28980,
+        "reason": "trend continuation short: pullback to VWAP, slope -0.30%",
+        "exitBarIndex": 3143,
+        "exitPrice": 29152.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3166,
+        "direction": "long",
+        "entry": 29108.25,
+        "stop": 29083.5,
+        "target": 29232,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3168,
+        "exitPrice": 29083.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3181,
+        "direction": "long",
+        "entry": 29071.5,
+        "stop": 29040.5,
+        "target": 29226.5,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3203,
+        "exitPrice": 29226.5,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 3409,
+        "direction": "long",
+        "entry": 29047.25,
+        "stop": 29016.25,
+        "target": 29202.25,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3414,
+        "exitPrice": 29016.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3417,
+        "direction": "long",
+        "entry": 29036.25,
+        "stop": 29008.75,
+        "target": 29173.75,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3421,
+        "exitPrice": 29008.75,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3495,
+        "direction": "long",
+        "entry": 28974,
+        "stop": 28943.5,
+        "target": 29126.5,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3501,
+        "exitPrice": 28943.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3527,
+        "direction": "long",
+        "entry": 28856.5,
+        "stop": 28839,
+        "target": 28944,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3542,
+        "exitPrice": 28944,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 3598,
+        "direction": "short",
+        "entry": 29173.75,
+        "stop": 29202.5,
+        "target": 29030,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3604,
+        "exitPrice": 29202.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3687,
+        "direction": "long",
+        "entry": 29457.75,
+        "stop": 29444,
+        "target": 29526.5,
+        "reason": "trend continuation long: pullback to VWAP, slope 1.31%",
+        "exitBarIndex": 3688,
+        "exitPrice": 29444,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3689,
+        "direction": "long",
+        "entry": 29459.25,
+        "stop": 29436.25,
+        "target": 29574.25,
+        "reason": "trend continuation long: pullback to VWAP, slope 1.30%",
+        "exitBarIndex": 3705,
+        "exitPrice": 29436.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3733,
+        "direction": "long",
+        "entry": 29425,
+        "stop": 29409,
+        "target": 29505,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3736,
+        "exitPrice": 29409,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3967,
+        "direction": "short",
+        "entry": 29271.75,
+        "stop": 29285.25,
+        "target": 29204.25,
+        "reason": "trend continuation short: pullback to VWAP, slope -0.17%",
+        "exitBarIndex": 3970,
+        "exitPrice": 29285.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3975,
+        "direction": "long",
+        "entry": 29282.5,
+        "stop": 29240.5,
+        "target": 29492.5,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3983,
+        "exitPrice": 29240.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 3985,
+        "direction": "long",
+        "entry": 29253.25,
+        "stop": 29228,
+        "target": 29379.5,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 3987,
+        "exitPrice": 29228,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4035,
+        "direction": "short",
+        "entry": 29360.75,
+        "stop": 29372.5,
+        "target": 29302,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4045,
+        "exitPrice": 29372.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4047,
+        "direction": "short",
+        "entry": 29384.75,
+        "stop": 29394.5,
+        "target": 29336,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4051,
+        "exitPrice": 29394.5,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4238,
+        "direction": "long",
+        "entry": 29453.75,
+        "stop": 29441,
+        "target": 29517.5,
+        "reason": "trend continuation long: pullback to VWAP, slope 0.31%",
+        "exitBarIndex": 4239,
+        "exitPrice": 29441,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4256,
+        "direction": "short",
+        "entry": 29442.75,
+        "stop": 29469.25,
+        "target": 29310.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4285,
+        "exitPrice": 29469.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4294,
+        "direction": "short",
+        "entry": 29460,
+        "stop": 29471.5,
+        "target": 29402.5,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4305,
+        "exitPrice": 29402.5,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 4309,
+        "direction": "long",
+        "entry": 29401,
+        "stop": 29368.75,
+        "target": 29562.25,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4327,
+        "exitPrice": 29562.25,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 4347,
+        "direction": "short",
+        "entry": 29571.5,
+        "stop": 29592.75,
+        "target": 29465.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4369,
+        "exitPrice": 29592.75,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4515,
+        "direction": "long",
+        "entry": 29698.25,
+        "stop": 29676,
+        "target": 29809.5,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4520,
+        "exitPrice": 29676,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4528,
+        "direction": "long",
+        "entry": 29659,
+        "stop": 29648,
+        "target": 29714,
+        "reason": "mean-reversion long: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4550,
+        "exitPrice": 29714,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 4574,
+        "direction": "short",
+        "entry": 29805.5,
+        "stop": 29812,
+        "target": 29773,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4575,
+        "exitPrice": 29812,
+        "outcome": "loss",
+        "rMultiple": -1
+      },
+      {
+        "barIndex": 4762,
+        "direction": "short",
+        "entry": 29977.75,
+        "stop": 29986.5,
+        "target": 29934,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4765,
+        "exitPrice": 29934,
+        "outcome": "win",
+        "rMultiple": 5
+      },
+      {
+        "barIndex": 4884,
+        "direction": "short",
+        "entry": 30178.75,
+        "stop": 30188.25,
+        "target": 30131.25,
+        "reason": "mean-reversion short: band2 tag + reversal candle, flat VWAP",
+        "exitBarIndex": 4885,
+        "exitPrice": 30188.25,
+        "outcome": "loss",
+        "rMultiple": -1
+      }
+    ],
+    "equityCurve": [
+      {
+        "t": 1787741700,
+        "equity": 100
+      },
+      {
+        "t": 1787795100,
+        "equity": 99
+      },
+      {
+        "t": 1787926200,
+        "equity": 103.95
+      },
+      {
+        "t": 1787932500,
+        "equity": 109.14750000000001
+      },
+      {
+        "t": 1788151800,
+        "equity": 108.056025
+      },
+      {
+        "t": 1788156300,
+        "equity": 106.97546475
+      },
+      {
+        "t": 1788163200,
+        "equity": 105.9057101025
+      },
+      {
+        "t": 1788230100,
+        "equity": 111.200995607625
+      },
+      {
+        "t": 1788241200,
+        "equity": 116.76104538800625
+      },
+      {
+        "t": 1788249900,
+        "equity": 122.59909765740657
+      },
+      {
+        "t": 1788260700,
+        "equity": 121.3731066808325
+      },
+      {
+        "t": 1788308400,
+        "equity": 120.15937561402419
+      },
+      {
+        "t": 1788339000,
+        "equity": 126.1673443947254
+      },
+      {
+        "t": 1788343500,
+        "equity": 124.90567095077814
+      },
+      {
+        "t": 1788495900,
+        "equity": 131.15095449831705
+      },
+      {
+        "t": 1788525000,
+        "equity": 137.7085022232329
+      },
+      {
+        "t": 1788744300,
+        "equity": 136.33141720100056
+      },
+      {
+        "t": 1788748200,
+        "equity": 134.96810302899056
+      },
+      {
+        "t": 1788759600,
+        "equity": 133.61842199870065
+      },
+      {
+        "t": 1788764700,
+        "equity": 132.28223777871364
+      },
+      {
+        "t": 1788773400,
+        "equity": 138.89634966764933
+      },
+      {
+        "t": 1788831300,
+        "equity": 145.8411671510318
+      },
+      {
+        "t": 1788915000,
+        "equity": 144.38275547952148
+      },
+      {
+        "t": 1788951000,
+        "equity": 142.93892792472627
+      },
+      {
+        "t": 1789001100,
+        "equity": 150.0858743209626
+      },
+      {
+        "t": 1789017900,
+        "equity": 157.59016803701073
+      },
+      {
+        "t": 1789032300,
+        "equity": 165.46967643886126
+      },
+      {
+        "t": 1789038000,
+        "equity": 163.81497967447265
+      },
+      {
+        "t": 1789087800,
+        "equity": 162.17682987772793
+      },
+      {
+        "t": 1789095300,
+        "equity": 160.55506157895064
+      },
+      {
+        "t": 1789105800,
+        "equity": 168.58281465789818
+      },
+      {
+        "t": 1789345500,
+        "equity": 166.8969865113192
+      },
+      {
+        "t": 1789347600,
+        "equity": 165.22801664620602
+      },
+      {
+        "t": 1789371600,
+        "equity": 163.57573647974397
+      },
+      {
+        "t": 1789383900,
+        "equity": 171.75452330373116
+      },
+      {
+        "t": 1789402500,
+        "equity": 170.03697807069386
+      },
+      {
+        "t": 1789431300,
+        "equity": 168.3366082899869
+      },
+      {
+        "t": 1789436400,
+        "equity": 166.65324220708703
+      },
+      {
+        "t": 1789445700,
+        "equity": 164.98670978501616
+      },
+      {
+        "t": 1789519500,
+        "equity": 163.33684268716598
+      },
+      {
+        "t": 1789523400,
+        "equity": 161.7034742602943
+      },
+      {
+        "t": 1789524600,
+        "equity": 160.08643951769136
+      },
+      {
+        "t": 1789542000,
+        "equity": 158.48557512251443
+      },
+      {
+        "t": 1789543800,
+        "equity": 156.90071937128928
+      },
+      {
+        "t": 1789603800,
+        "equity": 155.33171217757638
+      },
+      {
+        "t": 1789617600,
+        "equity": 153.77839505580062
+      },
+      {
+        "t": 1789623600,
+        "equity": 161.46731480859066
+      },
+      {
+        "t": 1789630200,
+        "equity": 169.5406805490202
+      },
+      {
+        "t": 1789642800,
+        "equity": 167.84527374353002
+      },
+      {
+        "t": 1789691700,
+        "equity": 166.16682100609472
+      },
+      {
+        "t": 1789700700,
+        "equity": 174.47516205639945
+      },
+      {
+        "t": 1789708200,
+        "equity": 172.73041043583547
+      },
+      {
+        "t": 1789941600,
+        "equity": 181.36693095762726
+      },
+      {
+        "t": 1789977600,
+        "equity": 179.55326164805098
+      }
+    ],
+    "stats": {
+      "totalTrades": 53,
+      "wins": 19,
+      "losses": 34,
+      "winRate": 0.3584905660377358,
+      "avgR": 1.150943396226415,
+      "totalR": 61,
+      "maxDrawdownPct": 10.466174574128399,
+      "finalEquity": 179.55326164805098
+    }
+  },
+  "grid": [
+    {
+      "trimAtR": 2,
+      "trimFraction": 0.25,
+      "stats": {
+        "totalTrades": 58,
+        "wins": 25,
+        "losses": 33,
+        "winRate": 0.43103448275862066,
+        "avgR": 0.5517241379310345,
+        "totalR": 32,
+        "maxDrawdownPct": 9.109601461615169,
+        "finalEquity": 135.78537376846708
+      }
+    },
+    {
+      "trimAtR": 2,
+      "trimFraction": 0.33,
+      "stats": {
+        "totalTrades": 58,
+        "wins": 25,
+        "losses": 33,
+        "winRate": 0.43103448275862066,
+        "avgR": 0.5241379310344826,
+        "totalR": 30.39999999999999,
+        "maxDrawdownPct": 8.964900329613771,
+        "finalEquity": 133.79471465210707
+      }
+    },
+    {
+      "trimAtR": 2,
+      "trimFraction": 0.5,
+      "stats": {
+        "totalTrades": 58,
+        "wins": 25,
+        "losses": 33,
+        "winRate": 0.43103448275862066,
+        "avgR": 0.46551724137931033,
+        "totalR": 27,
+        "maxDrawdownPct": 8.657410424110761,
+        "finalEquity": 129.61684032423807
+      }
+    },
+    {
+      "trimAtR": 2,
+      "trimFraction": 0.67,
+      "stats": {
+        "totalTrades": 58,
+        "wins": 25,
+        "losses": 33,
+        "winRate": 0.43103448275862066,
+        "avgR": 0.4068965517241381,
+        "totalR": 23.60000000000001,
+        "maxDrawdownPct": 8.476181792029903,
+        "finalEquity": 125.51109983655506
+      }
+    },
+    {
+      "trimAtR": 2.5,
+      "trimFraction": 0.25,
+      "stats": {
+        "totalTrades": 57,
+        "wins": 22,
+        "losses": 35,
+        "winRate": 0.38596491228070173,
+        "avgR": 0.5482456140350878,
+        "totalR": 31.25,
+        "maxDrawdownPct": 8.996553702239028,
+        "finalEquity": 134.65726731370205
+      }
+    },
+    {
+      "trimAtR": 2.5,
+      "trimFraction": 0.33,
+      "stats": {
+        "totalTrades": 57,
+        "wins": 22,
+        "losses": 35,
+        "winRate": 0.38596491228070173,
+        "avgR": 0.5271929824561404,
+        "totalR": 30.050000000000004,
+        "maxDrawdownPct": 8.815677287237277,
+        "finalEquity": 133.18851727847454
+      }
+    },
+    {
+      "trimAtR": 2.5,
+      "trimFraction": 0.5,
+      "stats": {
+        "totalTrades": 57,
+        "wins": 22,
+        "losses": 35,
+        "winRate": 0.38596491228070173,
+        "avgR": 0.4824561403508772,
+        "totalR": 27.5,
+        "maxDrawdownPct": 8.431314905358569,
+        "finalEquity": 130.08449681617503
+      }
+    },
+    {
+      "trimAtR": 2.5,
+      "trimFraction": 0.67,
+      "stats": {
+        "totalTrades": 57,
+        "wins": 22,
+        "losses": 35,
+        "winRate": 0.38596491228070173,
+        "avgR": 0.43771929824561395,
+        "totalR": 24.949999999999996,
+        "maxDrawdownPct": 8.04695252347981,
+        "finalEquity": 127.00506903112658
+      }
+    },
+    {
+      "trimAtR": 3,
+      "trimFraction": 0.25,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.7685185185185185,
+        "totalR": 41.5,
+        "maxDrawdownPct": 10.466174574128374,
+        "finalEquity": 148.7683311931526
+      }
+    },
+    {
+      "trimAtR": 3,
+      "trimFraction": 0.33,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.7418518518518519,
+        "totalR": 40.06,
+        "maxDrawdownPct": 10.466174574128376,
+        "finalEquity": 146.77831237955414
+      }
+    },
+    {
+      "trimAtR": 3,
+      "trimFraction": 0.5,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.6851851851851852,
+        "totalR": 37,
+        "maxDrawdownPct": 10.46617457412837,
+        "finalEquity": 142.6100636987702
+      }
+    },
+    {
+      "trimAtR": 3,
+      "trimFraction": 0.67,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.6285185185185185,
+        "totalR": 33.94,
+        "maxDrawdownPct": 10.466174574128358,
+        "finalEquity": 138.52398389687022
+      }
+    },
+    {
+      "trimAtR": 3.5,
+      "trimFraction": 0.25,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.9652777777777778,
+        "totalR": 52.125,
+        "maxDrawdownPct": 10.466174574128354,
+        "finalEquity": 164.9163347210906
+      }
+    },
+    {
+      "trimAtR": 3.5,
+      "trimFraction": 0.33,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.942314814814815,
+        "totalR": 50.88500000000001,
+        "maxDrawdownPct": 10.466174574128356,
+        "finalEquity": 163.00287566886504
+      }
+    },
+    {
+      "trimAtR": 3.5,
+      "trimFraction": 0.5,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.8935185185185185,
+        "totalR": 48.25,
+        "maxDrawdownPct": 10.46617457412835,
+        "finalEquity": 158.99164545139118
+      }
+    },
+    {
+      "trimAtR": 3.5,
+      "trimFraction": 0.67,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.844722222222222,
+        "totalR": 45.61499999999999,
+        "maxDrawdownPct": 10.466174574128333,
+        "finalEquity": 155.0546028737467
+      }
+    },
+    {
+      "trimAtR": 4,
+      "trimFraction": 0.25,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 1.0740740740740742,
+        "totalR": 58,
+        "maxDrawdownPct": 10.466174574128338,
+        "finalEquity": 174.56227510282815
+      }
+    },
+    {
+      "trimAtR": 4,
+      "trimFraction": 0.33,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 1.0562962962962967,
+        "totalR": 57.04000000000002,
+        "maxDrawdownPct": 10.46617457412836,
+        "finalEquity": 172.98772265752507
+      }
+    },
+    {
+      "trimAtR": 4,
+      "trimFraction": 0.5,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 1.0185185185185186,
+        "totalR": 55,
+        "maxDrawdownPct": 10.466174574128347,
+        "finalEquity": 169.6779202764576
+      }
+    },
+    {
+      "trimAtR": 4,
+      "trimFraction": 0.67,
+      "stats": {
+        "totalTrades": 54,
+        "wins": 20,
+        "losses": 34,
+        "winRate": 0.37037037037037035,
+        "avgR": 0.9807407407407404,
+        "totalR": 52.95999999999998,
+        "maxDrawdownPct": 10.46617457412838,
+        "finalEquity": 166.41700112006222
+      }
+    }
+  ],
+  "bestConfig": {
+    "trimAtR": 4,
+    "trimFraction": 0.25
+  },
+  "validation": {
+    "full": {
+      "totalTrades": 54,
+      "wins": 20,
+      "losses": 34,
+      "winRate": 0.37037037037037035,
+      "avgR": 1.0740740740740742,
+      "totalR": 58,
+      "maxDrawdownPct": 10.466174574128338,
+      "finalEquity": 174.56227510282815
+    },
+    "firstHalf": {
+      "totalTrades": 21,
+      "wins": 10,
+      "losses": 11,
+      "winRate": 0.47619047619047616,
+      "avgR": 1.7619047619047619,
+      "totalR": 37,
+      "maxDrawdownPct": 3.9403990000000015,
+      "finalEquity": 143.08627964154886
+    },
+    "secondHalf": {
+      "totalTrades": 34,
+      "wins": 10,
+      "losses": 24,
+      "winRate": 0.29411764705882354,
+      "avgR": 0.5882352941176471,
+      "totalR": 20,
+      "maxDrawdownPct": 10.466174574128338,
+      "finalEquity": 120.77793397433335
+    },
+    "oos": {
+      "totalTrades": 62,
+      "wins": 20,
+      "losses": 42,
+      "winRate": 0.3225806451612903,
+      "avgR": 0.6854838709677419,
+      "totalR": 42.5,
+      "maxDrawdownPct": 7.725530557207995,
+      "finalEquity": 149.74993225483055
+    },
+    "bothPositive": true
+  }
+}

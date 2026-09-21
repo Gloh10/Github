@@ -124,6 +124,93 @@ export function simulateTradesWithBreakeven(
   return trades;
 }
 
+/**
+ * Same walk-forward resolution as simulateTrades, but once price moves
+ * `trimAtR` multiples of risk in the trade's favor, realizes `trimFraction`
+ * of the position at that level and moves the stop on the REMAINING
+ * fraction to breakeven, letting it keep running toward the original
+ * target. The reported rMultiple is the size-weighted blend of the
+ * realized (trimmed) leg and however the remainder eventually resolves.
+ * As with simulateTradesWithBreakeven, a stop/target check on a given bar
+ * always uses the stop/state as of the START of that bar — the trim
+ * (and its breakeven move) only takes effect for bars after the one that
+ * triggered it, avoiding same-bar ordering ambiguity. In the rare case a
+ * single bar's range covers both the trim level and the full target
+ * before any trim has been recorded, it resolves as an untrimmed full-R
+ * winner (a disclosed, deliberately simple edge-case choice).
+ */
+export function simulateTradesWithPartialAtR(
+  bars: Bar[],
+  signals: Signal[],
+  opts: { trimAtR: number; trimFraction: number },
+): Trade[] {
+  const trades: Trade[] = [];
+  let openUntilIndex = -1;
+
+  for (const signal of signals) {
+    if (signal.barIndex <= openUntilIndex) continue;
+
+    const risk = Math.abs(signal.entry - signal.stop);
+    if (risk === 0) continue;
+
+    let trimmed = false;
+    let currentStop = signal.stop;
+    let realizedR = 0;
+    let openFraction = 1;
+    let exitBarIndex = bars.length - 1;
+    let exitPrice = bars[bars.length - 1]!.c;
+    let outcome: "win" | "loss" = "loss";
+    let done = false;
+
+    for (let i = signal.barIndex + 1; i < bars.length; i++) {
+      const bar = bars[i]!;
+      const hitStop = signal.direction === "long" ? bar.l <= currentStop : bar.h >= currentStop;
+      const hitTarget = signal.direction === "long" ? bar.h >= signal.target : bar.l <= signal.target;
+
+      if (hitStop) {
+        exitBarIndex = i;
+        exitPrice = currentStop;
+        const legR = (signal.direction === "long" ? exitPrice - signal.entry : signal.entry - exitPrice) / risk;
+        const totalR = realizedR + openFraction * legR;
+        outcome = totalR > 0 ? "win" : "loss";
+        trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple: totalR });
+        done = true;
+        break;
+      }
+      if (hitTarget) {
+        exitBarIndex = i;
+        exitPrice = signal.target;
+        const legR = (signal.direction === "long" ? exitPrice - signal.entry : signal.entry - exitPrice) / risk;
+        const totalR = realizedR + openFraction * legR;
+        outcome = "win";
+        trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple: totalR });
+        done = true;
+        break;
+      }
+
+      if (!trimmed) {
+        const favorable = signal.direction === "long" ? bar.h - signal.entry : signal.entry - bar.l;
+        if (favorable / risk >= opts.trimAtR) {
+          trimmed = true;
+          realizedR += opts.trimFraction * opts.trimAtR;
+          openFraction = 1 - opts.trimFraction;
+          currentStop = signal.entry;
+        }
+      }
+    }
+
+    if (!done) {
+      const legR = (signal.direction === "long" ? exitPrice - signal.entry : signal.entry - exitPrice) / risk;
+      const totalR = realizedR + openFraction * legR;
+      trades.push({ ...signal, exitBarIndex, exitPrice, outcome: "loss", rMultiple: totalR });
+    }
+
+    openUntilIndex = exitBarIndex;
+  }
+
+  return trades;
+}
+
 export function buildEquityCurve(bars: Bar[], trades: Trade[]): EquityPoint[] {
   const curve: EquityPoint[] = [{ t: bars[0]?.t ?? 0, equity: 100 }];
   let equity = 100;
