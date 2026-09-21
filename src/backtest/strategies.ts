@@ -5,6 +5,7 @@ import { hasSmtDivergence } from "./smt.js";
 import { buildLegs, findPivots, oteZone, sdLevels, type Pivot } from "./swings.js";
 import { nyDateKey, nyHour } from "./nyTime.js";
 import type { Bar, Signal } from "./types.js";
+import type { ValueArea } from "./volumeProfile.js";
 
 const TARGET_R_MULTIPLE = 2;
 
@@ -487,6 +488,144 @@ export function swingFailurePatternEntries(
         reason: `SFP @hourly[${sfp.hourlyBarIndex}] (swing ${sfp.swingLevel.toFixed(2)}) + 5m FVG entry`,
       });
       break;
+    }
+  }
+
+  return signals;
+}
+
+/**
+ * Setup 7a — Opening Range Breakout with a volume "participation" filter
+ * (mechanical approximation of the orderflow-scalping episode's ORB half).
+ * The source material's entry filter is real footprint participation
+ * (contract counts on the breakout candle); this substitutes the candle's
+ * volume versus its trailing volumeLookback-bar average as the closest
+ * proxy available from OHLCV bars. Per the source, a wick poke beyond the
+ * opening range that closes back inside is explicitly NOT a valid breakout
+ * — only a close beyond the range counts. One attempt (long or short,
+ * whichever fires first) per session.
+ */
+export function orbBreakout(
+  bars: Bar[],
+  opts: { orBars: number; volumeLookback: number; volumeMultiplier: number; targetR: number },
+): Signal[] {
+  const signals: Signal[] = [];
+  let sessionKey = "";
+  let orHigh = -Infinity;
+  let orLow = Infinity;
+  let orBarsSeen = 0;
+  let orComplete = false;
+  let sessionDone = false;
+
+  for (let i = 0; i < bars.length; i++) {
+    const bar = bars[i]!;
+    const key = nyDateKey(bar.t);
+    if (key !== sessionKey) {
+      sessionKey = key;
+      orHigh = -Infinity;
+      orLow = Infinity;
+      orBarsSeen = 0;
+      orComplete = false;
+      sessionDone = false;
+    }
+
+    if (!orComplete) {
+      orHigh = Math.max(orHigh, bar.h);
+      orLow = Math.min(orLow, bar.l);
+      orBarsSeen++;
+      if (orBarsSeen >= opts.orBars) orComplete = true;
+      continue;
+    }
+    if (sessionDone) continue;
+
+    const volStart = Math.max(0, i - opts.volumeLookback);
+    let avgVol = 0;
+    for (let j = volStart; j < i; j++) avgVol += bars[j]!.v;
+    avgVol = i > volStart ? avgVol / (i - volStart) : bar.v;
+    const highParticipation = bar.v >= avgVol * opts.volumeMultiplier;
+    if (!highParticipation) continue;
+
+    if (bar.c > orHigh) {
+      const risk = bar.c - orLow;
+      if (risk > 0) {
+        signals.push({
+          barIndex: i,
+          direction: "long",
+          entry: bar.c,
+          stop: orLow,
+          target: bar.c + risk * opts.targetR,
+          reason: `ORB long: close ${bar.c.toFixed(2)} > OR high ${orHigh.toFixed(2)}, vol ${bar.v} vs avg ${avgVol.toFixed(0)}`,
+        });
+        sessionDone = true;
+      }
+    } else if (bar.c < orLow) {
+      const risk = orHigh - bar.c;
+      if (risk > 0) {
+        signals.push({
+          barIndex: i,
+          direction: "short",
+          entry: bar.c,
+          stop: orHigh,
+          target: bar.c - risk * opts.targetR,
+          reason: `ORB short: close ${bar.c.toFixed(2)} < OR low ${orLow.toFixed(2)}, vol ${bar.v} vs avg ${avgVol.toFixed(0)}`,
+        });
+        sessionDone = true;
+      }
+    }
+  }
+
+  return signals;
+}
+
+/**
+ * Setup 7b — "Failed auction" fade at the edges of a rolling volume-profile
+ * value area (a market-profile proxy for the source material's order-flow
+ * "fair value area"). A bar that pokes outside the value area but closes
+ * back inside is read as a failed auction / absorption at the edge; the
+ * fade trade targets reversion back toward the middle (point of control) or
+ * the opposite edge of the range.
+ */
+export function valueAreaFade(
+  bars: Bar[],
+  valueAreas: (ValueArea | null)[],
+  opts: { targetMode: "poc" | "oppositeEdge" },
+): Signal[] {
+  const signals: Signal[] = [];
+
+  for (let i = 0; i < bars.length; i++) {
+    const va = valueAreas[i];
+    if (!va) continue;
+    const bar = bars[i]!;
+
+    const failedAbove = bar.h > va.vah && bar.c <= va.vah;
+    const failedBelow = bar.l < va.val && bar.c >= va.val;
+
+    if (failedAbove) {
+      const target = opts.targetMode === "poc" ? va.poc : va.val;
+      const stop = bar.h;
+      if (stop > bar.c && target < bar.c) {
+        signals.push({
+          barIndex: i,
+          direction: "short",
+          entry: bar.c,
+          stop,
+          target,
+          reason: `failed auction above VAH ${va.vah.toFixed(2)}, fade to ${opts.targetMode}`,
+        });
+      }
+    } else if (failedBelow) {
+      const target = opts.targetMode === "poc" ? va.poc : va.vah;
+      const stop = bar.l;
+      if (stop < bar.c && target > bar.c) {
+        signals.push({
+          barIndex: i,
+          direction: "long",
+          entry: bar.c,
+          stop,
+          target,
+          reason: `failed auction below VAL ${va.val.toFixed(2)}, fade to ${opts.targetMode}`,
+        });
+      }
     }
   }
 
