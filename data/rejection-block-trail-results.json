@@ -1,0 +1,773 @@
+{
+  "generatedAt": "2026-09-21T21:17:03.087Z",
+  "results": [
+    {
+      "timeframe": "5-min",
+      "alone": true,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 31,
+        "wins": 18,
+        "losses": 13,
+        "winRate": 0.5806451612903226,
+        "avgR": 0.21257008598567587,
+        "totalR": 6.589672665555952,
+        "maxDrawdownPct": 2.611383399999989,
+        "finalEquity": 106.74581567536714
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": true,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 31,
+        "wins": 18,
+        "losses": 13,
+        "winRate": 0.5806451612903226,
+        "avgR": 0.1889749552320898,
+        "totalR": 5.8582236121947835,
+        "maxDrawdownPct": 2.634905800000002,
+        "finalEquity": 105.97299982669213
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": true,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 31,
+        "wins": 18,
+        "losses": 13,
+        "winRate": 0.5806451612903226,
+        "avgR": 0.1711102069213986,
+        "totalR": 5.304416414563357,
+        "maxDrawdownPct": 2.681950599999991,
+        "finalEquity": 105.38882400004326
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": true,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 31,
+        "wins": 19,
+        "losses": 12,
+        "winRate": 0.6129032258064516,
+        "avgR": 0.2001196049443629,
+        "totalR": 6.20370775327525,
+        "maxDrawdownPct": 3.585269565999996,
+        "finalEquity": 106.32725971390319
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": true,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 31,
+        "wins": 19,
+        "losses": 12,
+        "winRate": 0.6129032258064516,
+        "avgR": 0.17426075036508354,
+        "totalR": 5.40208326131759,
+        "maxDrawdownPct": 3.608556742000006,
+        "finalEquity": 105.48385076959737
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": true,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 31,
+        "wins": 19,
+        "losses": 12,
+        "winRate": 0.6129032258064516,
+        "avgR": 0.1518685544030058,
+        "totalR": 4.70792518649318,
+        "maxDrawdownPct": 3.6551310939999775,
+        "finalEquity": 104.755936378022
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": false,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 17,
+        "losses": 12,
+        "winRate": 0.5862068965517241,
+        "avgR": 0.21900125179033064,
+        "totalR": 6.351036301919589,
+        "maxDrawdownPct": 2.6113834000000082,
+        "finalEquity": 106.49168778406415
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": false,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 17,
+        "losses": 12,
+        "winRate": 0.5862068965517241,
+        "avgR": 0.19534626875906777,
+        "totalR": 5.665041794012965,
+        "maxDrawdownPct": 2.6349057999999985,
+        "finalEquity": 105.76867397923223
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": false,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 17,
+        "losses": 12,
+        "winRate": 0.5862068965517241,
+        "avgR": 0.17938426507898722,
+        "totalR": 5.202143687290629,
+        "maxDrawdownPct": 2.6819505999999933,
+        "finalEquity": 105.28115009653546
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": false,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 18,
+        "losses": 11,
+        "winRate": 0.6206896551724138,
+        "avgR": 0.20569211688409952,
+        "totalR": 5.9650713896388865,
+        "maxDrawdownPct": 3.5852695659999942,
+        "finalEquity": 106.0741282714372
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": false,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 18,
+        "losses": 11,
+        "winRate": 0.6206896551724138,
+        "avgR": 0.17961729114261285,
+        "totalR": 5.2089014431357725,
+        "maxDrawdownPct": 3.6085567420000046,
+        "finalEquity": 105.28046804723336
+      }
+    },
+    {
+      "timeframe": "5-min",
+      "alone": false,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 18,
+        "losses": 11,
+        "winRate": 0.6206896551724138,
+        "avgR": 0.15881560204208459,
+        "totalR": 4.605652459220453,
+        "maxDrawdownPct": 3.6551310939999837,
+        "finalEquity": 104.64890908463997
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": true,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.251949706257359,
+        "totalR": 8.566290012750207,
+        "maxDrawdownPct": 3.3154329212048346,
+        "finalEquity": 108.7803943941531
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": true,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.2326865553781389,
+        "totalR": 7.911342882856722,
+        "maxDrawdownPct": 3.3617267048192705,
+        "finalEquity": 108.07528779681071
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": true,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.19416025361969855,
+        "totalR": 6.601448623069751,
+        "maxDrawdownPct": 3.45431427204821,
+        "finalEquity": 106.67799754903496
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": true,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.251949706257359,
+        "totalR": 8.566290012750207,
+        "maxDrawdownPct": 3.3154329212048346,
+        "finalEquity": 108.7803943941531
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": true,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.2326865553781389,
+        "totalR": 7.911342882856722,
+        "maxDrawdownPct": 3.3617267048192705,
+        "finalEquity": 108.07528779681071
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": true,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 34,
+        "wins": 25,
+        "losses": 9,
+        "winRate": 0.7352941176470589,
+        "avgR": 0.19416025361969855,
+        "totalR": 6.601448623069751,
+        "maxDrawdownPct": 3.45431427204821,
+        "finalEquity": 106.67799754903496
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": false,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 24,
+        "losses": 9,
+        "winRate": 0.7272727272727273,
+        "avgR": 0.2245866798571339,
+        "totalR": 7.4113604352854185,
+        "maxDrawdownPct": 3.3154329212048346,
+        "finalEquity": 107.53840158709087
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": false,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 24,
+        "losses": 9,
+        "winRate": 0.7272727272727273,
+        "avgR": 0.20559340362049822,
+        "totalR": 6.784582319476441,
+        "maxDrawdownPct": 3.3617267048192705,
+        "finalEquity": 106.87110631718055
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": false,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 24,
+        "losses": 9,
+        "winRate": 0.7272727272727273,
+        "avgR": 0.16760685114722676,
+        "totalR": 5.531026087858483,
+        "maxDrawdownPct": 3.45431427204821,
+        "finalEquity": 105.54818598078991
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": false,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 24,
+        "losses": 9,
+        "winRate": 0.7272727272727273,
+        "avgR": 0.2245866798571339,
+        "totalR": 7.4113604352854185,
+        "maxDrawdownPct": 3.3154329212048346,
+        "finalEquity": 107.53840158709087
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": false,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 24,
+        "losses": 9,
+        "winRate": 0.7272727272727273,
+        "avgR": 0.20559340362049822,
+        "totalR": 6.784582319476441,
+        "maxDrawdownPct": 3.3617267048192705,
+        "finalEquity": 106.87110631718055
+      }
+    },
+    {
+      "timeframe": "15-min",
+      "alone": false,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 24,
+        "losses": 9,
+        "winRate": 0.7272727272727273,
+        "avgR": 0.16760685114722676,
+        "totalR": 5.531026087858483,
+        "maxDrawdownPct": 3.45431427204821,
+        "finalEquity": 105.54818598078991
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": true,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.3279446211972137,
+        "totalR": 10.822172499508051,
+        "maxDrawdownPct": 1.134088127354383,
+        "finalEquity": 111.32892642769438
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": true,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.31516476678320016,
+        "totalR": 10.400437303845605,
+        "maxDrawdownPct": 1.1536122627499423,
+        "finalEquity": 110.8630774541875
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": true,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.28960505795517333,
+        "totalR": 9.55696691252072,
+        "maxDrawdownPct": 1.192654853448272,
+        "finalEquity": 109.93691534598177
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": true,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.3279446211972137,
+        "totalR": 10.822172499508051,
+        "maxDrawdownPct": 1.134088127354383,
+        "finalEquity": 111.32892642769438
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": true,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.31516476678320016,
+        "totalR": 10.400437303845605,
+        "maxDrawdownPct": 1.1536122627499423,
+        "finalEquity": 110.8630774541875
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": true,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 33,
+        "wins": 28,
+        "losses": 5,
+        "winRate": 0.8484848484848485,
+        "avgR": 0.28960505795517333,
+        "totalR": 9.55696691252072,
+        "maxDrawdownPct": 1.192654853448272,
+        "finalEquity": 109.93691534598177
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": false,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 24,
+        "losses": 5,
+        "winRate": 0.8275862068965517,
+        "avgR": 0.3147206063619393,
+        "totalR": 9.126897584496241,
+        "maxDrawdownPct": 1.134088127354401,
+        "finalEquity": 109.46189626743032
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": false,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 24,
+        "losses": 5,
+        "winRate": 0.8275862068965517,
+        "avgR": 0.30240952007335864,
+        "totalR": 8.7698760821274,
+        "maxDrawdownPct": 1.1536122627499212,
+        "finalEquity": 109.07405530254198
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": false,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 24,
+        "losses": 5,
+        "winRate": 0.8275862068965517,
+        "avgR": 0.27778734749619716,
+        "totalR": 8.055833077389718,
+        "maxDrawdownPct": 1.192654853448273,
+        "finalEquity": 108.30224792593305
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": false,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 24,
+        "losses": 5,
+        "winRate": 0.8275862068965517,
+        "avgR": 0.3147206063619393,
+        "totalR": 9.126897584496241,
+        "maxDrawdownPct": 1.134088127354401,
+        "finalEquity": 109.46189626743032
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": false,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 24,
+        "losses": 5,
+        "winRate": 0.8275862068965517,
+        "avgR": 0.30240952007335864,
+        "totalR": 8.7698760821274,
+        "maxDrawdownPct": 1.1536122627499212,
+        "finalEquity": 109.07405530254198
+      }
+    },
+    {
+      "timeframe": "1-hour",
+      "alone": false,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 29,
+        "wins": 24,
+        "losses": 5,
+        "winRate": 0.8275862068965517,
+        "avgR": 0.27778734749619716,
+        "totalR": 8.055833077389718,
+        "maxDrawdownPct": 1.192654853448273,
+        "finalEquity": 108.30224792593305
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": true,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 6,
+        "wins": 4,
+        "losses": 2,
+        "winRate": 0.6666666666666666,
+        "avgR": 0.41216779418285593,
+        "totalR": 2.4730067650971357,
+        "maxDrawdownPct": 1,
+        "finalEquity": 102.47984766019617
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": true,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 6,
+        "wins": 4,
+        "losses": 2,
+        "winRate": 0.6666666666666666,
+        "avgR": 0.4096548433395959,
+        "totalR": 2.4579290600375754,
+        "maxDrawdownPct": 1,
+        "finalEquity": 102.46453804846158
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": true,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 6,
+        "wins": 4,
+        "losses": 2,
+        "winRate": 0.6666666666666666,
+        "avgR": 0.4046289416530757,
+        "totalR": 2.4277736499184543,
+        "maxDrawdownPct": 1,
+        "finalEquity": 102.43392381185072
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": true,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 6,
+        "wins": 5,
+        "losses": 1,
+        "winRate": 0.8333333333333334,
+        "avgR": 0.4408365572855813,
+        "totalR": 2.645019343713488,
+        "maxDrawdownPct": 1.0000000000000009,
+        "finalEquity": 102.65612588871858
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": true,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 6,
+        "wins": 5,
+        "losses": 1,
+        "winRate": 0.8333333333333334,
+        "avgR": 0.43811396283645127,
+        "totalR": 2.6286837770187077,
+        "maxDrawdownPct": 1.0000000000000036,
+        "finalEquity": 102.63950108041226
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": true,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 6,
+        "wins": 5,
+        "losses": 1,
+        "winRate": 0.8333333333333334,
+        "avgR": 0.4326687739381911,
+        "totalR": 2.5960126436291464,
+        "maxDrawdownPct": 0.9999999999999948,
+        "finalEquity": 102.60625761449016
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": false,
+      "be": 0,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 1,
+        "wins": 0,
+        "losses": 1,
+        "winRate": 0,
+        "avgR": 0,
+        "totalR": 0,
+        "maxDrawdownPct": 0,
+        "finalEquity": 100
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": false,
+      "be": 0,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 1,
+        "wins": 0,
+        "losses": 1,
+        "winRate": 0,
+        "avgR": 0,
+        "totalR": 0,
+        "maxDrawdownPct": 0,
+        "finalEquity": 100
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": false,
+      "be": 0,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 1,
+        "wins": 0,
+        "losses": 1,
+        "winRate": 0,
+        "avgR": 0,
+        "totalR": 0,
+        "maxDrawdownPct": 0,
+        "finalEquity": 100
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": false,
+      "be": 1,
+      "trail": 2,
+      "stats": {
+        "totalTrades": 1,
+        "wins": 1,
+        "losses": 0,
+        "winRate": 1,
+        "avgR": 0.1720125786163522,
+        "totalR": 0.1720125786163522,
+        "maxDrawdownPct": 0,
+        "finalEquity": 100.17201257861635
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": false,
+      "be": 1,
+      "trail": 3,
+      "stats": {
+        "totalTrades": 1,
+        "wins": 1,
+        "losses": 0,
+        "winRate": 1,
+        "avgR": 0.17075471698113207,
+        "totalR": 0.17075471698113207,
+        "maxDrawdownPct": 0,
+        "finalEquity": 100.17075471698114
+      }
+    },
+    {
+      "timeframe": "1-day",
+      "alone": false,
+      "be": 1,
+      "trail": 5,
+      "stats": {
+        "totalTrades": 1,
+        "wins": 1,
+        "losses": 0,
+        "winRate": 1,
+        "avgR": 0.16823899371069181,
+        "totalR": 0.16823899371069181,
+        "maxDrawdownPct": 0,
+        "finalEquity": 100.1682389937107
+      }
+    }
+  ]
+}

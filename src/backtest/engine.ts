@@ -211,6 +211,79 @@ export function simulateTradesWithPartialAtR(
   return trades;
 }
 
+/**
+ * Points-based breakeven + tight-trail management, replacing the fixed
+ * price target entirely (the trade rides until stopped out): as soon as
+ * price moves `breakevenTriggerPoints` in favor (a near-zero value means
+ * "any reaction at all"), the stop moves to breakeven. Once price has
+ * moved `trailStartPoints` in favor, a trailing stop kicks in,
+ * `trailDistancePoints` behind the running favorable extreme, and only
+ * ever tightens (never loosens). As with the other management modes, a
+ * bar's stop check always uses the stop as of the START of that bar —
+ * an update triggered by a bar's own extreme takes effect from the next
+ * bar onward, avoiding same-bar ordering ambiguity. signal.target is
+ * ignored entirely in this mode.
+ */
+export function simulateTradesWithPointsTrail(
+  bars: Bar[],
+  signals: Signal[],
+  opts: { breakevenTriggerPoints: number; trailStartPoints: number; trailDistancePoints: number },
+): Trade[] {
+  const trades: Trade[] = [];
+  let openUntilIndex = -1;
+
+  for (const signal of signals) {
+    if (signal.barIndex <= openUntilIndex) continue;
+
+    const risk = Math.abs(signal.entry - signal.stop);
+    if (risk === 0) continue;
+
+    let currentStop = signal.stop;
+    let movedToBreakeven = false;
+    let runningExtreme = signal.entry;
+    let exitBarIndex = bars.length - 1;
+    let exitPrice = bars[bars.length - 1]!.c;
+    let outcome: "win" | "loss" = "loss";
+    let done = false;
+
+    for (let i = signal.barIndex + 1; i < bars.length; i++) {
+      const bar = bars[i]!;
+      const hitStop = signal.direction === "long" ? bar.l <= currentStop : bar.h >= currentStop;
+
+      if (hitStop) {
+        exitBarIndex = i;
+        exitPrice = currentStop;
+        const rMultiple = (signal.direction === "long" ? exitPrice - signal.entry : signal.entry - exitPrice) / risk;
+        outcome = rMultiple > 0 ? "win" : "loss";
+        trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple });
+        done = true;
+        break;
+      }
+
+      runningExtreme = signal.direction === "long" ? Math.max(runningExtreme, bar.h) : Math.min(runningExtreme, bar.l);
+      const favorable = signal.direction === "long" ? runningExtreme - signal.entry : signal.entry - runningExtreme;
+
+      if (!movedToBreakeven && favorable >= opts.breakevenTriggerPoints) {
+        currentStop = signal.entry;
+        movedToBreakeven = true;
+      }
+      if (favorable >= opts.trailStartPoints) {
+        const trailStop = signal.direction === "long" ? runningExtreme - opts.trailDistancePoints : runningExtreme + opts.trailDistancePoints;
+        currentStop = signal.direction === "long" ? Math.max(currentStop, trailStop) : Math.min(currentStop, trailStop);
+      }
+    }
+
+    if (!done) {
+      const rMultiple = (signal.direction === "long" ? exitPrice - signal.entry : signal.entry - exitPrice) / risk;
+      trades.push({ ...signal, exitBarIndex, exitPrice, outcome: rMultiple > 0 ? "win" : "loss", rMultiple });
+    }
+
+    openUntilIndex = exitBarIndex;
+  }
+
+  return trades;
+}
+
 export function buildEquityCurve(bars: Bar[], trades: Trade[]): EquityPoint[] {
   const curve: EquityPoint[] = [{ t: bars[0]?.t ?? 0, equity: 100 }];
   let equity = 100;
