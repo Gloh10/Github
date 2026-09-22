@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-09-22T22:55:42.882Z",
+  "trials": 1000,
+  "distinctDays": 32,
+  "clearRate": 100,
+  "bustRate": 0,
+  "ranOutRate": 0,
+  "avgDaysToClear": 30.092
+}
