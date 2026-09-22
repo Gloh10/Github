@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-09-22T22:32:30.155Z",
+  "trials": 1000,
+  "underlyingStats": {
+    "totalTrades": 33,
+    "wins": 28,
+    "losses": 5,
+    "winRate": 0.8484848484848485,
+    "avgR": 0.3279446211972137,
+    "totalR": 10.822172499508051,
+    "maxDrawdownPct": 1.134088127354383,
+    "finalEquity": 111.32892642769438
+  },
+  "distinctDays": 32,
+  "summary": [
+    {
+      "label": "LucidFlex 150K (funded stage)",
+      "instrument": "MNQ",
+      "contracts": 4,
+      "ddPct": 16.064646464646465,
+      "bustRate": 0,
+      "avgPayouts": 3,
+      "pAtLeastOnePayout": 100,
+      "avgDaysToFirstPayout": 10.314,
+      "avgProtected": 8201.962
+    },
+    {
+      "label": "MyFundedFutures Pro 150K (funded stage)",
+      "instrument": "MNQ",
+      "contracts": 4,
+      "ddPct": 15.715415019762846,
+      "bustRate": 0,
+      "avgPayouts": 2.998,
+      "pAtLeastOnePayout": 100,
+      "avgDaysToFirstPayout": 10.008,
+      "avgProtected": 7036.342400000017
+    }
+  ]
+}
