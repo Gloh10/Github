@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-09-22T22:59:41.526Z",
+  "trials": 1000,
+  "distinctDays": 18,
+  "summary": [
+    {
+      "contracts": 1,
+      "ddPctPerTrade": 9.506775067750677,
+      "clearRate": 99.9,
+      "bustRate": 0.1,
+      "ranOutRate": 0,
+      "avgDaysToClear": 7.032032032032032
+    },
+    {
+      "contracts": 2,
+      "ddPctPerTrade": 19.013550135501355,
+      "clearRate": 92.4,
+      "bustRate": 7.6,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.925324675324675
+    },
+    {
+      "contracts": 3,
+      "ddPctPerTrade": 28.520325203252035,
+      "clearRate": 82.1,
+      "bustRate": 17.9,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.5566382460414125
+    },
+    {
+      "contracts": 4,
+      "ddPctPerTrade": 38.02710027100271,
+      "clearRate": 76.5,
+      "bustRate": 23.5,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.477124183006536
+    },
+    {
+      "contracts": 5,
+      "ddPctPerTrade": 47.53387533875339,
+      "clearRate": 75.6,
+      "bustRate": 24.4,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.4563492063492065
+    },
+    {
+      "contracts": 6,
+      "ddPctPerTrade": 57.04065040650407,
+      "clearRate": 66.10000000000001,
+      "bustRate": 33.900000000000006,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.409984871406959
+    },
+    {
+      "contracts": 7,
+      "ddPctPerTrade": 66.54742547425474,
+      "clearRate": 65.3,
+      "bustRate": 34.699999999999996,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.393568147013783
+    },
+    {
+      "contracts": 8,
+      "ddPctPerTrade": 76.05420054200542,
+      "clearRate": 65.2,
+      "bustRate": 34.8,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.389570552147239
+    },
+    {
+      "contracts": 9,
+      "ddPctPerTrade": 85.56097560975611,
+      "clearRate": 65.2,
+      "bustRate": 34.8,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.389570552147239
+    },
+    {
+      "contracts": 10,
+      "ddPctPerTrade": 95.06775067750678,
+      "clearRate": 62.4,
+      "bustRate": 37.6,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.344551282051282
+    }
+  ]
+}
