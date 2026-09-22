@@ -1,0 +1,311 @@
+{
+  "generatedAt": "2026-09-22T23:18:06.016Z",
+  "fullPeriod": [
+    {
+      "label": "V0: Baseline (current flagship)",
+      "totalTrades": 41,
+      "wins": 18,
+      "losses": 23,
+      "winRate": 0.43902439024390244,
+      "avgR": 1.6341463414634145,
+      "totalR": 67,
+      "maxDrawdownPct": 10.46617457412836,
+      "finalEquity": 190.99273991487934
+    },
+    {
+      "label": "V1: Mean-reversion only",
+      "totalTrades": 38,
+      "wins": 16,
+      "losses": 22,
+      "winRate": 0.42105263157894735,
+      "avgR": 1.5263157894736843,
+      "totalR": 58,
+      "maxDrawdownPct": 7.725530557207992,
+      "finalEquity": 174.9859043174414
+    },
+    {
+      "label": "V2: V1 + exclude hour 5",
+      "totalTrades": 34,
+      "wins": 15,
+      "losses": 19,
+      "winRate": 0.4411764705882353,
+      "avgR": 1.6470588235294117,
+      "totalR": 56,
+      "maxDrawdownPct": 6.793465209301008,
+      "finalEquity": 171.75452330373122
+    },
+    {
+      "label": "V3: V2 + exclude Tue/Wed",
+      "totalTrades": 19,
+      "wins": 12,
+      "losses": 7,
+      "winRate": 0.631578947368421,
+      "avgR": 2.789473684210526,
+      "totalR": 53,
+      "maxDrawdownPct": 1.990000000000007,
+      "finalEquity": 167.3855451304786
+    }
+  ],
+  "splitPeriod": [
+    {
+      "label": "V0: Baseline (current flagship)",
+      "firstHalf": {
+        "totalTrades": 13,
+        "wins": 9,
+        "losses": 4,
+        "winRate": 0.6923076923076923,
+        "avgR": 3.1538461538461537,
+        "totalR": 41,
+        "maxDrawdownPct": 1.990000000000004,
+        "finalEquity": 149.0199694469381
+      },
+      "secondHalf": {
+        "totalTrades": 29,
+        "wins": 9,
+        "losses": 20,
+        "winRate": 0.3103448275862069,
+        "avgR": 0.8620689655172413,
+        "totalR": 25,
+        "maxDrawdownPct": 10.466174574128368,
+        "finalEquity": 126.88421103391636
+      },
+      "bothPositive": true
+    },
+    {
+      "label": "V1: Mean-reversion only",
+      "firstHalf": {
+        "totalTrades": 15,
+        "wins": 7,
+        "losses": 8,
+        "winRate": 0.4666666666666667,
+        "avgR": 1.8,
+        "totalR": 27,
+        "maxDrawdownPct": 7.725530557207992,
+        "finalEquity": 129.8394449533339
+      },
+      "secondHalf": {
+        "totalTrades": 24,
+        "wins": 9,
+        "losses": 15,
+        "winRate": 0.375,
+        "avgR": 1.25,
+        "totalR": 30,
+        "maxDrawdownPct": 6.793465209300997,
+        "finalEquity": 133.4232792943088
+      },
+      "bothPositive": true
+    },
+    {
+      "label": "V2: V1 + exclude hour 5",
+      "firstHalf": {
+        "totalTrades": 13,
+        "wins": 7,
+        "losses": 6,
+        "winRate": 0.5384615384615384,
+        "avgR": 2.230769230769231,
+        "totalR": 29,
+        "maxDrawdownPct": 5.851985059900003,
+        "finalEquity": 132.4757116144617
+      },
+      "secondHalf": {
+        "totalTrades": 22,
+        "wins": 8,
+        "losses": 14,
+        "winRate": 0.36363636363636365,
+        "avgR": 1.1818181818181819,
+        "totalR": 26,
+        "maxDrawdownPct": 6.793465209300997,
+        "finalEquity": 128.35332303444807
+      },
+      "bothPositive": true
+    },
+    {
+      "label": "V3: V2 + exclude Tue/Wed",
+      "firstHalf": {
+        "totalTrades": 8,
+        "wins": 6,
+        "losses": 2,
+        "winRate": 0.75,
+        "avgR": 3.5,
+        "totalR": 28,
+        "maxDrawdownPct": 1.990000000000007,
+        "finalEquity": 131.34277373765627
+      },
+      "secondHalf": {
+        "totalTrades": 11,
+        "wins": 6,
+        "losses": 5,
+        "winRate": 0.5454545454545454,
+        "avgR": 2.272727272727273,
+        "totalR": 25,
+        "maxDrawdownPct": 1.9899999999999998,
+        "finalEquity": 127.44176201487416
+      },
+      "bothPositive": true
+    }
+  ],
+  "costResults": [
+    {
+      "label": "V0: Baseline (current flagship)",
+      "scenarios": [
+        {
+          "label": "No cost",
+          "usd": 0,
+          "totalR": 67,
+          "finalEquity": 190.99273991487934
+        },
+        {
+          "label": "Low-cost (~$5 + 0.5pt slip)",
+          "usd": 15,
+          "totalR": 65.19212867658439,
+          "finalEquity": 187.62660462747465
+        },
+        {
+          "label": "Typical retail (~$8 + 1pt slip)",
+          "usd": 28,
+          "totalR": 63.625306862957544,
+          "finalEquity": 184.75584853761987
+        },
+        {
+          "label": "Conservative (~$10 + 2pt slip)",
+          "usd": 50,
+          "totalR": 60.97376225528133,
+          "finalEquity": 179.99433135816042
+        }
+      ]
+    },
+    {
+      "label": "V1: Mean-reversion only",
+      "scenarios": [
+        {
+          "label": "No cost",
+          "usd": 0,
+          "totalR": 58,
+          "finalEquity": 174.9859043174414
+        },
+        {
+          "label": "Low-cost (~$5 + 0.5pt slip)",
+          "usd": 15,
+          "totalR": 56.245147769788645,
+          "finalEquity": 171.986134330683
+        },
+        {
+          "label": "Typical retail (~$8 + 1pt slip)",
+          "usd": 28,
+          "totalR": 54.724275836938816,
+          "finalEquity": 169.4265984974325
+        },
+        {
+          "label": "Conservative (~$10 + 2pt slip)",
+          "usd": 50,
+          "totalR": 52.15049256596217,
+          "finalEquity": 165.1787372098374
+        }
+      ]
+    },
+    {
+      "label": "V2: V1 + exclude hour 5",
+      "scenarios": [
+        {
+          "label": "No cost",
+          "usd": 0,
+          "totalR": 56,
+          "finalEquity": 171.75452330373122
+        },
+        {
+          "label": "Low-cost (~$5 + 0.5pt slip)",
+          "usd": 15,
+          "totalR": 54.41467834063768,
+          "finalEquity": 169.0953648746542
+        },
+        {
+          "label": "Typical retail (~$8 + 1pt slip)",
+          "usd": 28,
+          "totalR": 53.04073290252367,
+          "finalEquity": 166.82286420816726
+        },
+        {
+          "label": "Conservative (~$10 + 2pt slip)",
+          "usd": 50,
+          "totalR": 50.715594468792276,
+          "finalEquity": 163.04392276936292
+        }
+      ]
+    },
+    {
+      "label": "V3: V2 + exclude Tue/Wed",
+      "scenarios": [
+        {
+          "label": "No cost",
+          "usd": 0,
+          "totalR": 53,
+          "finalEquity": 167.3855451304786
+        },
+        {
+          "label": "Low-cost (~$5 + 0.5pt slip)",
+          "usd": 15,
+          "totalR": 52.09746968218718,
+          "finalEquity": 165.91823172117168
+        },
+        {
+          "label": "Typical retail (~$8 + 1pt slip)",
+          "usd": 28,
+          "totalR": 51.31527674008272,
+          "finalEquity": 164.6562742376517
+        },
+        {
+          "label": "Conservative (~$10 + 2pt slip)",
+          "usd": 50,
+          "totalR": 49.99156560729058,
+          "finalEquity": 162.54102923999955
+        }
+      ]
+    }
+  ],
+  "outOfSample": [
+    {
+      "label": "V0: Baseline (current flagship)",
+      "totalTrades": 55,
+      "wins": 14,
+      "losses": 41,
+      "winRate": 0.2545454545454545,
+      "avgR": 0.5272727272727272,
+      "totalR": 29,
+      "maxDrawdownPct": 7.725530557207992,
+      "finalEquity": 131.12731406854084
+    },
+    {
+      "label": "V1: Mean-reversion only",
+      "totalTrades": 51,
+      "wins": 13,
+      "losses": 38,
+      "winRate": 0.2549019607843137,
+      "avgR": 0.5294117647058824,
+      "totalR": 27,
+      "maxDrawdownPct": 7.725530557207998,
+      "finalEquity": 128.70584866701205
+    },
+    {
+      "label": "V2: V1 + exclude hour 5",
+      "totalTrades": 47,
+      "wins": 12,
+      "losses": 35,
+      "winRate": 0.2553191489361702,
+      "avgR": 0.5319148936170213,
+      "totalR": 25,
+      "maxDrawdownPct": 7.725530557207998,
+      "finalEquity": 126.32909930906622
+    },
+    {
+      "label": "V3: V2 + exclude Tue/Wed",
+      "totalTrades": 27,
+      "wins": 7,
+      "losses": 20,
+      "winRate": 0.25925925925925924,
+      "avgR": 0.5555555555555556,
+      "totalR": 15,
+      "maxDrawdownPct": 10.596934035038066,
+      "finalEquity": 115.08771975865429
+    }
+  ]
+}
