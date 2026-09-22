@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-09-22T23:04:15.239Z",
+  "trials": 1000,
+  "flagshipOnly": {
+    "clearRate": 100,
+    "bustRate": 0,
+    "avgDaysToClear": 6.886
+  },
+  "combined": {
+    "clearRate": 100,
+    "bustRate": 0,
+    "avgDaysToClear": 6.081
+  }
+}
