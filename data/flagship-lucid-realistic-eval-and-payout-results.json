@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-09-23T00:24:47.871Z",
+  "evalTrials": 1000,
+  "depthTrials": 5000,
+  "distinctDays": 18,
+  "eval": {
+    "clearRate": 99.6,
+    "bustRate": 0.4,
+    "avgDaysToClear": 8.052208835341366
+  },
+  "payout": {
+    "bustRate": 0.54,
+    "graduatedRate": 0,
+    "avgPayouts": 0.829,
+    "pAtLeastOne": 82.89999999999999,
+    "avgProtected": 2484.169
+  }
+}
