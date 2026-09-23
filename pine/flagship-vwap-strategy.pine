@@ -160,15 +160,16 @@ if canEnter and (rawSignalLong or rawSignalShort)
         entryPrice  := ep
         stopPrice   := sp
         targetPrice := dir == "long" ? ep + risk * targetRMultiple : ep - risk * targetRMultiple
-
-        label.new(bar_index, dir == "long" ? low : high,
-             text = (dir == "long" ? "LONG " : "SHORT ") + str.tostring(ep, "#.##") +
-                    "\nSL " + str.tostring(sp, "#.##") +
-                    "\nTP " + str.tostring(targetPrice, "#.##"),
-             style = dir == "long" ? label.style_label_up : label.style_label_down,
-             color = dir == "long" ? color.new(color.green, 15) : color.new(color.red, 15),
-             textcolor = color.white, size = size.small,
-             yloc = dir == "long" ? yloc.belowbar : yloc.abovebar)
+        dirLabel = dir == "long" ? "LONG " : "SHORT "
+        priceLine = dirLabel + str.tostring(ep, "#.##")
+        slLine = "SL " + str.tostring(sp, "#.##")
+        tpLine = "TP " + str.tostring(targetPrice, "#.##")
+        labelText = priceLine + "\n" + slLine + "\n" + tpLine
+        labelY = dir == "long" ? low : high
+        labelStyle = dir == "long" ? label.style_label_up : label.style_label_down
+        labelColor = dir == "long" ? color.new(color.green, 15) : color.new(color.red, 15)
+        labelYloc = dir == "long" ? yloc.belowbar : yloc.abovebar
+        label.new(bar_index, labelY, text=labelText, style=labelStyle, color=labelColor, textcolor=color.white, size=size.small, yloc=labelYloc)
 
 else if inPosition
     isLong = posDir == "long"
