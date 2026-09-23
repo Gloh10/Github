@@ -1,6 +1,29 @@
 import type { Bar } from "./types.js";
 
 /**
+ * Standard exponential moving average of closes. Seeded with a simple
+ * average of the first `period` closes (the common convention), then the
+ * usual EMA recursion: ema[i] = close[i] * k + ema[i-1] * (1-k), k = 2/(period+1).
+ * NaN for the first period-1 bars (insufficient history).
+ */
+export function ema(bars: Bar[], period: number): number[] {
+  const out: number[] = new Array(bars.length).fill(NaN);
+  if (bars.length < period) return out;
+
+  const k = 2 / (period + 1);
+  let seedSum = 0;
+  for (let i = 0; i < period; i++) seedSum += bars[i]!.c;
+  let prev = seedSum / period;
+  out[period - 1] = prev;
+
+  for (let i = period; i < bars.length; i++) {
+    prev = bars[i]!.c * k + prev * (1 - k);
+    out[i] = prev;
+  }
+  return out;
+}
+
+/**
  * Choppiness Index: a standard, objective (not strategy-fit) measure of
  * whether a market is trending or ranging over `lookback` bars.
  * 100 * log10( sum(true range, lookback) / (highest high - lowest low) ) / log10(lookback).
