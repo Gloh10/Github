@@ -1,0 +1,201 @@
+//@version=6
+indicator("Flagship VWAP Mean-Rev + Trend (visual trade check)", overlay = true, max_labels_count = 500, max_lines_count = 500)
+
+// =============================================================================
+// Replicates the exact flagship strategy validated in the backtest project:
+//   - Session VWAP (resets each UTC calendar day) with 1sigma/2sigma bands
+//   - Mean-reversion: flat VWAP + band2 tag + reversal candle, target = 5R
+//   - Trend-continuation: sloping VWAP + pullback to VWAP/band1 + trend candle, target = 5R
+//   - Hour/weekday filter (NY time): excludes hours 4,8,10,12,13,18,19,23,
+//     all day Sunday, and Monday 1am-3am NY
+//   - Fixed stop = the wick that triggered entry, fixed target = 5x that risk
+//   - Only one open position at a time (matches the backtest's single-position rule)
+// Intended for the 5-minute chart of CME_MINI:NQ1! (or MNQ1!) -- the slope
+// lookback (12 bars =~ 60 min) and hour filter were tuned specifically for 5-min
+// NQ data and will NOT match validated results on any other timeframe or symbol.
+// =============================================================================
+
+flatSlopePct  = 0.15
+trendSlopePct = 0.15
+slopeLookback = 12
+targetRMultiple = 5.0
+
+// ---------------------------------------------------------------------------
+// Session VWAP + bands (session = UTC calendar day, matching the backtest)
+// ---------------------------------------------------------------------------
+utcY = year(time, "UTC")
+utcM = month(time, "UTC")
+utcD = dayofmonth(time, "UTC")
+newUtcDay = na(utcD[1]) or utcY != utcY[1] or utcM != utcM[1] or utcD != utcD[1]
+
+var float cumPV  = 0.0
+var float cumV   = 0.0
+var float cumPV2 = 0.0
+
+if newUtcDay
+    cumPV  := 0.0
+    cumV   := 0.0
+    cumPV2 := 0.0
+
+tp = (high + low + close) / 3
+cumPV := cumPV + tp * volume
+cumV  := cumV + volume
+vwapVal = cumV > 0 ? cumPV / cumV : tp
+cumPV2 := cumPV2 + volume * math.pow(tp - vwapVal, 2)
+variance = cumV > 0 ? cumPV2 / cumV : 0.0
+stdDev = math.sqrt(math.max(variance, 0.0))
+
+upperBand1 = vwapVal + stdDev
+lowerBand1 = vwapVal - stdDev
+upperBand2 = vwapVal + 2.0 * stdDev
+lowerBand2 = vwapVal - 2.0 * stdDev
+
+plot(vwapVal, "VWAP", color = color.new(color.yellow, 0), linewidth = 2)
+plot(upperBand1, "Band 1 Upper", color = color.new(color.gray, 40))
+plot(lowerBand1, "Band 1 Lower", color = color.new(color.gray, 40))
+plot(upperBand2, "Band 2 Upper", color = color.new(color.gray, 20))
+plot(lowerBand2, "Band 2 Lower", color = color.new(color.gray, 20))
+
+// ---------------------------------------------------------------------------
+// VWAP slope (% change over slopeLookback bars)
+// ---------------------------------------------------------------------------
+vwapPast = vwapVal[slopeLookback]
+haveSlopeHistory = not na(vwapPast) and vwapPast != 0.0
+slopePct = haveSlopeHistory ? (vwapVal - vwapPast) / vwapPast * 100.0 : na
+
+// ---------------------------------------------------------------------------
+// Candle pattern helpers (exact translation of candlePatterns.ts)
+// ---------------------------------------------------------------------------
+f_body(o, c) => math.abs(c - o)
+f_range(h, l) => h - l
+f_upperWick(o, h, c) => h - math.max(o, c)
+f_lowerWick(o, l, c) => math.min(o, c) - l
+f_isBullish(o, c) => c > o
+f_isBearish(o, c) => c < o
+
+f_isShootingStar(o, h, l, c) =>
+    r = f_range(h, l)
+    b = f_body(o, c)
+    r != 0 and f_upperWick(o, h, c) >= 2.0 * b and f_lowerWick(o, l, c) <= r * 0.1 and b <= r * 0.35
+
+f_isHammer(o, h, l, c) =>
+    r = f_range(h, l)
+    b = f_body(o, c)
+    r != 0 and f_lowerWick(o, l, c) >= 2.0 * b and f_upperWick(o, h, c) <= r * 0.1 and b <= r * 0.35
+
+f_isBullishEngulfing(prevO, prevC, o, c) =>
+    f_isBearish(prevO, prevC) and f_isBullish(o, c) and o <= prevC and c >= prevO and f_body(o, c) > f_body(prevO, prevC)
+
+f_isBearishEngulfing(prevO, prevC, o, c) =>
+    f_isBullish(prevO, prevC) and f_isBearish(o, c) and o >= prevC and c <= prevO and f_body(o, c) > f_body(prevO, prevC)
+
+shootingStar   = f_isShootingStar(open, high, low, close)
+hammer         = f_isHammer(open, high, low, close)
+bullEngulfing  = f_isBullishEngulfing(open[1], close[1], open, close)
+bearEngulfing  = f_isBearishEngulfing(open[1], close[1], open, close)
+
+// ---------------------------------------------------------------------------
+// Mean-reversion signals (flat VWAP + band2 tag + reversal candle)
+// ---------------------------------------------------------------------------
+isFlat = haveSlopeHistory and math.abs(slopePct) <= flatSlopePct
+touchedUpper = high >= upperBand2
+touchedLower = low <= lowerBand2
+
+meanRevShort = isFlat and touchedUpper and (shootingStar or bearEngulfing)
+meanRevLong  = isFlat and touchedLower and (hammer or bullEngulfing)
+
+// ---------------------------------------------------------------------------
+// Trend-continuation signals (sloping VWAP + pullback + trend-aligned candle)
+// ---------------------------------------------------------------------------
+isUptrend   = haveSlopeHistory and slopePct >= trendSlopePct
+isDowntrend = haveSlopeHistory and slopePct <= -trendSlopePct
+
+pulledBackLong  = low <= vwapVal or low <= lowerBand1
+pulledBackShort = high >= vwapVal or high >= upperBand1
+
+trendLong  = isUptrend and pulledBackLong and (hammer or bullEngulfing)
+trendShort = isDowntrend and pulledBackShort and (shootingStar or bearEngulfing)
+
+// ---------------------------------------------------------------------------
+// Hour / weekday filter (NY time) -- matches EXCLUDED_HOURS used throughout
+// the backtest project, plus all-day Sunday and Monday 1am-3am NY
+// ---------------------------------------------------------------------------
+nyHour = hour(time, "America/New_York")
+nyDow  = dayofweek(time, "America/New_York") // 1 = Sunday ... 7 = Saturday
+
+isExcludedHour = nyHour == 4 or nyHour == 8 or nyHour == 10 or nyHour == 12 or nyHour == 13 or nyHour == 18 or nyHour == 19 or nyHour == 23
+isSunday       = nyDow == dayofweek.sunday
+isMondayEarly  = nyDow == dayofweek.monday and (nyHour == 1 or nyHour == 2 or nyHour == 3)
+
+passFilter = not isExcludedHour and not isSunday and not isMondayEarly
+
+rawSignalLong  = passFilter and (meanRevLong or trendLong)
+rawSignalShort = passFilter and (meanRevShort or trendShort)
+
+// ---------------------------------------------------------------------------
+// Single-position state machine (only one open trade at a time, matching the
+// backtest's "skip a new signal while a position from an earlier signal is
+// still open" rule) + stop/target resolution, stop-wins-ties on a same-bar
+// overlap, checked starting the bar AFTER entry (never the entry bar itself).
+// ---------------------------------------------------------------------------
+var bool   inPosition  = false
+var string posDir      = na
+var float  entryPrice  = na
+var float  stopPrice   = na
+var float  targetPrice = na
+
+canEnter = not inPosition
+
+justExited = false
+exitWasWin = false
+
+if canEnter and (rawSignalLong or rawSignalShort)
+    dir = rawSignalLong ? "long" : "short"
+    ep = close
+    sp = dir == "long" ? low : high
+    risk = dir == "long" ? ep - sp : sp - ep
+    if risk > 0
+        inPosition  := true
+        posDir      := dir
+        entryPrice  := ep
+        stopPrice   := sp
+        targetPrice := dir == "long" ? ep + risk * targetRMultiple : ep - risk * targetRMultiple
+
+        label.new(bar_index, dir == "long" ? low : high,
+             text = (dir == "long" ? "LONG " : "SHORT ") + str.tostring(ep, "#.##") +
+                    "\nSL " + str.tostring(sp, "#.##") +
+                    "\nTP " + str.tostring(targetPrice, "#.##"),
+             style = dir == "long" ? label.style_label_up : label.style_label_down,
+             color = dir == "long" ? color.new(color.green, 15) : color.new(color.red, 15),
+             textcolor = color.white, size = size.small,
+             yloc = dir == "long" ? yloc.belowbar : yloc.abovebar)
+
+else if inPosition
+    isLong = posDir == "long"
+    hitStop   = isLong ? low <= stopPrice   : high >= stopPrice
+    hitTarget = isLong ? high >= targetPrice : low <= targetPrice
+
+    // stop-wins-ties: matches simulateTrades' conservative convention
+    if hitStop
+        justExited := true
+        exitWasWin := false
+        inPosition := false
+    else if hitTarget
+        justExited := true
+        exitWasWin := true
+        inPosition := false
+
+// ---------------------------------------------------------------------------
+// Plots: entry markers, live TP/SL lines for the open trade, exit markers
+// ---------------------------------------------------------------------------
+plotshape(canEnter and rawSignalLong,  title = "Long Entry",  style = shape.triangleup,   location = location.belowbar, color = color.lime, size = size.tiny)
+plotshape(canEnter and rawSignalShort, title = "Short Entry", style = shape.triangledown, location = location.abovebar, color = color.red,  size = size.tiny)
+
+plot(inPosition ? targetPrice : na, title = "Take Profit", color = color.new(color.lime, 0), style = plot.style_linebr, linewidth = 1)
+plot(inPosition ? stopPrice   : na, title = "Stop Loss",   color = color.new(color.red, 0),  style = plot.style_linebr, linewidth = 1)
+
+plotshape(justExited and exitWasWin,     title = "TP Hit", style = shape.labelup,   location = location.belowbar, color = color.new(color.lime, 0), text = "TP", textcolor = color.black, size = size.tiny)
+plotshape(justExited and not exitWasWin, title = "SL Hit", style = shape.labeldown, location = location.abovebar, color = color.new(color.red, 0),  text = "SL", textcolor = color.white, size = size.tiny)
+
+// Background tint on excluded hours/days, for visual reference of what's filtered out
+bgcolor(not passFilter ? color.new(color.gray, 92) : na, title = "Excluded hour/day")
