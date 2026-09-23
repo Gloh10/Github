@@ -1,0 +1,211 @@
+{
+  "generatedAt": "2026-09-23T01:02:08.872Z",
+  "fullPeriod": {
+    "none": {
+      "totalTrades": 45,
+      "wins": 19,
+      "losses": 26,
+      "winRate": 0.4222222222222222,
+      "avgR": 1.2833626550035218,
+      "totalR": 57.75131947515848,
+      "maxDrawdownPct": 10.466174574128358,
+      "finalEquity": 174.46168774252132
+    },
+    "outsideVA": {
+      "totalTrades": 34,
+      "wins": 16,
+      "losses": 18,
+      "winRate": 0.47058823529411764,
+      "avgR": 1.492685866916426,
+      "totalR": 50.75131947515848,
+      "maxDrawdownPct": 5.8519850598999765,
+      "finalEquity": 163.32422855997285
+    },
+    "pocTarget": {
+      "totalTrades": 47,
+      "wins": 20,
+      "losses": 27,
+      "winRate": 0.425531914893617,
+      "avgR": 0.7928970587097192,
+      "totalR": 37.2661617593568,
+      "maxDrawdownPct": 10.466174574128367,
+      "finalEquity": 143.0693263585674
+    },
+    "both": {
+      "totalTrades": 35,
+      "wins": 16,
+      "losses": 19,
+      "winRate": 0.45714285714285713,
+      "avgR": 0.8340956262111047,
+      "totalR": 29.193346917388663,
+      "maxDrawdownPct": 6.483133509816897,
+      "finalEquity": 132.5169238434936
+    }
+  },
+  "splitPeriod": [
+    {
+      "filter": "none",
+      "firstHalf": {
+        "totalTrades": 17,
+        "wins": 10,
+        "losses": 7,
+        "winRate": 0.5882352941176471,
+        "avgR": 2.0374725741689863,
+        "totalR": 34.63703376087277,
+        "maxDrawdownPct": 1.9900000000000042,
+        "finalEquity": 139.96855394092327
+      },
+      "secondHalf": {
+        "totalTrades": 29,
+        "wins": 9,
+        "losses": 20,
+        "winRate": 0.3103448275862069,
+        "avgR": 0.7625615763546798,
+        "totalR": 22.114285714285714,
+        "maxDrawdownPct": 10.466174574128368,
+        "finalEquity": 123.39705312522914
+      },
+      "bothPositive": true
+    },
+    {
+      "filter": "outsideVA",
+      "firstHalf": {
+        "totalTrades": 13,
+        "wins": 7,
+        "losses": 6,
+        "winRate": 0.5384615384615384,
+        "avgR": 1.5874641354517514,
+        "totalR": 20.637033760872768,
+        "maxDrawdownPct": 4.900995010000012,
+        "finalEquity": 122.1314136426773
+      },
+      "secondHalf": {
+        "totalTrades": 20,
+        "wins": 8,
+        "losses": 12,
+        "winRate": 0.4,
+        "avgR": 1.2557142857142858,
+        "totalR": 25.114285714285714,
+        "maxDrawdownPct": 5.851985059899997,
+        "finalEquity": 127.36025867834324
+      },
+      "bothPositive": true
+    },
+    {
+      "filter": "pocTarget",
+      "firstHalf": {
+        "totalTrades": 18,
+        "wins": 10,
+        "losses": 8,
+        "winRate": 0.5555555555555556,
+        "avgR": 1.1594618611819625,
+        "totalR": 20.870313501275323,
+        "maxDrawdownPct": 2.9701000000000017,
+        "finalEquity": 122.48090961272386
+      },
+      "secondHalf": {
+        "totalTrades": 30,
+        "wins": 10,
+        "losses": 20,
+        "winRate": 0.3333333333333333,
+        "avgR": 0.5131949419360493,
+        "totalR": 15.395848258081479,
+        "maxDrawdownPct": 10.466174574128374,
+        "finalEquity": 115.64139549815008
+      },
+      "bothPositive": true
+    },
+    {
+      "filter": "both",
+      "firstHalf": {
+        "totalTrades": 14,
+        "wins": 7,
+        "losses": 7,
+        "winRate": 0.5,
+        "avgR": 0.4907366786625233,
+        "totalR": 6.8703135012753265,
+        "maxDrawdownPct": 5.851985059899995,
+        "finalEquity": 106.87233820788502
+      },
+      "secondHalf": {
+        "totalTrades": 20,
+        "wins": 8,
+        "losses": 12,
+        "winRate": 0.4,
+        "avgR": 0.8688347516137513,
+        "totalR": 17.376695032275027,
+        "maxDrawdownPct": 6.483133509816902,
+        "finalEquity": 118.15136522346128
+      },
+      "bothPositive": true
+    }
+  ],
+  "costResults": [
+    {
+      "filter": "none",
+      "totalRNoCost": 57.75131947515848,
+      "totalRConservativeCost": 51.00461625222816
+    },
+    {
+      "filter": "outsideVA",
+      "totalRNoCost": 50.75131947515848,
+      "totalRConservativeCost": 45.70558850232831
+    },
+    {
+      "filter": "pocTarget",
+      "totalRNoCost": 37.2661617593568,
+      "totalRConservativeCost": 30.288723769401397
+    },
+    {
+      "filter": "both",
+      "totalRNoCost": 29.193346917388663,
+      "totalRConservativeCost": 24.078171500114063
+    }
+  ],
+  "outOfSample": [
+    {
+      "filter": "none",
+      "totalTrades": 55,
+      "wins": 15,
+      "losses": 40,
+      "winRate": 0.2727272727272727,
+      "avgR": 0.5191515151515151,
+      "totalR": 28.55333333333333,
+      "maxDrawdownPct": 7.725530557207992,
+      "finalEquity": 130.6555332560191
+    },
+    {
+      "filter": "outsideVA",
+      "totalTrades": 38,
+      "wins": 9,
+      "losses": 29,
+      "winRate": 0.23684210526315788,
+      "avgR": 0.25140350877192985,
+      "totalR": 9.553333333333335,
+      "maxDrawdownPct": 6.7934652093010115,
+      "finalEquity": 108.89423087605236
+    },
+    {
+      "filter": "pocTarget",
+      "totalTrades": 56,
+      "wins": 17,
+      "losses": 39,
+      "winRate": 0.30357142857142855,
+      "avgR": 0.3244236302891003,
+      "totalR": 18.167723296189617,
+      "maxDrawdownPct": 11.334605841165981,
+      "finalEquity": 118.21502669297254
+    },
+    {
+      "filter": "both",
+      "totalTrades": 38,
+      "wins": 9,
+      "losses": 29,
+      "winRate": 0.23684210526315788,
+      "avgR": 0.03661552226691204,
+      "totalR": 1.3913898461426575,
+      "maxDrawdownPct": 10.139142950320235,
+      "finalEquity": 100.56289252983366
+    }
+  ]
+}
