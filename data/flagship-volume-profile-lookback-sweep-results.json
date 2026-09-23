@@ -1,0 +1,133 @@
+{
+  "generatedAt": "2026-09-23T01:04:19.706Z",
+  "baseline": {
+    "totalTrades": 45,
+    "wins": 19,
+    "losses": 26,
+    "winRate": 0.4222222222222222,
+    "avgR": 1.2833626550035218,
+    "totalR": 57.75131947515848,
+    "maxDrawdownPct": 10.466174574128358,
+    "finalEquity": 174.46168774252132
+  },
+  "baselineOos": {
+    "totalTrades": 55,
+    "wins": 15,
+    "losses": 40,
+    "winRate": 0.2727272727272727,
+    "avgR": 0.5191515151515151,
+    "totalR": 28.55333333333333,
+    "maxDrawdownPct": 7.725530557207992,
+    "finalEquity": 130.6555332560191
+  },
+  "summary": [
+    {
+      "lookback": 20,
+      "trades": 39,
+      "winRate": 38.46153846153847,
+      "avgR": 1.2134181607865817,
+      "totalR": 47.32330827067669,
+      "maxDD": 9.561792499119582,
+      "splitBothPositive": true,
+      "oosTotalR": 33.55333333333333,
+      "oosAvgR": 0.7625757575757575,
+      "oosTrades": 44
+    },
+    {
+      "lookback": 40,
+      "trades": 37,
+      "winRate": 40.54054054054054,
+      "avgR": 1.3330623856939645,
+      "totalR": 49.32330827067669,
+      "maxDD": 6.79346520930099,
+      "splitBothPositive": true,
+      "oosTotalR": 28.55333333333333,
+      "oosAvgR": 0.6640310077519379,
+      "oosTrades": 43
+    },
+    {
+      "lookback": 60,
+      "trades": 36,
+      "winRate": 33.33333333333333,
+      "avgR": 0.8978696741854636,
+      "totalR": 32.32330827067669,
+      "maxDD": 8.648275251635923,
+      "splitBothPositive": true,
+      "oosTotalR": 28.553333333333335,
+      "oosAvgR": 0.664031007751938,
+      "oosTrades": 43
+    },
+    {
+      "lookback": 75,
+      "trades": 36,
+      "winRate": 47.22222222222222,
+      "avgR": 1.520869985421069,
+      "totalR": 54.75131947515848,
+      "maxDD": 6.793465209301018,
+      "splitBothPositive": true,
+      "oosTotalR": 20.553333333333335,
+      "oosAvgR": 0.527008547008547,
+      "oosTrades": 39
+    },
+    {
+      "lookback": 100,
+      "trades": 34,
+      "winRate": 47.05882352941176,
+      "avgR": 1.492685866916426,
+      "totalR": 50.75131947515848,
+      "maxDD": 5.8519850598999765,
+      "splitBothPositive": true,
+      "oosTotalR": 9.553333333333335,
+      "oosAvgR": 0.25140350877192985,
+      "oosTrades": 38
+    },
+    {
+      "lookback": 150,
+      "trades": 25,
+      "winRate": 48,
+      "avgR": 1.4300527790063393,
+      "totalR": 35.75131947515848,
+      "maxDD": 3.940399000000019,
+      "splitBothPositive": true,
+      "oosTotalR": 8.553333333333333,
+      "oosAvgR": 0.3167901234567901,
+      "oosTrades": 27
+    },
+    {
+      "lookback": 200,
+      "trades": 24,
+      "winRate": 50,
+      "avgR": 1.5313049781316035,
+      "totalR": 36.75131947515848,
+      "maxDD": 3.940399000000009,
+      "splitBothPositive": true,
+      "oosTotalR": 4.553333333333335,
+      "oosAvgR": 0.18213333333333337,
+      "oosTrades": 25
+    },
+    {
+      "lookback": 288,
+      "trades": 24,
+      "winRate": 50,
+      "avgR": 1.5313049781316035,
+      "totalR": 36.75131947515848,
+      "maxDD": 3.9403990000000055,
+      "splitBothPositive": true,
+      "oosTotalR": 5.553333333333335,
+      "oosAvgR": 0.23138888888888895,
+      "oosTrades": 24
+    },
+    {
+      "lookback": 400,
+      "trades": 17,
+      "winRate": 41.17647058823529,
+      "avgR": 1.3008403361344538,
+      "totalR": 22.114285714285714,
+      "maxDD": 3.9403990000000175,
+      "splitBothPositive": true,
+      "oosTotalR": -0.44666666666666766,
+      "oosAvgR": -0.01861111111111115,
+      "oosTrades": 24
+    }
+  ]
+}
