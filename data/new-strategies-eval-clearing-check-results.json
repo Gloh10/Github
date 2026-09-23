@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-09-23T01:17:21.592Z",
+  "trials": 2000,
+  "summary": [
+    {
+      "strategy": "flagship",
+      "costLabel": "no cost",
+      "trades": 45,
+      "distinctDays": 18,
+      "clearRate": 99.95,
+      "bustRate": 0.05,
+      "ranOutRate": 0,
+      "avgDaysToClear": 8.170585292646324
+    },
+    {
+      "strategy": "flagship",
+      "costLabel": "w/ conservative cost",
+      "trades": 45,
+      "distinctDays": 18,
+      "clearRate": 99.1,
+      "bustRate": 0.8999999999999999,
+      "ranOutRate": 0,
+      "avgDaysToClear": 8.75782038345106
+    },
+    {
+      "strategy": "valueAreaFade",
+      "costLabel": "no cost",
+      "trades": 293,
+      "distinctDays": 19,
+      "clearRate": 0,
+      "bustRate": 66.85,
+      "ranOutRate": 33.15,
+      "avgDaysToClear": null
+    },
+    {
+      "strategy": "valueAreaFade",
+      "costLabel": "w/ conservative cost",
+      "trades": 293,
+      "distinctDays": 19,
+      "clearRate": 0,
+      "bustRate": 100,
+      "ranOutRate": 0,
+      "avgDaysToClear": null
+    },
+    {
+      "strategy": "pocMeanReversion",
+      "costLabel": "no cost",
+      "trades": 145,
+      "distinctDays": 19,
+      "clearRate": 1.2,
+      "bustRate": 98.8,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5.291666666666667
+    },
+    {
+      "strategy": "pocMeanReversion",
+      "costLabel": "w/ conservative cost",
+      "trades": 145,
+      "distinctDays": 19,
+      "clearRate": 0.15,
+      "bustRate": 99.85000000000001,
+      "ranOutRate": 0,
+      "avgDaysToClear": 5
+    },
+    {
+      "strategy": "valueAreaBreakout",
+      "costLabel": "no cost",
+      "trades": 216,
+      "distinctDays": 19,
+      "clearRate": 89,
+      "bustRate": 11,
+      "ranOutRate": 0,
+      "avgDaysToClear": 9.464606741573034
+    },
+    {
+      "strategy": "valueAreaBreakout",
+      "costLabel": "w/ conservative cost",
+      "trades": 216,
+      "distinctDays": 19,
+      "clearRate": 54.300000000000004,
+      "bustRate": 45.7,
+      "ranOutRate": 0,
+      "avgDaysToClear": 12.397790055248619
+    },
+    {
+      "strategy": "emaPullback",
+      "costLabel": "no cost",
+      "trades": 104,
+      "distinctDays": 19,
+      "clearRate": 0.05,
+      "bustRate": 99.95,
+      "ranOutRate": 0,
+      "avgDaysToClear": 3
+    },
+    {
+      "strategy": "emaPullback",
+      "costLabel": "w/ conservative cost",
+      "trades": 104,
+      "distinctDays": 19,
+      "clearRate": 0,
+      "bustRate": 100,
+      "ranOutRate": 0,
+      "avgDaysToClear": null
+    }
+  ]
+}
