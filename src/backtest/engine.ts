@@ -1,4 +1,4 @@
-import { nyHour, nyMinute } from "./nyTime.js";
+import { nyDateKey, nyHour, nyMinute } from "./nyTime.js";
 import type { Bar, EquityPoint, Signal, StrategyResult, Trade } from "./types.js";
 
 const RISK_PER_TRADE_PCT = 1; // fixed fractional risk per trade, in % of equity
@@ -115,6 +115,94 @@ export function simulateTradesWithSessionDeadline(
 
     trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple });
     openUntilIndex = exitBarIndex;
+  }
+
+  return trades;
+}
+
+/**
+ * Same walk-forward stop/target/session-deadline resolution as
+ * simulateTradesWithSessionDeadline, plus an asymmetric circuit breaker:
+ * after `lossStreakThreshold` CONSECUTIVE losses, trading pauses until a
+ * cooldown ends -- either the start of the next NY calendar day
+ * (cooldownMode: "restOfDay") or a fixed number of bars
+ * (cooldownMode: "fixedBars", cooldownBars). A win at any point resets the
+ * consecutive-loss counter to zero immediately, and there is no cap on
+ * winning streaks -- the breaker only ever fires off of losses.
+ */
+export function simulateTradesWithCircuitBreaker(
+  bars: Bar[],
+  signals: Signal[],
+  deadlineOpts: { deadlineHour: number; deadlineMinute: number },
+  breakerOpts: { lossStreakThreshold: number; cooldownMode: "restOfDay" | "fixedBars"; cooldownBars?: number },
+): Trade[] {
+  const trades: Trade[] = [];
+  let openUntilIndex = -1;
+  let consecutiveLosses = 0;
+  let cooldownUntilBarIndex = -1;
+
+  for (const signal of signals) {
+    if (signal.barIndex <= openUntilIndex) continue;
+    if (signal.barIndex <= cooldownUntilBarIndex) continue;
+
+    const risk = Math.abs(signal.entry - signal.stop);
+    if (risk === 0) continue;
+
+    let exitBarIndex = bars.length - 1;
+    let exitPrice = bars[bars.length - 1]!.c;
+
+    for (let i = signal.barIndex + 1; i < bars.length; i++) {
+      const bar = bars[i]!;
+      const hitStop = signal.direction === "long" ? bar.l <= signal.stop : bar.h >= signal.stop;
+      const hitTarget = signal.direction === "long" ? bar.h >= signal.target : bar.l <= signal.target;
+
+      if (hitStop) {
+        exitBarIndex = i;
+        exitPrice = signal.stop;
+        break;
+      }
+      if (hitTarget) {
+        exitBarIndex = i;
+        exitPrice = signal.target;
+        break;
+      }
+
+      const h = nyHour(bar.t);
+      const m = nyMinute(bar.t);
+      if (h === deadlineOpts.deadlineHour && m >= deadlineOpts.deadlineMinute) {
+        exitBarIndex = i;
+        exitPrice = bar.c;
+        break;
+      }
+    }
+
+    const rMultiple = signal.direction === "long" ? (exitPrice - signal.entry) / risk : (signal.entry - exitPrice) / risk;
+    const outcome: "win" | "loss" = rMultiple > 0 ? "win" : "loss";
+
+    trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple });
+    openUntilIndex = exitBarIndex;
+
+    if (outcome === "loss") {
+      consecutiveLosses++;
+      if (consecutiveLosses >= breakerOpts.lossStreakThreshold) {
+        if (breakerOpts.cooldownMode === "fixedBars") {
+          cooldownUntilBarIndex = exitBarIndex + (breakerOpts.cooldownBars ?? 0);
+        } else {
+          const exitDay = nyDateKey(bars[exitBarIndex]!.t);
+          let nextDayBarIndex = bars.length - 1;
+          for (let i = exitBarIndex + 1; i < bars.length; i++) {
+            if (nyDateKey(bars[i]!.t) !== exitDay) {
+              nextDayBarIndex = i - 1; // pause through the rest of exitDay; resumes at nextDayBarIndex+1
+              break;
+            }
+          }
+          cooldownUntilBarIndex = nextDayBarIndex;
+        }
+        consecutiveLosses = 0; // fresh count once trading resumes after the cooldown
+      }
+    } else {
+      consecutiveLosses = 0; // any win clears the streak -- no cap on winning streaks
+    }
   }
 
   return trades;
