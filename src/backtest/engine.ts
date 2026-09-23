@@ -1,3 +1,4 @@
+import { nyHour, nyMinute } from "./nyTime.js";
 import type { Bar, EquityPoint, Signal, StrategyResult, Trade } from "./types.js";
 
 const RISK_PER_TRADE_PCT = 1; // fixed fractional risk per trade, in % of equity
@@ -48,6 +49,69 @@ export function simulateTrades(bars: Bar[], signals: Signal[]): Trade[] {
       signal.direction === "long"
         ? (exitPrice - signal.entry) / risk
         : (signal.entry - exitPrice) / risk;
+
+    trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple });
+    openUntilIndex = exitBarIndex;
+  }
+
+  return trades;
+}
+
+/**
+ * Same walk-forward stop/target resolution as simulateTrades, but adds a
+ * hard session deadline: if neither stop nor target has been hit by the
+ * next occurrence of `deadlineHour:deadlineMinute` (NY time) after entry,
+ * the position is force-closed at that bar's close price instead of being
+ * allowed to run to its target — modeling a broker/prop-firm rule that
+ * requires flat positions by a fixed daily cutoff (e.g. LucidFlex's
+ * 4:45pm ET flat-by rule). The deadline is found by scanning forward
+ * through the actual bar timestamps, so it naturally lands on the next
+ * calendar day if entry itself is already past today's cutoff.
+ */
+export function simulateTradesWithSessionDeadline(
+  bars: Bar[],
+  signals: Signal[],
+  opts: { deadlineHour: number; deadlineMinute: number },
+): Trade[] {
+  const trades: Trade[] = [];
+  let openUntilIndex = -1;
+
+  for (const signal of signals) {
+    if (signal.barIndex <= openUntilIndex) continue;
+
+    const risk = Math.abs(signal.entry - signal.stop);
+    if (risk === 0) continue;
+
+    let exitBarIndex = bars.length - 1;
+    let exitPrice = bars[bars.length - 1]!.c;
+
+    for (let i = signal.barIndex + 1; i < bars.length; i++) {
+      const bar = bars[i]!;
+      const hitStop = signal.direction === "long" ? bar.l <= signal.stop : bar.h >= signal.stop;
+      const hitTarget = signal.direction === "long" ? bar.h >= signal.target : bar.l <= signal.target;
+
+      if (hitStop) {
+        exitBarIndex = i;
+        exitPrice = signal.stop;
+        break;
+      }
+      if (hitTarget) {
+        exitBarIndex = i;
+        exitPrice = signal.target;
+        break;
+      }
+
+      const h = nyHour(bar.t);
+      const m = nyMinute(bar.t);
+      if (h === opts.deadlineHour && m >= opts.deadlineMinute) {
+        exitBarIndex = i;
+        exitPrice = bar.c;
+        break;
+      }
+    }
+
+    const rMultiple = signal.direction === "long" ? (exitPrice - signal.entry) / risk : (signal.entry - exitPrice) / risk;
+    const outcome: "win" | "loss" = rMultiple > 0 ? "win" : "loss";
 
     trades.push({ ...signal, exitBarIndex, exitPrice, outcome, rMultiple });
     openUntilIndex = exitBarIndex;

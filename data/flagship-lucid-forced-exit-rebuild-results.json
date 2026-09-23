@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-09-23T00:19:37.818Z",
+  "fullPeriod": {
+    "old": {
+      "totalTrades": 41,
+      "wins": 18,
+      "losses": 23,
+      "winRate": 0.43902439024390244,
+      "avgR": 1.6341463414634145,
+      "totalR": 67,
+      "maxDrawdownPct": 10.46617457412836,
+      "finalEquity": 190.99273991487934
+    },
+    "new": {
+      "totalTrades": 45,
+      "wins": 19,
+      "losses": 26,
+      "winRate": 0.4222222222222222,
+      "avgR": 1.2833626550035218,
+      "totalR": 57.75131947515848,
+      "maxDrawdownPct": 10.466174574128358,
+      "finalEquity": 174.46168774252132
+    }
+  },
+  "splitPeriod": {
+    "firstHalf": {
+      "totalTrades": 17,
+      "wins": 10,
+      "losses": 7,
+      "winRate": 0.5882352941176471,
+      "avgR": 2.0374725741689863,
+      "totalR": 34.63703376087277,
+      "maxDrawdownPct": 1.9900000000000042,
+      "finalEquity": 139.96855394092327
+    },
+    "secondHalf": {
+      "totalTrades": 29,
+      "wins": 9,
+      "losses": 20,
+      "winRate": 0.3103448275862069,
+      "avgR": 0.7625615763546798,
+      "totalR": 22.114285714285714,
+      "maxDrawdownPct": 10.466174574128368,
+      "finalEquity": 123.39705312522914
+    },
+    "bothPositive": true
+  },
+  "costResults": [
+    {
+      "label": "No cost",
+      "usd": 0,
+      "totalR": 57.75131947515848,
+      "finalEquity": 174.46168774252132
+    },
+    {
+      "label": "Low-cost (~$5 + 0.5pt slip)",
+      "usd": 15,
+      "totalR": 55.72730850827938,
+      "finalEquity": 171.01251414598917
+    },
+    {
+      "label": "Typical retail (~$8 + 1pt slip)",
+      "usd": 28,
+      "totalR": 53.97316567031752,
+      "finalEquity": 168.0769150184901
+    },
+    {
+      "label": "Conservative (~$10 + 2pt slip)",
+      "usd": 50,
+      "totalR": 51.00461625222816,
+      "finalEquity": 163.22018780267712
+    }
+  ],
+  "outOfSample": {
+    "totalTrades": 55,
+    "wins": 15,
+    "losses": 40,
+    "winRate": 0.2727272727272727,
+    "avgR": 0.5191515151515151,
+    "totalR": 28.55333333333333,
+    "maxDrawdownPct": 7.725530557207992,
+    "finalEquity": 130.6555332560191
+  }
+}
