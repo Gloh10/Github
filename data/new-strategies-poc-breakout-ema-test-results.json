@@ -1,0 +1,197 @@
+{
+  "generatedAt": "2026-09-23T01:14:55.719Z",
+  "fullPeriod": {
+    "POC mean-reversion": {
+      "totalTrades": 145,
+      "wins": 52,
+      "losses": 93,
+      "winRate": 0.3586206896551724,
+      "avgR": -0.03558169617722217,
+      "totalR": -5.159345945697215,
+      "maxDrawdownPct": 23.069027456416634,
+      "finalEquity": 93.65162944795004
+    },
+    "Value area breakout": {
+      "totalTrades": 216,
+      "wins": 41,
+      "losses": 175,
+      "winRate": 0.18981481481481483,
+      "avgR": 0.06822631625656955,
+      "totalR": 14.736884311419022,
+      "maxDrawdownPct": 32.59654155891422,
+      "finalEquity": 109.85463803729012
+    },
+    "EMA(21/50) pullback": {
+      "totalTrades": 104,
+      "wins": 14,
+      "losses": 90,
+      "winRate": 0.1346153846153846,
+      "avgR": -0.40296464054156816,
+      "totalR": -41.90832261632309,
+      "maxDrawdownPct": 42.824562227597,
+      "finalEquity": 64.80094896309132
+    }
+  },
+  "splitPeriod": [
+    {
+      "label": "POC mean-reversion",
+      "firstHalf": {
+        "totalTrades": 71,
+        "wins": 17,
+        "losses": 54,
+        "winRate": 0.23943661971830985,
+        "avgR": -0.33427156071702196,
+        "totalR": -23.73328081090856,
+        "maxDrawdownPct": 21.50701709663977,
+        "finalEquity": 78.49298290336023
+      },
+      "secondHalf": {
+        "totalTrades": 71,
+        "wins": 34,
+        "losses": 37,
+        "winRate": 0.4788732394366197,
+        "avgR": 0.2884323488728625,
+        "totalR": 20.47869676997324,
+        "maxDrawdownPct": 7.51096404012725,
+        "finalEquity": 121.61879564289221
+      },
+      "bothPositive": false
+    },
+    {
+      "label": "Value area breakout",
+      "firstHalf": {
+        "totalTrades": 106,
+        "wins": 16,
+        "losses": 90,
+        "winRate": 0.1509433962264151,
+        "avgR": -0.1778542669254048,
+        "totalR": -18.85255229409291,
+        "maxDrawdownPct": 27.89629631959164,
+        "finalEquity": 81.0936744487665
+      },
+      "secondHalf": {
+        "totalTrades": 106,
+        "wins": 24,
+        "losses": 82,
+        "winRate": 0.22641509433962265,
+        "avgR": 0.29801355288218806,
+        "totalR": 31.589436605511935,
+        "maxDrawdownPct": 22.088480882806063,
+        "finalEquity": 132.96475428448764
+      },
+      "bothPositive": false
+    },
+    {
+      "label": "EMA(21/50) pullback",
+      "firstHalf": {
+        "totalTrades": 52,
+        "wins": 6,
+        "losses": 46,
+        "winRate": 0.11538461538461539,
+        "avgR": -0.5369203165255797,
+        "totalR": -27.919856459330145,
+        "maxDrawdownPct": 26.207420854738885,
+        "finalEquity": 75.17136873021161
+      },
+      "secondHalf": {
+        "totalTrades": 50,
+        "wins": 8,
+        "losses": 42,
+        "winRate": 0.16,
+        "avgR": -0.23976932313985885,
+        "totalR": -11.988466156992942,
+        "maxDrawdownPct": 21.506974346417707,
+        "finalEquity": 87.95459205687217
+      },
+      "bothPositive": false
+    }
+  ],
+  "costResults": [
+    {
+      "label": "POC mean-reversion",
+      "totalRNoCost": -5.159345945697215,
+      "totalRConservativeCost": -29.540648947390284
+    },
+    {
+      "label": "Value area breakout",
+      "totalRNoCost": 14.736884311419022,
+      "totalRConservativeCost": -314.7801515082097
+    },
+    {
+      "label": "EMA(21/50) pullback",
+      "totalRNoCost": -41.90832261632309,
+      "totalRConservativeCost": -59.63442075618553
+    }
+  ],
+  "outOfSample": [
+    {
+      "label": "POC mean-reversion",
+      "es": {
+        "totalTrades": 157,
+        "wins": 53,
+        "losses": 104,
+        "winRate": 0.3375796178343949,
+        "avgR": -0.09805120563496168,
+        "totalR": -15.394039284688985,
+        "maxDrawdownPct": 22.776693630173707,
+        "finalEquity": 84.66100020263634
+      },
+      "rty": {
+        "totalTrades": 158,
+        "wins": 48,
+        "losses": 110,
+        "winRate": 0.3037974683544304,
+        "avgR": -0.020983939322253918,
+        "totalR": -3.315462412916119,
+        "maxDrawdownPct": 28.05325252437506,
+        "finalEquity": 94.54703054043453
+      }
+    },
+    {
+      "label": "Value area breakout",
+      "es": {
+        "totalTrades": 224,
+        "wins": 37,
+        "losses": 187,
+        "winRate": 0.16517857142857142,
+        "avgR": -0.0672992477172879,
+        "totalR": -15.07503148867249,
+        "maxDrawdownPct": 32.89129099840355,
+        "finalEquity": 81.86436578476672
+      },
+      "rty": {
+        "totalTrades": 223,
+        "wins": 44,
+        "losses": 179,
+        "winRate": 0.19730941704035873,
+        "avgR": 0.10173343128582485,
+        "totalR": 22.686555176738942,
+        "maxDrawdownPct": 14.86957072211767,
+        "finalEquity": 118.54702175213059
+      }
+    },
+    {
+      "label": "EMA(21/50) pullback",
+      "es": {
+        "totalTrades": 106,
+        "wins": 14,
+        "losses": 92,
+        "winRate": 0.1320754716981132,
+        "avgR": -0.2746717882657869,
+        "totalR": -29.11520955617341,
+        "maxDrawdownPct": 31.462214894716027,
+        "finalEquity": 73.3186141457338
+      },
+      "rty": {
+        "totalTrades": 99,
+        "wins": 18,
+        "losses": 81,
+        "winRate": 0.18181818181818182,
+        "avgR": -0.0028397336445382983,
+        "totalR": -0.28113363080929155,
+        "maxDrawdownPct": 15.078972962849434,
+        "finalEquity": 97.50041938959188
+      }
+    }
+  ]
+}

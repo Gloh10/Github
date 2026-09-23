@@ -1,6 +1,6 @@
 import { isBearishEngulfing, isBullishEngulfing, isHammer, isShootingStar } from "./candlePatterns.js";
 import { findFvgs } from "./fvg.js";
-import type { VwapPoint } from "./indicators.js";
+import { ema as emaIndicator, type VwapPoint } from "./indicators.js";
 import { hasSmtDivergence } from "./smt.js";
 import { buildLegs, findPivots, oteZone, sdLevels, type Pivot } from "./swings.js";
 import { nyDateKey, nyHour } from "./nyTime.js";
@@ -1056,5 +1056,146 @@ export function valueAreaFade(
     }
   }
 
+  return signals;
+}
+
+/**
+ * POC mean-reversion: same entry mechanics as vwapMeanReversion (a reversal
+ * candle at a touched band), but anchored to the rolling value area's
+ * VAH/VAL instead of VWAP bands, targeting the POC instead of VWAP. No
+ * slope/regime filter (the value area has no direct slope analog to VWAP's
+ * flat-vs-trending check) -- every touch with a reversal candle qualifies.
+ */
+export function pocMeanReversion(bars: Bar[], valueAreas: (ValueArea | null)[]): Signal[] {
+  const signals: Signal[] = [];
+  for (let i = 1; i < bars.length; i++) {
+    const va = valueAreas[i];
+    if (!va) continue;
+    const bar = bars[i]!;
+    const prev = bars[i - 1]!;
+
+    const touchedUpper = bar.h >= va.vah;
+    const touchedLower = bar.l <= va.val;
+
+    if (touchedUpper && (isShootingStar(bar) || isBearishEngulfing(prev, bar))) {
+      signals.push({
+        barIndex: i,
+        direction: "short",
+        entry: bar.c,
+        stop: bar.h,
+        target: va.poc,
+        reason: `POC mean-reversion short: VAH ${va.vah.toFixed(2)} tag + reversal candle`,
+      });
+    } else if (touchedLower && (isHammer(bar) || isBullishEngulfing(prev, bar))) {
+      signals.push({
+        barIndex: i,
+        direction: "long",
+        entry: bar.c,
+        stop: bar.l,
+        target: va.poc,
+        reason: `POC mean-reversion long: VAL ${va.val.toFixed(2)} tag + reversal candle`,
+      });
+    }
+  }
+  return signals;
+}
+
+/**
+ * Value area breakout: the bar that closes beyond VAH/VAL (the immediately
+ * prior bar was still inside), in the breakout direction (bullish close for
+ * an upside break, bearish close for a downside break) -- trading the
+ * continuation, not the fade. Stop at the broken level (now expected
+ * support/resistance); target a fixed R-multiple like the flagship (caller
+ * supplies targetR so it can be tuned/compared).
+ */
+export function valueAreaBreakout(bars: Bar[], valueAreas: (ValueArea | null)[], opts: { targetR: number }): Signal[] {
+  const signals: Signal[] = [];
+  for (let i = 1; i < bars.length; i++) {
+    const va = valueAreas[i];
+    const prevVa = valueAreas[i - 1];
+    if (!va || !prevVa) continue;
+    const bar = bars[i]!;
+
+    const brokeAbove = bar.c > va.vah && bars[i - 1]!.c <= prevVa.vah && bar.c > bar.o;
+    const brokeBelow = bar.c < va.val && bars[i - 1]!.c >= prevVa.val && bar.c < bar.o;
+
+    if (brokeAbove) {
+      const stop = va.vah;
+      const risk = bar.c - stop;
+      if (risk > 0) {
+        signals.push({
+          barIndex: i,
+          direction: "long",
+          entry: bar.c,
+          stop,
+          target: bar.c + risk * opts.targetR,
+          reason: `value area breakout long: closed above VAH ${va.vah.toFixed(2)}`,
+        });
+      }
+    } else if (brokeBelow) {
+      const stop = va.val;
+      const risk = stop - bar.c;
+      if (risk > 0) {
+        signals.push({
+          barIndex: i,
+          direction: "short",
+          entry: bar.c,
+          stop,
+          target: bar.c - risk * opts.targetR,
+          reason: `value area breakout short: closed below VAL ${va.val.toFixed(2)}`,
+        });
+      }
+    }
+  }
+  return signals;
+}
+
+/**
+ * EMA pullback/continuation: trend defined by a fast EMA vs a slow EMA
+ * (fast > slow = uptrend, fast < slow = downtrend); within that trend,
+ * enter on a pullback to the fast EMA confirmed by a trend-aligned reversal
+ * candle. Stop beyond the candle's wick; target a fixed R-multiple.
+ */
+export function emaPullback(bars: Bar[], fastPeriod: number, slowPeriod: number, opts: { targetR: number; touchTolerancePct: number }): Signal[] {
+  const signals: Signal[] = [];
+  const fast = emaIndicator(bars, fastPeriod);
+  const slow = emaIndicator(bars, slowPeriod);
+
+  for (let i = 1; i < bars.length; i++) {
+    if (isNaN(fast[i]!) || isNaN(slow[i]!)) continue;
+    const bar = bars[i]!;
+    const prev = bars[i - 1]!;
+    const uptrend = fast[i]! > slow[i]!;
+    const downtrend = fast[i]! < slow[i]!;
+    const nearFastEma = Math.abs(bar.l - fast[i]!) / fast[i]! <= opts.touchTolerancePct || Math.abs(bar.h - fast[i]!) / fast[i]! <= opts.touchTolerancePct;
+
+    if (uptrend && bar.l <= fast[i]! && nearFastEma && (isHammer(bar) || isBullishEngulfing(prev, bar))) {
+      const stop = bar.l;
+      const risk = bar.c - stop;
+      if (risk > 0) {
+        signals.push({
+          barIndex: i,
+          direction: "long",
+          entry: bar.c,
+          stop,
+          target: bar.c + risk * opts.targetR,
+          reason: `EMA pullback long: EMA${fastPeriod} ${fast[i]!.toFixed(2)} > EMA${slowPeriod}, pullback + reversal candle`,
+        });
+      }
+    } else if (downtrend && bar.h >= fast[i]! && nearFastEma && (isShootingStar(bar) || isBearishEngulfing(prev, bar))) {
+      const stop = bar.h;
+      const risk = stop - bar.c;
+      if (risk > 0) {
+        signals.push({
+          barIndex: i,
+          direction: "short",
+          entry: bar.c,
+          stop,
+          target: bar.c - risk * opts.targetR,
+          reason: `EMA pullback short: EMA${fastPeriod} ${fast[i]!.toFixed(2)} < EMA${slowPeriod}, pullback + reversal candle`,
+        });
+      }
+    }
+  }
   return signals;
 }
