@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-09-23T01:34:15.448Z",
+  "trials": 2000,
+  "lucidFlex150K": {
+    "clearRate": 99.7,
+    "bustRate": 1.8499999999999999,
+    "avgPayouts": 0.1065,
+    "pAtLeastOne": 10.65,
+    "avgProtected": 302.1475
+  },
+  "mffPro150K": {
+    "clearRate": 97.1,
+    "bustRate": 4.8,
+    "avgPayouts": 0.025,
+    "pAtLeastOne": 2.5,
+    "avgProtected": 51.712
+  },
+  "apex150K": {
+    "clearRate": 99.35000000000001,
+    "bustRate": 0.65,
+    "avgPayouts": 0.151,
+    "pAtLeastOne": 15.1,
+    "avgProtected": 377.5
+  }
+}
