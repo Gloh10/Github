@@ -744,6 +744,72 @@ export function stdvReversal(
 }
 
 /**
+ * Same liquidity-sweep daily-bias logic used by dailyBiasKeyOpenFuel below,
+ * extracted standalone so it can be used as a FILTER on other strategies'
+ * signals instead of only as its own signal generator. The first sweep of
+ * the previous NY day's high or low that reclaims back through that level
+ * (within sweepReclaimWindowBars) sets the day's bias for the remainder of
+ * that day; returns null for any bar before a bias has formed (or on days
+ * with no prior-day reference, e.g. the very first day in the dataset).
+ */
+export function computeDailyBias(bars: Bar[], sweepReclaimWindowBars: number): ("long" | "short" | null)[] {
+  const biasByBar: ("long" | "short" | null)[] = new Array(bars.length).fill(null);
+
+  const dailyHighLow = new Map<string, { high: number; low: number }>();
+  for (const bar of bars) {
+    const key = nyDateKey(bar.t);
+    const cur = dailyHighLow.get(key);
+    if (!cur) dailyHighLow.set(key, { high: bar.h, low: bar.l });
+    else {
+      cur.high = Math.max(cur.high, bar.h);
+      cur.low = Math.min(cur.low, bar.l);
+    }
+  }
+  const sortedDayKeys = [...dailyHighLow.keys()].sort();
+
+  let currentDay = "";
+  let prevDayHigh = Infinity;
+  let prevDayLow = -Infinity;
+  let bias: "long" | "short" | null = null;
+  let pendingSweep: { direction: "long" | "short"; sweepBarIndex: number; sweepExtreme: number } | null = null;
+
+  for (let i = 0; i < bars.length; i++) {
+    const bar = bars[i]!;
+    const dayKey = nyDateKey(bar.t);
+    if (dayKey !== currentDay) {
+      currentDay = dayKey;
+      const idx = sortedDayKeys.indexOf(dayKey);
+      const prevKey = idx > 0 ? sortedDayKeys[idx - 1] : undefined;
+      const prevHL = prevKey ? dailyHighLow.get(prevKey) : undefined;
+      prevDayHigh = prevHL ? prevHL.high : Infinity;
+      prevDayLow = prevHL ? prevHL.low : -Infinity;
+      bias = null;
+      pendingSweep = null;
+    }
+
+    if (bias === null && pendingSweep) {
+      if (i - pendingSweep.sweepBarIndex > sweepReclaimWindowBars) {
+        pendingSweep = null;
+      } else {
+        const reclaimed = pendingSweep.direction === "long" ? bar.c > prevDayLow : bar.c < prevDayHigh;
+        if (reclaimed) {
+          bias = pendingSweep.direction;
+          pendingSweep = null;
+        }
+      }
+    }
+    if (bias === null && !pendingSweep) {
+      if (bar.l < prevDayLow) pendingSweep = { direction: "long", sweepBarIndex: i, sweepExtreme: bar.l };
+      else if (bar.h > prevDayHigh) pendingSweep = { direction: "short", sweepBarIndex: i, sweepExtreme: bar.h };
+    }
+
+    biasByBar[i] = bias;
+  }
+
+  return biasByBar;
+}
+
+/**
  * Setup 9 — "Daily Bias + Key-Open Fuel." A basic-ICT liquidity-sweep daily
  * bias: the first sweep of the previous NY day's high or low that reclaims
  * back through that level (within sweepReclaimWindowBars) sets the day's
