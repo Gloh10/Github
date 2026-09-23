@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-09-23T00:41:18.797Z",
+  "trials": 2000,
+  "distinctDays": 18,
+  "sizing": {
+    "instrument": "MNQ",
+    "contracts": 5,
+    "ddPctPerTrade": 14.260162601626018
+  },
+  "clearRate": 95.7,
+  "bustRate": 4.8500000000000005,
+  "avgPayouts": 1.5475,
+  "pAtLeastOne": 95.15,
+  "avgProtected": 1547.5,
+  "netExpectedPromo": 1456.7,
+  "netExpectedList": 1350.5
+}
