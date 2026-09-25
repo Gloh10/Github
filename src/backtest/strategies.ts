@@ -3,7 +3,7 @@ import { findFvgs } from "./fvg.js";
 import { ema as emaIndicator, type VwapPoint } from "./indicators.js";
 import { hasSmtDivergence } from "./smt.js";
 import { buildLegs, findPivots, oteZone, sdLevels, type Pivot } from "./swings.js";
-import { nyDateKey, nyHour } from "./nyTime.js";
+import { nyDateKey, nyHour, nyWeekday } from "./nyTime.js";
 import type { Bar, Signal } from "./types.js";
 import type { ValueArea } from "./volumeProfile.js";
 import type { KeyOpenType } from "./keyOpens.js";
@@ -225,6 +225,48 @@ export function vwapTrendContinuation(
   }
 
   return signals;
+}
+
+// -----------------------------------------------------------------------------
+// THE FLAGSHIP — canonical, single source of truth for the live/real-money
+// strategy. Every prop-firm and weekly-check-in script should call this
+// instead of re-deriving the mean-rev/trend/filter/target-R recipe inline.
+//
+// Switched to mean-reversion-only on 2026-09-25 after diagnosing that
+// trend-continuation is a net loser across the full history (12.5% win
+// rate, -4.0R, degrading in the second half of the data) while
+// mean-reversion alone is +56.8R at 45% win rate — dropping the trend leg
+// also fixed an outright OOS failure on RTY (-2.0R -> +9.0R) and cut max
+// drawdown by ~27%. See scripts/flagship-drop-trend-leg-test.ts and
+// scripts/meanrev-only-propfirm-check.ts for the validation.
+// -----------------------------------------------------------------------------
+const FLAGSHIP_EXCLUDED_HOURS = [4, 8, 10, 12, 13, 18, 19, 23];
+const FLAGSHIP_EXCLUDED_MONDAY_HOURS = [1, 2, 3];
+const FLAGSHIP_TARGET_R = 5;
+const FLAGSHIP_FLAT_SLOPE_PCT = 0.15;
+const FLAGSHIP_SLOPE_LOOKBACK = 12;
+
+export function buildFlagshipSignals(bars: Bar[], vwap: VwapPoint[]): Signal[] {
+  const meanRev = vwapMeanReversion(bars, vwap, {
+    flatSlopePct: FLAGSHIP_FLAT_SLOPE_PCT,
+    slopeLookback: FLAGSHIP_SLOPE_LOOKBACK,
+  });
+
+  const dayHourFiltered = meanRev.filter((s) => {
+    const bar = bars[s.barIndex]!;
+    const hour = nyHour(bar.t);
+    const weekday = nyWeekday(bar.t);
+    if (FLAGSHIP_EXCLUDED_HOURS.includes(hour)) return false;
+    if (weekday === 0) return false;
+    if (weekday === 1 && FLAGSHIP_EXCLUDED_MONDAY_HOURS.includes(hour)) return false;
+    return true;
+  });
+
+  return dayHourFiltered.map((s) => {
+    const risk = Math.abs(s.entry - s.stop);
+    const target = s.direction === "long" ? s.entry + risk * FLAGSHIP_TARGET_R : s.entry - risk * FLAGSHIP_TARGET_R;
+    return { ...s, target };
+  });
 }
 
 /**

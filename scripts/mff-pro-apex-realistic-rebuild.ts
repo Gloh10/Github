@@ -1,38 +1,15 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { simulateTradesWithSessionDeadline } from "../src/backtest/engine.js";
 import { sessionVwap } from "../src/backtest/indicators.js";
-import { nyDateKey, nyHour, nyWeekday } from "../src/backtest/nyTime.js";
-import { vwapMeanReversion, vwapTrendContinuation } from "../src/backtest/strategies.js";
-import type { Bar, Signal, Trade } from "../src/backtest/types.js";
+import { nyDateKey } from "../src/backtest/nyTime.js";
+import { buildFlagshipSignals } from "../src/backtest/strategies.js";
+import type { Bar, Trade } from "../src/backtest/types.js";
 
 const NQ_POINT_VALUE_USD = 20;
 const TRIALS = 1000;
 
 function loadBars(path: string): Bar[] {
   return (JSON.parse(readFileSync(path, "utf-8")) as Bar[]).sort((a, b) => a.t - b.t);
-}
-function merge(...lists: Signal[][]): Signal[] {
-  return lists.flat().sort((a, b) => a.barIndex - b.barIndex);
-}
-const EXCLUDED_HOURS = [4, 8, 10, 12, 13, 18, 19, 23];
-const EXCLUDED_MONDAY_HOURS = [1, 2, 3];
-function dayHourFilter(bars: Bar[], signals: Signal[]): Signal[] {
-  return signals.filter((s) => {
-    const bar = bars[s.barIndex]!;
-    const hour = nyHour(bar.t);
-    const weekday = nyWeekday(bar.t);
-    if (EXCLUDED_HOURS.includes(hour)) return false;
-    if (weekday === 0) return false;
-    if (weekday === 1 && EXCLUDED_MONDAY_HOURS.includes(hour)) return false;
-    return true;
-  });
-}
-function overrideTargetR(signals: Signal[], targetR: number): Signal[] {
-  return signals.map((s) => {
-    const risk = Math.abs(s.entry - s.stop);
-    const target = s.direction === "long" ? s.entry + risk * targetR : s.entry - risk * targetR;
-    return { ...s, target };
-  });
 }
 function shuffle<T>(arr: T[]): T[] {
   const out = [...arr];
@@ -54,9 +31,7 @@ function buildDayBuckets(bars: Bar[], trades: Trade[]): Trade[][] {
 
 const nq5m = loadBars("data/nq-5m.json");
 const vwap = sessionVwap(nq5m);
-const meanRev = vwapMeanReversion(nq5m, vwap, { flatSlopePct: 0.15, slopeLookback: 12 });
-const trend = vwapTrendContinuation(nq5m, vwap, { trendSlopePct: 0.15, slopeLookback: 12 });
-const baseSignals = overrideTargetR(dayHourFilter(nq5m, merge(meanRev, trend)), 5);
+const baseSignals = buildFlagshipSignals(nq5m, vwap);
 
 // MyFundedFutures: auto-flatten at 4:10pm ET (verified via search).
 const mffTrades = simulateTradesWithSessionDeadline(nq5m, baseSignals, { deadlineHour: 16, deadlineMinute: 10 });
