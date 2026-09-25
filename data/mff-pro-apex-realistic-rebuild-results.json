@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-23T00:29:03.613Z",
+  "generatedAt": "2026-09-25T20:31:15.259Z",
   "trials": 1000,
   "mffPro": {
-    "clearRate": 97.8,
-    "bustRate": 3.9,
-    "avgPayouts": 0.536,
-    "avgProtected": 3616.84
+    "clearRate": 91,
+    "bustRate": 17.7,
+    "avgPayouts": 0.576,
+    "avgProtected": 2545.452
   },
   "apex": {
-    "clearRate": 99.9,
-    "bustRate": 0.1,
-    "avgPayouts": 1.112,
-    "avgProtected": 2837
+    "clearRate": 97.8,
+    "bustRate": 2.1999999999999997,
+    "avgPayouts": 0.981,
+    "avgProtected": 2458.5
   }
 }
