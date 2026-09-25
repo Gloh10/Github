@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-09-25T20:58:51.737Z",
+  "rows": [
+    {
+      "week": "2026-08-24",
+      "oldTrades": 4,
+      "oldTotalR": 4.323308270676692,
+      "oldUSD": 3690,
+      "newTrades": 2,
+      "newTotalR": 6.323308270676692,
+      "newUSD": 4930,
+      "verdict": "better"
+    },
+    {
+      "week": "2026-08-31",
+      "oldTrades": 12,
+      "oldTotalR": 25.313725490196077,
+      "oldUSD": 9085,
+      "newTrades": 13,
+      "newTotalR": 12.313725490196077,
+      "newUSD": 4340,
+      "verdict": "worse"
+    },
+    {
+      "week": "2026-09-07",
+      "oldTrades": 10,
+      "oldTotalR": 20,
+      "oldUSD": 5985,
+      "newTrades": 9,
+      "newTotalR": 21,
+      "newUSD": 6560,
+      "verdict": "better"
+    },
+    {
+      "week": "2026-09-14",
+      "oldTrades": 19,
+      "oldTotalR": 8.114285714285714,
+      "oldUSD": 2135,
+      "newTrades": 15,
+      "newTotalR": 12.114285714285714,
+      "newUSD": 3395,
+      "verdict": "better"
+    },
+    {
+      "week": "2026-09-21",
+      "oldTrades": 11,
+      "oldTotalR": -5,
+      "oldUSD": -3375,
+      "newTrades": 7,
+      "newTotalR": -1,
+      "newUSD": -2250,
+      "verdict": "better"
+    }
+  ]
+}
