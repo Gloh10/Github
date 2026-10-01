@@ -76,6 +76,7 @@ export function TradeDetail({
         </span>
         <span className="text-sm text-slate-500">
           {trade.date} · {trade.time}
+          {trade.exitTime ? ` → ${trade.exitTime}` : ''}
         </span>
         {trade.pnl !== null && (
           <span className={`text-sm font-medium ${trade.pnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>

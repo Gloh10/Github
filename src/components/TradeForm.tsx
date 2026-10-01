@@ -20,6 +20,7 @@ function emptyTrade(): Trade {
     id: createTradeId(),
     date: todayDate(),
     time: nowTime(),
+    exitTime: '',
     symbol: '',
     direction: 'long',
     outcome: 'win',
@@ -52,7 +53,12 @@ export function TradeForm({
 }) {
   const [trade, setTrade] = useState<Trade>(() =>
     initial
-      ? { ...initial, personalNotes: initial.personalNotes ?? '', questions: initial.questions ?? '' }
+      ? {
+          ...initial,
+          personalNotes: initial.personalNotes ?? '',
+          questions: initial.questions ?? '',
+          exitTime: initial.exitTime ?? '',
+        }
       : emptyTrade(),
   )
   const [pending, setPending] = useState<PendingImage[]>([])
@@ -95,7 +101,7 @@ export function TradeForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
         <div>
           <label className="mb-1.5 block text-sm font-medium text-slate-300">Date</label>
           <input
@@ -107,12 +113,23 @@ export function TradeForm({
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-slate-300">Time</label>
+          <label className="mb-1.5 block text-sm font-medium text-slate-300">Entry time</label>
           <input
             type="time"
             required
             value={trade.time}
             onChange={(e) => update('time', e.target.value)}
+            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none"
+          />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-slate-300">
+            Exit time <span className="font-normal text-slate-500">(optional)</span>
+          </label>
+          <input
+            type="time"
+            value={trade.exitTime}
+            onChange={(e) => update('exitTime', e.target.value)}
             className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none"
           />
         </div>

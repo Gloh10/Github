@@ -10,7 +10,8 @@ export interface AIAnalysisResult {
 export interface Trade {
   id: string
   date: string // YYYY-MM-DD
-  time: string // HH:MM, 24h
+  time: string // HH:MM, 24h — entry time
+  exitTime: string // HH:MM, 24h — optional, blank if not recorded
   symbol: string
   direction: Direction
   outcome: Outcome
