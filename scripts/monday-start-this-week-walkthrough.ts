@@ -8,7 +8,7 @@ import type { Bar, Trade } from "../src/backtest/types.js";
 const NQ_POINT_VALUE_USD = 20;
 const ACCOUNT_SIZE = 150_000;
 const COMBINE_TARGET = 9_000;
-const WEEK_START = "2026-09-22"; // Monday
+const WEEK_START = "2026-09-28"; // Monday
 
 function loadBars(path: string): Bar[] {
   return (JSON.parse(readFileSync(path, "utf-8")) as Bar[]).sort((a, b) => a.t - b.t);
@@ -50,7 +50,7 @@ function printWeek(label: string, dayBuckets: { day: string; trades: Trade[] }[]
 {
   const trades = simulateTradesWithSessionDeadline(nq5m, baseSignals, { deadlineHour: 16, deadlineMinute: 45 });
   const dayBuckets = buildDayBuckets(nq5m, trades);
-  printWeek("LucidFlex 150K -- eval opened Monday Sep 22 (4:45pm ET flat-by)", dayBuckets);
+  printWeek(`LucidFlex 150K -- eval opened Monday ${WEEK_START} (4:45pm ET flat-by)`, dayBuckets);
 
   const DD = 4_500;
   let balance = ACCOUNT_SIZE;
@@ -92,7 +92,7 @@ function printWeek(label: string, dayBuckets: { day: string; trades: Trade[] }[]
 {
   const trades = simulateTradesWithSessionDeadline(nq5m, baseSignals, { deadlineHour: 16, deadlineMinute: 10 });
   const dayBuckets = buildDayBuckets(nq5m, trades);
-  printWeek("MyFundedFutures Pro 150K -- eval opened Monday Sep 22 (4:10pm ET flat-by)", dayBuckets);
+  printWeek(`MyFundedFutures Pro 150K -- eval opened Monday ${WEEK_START} (4:10pm ET flat-by)`, dayBuckets);
 
   const DD = 4_600;
   let balance = ACCOUNT_SIZE;
@@ -124,7 +124,7 @@ function printWeek(label: string, dayBuckets: { day: string; trades: Trade[] }[]
 {
   const trades = simulateTradesWithSessionDeadline(nq5m, baseSignals, { deadlineHour: 16, deadlineMinute: 59 });
   const dayBuckets = buildDayBuckets(nq5m, trades);
-  printWeek("Apex 150K -- eval opened Monday Sep 22 (4:59pm ET flat-by)", dayBuckets);
+  printWeek(`Apex 150K -- eval opened Monday ${WEEK_START} (4:59pm ET flat-by)`, dayBuckets);
 
   const DD = 5_000;
   let balance = ACCOUNT_SIZE;
