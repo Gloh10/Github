@@ -1,0 +1,147 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0
+//@version=6
+// CRT (Candle Range Theory) — NY AM session backtest for NQ
+//
+// Model:
+//   C1 = range candle, C2 = candle that sweeps one side of C1 and CLOSES back inside C1.
+//   Bearish: C2 high > C1 high, C1 low < C2 close < C1 high  -> short
+//   Bullish: C2 low  < C1 low,  C1 low < C2 close < C1 high  -> long
+//   Entry : market, at C2's close (fills on the open of the next chart bar)
+//   Stop  : C2's wick extreme
+//   Target: opposite side of C1's range
+//   Filter: C2 must CLOSE inside the NY AM window (default 09:30 < close <= 12:00 ET)
+//   Exit  : stop / target, or flat at the time-exit hour (default 16:00 ET)
+//
+// Usage: open NQ1! on a 1m or 5m chart, add this strategy, then switch the
+// "CRT timeframe" input between 30 / 60 / 240 and compare the Strategy Tester
+// and the stats table in the top-right corner.
+strategy("CRT NY AM Backtest", overlay = true, initial_capital = 100000,
+     default_qty_type = strategy.fixed, default_qty_value = 1,
+     commission_type = strategy.commission.cash_per_contract, commission_value = 2.5,
+     slippage = 1, max_labels_count = 500)
+
+crtTF       = input.timeframe("60", "CRT timeframe", options = ["30", "60", "240"])
+winStartH   = input.int(9,  "Window start hour (NY)",  minval = 0, maxval = 23, group = "NY AM window (C2 close time)")
+winStartM   = input.int(30, "Window start minute",     minval = 0, maxval = 59, group = "NY AM window (C2 close time)")
+winEndH     = input.int(12, "Window end hour (NY)",    minval = 0, maxval = 23, group = "NY AM window (C2 close time)")
+winEndM     = input.int(0,  "Window end minute",       minval = 0, maxval = 59, group = "NY AM window (C2 close time)")
+dirOpt      = input.string("Both", "Direction", options = ["Both", "Long only", "Short only"])
+useTimeExit = input.bool(true, "Flatten at time-exit hour", group = "Exits")
+exitH       = input.int(16, "Time-exit hour (NY)", minval = 0, maxval = 23, group = "Exits")
+startDate   = input.time(timestamp("2015-01-01T00:00:00"), "Backtest start")
+showTable   = input.bool(true, "Show stats table")
+
+TZ = "America/New_York"
+
+if timeframe.in_seconds() >= timeframe.in_seconds(crtTF)
+    runtime.error("Chart timeframe must be lower than the CRT timeframe (use 1m or 5m).")
+
+// ---------- build CRT-timeframe candles from chart bars ----------
+newHTF = timeframe.change(crtTF)
+
+var float curH = na
+var float curL = na
+var float curC = na
+var float c2H  = na
+var float c2L  = na
+var float c2C  = na
+var float c1H  = na
+var float c1L  = na
+
+if newHTF
+    // the candle that just closed becomes C2; the one before it becomes C1
+    c1H := c2H
+    c1L := c2L
+    c2H := curH
+    c2L := curL
+    c2C := curC
+    curH := high
+    curL := low
+else
+    curH := math.max(nz(curH, high), high)
+    curL := math.min(nz(curL, low), low)
+curC := close
+
+// C2 close time == open time of the new CRT candle
+nyMins  = hour(time, TZ) * 60 + minute(time, TZ)
+winFrom = winStartH * 60 + winStartM
+winTo   = winEndH * 60 + winEndM
+inWin   = nyMins > winFrom and nyMins <= winTo
+
+valid   = newHTF and inWin and time >= startDate and not na(c1H) and not na(c2H)
+bearCRT = valid and c2H > c1H and c2C < c1H and c2C > c1L
+bullCRT = valid and c2L < c1L and c2C > c1L and c2C < c1H
+outside = bearCRT and bullCRT   // C2 swept both sides: ambiguous, skip
+
+allowLong  = dirOpt != "Short only"
+allowShort = dirOpt != "Long only"
+
+// stop price per trade, indexed by trade number (for R-multiple stats)
+var array<float> tradeStops = array.new<float>()
+
+flat = strategy.position_size == 0 and strategy.opentrades == 0
+if flat and not outside
+    if bearCRT and allowShort
+        strategy.entry("Short", strategy.short)
+        strategy.exit("Short x", "Short", stop = c2H, limit = c1L, comment_profit = "TP", comment_loss = "SL")
+        array.push(tradeStops, c2H)
+    else if bullCRT and allowLong
+        strategy.entry("Long", strategy.long)
+        strategy.exit("Long x", "Long", stop = c2L, limit = c1H, comment_profit = "TP", comment_loss = "SL")
+        array.push(tradeStops, c2L)
+
+if useTimeExit and strategy.position_size != 0 and nyMins >= exitH * 60 and nyMins < exitH * 60 + 60
+    strategy.close_all(comment = "Time")
+
+plotshape(bearCRT and not outside, "Bearish CRT", shape.triangledown, location.abovebar, color.red,   size = size.tiny)
+plotshape(bullCRT and not outside, "Bullish CRT", shape.triangleup,   location.belowbar, color.green, size = size.tiny)
+
+// ---------- R-multiple stats ----------
+var int   nTP = 0
+var int   nSL = 0
+var int   nTime = 0
+var int   nWin = 0
+var float sumR = 0.0
+var float grossWinR = 0.0
+var float grossLossR = 0.0
+var float sumPts = 0.0
+var int   counted = 0
+
+while counted < strategy.closedtrades
+    i     = counted
+    entP  = strategy.closedtrades.entry_price(i)
+    exP   = strategy.closedtrades.exit_price(i)
+    isL   = strategy.closedtrades.size(i) > 0
+    pts   = isL ? exP - entP : entP - exP
+    stp   = i < array.size(tradeStops) ? array.get(tradeStops, i) : na
+    risk  = math.abs(entP - nz(stp, entP))
+    r     = risk > 0 ? pts / risk : 0.0
+    cmt   = strategy.closedtrades.exit_comment(i)
+    nTP   += cmt == "TP" ? 1 : 0
+    nSL   += cmt == "SL" ? 1 : 0
+    nTime += cmt == "Time" ? 1 : 0
+    nWin  += r > 0 ? 1 : 0
+    sumR  += r
+    sumPts += pts
+    grossWinR  += r > 0 ? r : 0.0
+    grossLossR += r < 0 ? -r : 0.0
+    counted += 1
+
+if showTable and barstate.islast
+    var table t = table.new(position.top_right, 2, 10, bgcolor = color.new(color.black, 15), border_width = 1)
+    n = counted
+    rows = array.from("CRT TF", "Trades", "Win rate", "Target hit", "Stopped", "Time exit", "Avg R", "Total R", "PF (R)", "Avg pts")
+    vals = array.from(
+         crtTF == "240" ? "4H" : crtTF == "60" ? "1H" : "30m",
+         str.tostring(n),
+         n > 0 ? str.tostring(100.0 * nWin / n, "#.0") + "%" : "-",
+         str.tostring(nTP),
+         str.tostring(nSL),
+         str.tostring(nTime),
+         n > 0 ? str.tostring(sumR / n, "#.00") : "-",
+         str.tostring(sumR, "#.0"),
+         grossLossR > 0 ? str.tostring(grossWinR / grossLossR, "#.00") : "-",
+         n > 0 ? str.tostring(sumPts / n, "#.0") : "-")
+    for k = 0 to 9
+        table.cell(t, 0, k, array.get(rows, k), text_color = color.white, text_size = size.small)
+        table.cell(t, 1, k, array.get(vals, k), text_color = color.white, text_size = size.small)
