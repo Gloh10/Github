@@ -1,24 +1,24 @@
 //@version=6
-indicator("Liquidity DOL Scoring Engine v2", overlay=true, max_boxes_count=500, max_lines_count=200, max_labels_count=200)
+indicator("Liquidity DOL Engine v2", overlay=true, max_boxes_count=500, max_lines_count=200, max_labels_count=200)
 
 TZ = "America/New_York"
 
 // ---------------- INPUTS ----------------
-mode        = input.string("Day Trading", "Trading Mode", options=["Swing","Day Trading","Scalping"], group="Trading Mode")
+mode        = input.string("Day Trading", "Trading Mode", ["Swing","Day Trading","Scalping"])
 maxAtrDist  = input.float(2.0, "Max ATR Distance", minval=0.5, group="Scoring")
 halfLifeB   = input.int(50, "Freshness Half-Life (bars)", minval=5, group="Scoring")
 wProx       = input.float(25, "Proximity Weight", group="Scoring")
 wFresh      = input.float(15, "Freshness Weight", group="Scoring")
 wConf       = input.float(20, "Confluence Weight", group="Scoring")
 wDens       = input.float(20, "Equal H/L + Density Weight", group="Scoring")
-wType       = input.float(20, "Level Significance Weight", group="Scoring", tooltip="PWH/PWL > PDH/PDL > London > Asia > plain swing")
+wType       = input.float(20, "Level Significance Weight", group="Scoring")
 pivotLB     = input.int(5, "Pivot Lookback/Right", minval=1, group="Levels")
 maxLevels   = input.int(20, "Max Levels Tracked", minval=5, maxval=25, group="Levels")
 eqTolATR    = input.float(0.1, "Equal High/Low Tolerance (ATR)", minval=0.01, step=0.01, group="Levels")
 useKeyLvls  = input.bool(true, "Track PDH/PDL, PWH/PWL, Asia & London H/L", group="Levels")
 asiaSess    = input.session("2000-0000", "Asia Session (NY time)", group="Levels")
 londonSess  = input.session("0200-0500", "London Session (NY time)", group="Levels")
-dirFilter   = input.string("HTF bias", "Direction Filter", options=["Any","HTF bias","HTF + STF bias"], group="Filters", tooltip="Only show DOLs / signals that agree with the bias table")
+dirFilter   = input.string("HTF bias", "Direction Filter", ["Any","HTF bias","HTF + STF bias"], group="Filters")
 useKZ       = input.bool(true, "Only show new DOLs / signals in killzones", group="Filters")
 kz1         = input.session("0930-1130", "Killzone 1 (NY time)", group="Filters")
 useKZ2      = input.bool(false, "Use Killzone 2", group="Filters")
@@ -56,9 +56,9 @@ etf = switch mode
 // ---------------- CORE SERIES ----------------
 atrVal = ta.atr(14)
 
-pdh = request.security(syminfo.tickerid, "1D", high[1], gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
-pdl = request.security(syminfo.tickerid, "1D", low[1], gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
-dOpen = request.security(syminfo.tickerid, "1D", open, gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
+pdh = request.security(syminfo.tickerid, "1D", high[1])
+pdl = request.security(syminfo.tickerid, "1D", low[1])
+dOpen = request.security(syminfo.tickerid, "1D", open)
 eq = (pdh + pdl) / 2.0
 
 inKZ    = not na(time(timeframe.period, kz1, TZ)) or (useKZ2 and not na(time(timeframe.period, kz2, TZ)))
@@ -81,13 +81,18 @@ f_bias() =>
         b := -1
     b
 
-biasHTF = nz(request.security(syminfo.tickerid, htf, f_bias(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off))
-biasSTF = nz(request.security(syminfo.tickerid, stf, f_bias(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off))
-biasETF = nz(request.security(syminfo.tickerid, etf, f_bias(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off))
+biasHTF = nz(request.security(syminfo.tickerid, htf, f_bias()))
+biasSTF = nz(request.security(syminfo.tickerid, stf, f_bias()))
+biasETF = nz(request.security(syminfo.tickerid, etf, f_bias()))
 
 // direction: 1 = toward buyside (bullish), -1 = toward sellside (bearish)
 f_dirOK(int dir) =>
-    dirFilter == "Any" ? true : dirFilter == "HTF bias" ? dir == biasHTF : (biasHTF == biasSTF and dir == biasHTF)
+    bool ok = true
+    if dirFilter == "HTF bias"
+        ok := dir == biasHTF
+    if dirFilter == "HTF + STF bias"
+        ok := biasHTF == biasSTF and dir == biasHTF
+    ok
 
 // ---------------- LEVEL POOL ----------------
 var float[] lvlPrice = array.new_float(0)
@@ -98,7 +103,16 @@ var int[]   lvlDens  = array.new_int(0)
 var int[]   lvlKind  = array.new_int(0)   // 0 swing, 1 prev day, 2 prev week, 3 Asia, 4 London
 
 f_name(int kind, int typ, bool isEq) =>
-    string base = kind == 1 ? (typ == 1 ? "PDH" : "PDL") : kind == 2 ? (typ == 1 ? "PWH" : "PWL") : kind == 3 ? (typ == 1 ? "Asia H" : "Asia L") : kind == 4 ? (typ == 1 ? "London H" : "London L") : (typ == 1 ? "Swing H" : "Swing L")
+    bool hi = typ == 1
+    string base = hi ? "Swing H" : "Swing L"
+    if kind == 1
+        base := hi ? "PDH" : "PDL"
+    if kind == 2
+        base := hi ? "PWH" : "PWL"
+    if kind == 3
+        base := hi ? "Asia H" : "Asia L"
+    if kind == 4
+        base := hi ? "London H" : "London L"
     isEq ? base + " (EQ)" : base
 
 f_addLevel(float price, int typ, int kind, int birth, int dens) =>
@@ -129,7 +143,10 @@ f_eqCount(int idx) =>
     float tol = atrVal * eqTolATR
     if n > 1
         for j = 0 to n - 1
-            if j != idx and not array.get(lvlMit, j) and array.get(lvlType, j) == t and math.abs(array.get(lvlPrice, j) - p) <= tol
+            bool same = j != idx and array.get(lvlType, j) == t
+            bool live = not array.get(lvlMit, j)
+            bool near = math.abs(array.get(lvlPrice, j) - p) <= tol
+            if same and live and near
                 c += 1
     c
 
@@ -223,9 +240,15 @@ if array.size(lvlPrice) > 0
                         sigName := f_name(kindI, t, isEq)
 
 if bullSig
-    label.new(bar_index, low, sigName + " swept", style=label.style_label_up, color=color.new(bullColor, 20), textcolor=color.white, size=size.tiny)
+    string bTxt = sigName + " swept"
+    bl = label.new(bar_index, low, bTxt, style=label.style_label_up, size=size.tiny)
+    label.set_color(bl, color.new(bullColor, 20))
+    label.set_textcolor(bl, color.white)
 if bearSig
-    label.new(bar_index, high, sigName + " swept", style=label.style_label_down, color=color.new(bearColor, 20), textcolor=color.white, size=size.tiny)
+    string sTxt = sigName + " swept"
+    sl = label.new(bar_index, high, sTxt, style=label.style_label_down, size=size.tiny)
+    label.set_color(sl, color.new(bearColor, 20))
+    label.set_textcolor(sl, color.white)
 
 // ---------------- SCORING ----------------
 var int bestIdx = -1
@@ -256,7 +279,8 @@ if array.size(lvlPrice) > 0 and weightSum > 0
             confScore = htfAligned ? math.min(100.0, confBase + 20.0) : confBase
             densScore = math.min(100.0, array.get(lvlDens, i) * 15.0 + f_eqCount(i) * 40.0)
             sigScore = kind == 2 ? 100.0 : kind == 1 ? 90.0 : kind == 4 ? 75.0 : kind == 3 ? 70.0 : 35.0
-            total = (proxScore * wProx + freshScore * wFresh + confScore * wConf + densScore * wDens + sigScore * wType) / weightSum
+            float total = proxScore * wProx + freshScore * wFresh + confScore * wConf
+            total := (total + densScore * wDens + sigScore * wType) / weightSum
             if f_dirOK(typ) and distATR <= maxAtrDist and total > bestScore
                 bestScore := total
                 bestIdx := i
@@ -296,7 +320,9 @@ if bestIdx >= 0 and PoT >= minPoT and showNow
             box.set_border_color(dolBox, color.new(neutralColor, 60))
             box.set_bgcolor(dolBox, color.new(neutralColor, 90))
             ghostBox := dolBox
-        dolBox := box.new(bBar, bPrice + bufr, bar_index, bPrice - bufr, border_color=dolColor, bgcolor=color.new(dolColor, 85), extend=extend.right)
+        color dolBg = color.new(dolColor, 85)
+        dolBox := box.new(bBar, bPrice + bufr, bar_index, bPrice - bufr, dolColor, bgcolor=dolBg)
+        box.set_extend(dolBox, extend.right)
         dolBarRef := rawBar
         dolPriceRef := bPrice
         dolTypeRef := bTyp
@@ -306,7 +332,10 @@ if bestIdx >= 0 and PoT >= minPoT and showNow
 
     if not na(potLabel)
         label.delete(potLabel)
-    potLabel := label.new(bar_index, bPrice, "DOL " + bName + "  PoT " + str.tostring(PoT, "#.#") + "%", style=label.style_label_left, color=color.new(dolColor, 70), textcolor=dolColor, size=size.small)
+    string potTxt = "DOL " + bName + "  PoT " + str.tostring(PoT, "#.#") + "%"
+    potLabel := label.new(bar_index, bPrice, potTxt, style=label.style_label_left, size=size.small)
+    label.set_color(potLabel, color.new(dolColor, 70))
+    label.set_textcolor(potLabel, dolColor)
 else if not showNow and not na(potLabel)
     label.delete(potLabel)
     potLabel := na
@@ -352,8 +381,12 @@ if showLvlLines and barstate.islast
                     pB = array.get(lvlPrice, best)
                     x1 = math.max(array.get(lvlBar, best), bar_index - 4999)
                     lnCol = sideType == 1 ? color.new(bearColor, 40) : color.new(bullColor, 40)
-                    array.push(nearLines, line.new(x1, pB, bar_index + 5, pB, color=lnCol, style=line.style_dotted))
-                    array.push(nearLabels, label.new(bar_index + 5, pB, f_name(array.get(lvlKind, best), sideType, f_eqCount(best) > 0), style=label.style_none, textcolor=lnCol, size=size.tiny))
+                    string nm = f_name(array.get(lvlKind, best), sideType, f_eqCount(best) > 0)
+                    ln = line.new(x1, pB, bar_index + 5, pB, color=lnCol, style=line.style_dotted)
+                    lbl = label.new(bar_index + 5, pB, nm, style=label.style_none, size=size.tiny)
+                    label.set_textcolor(lbl, lnCol)
+                    array.push(nearLines, ln)
+                    array.push(nearLabels, lbl)
 
 // ---------------- iFVG ----------------
 var float[] fTop   = array.new_float(0)
@@ -372,7 +405,9 @@ if barstate.isconfirmed and fvgMode != "None"
     bullGap = low > high[2] and (low - high[2]) >= minSz
     bearGap = high < low[2] and (low[2] - high) >= minSz
     if bullGap
-        bx = box.new(bar_index - 2, low, bar_index, high[2], border_color=color.new(bullColor, showActiveF ? 30 : 100), bgcolor=color.new(bullColor, showActiveF ? 85 : 100))
+        color bdr1 = color.new(bullColor, showActiveF ? 30 : 100)
+        color bg1 = color.new(bullColor, showActiveF ? 85 : 100)
+        bx = box.new(bar_index - 2, low, bar_index, high[2], border_color=bdr1, bgcolor=bg1)
         array.push(fTop, low)
         array.push(fBot, high[2])
         array.push(fType, 1)
@@ -381,7 +416,9 @@ if barstate.isconfirmed and fvgMode != "None"
         array.push(fBirth, bar_index)
         array.push(fBox, bx)
     if bearGap
-        bx2 = box.new(bar_index - 2, low[2], bar_index, high, border_color=color.new(bearColor, showActiveF ? 30 : 100), bgcolor=color.new(bearColor, showActiveF ? 85 : 100))
+        color bdr2 = color.new(bearColor, showActiveF ? 30 : 100)
+        color bg2 = color.new(bearColor, showActiveF ? 85 : 100)
+        bx2 = box.new(bar_index - 2, low[2], bar_index, high, border_color=bdr2, bgcolor=bg2)
         array.push(fTop, low[2])
         array.push(fBot, high)
         array.push(fType, 2)
@@ -431,7 +468,7 @@ if barstate.isconfirmed and fvgMode != "None"
             idx -= 1
 
 // ---------------- SIMPLIFIED LVN PROFILE (1H accumulation) ----------------
-[htfTime, htfClose, htfVol] = request.security(syminfo.tickerid, "60", [time, close, volume], gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
+[htfTime, htfClose, htfVol] = request.security(syminfo.tickerid, "60", [time, close, volume])
 
 var float[] vpPrice = array.new_float(0)
 var float[] vpVol   = array.new_float(0)
@@ -471,7 +508,9 @@ if showLVN and barstate.islast and array.size(vpPrice) > 20
                 if v < maxV * 0.3
                     binLo = lo + rng * (b / float(bins))
                     binHi = lo + rng * ((b + 1) / float(bins))
-                    lb = box.new(bar_index - 50, binHi, bar_index + 20, binLo, border_color=color.new(color.yellow, 70), bgcolor=color.new(color.yellow, 90), extend=extend.none)
+                    color yB = color.new(color.yellow, 70)
+                    color yF = color.new(color.yellow, 90)
+                    lb = box.new(bar_index - 50, binHi, bar_index + 20, binLo, border_color=yB, bgcolor=yF)
                     array.push(lvnBoxes, lb)
 
 // ---------------- BIAS TABLE ----------------
@@ -495,5 +534,5 @@ if showBias and barstate.islast
 alertcondition(newDOL, title="New DOL Target Active", message="New highest-scoring DOL target is active")
 alertcondition(newIFVG, title="New iFVG Formed", message="A traditional FVG inverted into an active iFVG")
 alertcondition(sweepAlert, title="DOL Target Swept", message="Price reached the active DOL target")
-alertcondition(bullSig, title="Bullish Sweep + Reclaim", message="Sellside liquidity swept and reclaimed (bias-aligned, in killzone)")
-alertcondition(bearSig, title="Bearish Sweep + Reclaim", message="Buyside liquidity swept and reclaimed (bias-aligned, in killzone)")
+alertcondition(bullSig, title="Bullish Sweep + Reclaim", message="Sellside swept and reclaimed")
+alertcondition(bearSig, title="Bearish Sweep + Reclaim", message="Buyside swept and reclaimed")
