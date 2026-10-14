@@ -57,7 +57,7 @@ def build_candles(base, minutes):
     return c
 
 
-def simulate(base, signals):
+def simulate(base, signals, cost_pts=0.0):
     times = base.index.values
     hi, lo, op, cl = (base[k].values for k in ("high", "low", "open", "close"))
     trades = []
@@ -89,7 +89,7 @@ def simulate(base, signals):
             j += 1
         if exit_px is None:
             exit_px, how, j = cl[-1], "Open", len(times) - 1
-        pts = (entry - exit_px) if short else (exit_px - entry)
+        pts = ((entry - exit_px) if short else (exit_px - entry)) - cost_pts
         busy_until = times[j]
         trades.append({**s, "entry_time": pd.Timestamp(times[i]), "entry": entry,
                        "exit_time": pd.Timestamp(times[j]), "exit": exit_px, "exit_type": how,
@@ -142,13 +142,18 @@ def main():
     ap.add_argument("csv")
     ap.add_argument("--tz-in", default="UTC", help="timezone of naive datetimes in the CSV")
     ap.add_argument("--out", help="write every trade to this CSV")
+    ap.add_argument("--tfs", default="30m,1H,4H", help="CRT timeframes to test, e.g. 1H,4H")
+    ap.add_argument("--cost-pts", type=float, default=0.75,
+                    help="round-trip slippage + commission in points (default 0.75 = 3 ticks)")
     a = ap.parse_args()
 
     base = load(a.csv, a.tz_in)
     print(f"Data: {base.index[0]} -> {base.index[-1]} NY time, {len(base):,} bars\n")
     all_trades = []
-    for tf, mins in TIMEFRAMES.items():
-        all_trades += simulate(base, find_signals(build_candles(base, mins), tf))
+    order = [tf for tf in a.tfs.split(",") if tf in TIMEFRAMES]
+    for tf in order:
+        sigs = find_signals(build_candles(base, TIMEFRAMES[tf]), tf)
+        all_trades += simulate(base, sigs, a.cost_pts)
     if not all_trades:
         sys.exit("No trades found.")
     t = pd.DataFrame(all_trades)
@@ -157,7 +162,6 @@ def main():
 
     pd.set_option("display.width", 200)
     pd.set_option("display.max_columns", 30)
-    order = list(TIMEFRAMES)
     print("=== By CRT timeframe ===")
     print(t.groupby("tf").apply(summarize, include_groups=False).reindex(order), "\n")
     print("=== By timeframe and direction ===")

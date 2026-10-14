@@ -18,12 +18,20 @@ eqTolATR    = input.float(0.1, "Equal High/Low Tolerance (ATR)", minval=0.01, st
 useKeyLvls  = input.bool(true, "Track PDH/PDL, PWH/PWL, Asia & London H/L", group="Levels")
 asiaSess    = input.session("2000-0000", "Asia Session (NY time)", group="Levels")
 londonSess  = input.session("0200-0500", "London Session (NY time)", group="Levels")
-dirFilter   = input.string("HTF bias", "Direction Filter", ["Any","HTF bias","HTF + STF bias"], group="Filters")
+dirFilter   = input.string("Any", "Direction Filter", ["Any","HTF bias","HTF + STF bias"], group="Filters")
 useKZ       = input.bool(true, "Only show new DOLs / signals in killzones", group="Filters")
 kz1         = input.session("0930-1130", "Killzone 1 (NY time)", group="Filters")
 useKZ2      = input.bool(false, "Use Killzone 2", group="Filters")
 kz2         = input.session("0200-0500", "Killzone 2 (NY time)", group="Filters")
-showSweeps  = input.bool(true, "Show Sweep + Reclaim Signals", group="Filters")
+showSweeps  = input.bool(false, "Show Sweep + Reclaim Signals (lost money in backtest)", group="Filters")
+showCRT     = input.bool(true, "Show CRT + key-level sweep setups", group="CRT")
+crtTF       = input.timeframe("60", "CRT timeframe", group="CRT")
+crtStartH   = input.int(9, "C2 close window start hour (NY)", minval=0, maxval=23, group="CRT")
+crtStartM   = input.int(30, "C2 close window start minute", minval=0, maxval=59, group="CRT")
+crtEndH     = input.int(12, "C2 close window end hour (NY)", minval=0, maxval=23, group="CRT")
+crtEndM     = input.int(0, "C2 close window end minute", minval=0, maxval=59, group="CRT")
+crtNeedKey  = input.bool(true, "Require C2 to sweep a key level", group="CRT")
+crtLongOnly = input.bool(false, "Longs only", group="CRT")
 sweepKeyOnly= input.bool(true, "Signals only on key / equal levels", group="Filters")
 minPoT      = input.float(60.0, "Minimum PoT to Show DOL (%)", minval=0.0, maxval=95.0, group="Display")
 showLvlLines= input.bool(true, "Show nearest liquidity levels", group="Display")
@@ -200,6 +208,28 @@ if useKeyLvls
     f_addLevel(londonH, 1, 4, bar_index, 0)
     f_addLevel(londonL, -1, 4, bar_index, 0)
 
+// latest value of each key level (used by the CRT key-sweep check)
+var float kPDH = na
+var float kPDL = na
+var float kPWH = na
+var float kPWL = na
+var float kAH = na
+var float kAL = na
+var float kLH = na
+var float kLL = na
+if newDay
+    kPDH := curDH
+    kPDL := curDL
+if newWeek
+    kPWH := curWH
+    kPWL := curWL
+if not na(asiaH)
+    kAH := asiaH
+    kAL := asiaL
+if not na(londonH)
+    kLH := londonH
+    kLL := londonL
+
 curDH := newDay  ? high : math.max(nz(curDH, high), high)
 curDL := newDay  ? low  : math.min(nz(curDL, low), low)
 curWH := newWeek ? high : math.max(nz(curWH, high), high)
@@ -214,6 +244,74 @@ if barstate.isconfirmed and not na(ph)
     f_addLevel(ph, 1, 0, bar_index - pivotLB, densPH)
 if barstate.isconfirmed and not na(pl)
     f_addLevel(pl, -1, 0, bar_index - pivotLB, densPL)
+
+// ---------------- CRT + KEY-LEVEL SWEEP ----------------
+// Backtest on NQ (Jan 2025 - Oct 2026, 1H CRT, C2 closing 10:00-12:00 ET, 0.75 pt costs):
+//   C2 swept a key level   : 165 trades, +0.14R avg, PF 1.39
+//   C2 swept no key level  : 207 trades, -0.05R avg, PF 0.92
+// So only CRTs whose C2 sweeps PDH/PDL, PWH/PWL, Asia or London H/L are marked.
+newCRT = timeframe.change(crtTF)
+var float crtCurH = na
+var float crtCurL = na
+var float crtCurC = na
+var float crtC2H = na
+var float crtC2L = na
+var float crtC2C = na
+var float crtC1H = na
+var float crtC1L = na
+if newCRT
+    crtC1H := crtC2H
+    crtC1L := crtC2L
+    crtC2H := crtCurH
+    crtC2L := crtCurL
+    crtC2C := crtCurC
+    crtCurH := high
+    crtCurL := low
+else
+    crtCurH := math.max(nz(crtCurH, high), high)
+    crtCurL := math.min(nz(crtCurL, low), low)
+crtCurC := close
+
+f_sweptAbove(float lvl) => not na(lvl) and crtC2H >= lvl and lvl > crtC2C
+f_sweptBelow(float lvl) => not na(lvl) and crtC2L <= lvl and lvl < crtC2C
+
+nyNow = hour(time, TZ) * 60 + minute(time, TZ)
+crtFrom = crtStartH * 60 + crtStartM
+crtTo = crtEndH * 60 + crtEndM
+crtInWin = nyNow > crtFrom and nyNow <= crtTo
+crtValid = showCRT and newCRT and crtInWin and not na(crtC1H) and not na(crtC2H)
+crtInside = crtC2C < crtC1H and crtC2C > crtC1L
+crtBearRaw = crtValid and crtInside and crtC2H > crtC1H
+crtBullRaw = crtValid and crtInside and crtC2L < crtC1L
+
+string crtLvl = ""
+if crtBearRaw
+    crtLvl := f_sweptAbove(kPWH) ? "PWH" : f_sweptAbove(kPDH) ? "PDH" : crtLvl
+    crtLvl := crtLvl == "" and f_sweptAbove(kLH) ? "London H" : crtLvl
+    crtLvl := crtLvl == "" and f_sweptAbove(kAH) ? "Asia H" : crtLvl
+if crtBullRaw
+    crtLvl := f_sweptBelow(kPWL) ? "PWL" : f_sweptBelow(kPDL) ? "PDL" : crtLvl
+    crtLvl := crtLvl == "" and f_sweptBelow(kLL) ? "London L" : crtLvl
+    crtLvl := crtLvl == "" and f_sweptBelow(kAL) ? "Asia L" : crtLvl
+
+crtKeyOK = crtLvl != "" or not crtNeedKey
+crtBear = crtBearRaw and not crtBullRaw and crtKeyOK
+crtBull = crtBullRaw and not crtBearRaw and crtKeyOK
+crtBear := crtBear and not crtLongOnly
+
+if crtBear or crtBull
+    float cEntry = crtC2C
+    float cStop = crtBear ? crtC2H : crtC2L
+    float cTgt = crtBear ? crtC1L : crtC1H
+    color cCol = crtBear ? bearColor : bullColor
+    string cTxt = (crtBear ? "CRT short" : "CRT long") + (crtLvl != "" ? " | swept " + crtLvl : "")
+    lyl = crtBear ? label.style_label_down : label.style_label_up
+    cl1 = label.new(bar_index, crtBear ? high : low, cTxt, style=lyl, size=size.small)
+    label.set_color(cl1, color.new(cCol, 10))
+    label.set_textcolor(cl1, color.white)
+    line.new(bar_index, cStop, bar_index + 12, cStop, color=color.new(cCol, 0), width=2)
+    line.new(bar_index, cTgt, bar_index + 12, cTgt, color=color.new(dolColor, 0), width=2)
+    line.new(bar_index, cEntry, bar_index + 12, cEntry, color=color.new(neutralColor, 0))
 
 // ---------------- SWEEPS: mitigation + sweep-and-reclaim signals ----------------
 bullSig = false
@@ -536,3 +634,5 @@ alertcondition(newIFVG, title="New iFVG Formed", message="A traditional FVG inve
 alertcondition(sweepAlert, title="DOL Target Swept", message="Price reached the active DOL target")
 alertcondition(bullSig, title="Bullish Sweep + Reclaim", message="Sellside swept and reclaimed")
 alertcondition(bearSig, title="Bearish Sweep + Reclaim", message="Buyside swept and reclaimed")
+alertcondition(crtBull, title="CRT Long (key sweep)", message="1H CRT long: C2 swept key sellside")
+alertcondition(crtBear, title="CRT Short (key sweep)", message="1H CRT short: C2 swept key buyside")
