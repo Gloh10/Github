@@ -4,6 +4,8 @@ Candle Range Theory on 30m, 1H and 4H, filtered to the NY AM session.
 
 **Rules.** C1 is the range candle. C2 sweeps C1's high (or low) and closes back inside C1. The trade enters at C2's close, the stop goes at C2's wick and the target is the opposite side of C1. C2 must close between 09:30 (exclusive) and 12:00 ET (inclusive). Anything still open is closed at 16:00 ET. CRT candles follow the CME clock, so the 4H candles open at 18, 22, 02, 06, 10 and 14 ET. That makes the only 4H setup in the NY AM window the 06:00–10:00 candle sweeping the 02:00–06:00 candle.
 
+**Key sweep filter** (strategy default: on). A trade is only taken if C2 also sweeps a key level and closes back past it. The key levels are PDH/PDL, PWH/PWL, Asia H/L (20:00–00:00 ET) and London H/L (02:00–05:00 ET). Set it to "Only NO key sweep" to see the trades the filter removes. Results are in `RESULTS.md`.
+
 ## TradingView
 1. Open `NQ1!` on a **1m or 5m** chart.
 2. Pine Editor → paste `crt_ny_am_strategy.pine` → Add to chart.
