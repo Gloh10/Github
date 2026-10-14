@@ -1,0 +1,499 @@
+//@version=6
+indicator("Liquidity DOL Scoring Engine v2", overlay=true, max_boxes_count=500, max_lines_count=200, max_labels_count=200)
+
+TZ = "America/New_York"
+
+// ---------------- INPUTS ----------------
+mode        = input.string("Day Trading", "Trading Mode", options=["Swing","Day Trading","Scalping"], group="Trading Mode")
+maxAtrDist  = input.float(2.0, "Max ATR Distance", minval=0.5, group="Scoring")
+halfLifeB   = input.int(50, "Freshness Half-Life (bars)", minval=5, group="Scoring")
+wProx       = input.float(25, "Proximity Weight", group="Scoring")
+wFresh      = input.float(15, "Freshness Weight", group="Scoring")
+wConf       = input.float(20, "Confluence Weight", group="Scoring")
+wDens       = input.float(20, "Equal H/L + Density Weight", group="Scoring")
+wType       = input.float(20, "Level Significance Weight", group="Scoring", tooltip="PWH/PWL > PDH/PDL > London > Asia > plain swing")
+pivotLB     = input.int(5, "Pivot Lookback/Right", minval=1, group="Levels")
+maxLevels   = input.int(20, "Max Levels Tracked", minval=5, maxval=25, group="Levels")
+eqTolATR    = input.float(0.1, "Equal High/Low Tolerance (ATR)", minval=0.01, step=0.01, group="Levels")
+useKeyLvls  = input.bool(true, "Track PDH/PDL, PWH/PWL, Asia & London H/L", group="Levels")
+asiaSess    = input.session("2000-0000", "Asia Session (NY time)", group="Levels")
+londonSess  = input.session("0200-0500", "London Session (NY time)", group="Levels")
+dirFilter   = input.string("HTF bias", "Direction Filter", options=["Any","HTF bias","HTF + STF bias"], group="Filters", tooltip="Only show DOLs / signals that agree with the bias table")
+useKZ       = input.bool(true, "Only show new DOLs / signals in killzones", group="Filters")
+kz1         = input.session("0930-1130", "Killzone 1 (NY time)", group="Filters")
+useKZ2      = input.bool(false, "Use Killzone 2", group="Filters")
+kz2         = input.session("0200-0500", "Killzone 2 (NY time)", group="Filters")
+showSweeps  = input.bool(true, "Show Sweep + Reclaim Signals", group="Filters")
+sweepKeyOnly= input.bool(true, "Signals only on key / equal levels", group="Filters")
+minPoT      = input.float(60.0, "Minimum PoT to Show DOL (%)", minval=0.0, maxval=95.0, group="Display")
+showLvlLines= input.bool(true, "Show nearest liquidity levels", group="Display")
+lvlPerSide  = input.int(2, "Levels shown per side", minval=0, maxval=5, group="Display")
+showBias    = input.bool(true, "Show Bias Table", group="Display")
+fvgMode     = input.string("iFVG only", "FVG Display", options=["All","iFVG only","None"], group="iFVG")
+fvgMinATR   = input.float(0.25, "Min FVG Size (ATR)", minval=0.0, step=0.05, group="iFVG")
+fvgMaxAge   = input.int(150, "Max FVG Age (bars)", minval=10, group="iFVG")
+ifvgThresh  = input.int(2, "iFVG Invalidation Closures", minval=1, group="iFVG")
+showLVN     = input.bool(false, "Show LVN Zones", group="Volume Profile")
+bullColor   = input.color(color.new(#26a69a, 0), "Bullish Color", group="Theme")
+bearColor   = input.color(color.new(#ef5350, 0), "Bearish Color", group="Theme")
+neutralColor= input.color(color.new(#787b86, 0), "Neutral Color", group="Theme")
+dolColor    = input.color(color.new(#00e5ff, 0), "DOL Color", group="Theme")
+
+// ---------------- TIMEFRAME MAP ----------------
+htf = switch mode
+    "Swing"       => "1D"
+    "Day Trading" => "60"
+    "Scalping"    => "15"
+stf = switch mode
+    "Swing"       => "240"
+    "Day Trading" => "15"
+    "Scalping"    => "5"
+etf = switch mode
+    "Swing"       => "60"
+    "Day Trading" => "5"
+    "Scalping"    => "1"
+
+// ---------------- CORE SERIES ----------------
+atrVal = ta.atr(14)
+
+pdh = request.security(syminfo.tickerid, "1D", high[1], gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
+pdl = request.security(syminfo.tickerid, "1D", low[1], gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
+dOpen = request.security(syminfo.tickerid, "1D", open, gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
+eq = (pdh + pdl) / 2.0
+
+inKZ    = not na(time(timeframe.period, kz1, TZ)) or (useKZ2 and not na(time(timeframe.period, kz2, TZ)))
+showNow = not useKZ or inKZ
+
+// ---------------- BIAS FUNCTION (per timeframe) ----------------
+f_bias() =>
+    ph = ta.pivothigh(high, 2, 2)
+    pl = ta.pivotlow(low, 2, 2)
+    var float lh = na
+    var float ll = na
+    var int b = 0
+    if not na(ph)
+        lh := ph
+    if not na(pl)
+        ll := pl
+    if not na(lh) and close > lh
+        b := 1
+    if not na(ll) and close < ll
+        b := -1
+    b
+
+biasHTF = nz(request.security(syminfo.tickerid, htf, f_bias(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off))
+biasSTF = nz(request.security(syminfo.tickerid, stf, f_bias(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off))
+biasETF = nz(request.security(syminfo.tickerid, etf, f_bias(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off))
+
+// direction: 1 = toward buyside (bullish), -1 = toward sellside (bearish)
+f_dirOK(int dir) =>
+    dirFilter == "Any" ? true : dirFilter == "HTF bias" ? dir == biasHTF : (biasHTF == biasSTF and dir == biasHTF)
+
+// ---------------- LEVEL POOL ----------------
+var float[] lvlPrice = array.new_float(0)
+var int[]   lvlBar   = array.new_int(0)
+var int[]   lvlType  = array.new_int(0)   // 1 = buyside (high), -1 = sellside (low)
+var bool[]  lvlMit   = array.new_bool(0)
+var int[]   lvlDens  = array.new_int(0)
+var int[]   lvlKind  = array.new_int(0)   // 0 swing, 1 prev day, 2 prev week, 3 Asia, 4 London
+
+f_name(int kind, int typ, bool isEq) =>
+    string base = kind == 1 ? (typ == 1 ? "PDH" : "PDL") : kind == 2 ? (typ == 1 ? "PWH" : "PWL") : kind == 3 ? (typ == 1 ? "Asia H" : "Asia L") : kind == 4 ? (typ == 1 ? "London H" : "London L") : (typ == 1 ? "Swing H" : "Swing L")
+    isEq ? base + " (EQ)" : base
+
+f_addLevel(float price, int typ, int kind, int birth, int dens) =>
+    if not na(price)
+        array.push(lvlPrice, price)
+        array.push(lvlBar, birth)
+        array.push(lvlType, typ)
+        array.push(lvlMit, false)
+        array.push(lvlDens, dens)
+        array.push(lvlKind, kind)
+    true
+
+f_removeLevel(int i) =>
+    array.remove(lvlPrice, i)
+    array.remove(lvlBar, i)
+    array.remove(lvlType, i)
+    array.remove(lvlMit, i)
+    array.remove(lvlDens, i)
+    array.remove(lvlKind, i)
+    true
+
+// other unswept levels on the same side within tolerance = equal highs / lows
+f_eqCount(int idx) =>
+    int c = 0
+    int n = array.size(lvlPrice)
+    float p = array.get(lvlPrice, idx)
+    int t = array.get(lvlType, idx)
+    float tol = atrVal * eqTolATR
+    if n > 1
+        for j = 0 to n - 1
+            if j != idx and not array.get(lvlMit, j) and array.get(lvlType, j) == t and math.abs(array.get(lvlPrice, j) - p) <= tol
+                c += 1
+    c
+
+f_densityCount(price, isHigh) =>
+    cnt = 0
+    tol = atrVal * eqTolATR
+    if bar_index >= 20
+        for off = pivotLB + 1 to pivotLB + 20
+            srcVal = isHigh ? high[off] : low[off]
+            if math.abs(srcVal - price) <= tol
+                cnt := cnt + 1
+    cnt
+
+// session high/low, published when the session ends
+f_sessHL(bool inS) =>
+    var float sH = na
+    var float sL = na
+    float outH = na
+    float outL = na
+    if inS and not inS[1]
+        sH := high
+        sL := low
+    else if inS
+        sH := math.max(sH, high)
+        sL := math.min(sL, low)
+    if not inS and inS[1]
+        outH := sH
+        outL := sL
+    [outH, outL]
+
+[asiaH, asiaL]     = f_sessHL(not na(time(timeframe.period, asiaSess, TZ)))
+[londonH, londonL] = f_sessHL(not na(time(timeframe.period, londonSess, TZ)))
+
+// previous day / week highs & lows from chart bars
+var float curDH = na
+var float curDL = na
+var float curWH = na
+var float curWL = na
+newDay  = timeframe.change("1D")
+newWeek = timeframe.change("1W")
+
+if useKeyLvls
+    if newDay
+        f_addLevel(curDH, 1, 1, bar_index, 0)
+        f_addLevel(curDL, -1, 1, bar_index, 0)
+    if newWeek
+        f_addLevel(curWH, 1, 2, bar_index, 0)
+        f_addLevel(curWL, -1, 2, bar_index, 0)
+    f_addLevel(asiaH, 1, 3, bar_index, 0)
+    f_addLevel(asiaL, -1, 3, bar_index, 0)
+    f_addLevel(londonH, 1, 4, bar_index, 0)
+    f_addLevel(londonL, -1, 4, bar_index, 0)
+
+curDH := newDay  ? high : math.max(nz(curDH, high), high)
+curDL := newDay  ? low  : math.min(nz(curDL, low), low)
+curWH := newWeek ? high : math.max(nz(curWH, high), high)
+curWL := newWeek ? low  : math.min(nz(curWL, low), low)
+
+ph = ta.pivothigh(high, pivotLB, pivotLB)
+pl = ta.pivotlow(low, pivotLB, pivotLB)
+densPH = f_densityCount(ph, true)
+densPL = f_densityCount(pl, false)
+
+if barstate.isconfirmed and not na(ph)
+    f_addLevel(ph, 1, 0, bar_index - pivotLB, densPH)
+if barstate.isconfirmed and not na(pl)
+    f_addLevel(pl, -1, 0, bar_index - pivotLB, densPL)
+
+// ---------------- SWEEPS: mitigation + sweep-and-reclaim signals ----------------
+bullSig = false
+bearSig = false
+string sigName = ""
+
+if array.size(lvlPrice) > 0
+    for i = 0 to array.size(lvlPrice) - 1
+        if not array.get(lvlMit, i)
+            p = array.get(lvlPrice, i)
+            t = array.get(lvlType, i)
+            touched = t == 1 ? high >= p : low <= p
+            if touched
+                isEq = f_eqCount(i) > 0
+                kindI = array.get(lvlKind, i)
+                array.set(lvlMit, i, true)
+                reclaimed = t == 1 ? close < p : close > p
+                if showSweeps and showNow and reclaimed and (kindI > 0 or isEq or not sweepKeyOnly)
+                    if t == -1 and f_dirOK(1)
+                        bullSig := true
+                        sigName := f_name(kindI, t, isEq)
+                    if t == 1 and f_dirOK(-1)
+                        bearSig := true
+                        sigName := f_name(kindI, t, isEq)
+
+if bullSig
+    label.new(bar_index, low, sigName + " swept", style=label.style_label_up, color=color.new(bullColor, 20), textcolor=color.white, size=size.tiny)
+if bearSig
+    label.new(bar_index, high, sigName + " swept", style=label.style_label_down, color=color.new(bearColor, 20), textcolor=color.white, size=size.tiny)
+
+// ---------------- SCORING ----------------
+var int bestIdx = -1
+var float bestScore = 0.0
+bestIdx := -1
+bestScore := 0.0
+weightSum = wProx + wFresh + wConf + wDens + wType
+
+if array.size(lvlPrice) > 0 and weightSum > 0
+    for i = 0 to array.size(lvlPrice) - 1
+        if not array.get(lvlMit, i)
+            price = array.get(lvlPrice, i)
+            typ = array.get(lvlType, i)
+            kind = array.get(lvlKind, i)
+            dist = math.abs(close - price)
+            distATR = atrVal > 0 ? dist / atrVal : 0.0
+            proxScore = distATR > maxAtrDist ? 0.0 : 100.0 * (1.0 - distATR / maxAtrDist)
+            age = bar_index - array.get(lvlBar, i)
+            freshScore = 100.0 * math.pow(0.5, age / float(halfLifeB))
+            freshScore := kind > 0 ? math.max(freshScore, 50.0) : freshScore
+            dPDH = atrVal > 0 ? math.abs(price - pdh) / atrVal : 99.0
+            dPDL = atrVal > 0 ? math.abs(price - pdl) / atrVal : 99.0
+            dOP  = atrVal > 0 ? math.abs(price - dOpen) / atrVal : 99.0
+            dEQ  = atrVal > 0 ? math.abs(price - eq) / atrVal : 99.0
+            htfAligned = typ == biasHTF
+            minConfDist = math.min(math.min(dPDH, dPDL), math.min(dOP, dEQ))
+            confBase = minConfDist > 0.5 ? 0.0 : 100.0 * (1.0 - minConfDist / 0.5)
+            confScore = htfAligned ? math.min(100.0, confBase + 20.0) : confBase
+            densScore = math.min(100.0, array.get(lvlDens, i) * 15.0 + f_eqCount(i) * 40.0)
+            sigScore = kind == 2 ? 100.0 : kind == 1 ? 90.0 : kind == 4 ? 75.0 : kind == 3 ? 70.0 : 35.0
+            total = (proxScore * wProx + freshScore * wFresh + confScore * wConf + densScore * wDens + sigScore * wType) / weightSum
+            if f_dirOK(typ) and distATR <= maxAtrDist and total > bestScore
+                bestScore := total
+                bestIdx := i
+
+PoT = math.min(95.0, bestScore)
+
+// ---------------- DOL ZONE + GHOST TRAIL ----------------
+var box dolBox = na
+var box ghostBox = na
+var int dolBarRef = -1
+var float dolPriceRef = na
+var int dolTypeRef = 0
+var bool dolActive = false
+var label potLabel = na
+
+// was the active DOL reached on this bar?
+sweepAlert = false
+if dolActive and not na(dolPriceRef)
+    if dolTypeRef == 1 ? high >= dolPriceRef : low <= dolPriceRef
+        sweepAlert := true
+        dolActive := false
+        box.set_extend(dolBox, extend.none)
+        box.set_right(dolBox, bar_index)
+
+newDOL = false
+if bestIdx >= 0 and PoT >= minPoT and showNow
+    bPrice = array.get(lvlPrice, bestIdx)
+    rawBar = array.get(lvlBar, bestIdx)
+    bBar = math.max(rawBar, bar_index - 4999)
+    bTyp = array.get(lvlType, bestIdx)
+    bName = f_name(array.get(lvlKind, bestIdx), bTyp, f_eqCount(bestIdx) > 0)
+    bufr = atrVal * 0.1
+    if rawBar != dolBarRef or bPrice != dolPriceRef
+        newDOL := true
+        if not na(dolBox)
+            box.set_extend(dolBox, extend.none)
+            box.set_border_color(dolBox, color.new(neutralColor, 60))
+            box.set_bgcolor(dolBox, color.new(neutralColor, 90))
+            ghostBox := dolBox
+        dolBox := box.new(bBar, bPrice + bufr, bar_index, bPrice - bufr, border_color=dolColor, bgcolor=color.new(dolColor, 85), extend=extend.right)
+        dolBarRef := rawBar
+        dolPriceRef := bPrice
+        dolTypeRef := bTyp
+        dolActive := true
+    else
+        box.set_right(dolBox, bar_index)
+
+    if not na(potLabel)
+        label.delete(potLabel)
+    potLabel := label.new(bar_index, bPrice, "DOL " + bName + "  PoT " + str.tostring(PoT, "#.#") + "%", style=label.style_label_left, color=color.new(dolColor, 70), textcolor=dolColor, size=size.small)
+else if not showNow and not na(potLabel)
+    label.delete(potLabel)
+    potLabel := na
+
+// ---------------- PRUNE: drop swept levels, then oldest swings ----------------
+if array.size(lvlPrice) > 0
+    int k = array.size(lvlPrice) - 1
+    while k >= 0
+        if array.get(lvlMit, k)
+            f_removeLevel(k)
+        k -= 1
+while array.size(lvlPrice) > maxLevels
+    rm = array.indexof(lvlKind, 0)
+    f_removeLevel(rm >= 0 ? rm : 0)
+
+// ---------------- NEAREST LIQUIDITY LEVELS ----------------
+var line[]  nearLines  = array.new_line(0)
+var label[] nearLabels = array.new_label(0)
+
+if showLvlLines and barstate.islast
+    while array.size(nearLines) > 0
+        line.delete(array.pop(nearLines))
+    while array.size(nearLabels) > 0
+        label.delete(array.pop(nearLabels))
+    n = array.size(lvlPrice)
+    if n > 0 and lvlPerSide > 0
+        for side = 0 to 1
+            sideType = side == 0 ? 1 : -1
+            used = array.new_bool(n, false)
+            for pick = 1 to lvlPerSide
+                int best = -1
+                float bestD = 1e10
+                for j = 0 to n - 1
+                    if not array.get(used, j) and array.get(lvlType, j) == sideType
+                        pj = array.get(lvlPrice, j)
+                        onSide = sideType == 1 ? pj > close : pj < close
+                        d = math.abs(pj - close)
+                        if onSide and d < bestD
+                            bestD := d
+                            best := j
+                if best >= 0
+                    array.set(used, best, true)
+                    pB = array.get(lvlPrice, best)
+                    x1 = math.max(array.get(lvlBar, best), bar_index - 4999)
+                    lnCol = sideType == 1 ? color.new(bearColor, 40) : color.new(bullColor, 40)
+                    array.push(nearLines, line.new(x1, pB, bar_index + 5, pB, color=lnCol, style=line.style_dotted))
+                    array.push(nearLabels, label.new(bar_index + 5, pB, f_name(array.get(lvlKind, best), sideType, f_eqCount(best) > 0), style=label.style_none, textcolor=lnCol, size=size.tiny))
+
+// ---------------- iFVG ----------------
+var float[] fTop   = array.new_float(0)
+var float[] fBot   = array.new_float(0)
+var int[]   fType  = array.new_int(0)   // 1 bull, 2 bear
+var int[]   fState = array.new_int(0)   // 0 active, 1 inverted
+var int[]   fCount = array.new_int(0)
+var int[]   fBirth = array.new_int(0)
+var box[]   fBox   = array.new_box(0)
+
+newIFVG = false
+showActiveF = fvgMode == "All"
+
+if barstate.isconfirmed and fvgMode != "None"
+    minSz = atrVal * fvgMinATR
+    bullGap = low > high[2] and (low - high[2]) >= minSz
+    bearGap = high < low[2] and (low[2] - high) >= minSz
+    if bullGap
+        bx = box.new(bar_index - 2, low, bar_index, high[2], border_color=color.new(bullColor, showActiveF ? 30 : 100), bgcolor=color.new(bullColor, showActiveF ? 85 : 100))
+        array.push(fTop, low)
+        array.push(fBot, high[2])
+        array.push(fType, 1)
+        array.push(fState, 0)
+        array.push(fCount, 0)
+        array.push(fBirth, bar_index)
+        array.push(fBox, bx)
+    if bearGap
+        bx2 = box.new(bar_index - 2, low[2], bar_index, high, border_color=color.new(bearColor, showActiveF ? 30 : 100), bgcolor=color.new(bearColor, showActiveF ? 85 : 100))
+        array.push(fTop, low[2])
+        array.push(fBot, high)
+        array.push(fType, 2)
+        array.push(fState, 0)
+        array.push(fCount, 0)
+        array.push(fBirth, bar_index)
+        array.push(fBox, bx2)
+
+    if array.size(fType) > 0
+        idx = array.size(fType) - 1
+        while idx >= 0
+            st = array.get(fState, idx)
+            tp = array.get(fTop, idx)
+            bt = array.get(fBot, idx)
+            typF = array.get(fType, idx)
+            bxF = array.get(fBox, idx)
+            removeIt = bar_index - array.get(fBirth, idx) > fvgMaxAge
+            if not removeIt
+                if st == 0
+                    invalidated = typF == 1 ? close < bt : close > tp
+                    if invalidated
+                        array.set(fState, idx, 1)
+                        newCol = typF == 1 ? bearColor : bullColor
+                        box.set_border_color(bxF, color.new(newCol, 30))
+                        box.set_bgcolor(bxF, color.new(newCol, 80))
+                        box.set_right(bxF, bar_index)
+                        newIFVG := true
+                    else
+                        box.set_right(bxF, bar_index)
+                else
+                    insideClose = close >= bt and close <= tp
+                    if insideClose
+                        array.set(fCount, idx, array.get(fCount, idx) + 1)
+                    if array.get(fCount, idx) >= ifvgThresh
+                        removeIt := true
+                    else
+                        box.set_right(bxF, bar_index)
+            if removeIt
+                box.delete(bxF)
+                array.remove(fTop, idx)
+                array.remove(fBot, idx)
+                array.remove(fType, idx)
+                array.remove(fState, idx)
+                array.remove(fCount, idx)
+                array.remove(fBirth, idx)
+                array.remove(fBox, idx)
+            idx -= 1
+
+// ---------------- SIMPLIFIED LVN PROFILE (1H accumulation) ----------------
+[htfTime, htfClose, htfVol] = request.security(syminfo.tickerid, "60", [time, close, volume], gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off)
+
+var float[] vpPrice = array.new_float(0)
+var float[] vpVol   = array.new_float(0)
+var int lastHtfT = 0
+
+if showLVN
+    if htfTime != lastHtfT
+        array.push(vpPrice, htfClose)
+        array.push(vpVol, htfVol)
+        if array.size(vpPrice) > 200
+            array.shift(vpPrice)
+            array.shift(vpVol)
+        lastHtfT := htfTime
+
+var box[] lvnBoxes = array.new_box(0)
+
+if showLVN and barstate.islast and array.size(vpPrice) > 20
+    hi = array.max(vpPrice)
+    lo = array.min(vpPrice)
+    rng = hi - lo
+    if rng > 0
+        bins = 15
+        binVol = array.new_float(bins, 0.0)
+        for k = 0 to array.size(vpPrice) - 1
+            pr = array.get(vpPrice, k)
+            vl = array.get(vpVol, k)
+            binIdx = int(math.min(bins - 1, math.floor((pr - lo) / rng * bins)))
+            array.set(binVol, binIdx, array.get(binVol, binIdx) + vl)
+        maxV = array.max(binVol)
+        if array.size(lvnBoxes) > 0
+            for k2 = 0 to array.size(lvnBoxes) - 1
+                box.delete(array.get(lvnBoxes, k2))
+            array.clear(lvnBoxes)
+        if maxV > 0
+            for b = 0 to bins - 1
+                v = array.get(binVol, b)
+                if v < maxV * 0.3
+                    binLo = lo + rng * (b / float(bins))
+                    binHi = lo + rng * ((b + 1) / float(bins))
+                    lb = box.new(bar_index - 50, binHi, bar_index + 20, binLo, border_color=color.new(color.yellow, 70), bgcolor=color.new(color.yellow, 90), extend=extend.none)
+                    array.push(lvnBoxes, lb)
+
+// ---------------- BIAS TABLE ----------------
+f_biasColor(b) => b == 1 ? bullColor : b == -1 ? bearColor : neutralColor
+f_biasText(b) => b == 1 ? "Bullish" : b == -1 ? "Bearish" : "Neutral"
+
+var table biasTbl = table.new(position.top_right, 2, 5, bgcolor=color.new(color.black, 80), border_width=1)
+if showBias and barstate.islast
+    table.cell(biasTbl, 0, 0, "Timeframe", text_color=color.white, bgcolor=color.new(color.gray, 70))
+    table.cell(biasTbl, 1, 0, "Bias", text_color=color.white, bgcolor=color.new(color.gray, 70))
+    table.cell(biasTbl, 0, 1, "HTF " + htf, text_color=color.white)
+    table.cell(biasTbl, 1, 1, f_biasText(biasHTF), text_color=f_biasColor(biasHTF))
+    table.cell(biasTbl, 0, 2, "STF " + stf, text_color=color.white)
+    table.cell(biasTbl, 1, 2, f_biasText(biasSTF), text_color=f_biasColor(biasSTF))
+    table.cell(biasTbl, 0, 3, "Exec " + etf, text_color=color.white)
+    table.cell(biasTbl, 1, 3, f_biasText(biasETF), text_color=f_biasColor(biasETF))
+    table.cell(biasTbl, 0, 4, "Killzone", text_color=color.white)
+    table.cell(biasTbl, 1, 4, inKZ ? "Active" : "Closed", text_color=inKZ ? dolColor : neutralColor)
+
+// ---------------- ALERTS ----------------
+alertcondition(newDOL, title="New DOL Target Active", message="New highest-scoring DOL target is active")
+alertcondition(newIFVG, title="New iFVG Formed", message="A traditional FVG inverted into an active iFVG")
+alertcondition(sweepAlert, title="DOL Target Swept", message="Price reached the active DOL target")
+alertcondition(bullSig, title="Bullish Sweep + Reclaim", message="Sellside liquidity swept and reclaimed (bias-aligned, in killzone)")
+alertcondition(bearSig, title="Bearish Sweep + Reclaim", message="Buyside liquidity swept and reclaimed (bias-aligned, in killzone)")
