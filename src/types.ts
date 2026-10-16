@@ -1,5 +1,5 @@
 export type Direction = 'long' | 'short'
-export type Outcome = 'win' | 'loss' | 'breakeven'
+export type Outcome = 'win' | 'loss' | 'breakeven' | 'did_not_take'
 
 export interface AIAnalysisResult {
   text: string

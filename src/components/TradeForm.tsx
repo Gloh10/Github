@@ -171,22 +171,30 @@ export function TradeForm({
         <div>
           <label className="mb-1.5 block text-sm font-medium text-slate-300">Outcome</label>
           <div className="flex overflow-hidden rounded-lg border border-slate-700">
-            {(['win', 'loss', 'breakeven'] as Outcome[]).map((o) => (
+            {(['win', 'loss', 'breakeven', 'did_not_take'] as Outcome[]).map((o) => (
               <button
                 key={o}
                 type="button"
-                onClick={() => update('outcome', o)}
+                onClick={() => {
+                  update('outcome', o)
+                  if (o === 'did_not_take') {
+                    update('pnl', null)
+                    update('riskReward', null)
+                  }
+                }}
                 className={`flex-1 py-2 text-xs font-medium capitalize transition sm:text-sm ${
                   trade.outcome === o
                     ? o === 'win'
                       ? 'bg-emerald-600 text-white'
                       : o === 'loss'
                         ? 'bg-rose-600 text-white'
-                        : 'bg-amber-600 text-white'
+                        : o === 'breakeven'
+                          ? 'bg-amber-600 text-white'
+                          : 'bg-slate-600 text-white'
                     : 'bg-slate-950 text-slate-400 hover:text-slate-200'
                 }`}
               >
-                {o === 'breakeven' ? 'B/E' : o}
+                {o === 'breakeven' ? 'B/E' : o === 'did_not_take' ? 'DNT' : o}
               </button>
             ))}
           </div>
@@ -196,10 +204,11 @@ export function TradeForm({
           <input
             type="number"
             step="any"
-            placeholder="optional"
+            placeholder={trade.outcome === 'did_not_take' ? 'n/a' : 'optional'}
+            disabled={trade.outcome === 'did_not_take'}
             value={trade.pnl ?? ''}
             onChange={(e) => update('pnl', e.target.value === '' ? null : Number(e.target.value))}
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none disabled:opacity-40"
           />
         </div>
         <div>
@@ -207,10 +216,11 @@ export function TradeForm({
           <input
             type="number"
             step="any"
-            placeholder="optional"
+            placeholder={trade.outcome === 'did_not_take' ? 'n/a' : 'optional'}
+            disabled={trade.outcome === 'did_not_take'}
             value={trade.riskReward ?? ''}
             onChange={(e) => update('riskReward', e.target.value === '' ? null : Number(e.target.value))}
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none disabled:opacity-40"
           />
         </div>
       </div>

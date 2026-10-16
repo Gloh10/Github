@@ -5,6 +5,7 @@ const outcomeStyles: Record<Trade['outcome'], string> = {
   win: 'bg-emerald-500/15 text-emerald-400',
   loss: 'bg-rose-500/15 text-rose-400',
   breakeven: 'bg-amber-500/15 text-amber-400',
+  did_not_take: 'bg-slate-500/20 text-slate-300',
 }
 
 export function TradeCard({ trade, onClick }: { trade: Trade; onClick: () => void }) {
@@ -29,7 +30,7 @@ export function TradeCard({ trade, onClick }: { trade: Trade; onClick: () => voi
         <div className="flex items-center justify-between">
           <span className="font-semibold text-slate-100">{trade.symbol}</span>
           <span className={`rounded-full px-2 py-0.5 text-xs font-medium capitalize ${outcomeStyles[trade.outcome]}`}>
-            {trade.outcome === 'breakeven' ? 'B/E' : trade.outcome}
+            {trade.outcome === 'breakeven' ? 'B/E' : trade.outcome === 'did_not_take' ? 'DNT' : trade.outcome}
           </span>
         </div>
         <div className="flex items-center justify-between text-xs text-slate-500">

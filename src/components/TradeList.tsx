@@ -7,6 +7,7 @@ const outcomeFilters: { label: string; value: Outcome | 'all' }[] = [
   { label: 'Wins', value: 'win' },
   { label: 'Losses', value: 'loss' },
   { label: 'Breakeven', value: 'breakeven' },
+  { label: 'Did Not Take', value: 'did_not_take' },
 ]
 
 export function TradeList({ trades, onSelect }: { trades: Trade[]; onSelect: (trade: Trade) => void }) {

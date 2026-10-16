@@ -13,6 +13,7 @@ const outcomeStyles: Record<Trade['outcome'], string> = {
   win: 'bg-emerald-500/15 text-emerald-400',
   loss: 'bg-rose-500/15 text-rose-400',
   breakeven: 'bg-amber-500/15 text-amber-400',
+  did_not_take: 'bg-slate-500/20 text-slate-300',
 }
 
 export function TradeDetail({
@@ -69,7 +70,11 @@ export function TradeDetail({
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-xl font-bold text-slate-100">{trade.symbol}</span>
         <span className={`rounded-full px-2.5 py-1 text-xs font-medium capitalize ${outcomeStyles[trade.outcome]}`}>
-          {trade.outcome === 'breakeven' ? 'Breakeven' : trade.outcome}
+          {trade.outcome === 'breakeven'
+            ? 'Breakeven'
+            : trade.outcome === 'did_not_take'
+              ? 'Did Not Take'
+              : trade.outcome}
         </span>
         <span className={`text-sm font-medium capitalize ${trade.direction === 'long' ? 'text-emerald-500' : 'text-rose-500'}`}>
           {trade.direction}

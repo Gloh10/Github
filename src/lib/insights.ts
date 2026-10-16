@@ -67,6 +67,7 @@ export interface JournalStats {
   wins: number
   losses: number
   breakeven: number
+  didNotTake: number
   winRate: number
   totalPnl: number
   topMistakes: { name: string; count: number }[]
@@ -77,7 +78,8 @@ export function getStats(trades: Trade[]): JournalStats {
   const total = trades.length
   const wins = trades.filter((t) => t.outcome === 'win').length
   const losses = trades.filter((t) => t.outcome === 'loss').length
-  const breakeven = total - wins - losses
+  const breakeven = trades.filter((t) => t.outcome === 'breakeven').length
+  const didNotTake = trades.filter((t) => t.outcome === 'did_not_take').length
   const winRate = wins + losses > 0 ? wins / (wins + losses) : 0
   const totalPnl = trades.reduce((sum, t) => sum + (t.pnl ?? 0), 0)
 
@@ -108,5 +110,5 @@ export function getStats(trades: Trade[]): JournalStats {
     .sort((a, b) => b.count - a.count)
     .slice(0, 6)
 
-  return { total, wins, losses, breakeven, winRate, totalPnl, topMistakes, topConfluences }
+  return { total, wins, losses, breakeven, didNotTake, winRate, totalPnl, topMistakes, topConfluences }
 }

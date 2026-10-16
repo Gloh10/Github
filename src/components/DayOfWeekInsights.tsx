@@ -41,7 +41,9 @@ export function DayOfWeekInsights({ trades }: { trades: Trade[] }) {
             <div className="mb-1 flex items-center justify-between text-sm">
               <span className="text-slate-300">{s.day}</span>
               <span className="text-slate-500">
-                {s.trades} trade{s.trades === 1 ? '' : 's'} · {s.wins}W {s.losses}L{s.breakeven > 0 ? ` ${s.breakeven}B/E` : ''}
+                {s.trades} trade{s.trades === 1 ? '' : 's'} · {s.wins}W {s.losses}L
+                {s.breakeven > 0 ? ` ${s.breakeven}B/E` : ''}
+                {s.didNotTake > 0 ? ` ${s.didNotTake}DNT` : ''}
                 {s.wins + s.losses > 0 ? ` · ${Math.round(s.winRate * 100)}% win rate` : ''}
               </span>
             </div>

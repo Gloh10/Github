@@ -26,6 +26,13 @@ type TradeContext = Pick<
   'symbol' | 'direction' | 'outcome' | 'pnl' | 'riskReward' | 'confluences' | 'mistakes' | 'questions'
 >
 
+const OUTCOME_LABELS: Record<TradeContext['outcome'], string> = {
+  win: 'win',
+  loss: 'loss',
+  breakeven: 'breakeven',
+  did_not_take: 'did not take (no trade was entered — this was a setup under consideration)',
+}
+
 function buildPrompt(trade: TradeContext, imageCount: number): string {
   const imageNote =
     imageCount > 1
@@ -36,12 +43,17 @@ function buildPrompt(trade: TradeContext, imageCount: number): string {
     ? `\nThe trader has specific questions about this trade they want answered directly:\n"""\n${trade.questions.trim()}\n"""\nAnswer each of these explicitly, referencing what's actually visible in the screenshot(s) — don't give a generic answer. Put this before the general analysis, under a heading like "Your questions."\n`
     : ''
 
+  const closingInstruction =
+    trade.outcome === 'did_not_take'
+      ? `Look at the actual chart(s). This setup was NOT taken — there's no entry or exit to judge. Based on what's visible (price action, wicks, structure, levels, liquidity), explain in 4-6 concise sentences whether skipping this setup looks like good discipline or a missed opportunity, and what you can learn either way. Be specific to what you see on the chart, not generic advice. If it connects to the tagged confluences or mistakes, say so. Write directly to the trader, second person, no preamble.`
+      : `Look at the actual chart(s). Based on what's visible (price action, wicks, structure, levels, liquidity, entry timing), explain in 4-6 concise sentences why this trade likely won or lost. Be specific to what you see on the chart, not generic advice. If the entry timing (visible on a lower timeframe) looks early, late, or well-timed relative to the higher-timeframe context, say so explicitly. If it connects to the tagged confluences or mistakes, say so. Write directly to the trader, second person, no preamble.`
+
   return `You are analyzing trading chart screenshot(s) for a personal trading journal.
 
 Trade details:
 - Symbol: ${trade.symbol}
 - Direction: ${trade.direction}
-- Outcome: ${trade.outcome}
+- Outcome: ${OUTCOME_LABELS[trade.outcome]}
 - P&L: ${trade.pnl ?? 'not recorded'}
 - Risk:Reward: ${trade.riskReward ?? 'not recorded'}
 - Tagged confluences: ${trade.confluences.join(', ') || 'none'}
@@ -49,7 +61,7 @@ Trade details:
 
 ${imageNote}
 ${questionsBlock}
-Look at the actual chart(s). Based on what's visible (price action, wicks, structure, levels, liquidity, entry timing), explain in 4-6 concise sentences why this trade likely won or lost. Be specific to what you see on the chart, not generic advice. If the entry timing (visible on a lower timeframe) looks early, late, or well-timed relative to the higher-timeframe context, say so explicitly. If it connects to the tagged confluences or mistakes, say so. Write directly to the trader, second person, no preamble.`
+${closingInstruction}`
 }
 
 export async function analyzeTradeScreenshots(

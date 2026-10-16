@@ -89,7 +89,8 @@ export function TradeCalendar({
           if (summary) {
             if (summary.wins > summary.losses) tone = 'border-emerald-500/30 bg-emerald-500/10'
             else if (summary.losses > summary.wins) tone = 'border-rose-500/30 bg-rose-500/10'
-            else tone = 'border-amber-500/30 bg-amber-500/10'
+            else if (summary.breakeven > 0 || summary.wins > 0) tone = 'border-amber-500/30 bg-amber-500/10'
+            // else: only did-not-take trades (or nothing decisive) — stays neutral
           }
 
           return (

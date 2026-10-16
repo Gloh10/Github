@@ -6,6 +6,7 @@ export interface DaySummary {
   wins: number
   losses: number
   breakeven: number
+  didNotTake: number
   pnl: number
 }
 
@@ -22,9 +23,10 @@ export function getTradesByDate(trades: Trade[]): Map<string, Trade[]> {
 export function summarizeDay(date: string, dayTrades: Trade[]): DaySummary {
   const wins = dayTrades.filter((t) => t.outcome === 'win').length
   const losses = dayTrades.filter((t) => t.outcome === 'loss').length
-  const breakeven = dayTrades.length - wins - losses
+  const breakeven = dayTrades.filter((t) => t.outcome === 'breakeven').length
+  const didNotTake = dayTrades.filter((t) => t.outcome === 'did_not_take').length
   const pnl = dayTrades.reduce((sum, t) => sum + (t.pnl ?? 0), 0)
-  return { date, trades: dayTrades, wins, losses, breakeven, pnl }
+  return { date, trades: dayTrades, wins, losses, breakeven, didNotTake, pnl }
 }
 
 const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -36,6 +38,7 @@ export interface DayOfWeekStat {
   wins: number
   losses: number
   breakeven: number
+  didNotTake: number
   winRate: number
   totalPnl: number
 }
@@ -51,9 +54,10 @@ export function getDayOfWeekStats(trades: Trade[]): DayOfWeekStat[] {
   return buckets.map((list, i) => {
     const wins = list.filter((t) => t.outcome === 'win').length
     const losses = list.filter((t) => t.outcome === 'loss').length
-    const breakeven = list.length - wins - losses
+    const breakeven = list.filter((t) => t.outcome === 'breakeven').length
+    const didNotTake = list.filter((t) => t.outcome === 'did_not_take').length
     const winRate = wins + losses > 0 ? wins / (wins + losses) : 0
     const totalPnl = list.reduce((sum, t) => sum + (t.pnl ?? 0), 0)
-    return { day: DAY_NAMES[i], dayIndex: i, trades: list.length, wins, losses, breakeven, winRate, totalPnl }
+    return { day: DAY_NAMES[i], dayIndex: i, trades: list.length, wins, losses, breakeven, didNotTake, winRate, totalPnl }
   })
 }

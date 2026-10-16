@@ -241,9 +241,10 @@ export function generateAnalysis(trade: Pick<Trade, 'confluences' | 'mistakes' |
     })
   }
 
-  if (trade.mistakes.length > 0 && trade.outcome !== 'loss') {
+  if (trade.mistakes.length > 0 && (trade.outcome === 'win' || trade.outcome === 'breakeven')) {
+    const verb = trade.outcome === 'win' ? 'won' : 'broke even'
     improvementTips.unshift({
-      text: `This trade won despite ${trade.mistakes.length} tagged mistake${trade.mistakes.length > 1 ? 's' : ''} — a good result doesn't validate a bad process. That's "resulting": judging a decision by its outcome instead of its quality. Watch for this pattern; it's how bad habits get reinforced.`,
+      text: `This trade ${verb} despite ${trade.mistakes.length} tagged mistake${trade.mistakes.length > 1 ? 's' : ''} — a good result doesn't validate a bad process. That's "resulting": judging a decision by its outcome instead of its quality. Watch for this pattern; it's how bad habits get reinforced.`,
       source: 'general',
     })
   }

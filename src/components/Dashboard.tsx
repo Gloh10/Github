@@ -62,7 +62,10 @@ export function Dashboard({ trades }: { trades: Trade[] }) {
           value={`${stats.totalPnl >= 0 ? '+' : ''}${stats.totalPnl.toFixed(2)}`}
           accent={stats.totalPnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}
         />
-        <StatCard label="W / L / B/E" value={`${stats.wins} / ${stats.losses} / ${stats.breakeven}`} />
+        <StatCard
+          label="W / L / B/E / DNT"
+          value={`${stats.wins} / ${stats.losses} / ${stats.breakeven} / ${stats.didNotTake}`}
+        />
       </div>
 
       <div className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-4">
