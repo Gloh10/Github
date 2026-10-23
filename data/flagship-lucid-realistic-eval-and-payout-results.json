@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-10-16T21:26:01.448Z",
+  "generatedAt": "2026-10-23T21:25:46.882Z",
   "evalTrials": 1000,
   "depthTrials": 5000,
-  "distinctDays": 34,
+  "distinctDays": 37,
   "eval": {
-    "clearRate": 77.2,
-    "bustRate": 22.8,
-    "avgDaysToClear": 12.911917098445596
+    "clearRate": 59.5,
+    "bustRate": 40.5,
+    "avgDaysToClear": 14.559663865546218
   },
   "payout": {
-    "bustRate": 49.480000000000004,
+    "bustRate": 82.28,
     "graduatedRate": 0,
-    "avgPayouts": 0.761,
-    "pAtLeastOne": 57.24,
-    "avgProtected": 2162.843
+    "avgPayouts": 0.3414,
+    "pAtLeastOne": 29.56,
+    "avgProtected": 955.639
   }
 }
