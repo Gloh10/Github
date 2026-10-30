@@ -8,7 +8,7 @@ import type { Bar, Trade } from "../src/backtest/types.js";
 const NQ_POINT_VALUE_USD = 20;
 const ACCOUNT_SIZE = 150_000;
 const COMBINE_TARGET = 9_000;
-const WEEK_START = "2026-10-19"; // Monday
+const WEEK_START = "2026-10-26"; // Monday
 
 function loadBars(path: string): Bar[] {
   return (JSON.parse(readFileSync(path, "utf-8")) as Bar[]).sort((a, b) => a.t - b.t);
