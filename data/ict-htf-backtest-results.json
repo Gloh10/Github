@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-11-17T22:32:38.157Z",
+  "instrument": "SPY",
+  "caveat": "Single instrument (SPY) tested so far; cross-validation on QQQ and individual names deferred (TradingView daily quota exhausted). Strategy B's n=9 is too small to draw any conclusion. Strategy A/A2's open-ended 'nearest pivot' target concentrates ~66-70% of total R in the top 5 of ~30 trades -- see fixedRVariants for a cleaner, non-outlier-dependent read on entry quality. Long-side win rate is likely inflated by SPY's secular uptrend; the short-side results (which fight that trend) are the more meaningful test of the methodology's actual edge.",
+  "dataRange": {
+    "from": "1993-01-29",
+    "to": "2026-11-17"
+  },
+  "bars": {
+    "daily": 8509,
+    "weekly": 1765,
+    "monthly": 407
+  },
+  "strategyA": {
+    "stats": {
+      "totalTrades": 31,
+      "wins": 25,
+      "losses": 6,
+      "winRate": 0.8064516129032258,
+      "avgR": 3.9505771562915677,
+      "totalR": 122.4678918450386,
+      "maxDrawdownPct": 1.9899999999999984,
+      "finalEquity": 315.63701294538356
+    },
+    "avgHoldingDays": 29.646505376344088,
+    "byDirection": {
+      "long": {
+        "n": 16,
+        "winRate": 1,
+        "totalR": 107.2668042835108
+      },
+      "short": {
+        "n": 15,
+        "winRate": 0.6,
+        "totalR": 15.201087561527803
+      }
+    },
+    "trades": 31
+  },
+  "strategyA_fixedRVariants": [
+    {
+      "fixedR": 1.5,
+      "trades": 33,
+      "winRate": 0.8181818181818182,
+      "avgR": 1.0454545454545452,
+      "totalR": 34.49999999999999
+    },
+    {
+      "fixedR": 2,
+      "trades": 33,
+      "winRate": 0.7878787878787878,
+      "avgR": 1.3636363636363635,
+      "totalR": 45
+    },
+    {
+      "fixedR": 3,
+      "trades": 29,
+      "winRate": 0.7241379310344828,
+      "avgR": 1.896551724137931,
+      "totalR": 55
+    }
+  ],
+  "strategyA2_bprConfluence": {
+    "stats": {
+      "totalTrades": 27,
+      "wins": 21,
+      "losses": 6,
+      "winRate": 0.7777777777777778,
+      "avgR": 3.3209019862588205,
+      "totalR": 89.66435362898815,
+      "maxDrawdownPct": 1.9899999999999984,
+      "finalEquity": 232.74857869858886
+    },
+    "avgHoldingDays": 29.74074074074074,
+    "byDirection": {
+      "long": {
+        "n": 12,
+        "winRate": 1,
+        "totalR": 74.46326606746035
+      },
+      "short": {
+        "n": 15,
+        "winRate": 0.6,
+        "totalR": 15.201087561527803
+      }
+    },
+    "trades": 27
+  },
+  "strategyB": {
+    "stats": {
+      "totalTrades": 9,
+      "wins": 2,
+      "losses": 7,
+      "winRate": 0.2222222222222222,
+      "avgR": -0.1111111111111111,
+      "totalR": -1,
+      "maxDrawdownPct": 6.793465209301005,
+      "finalEquity": 98.88281275945256
+    },
+    "avgHoldingDays": 5.555555555555555,
+    "byDirection": {
+      "long": {
+        "n": 2,
+        "winRate": 0,
+        "totalR": -2
+      },
+      "short": {
+        "n": 7,
+        "winRate": 0.2857142857142857,
+        "totalR": 1
+      }
+    },
+    "trades": 9
+  },
+  "buyAndHoldFinalEquity": 1666.9852974646094
+}
